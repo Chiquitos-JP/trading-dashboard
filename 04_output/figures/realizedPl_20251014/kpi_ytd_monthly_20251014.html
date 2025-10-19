@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPI YTD & Monthly Summary</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 10px;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 12px;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            background-color: white;
+        }
+        caption {
+            caption-side: top;
+            text-align: left;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 10px 0;
+            color: #2c3e50;
+        }
+        thead th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 10px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid #5a67d8;
+        }
+        thead th:first-child {
+            border-top-left-radius: 8px;
+        }
+        thead th:last-child {
+            border-top-right-radius: 8px;
+        }
+        tbody td, tbody th {
+            padding: 12px 10px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        tbody tr:hover {
+            background-color: #f8f9fa;
+            transition: background-color 0.2s;
+        }
+        .metric-col {
+            font-weight: 600;
+            color: #2c3e50;
+            min-width: 280px;
+            background-color: #f8f9fa;
+            text-align: left;
+        }
+        .value-col {
+            text-align: right;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #34495e;
+        }
+        .period-row {
+            background-color: #fff9c4 !important;
+            font-weight: bold;
+        }
+        .period-row td {
+            border-top: 2px solid #fbc02d;
+            border-bottom: 2px solid #fbc02d;
+        }
+        .reference-row {
+            background-color: #e3f2fd !important;
+            font-style: italic;
+        }
+        .reference-row td {
+            border-top: 2px solid #2196f3;
+            font-size: 12px;
+            color: #1565c0;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            font-size: 12px;
+            color: #95a5a6;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 KPI YTD & Monthly Summary <span class="badge">2025</span></h1>
+        <p class="subtitle">集計期間: 2025-01-01 〜 2025-10-14</p>
+        
+        <div class="table-wrapper">
+            
+<table aria-label="KPI YTD and Monthly Summary Table">
+    <caption>
+        KPI指標の年初来(YTD)および月次サマリー
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col">Metric</th><th scope="col">YTD in 2025</th><th scope="col">Jan-2025</th><th scope="col">Feb-2025</th><th scope="col">Mar-2025</th><th scope="col">May-2025</th><th scope="col">Jun-2025</th><th scope="col">Jul-2025</th><th scope="col">Aug-2025</th><th scope="col">Sep-2025</th><th scope="col">Oct-2025</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="period-row"><th scope="row" class="metric-col">Period</th><td class="value-col">2025-01-01 - 2025-10-14</td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td></tr><tr class=""><th scope="row" class="metric-col">Trade_Days</th><td class="value-col">73</td><td class="value-col">4</td><td class="value-col">6</td><td class="value-col">8</td><td class="value-col">11</td><td class="value-col">9</td><td class="value-col">5</td><td class="value-col">12</td><td class="value-col">11</td><td class="value-col">7</td></tr><tr class=""><th scope="row" class="metric-col">Market_Open_Days</th><td class="value-col">188</td><td class="value-col">20</td><td class="value-col">19</td><td class="value-col">21</td><td class="value-col">21</td><td class="value-col">20</td><td class="value-col">22</td><td class="value-col">21</td><td class="value-col">21</td><td class="value-col">23</td></tr><tr class=""><th scope="row" class="metric-col">Expectancy (E)</th><td class="value-col">0.54%</td><td class="value-col">-0.11%</td><td class="value-col">0.37%</td><td class="value-col">-4.59%</td><td class="value-col">0.46%</td><td class="value-col">0.78%</td><td class="value-col">0.86%</td><td class="value-col">1.08%</td><td class="value-col">0.61%</td><td class="value-col">0.44%</td></tr><tr class=""><th scope="row" class="metric-col">Win Rate (WR)</th><td class="value-col">69.92%</td><td class="value-col">40.00%</td><td class="value-col">64.71%</td><td class="value-col">46.43%</td><td class="value-col">71.11%</td><td class="value-col">89.86%</td><td class="value-col">60.00%</td><td class="value-col">60.53%</td><td class="value-col">87.10%</td><td class="value-col">43.84%</td></tr><tr class=""><th scope="row" class="metric-col">Mean Profit Rate (G)</th><td class="value-col">0.94%</td><td class="value-col">0.00%</td><td class="value-col">0.57%</td><td class="value-col">0.00%</td><td class="value-col">0.65%</td><td class="value-col">0.87%</td><td class="value-col">1.43%</td><td class="value-col">1.79%</td><td class="value-col">0.70%</td><td class="value-col">1.00%</td></tr><tr class=""><th scope="row" class="metric-col">Mean Loss Rate (L)</th><td class="value-col">0.40%</td><td class="value-col">0.18%</td><td class="value-col">0.00%</td><td class="value-col">8.56%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td></tr><tr class=""><th scope="row" class="metric-col">Avg Gain per Trade (JPY)</th><td class="value-col">28,980</td><td class="value-col">0</td><td class="value-col">13,217</td><td class="value-col">0</td><td class="value-col">15,363</td><td class="value-col">24,602</td><td class="value-col">88,932</td><td class="value-col">70,717</td><td class="value-col">22,703</td><td class="value-col">33,642</td></tr><tr class=""><th scope="row" class="metric-col">Avg Loss per Trade (JPY)</th><td class="value-col">12,281</td><td class="value-col">7,098</td><td class="value-col">0</td><td class="value-col">119,757</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td></tr><tr class=""><th scope="row" class="metric-col">Avg Capital Invested per trade (JPY)</th><td class="value-col">3,090,263</td><td class="value-col">4,055,067</td><td class="value-col">2,323,263</td><td class="value-col">1,398,996</td><td class="value-col">2,378,541</td><td class="value-col">2,822,688</td><td class="value-col">6,211,453</td><td class="value-col">3,948,298</td><td class="value-col">3,256,130</td><td class="value-col">3,379,278</td></tr><tr class=""><th scope="row" class="metric-col">Risk/Reward Ratio (RRR)</th><td class="value-col">2.36</td><td class="value-col">0.00</td><td class="value-col">—</td><td class="value-col">0.00</td><td class="value-col">—</td><td class="value-col">—</td><td class="value-col">—</td><td class="value-col">—</td><td class="value-col">—</td><td class="value-col">—</td></tr><tr class=""><th scope="row" class="metric-col">ROI</th><td class="value-col">0.54%</td><td class="value-col">-0.11%</td><td class="value-col">0.37%</td><td class="value-col">-4.59%</td><td class="value-col">0.46%</td><td class="value-col">0.78%</td><td class="value-col">0.86%</td><td class="value-col">1.08%</td><td class="value-col">0.61%</td><td class="value-col">0.44%</td></tr><tr class=""><th scope="row" class="metric-col">Total Trades</th><td class="value-col">492</td><td class="value-col">5</td><td class="value-col">17</td><td class="value-col">28</td><td class="value-col">90</td><td class="value-col">69</td><td class="value-col">10</td><td class="value-col">76</td><td class="value-col">124</td><td class="value-col">73</td></tr><tr class=""><th scope="row" class="metric-col">Total Win Trades</th><td class="value-col">344</td><td class="value-col">2</td><td class="value-col">11</td><td class="value-col">13</td><td class="value-col">64</td><td class="value-col">62</td><td class="value-col">6</td><td class="value-col">46</td><td class="value-col">108</td><td class="value-col">32</td></tr><tr class=""><th scope="row" class="metric-col">Total Net P/L (JPY)</th><td class="value-col">8,151,341</td><td class="value-col">-21,294</td><td class="value-col">145,387</td><td class="value-col">-1,796,356</td><td class="value-col">983,234</td><td class="value-col">1,525,344</td><td class="value-col">533,590</td><td class="value-col">3,252,990</td><td class="value-col">2,451,899</td><td class="value-col">1,076,548</td></tr><tr class=""><th scope="row" class="metric-col">Total Gain (JPY)</th><td class="value-col">9,968,991</td><td class="value-col">0</td><td class="value-col">145,387</td><td class="value-col">0</td><td class="value-col">983,234</td><td class="value-col">1,525,344</td><td class="value-col">533,590</td><td class="value-col">3,252,990</td><td class="value-col">2,451,899</td><td class="value-col">1,076,548</td></tr><tr class=""><th scope="row" class="metric-col">Total Loss (JPY)</th><td class="value-col">1,817,650</td><td class="value-col">21,294</td><td class="value-col">0</td><td class="value-col">1,796,356</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td></tr><tr class=""><th scope="row" class="metric-col">Total Investment (JPY)</th><td class="value-col">1,520,409,449</td><td class="value-col">20,275,334</td><td class="value-col">39,495,468</td><td class="value-col">39,171,888</td><td class="value-col">214,068,673</td><td class="value-col">194,765,463</td><td class="value-col">62,114,528</td><td class="value-col">300,070,684</td><td class="value-col">403,760,126</td><td class="value-col">246,687,285</td></tr><tr class="reference-row"><th scope="row" class="metric-col">Reference</th><td class="value-col">E = WR × Mean Profit Rate − (1 − WR) × Mean Loss Rate</td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td><td class="value-col"></td></tr>
+    </tbody>
+</table>
+
+        </div>
+        
+        <div class="footer">
+            <div>
+                <p><strong>生成日時:</strong> 2025-10-14 00:31:33</p>
+                <p><strong>データソース:</strong> 03_ts_monthly_20251013.parquet</p>
+            </div>
+            <div>
+                <p><strong>総取引回数:</strong> 492</p>
+                <p><strong>勝率:</strong> 69.92%</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
