@@ -105,6 +105,10 @@ actual_trade_days_df = (
 )
 
 # %% 📊 月次集計 + 基本指標
+# 利益と損失を事前に計算
+df_filtered['gain_only'] = df_filtered['ttl_gain_realized_jpy'].apply(lambda x: x if x > 0 else 0)
+df_filtered['loss_only'] = df_filtered['ttl_gain_realized_jpy'].apply(lambda x: abs(x) if x < 0 else 0)
+
 monthly_summary = (
     df_filtered.groupby("year_month")
     .agg(
@@ -118,7 +122,10 @@ monthly_summary = (
         # 金額合計
         ttl_amt_settlement_jpy=("ttl_amt_settlement_jpy", "sum"),
         ttl_cost_acquisition_jpy=("ttl_cost_acquisition_jpy", "sum"),
-        ttl_gain_realized_jpy=("ttl_gain_realized_jpy", "sum")
+        ttl_gain_realized_jpy=("ttl_gain_realized_jpy", "sum"),
+        # 利益と損失を別々に集計
+        ttl_gain_only=("gain_only", "sum"),
+        ttl_loss_only=("loss_only", "sum")
     )
     .reset_index()
     .assign(
@@ -223,7 +230,9 @@ ordered_columns = [
     # 🗓️ 日付キー
     "year_month",
     # 🗓️ 結果指標
-    "ttl_gain_realized_jpy", 
+    "ttl_gain_realized_jpy",
+    "ttl_gain_only",
+    "ttl_loss_only",
     "win_rate",
     "avg_gain_realized_perTrade_jpy",
     "sharpe_ratio",

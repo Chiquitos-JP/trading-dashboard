@@ -150,9 +150,11 @@ print("=" * 60)
 # 勝ち件数を計算（各brokerの win_rate × num_of_trades の合計）
 df['num_of_win_trades'] = (df['win_rate'] * df['num_of_trades']).fillna(0)
 
-# 月次で集計
+# 月次で集計（利益と損失は既にRakuten/SBIスクリプトで計算済み）
 ts_monthly = df.groupby('year_month_iso').agg({
-    'ttl_gain_realized_jpy': 'sum',
+    'ttl_gain_realized_jpy': 'sum',  # 純損益
+    'ttl_gain_only': 'sum',  # 利益のみの合計（既に計算済み）
+    'ttl_loss_only': 'sum',  # 損失のみの合計（既に計算済み）
     'num_of_win_trades': lambda x: round(x.sum()),  # 勝ち件数
     'num_of_trades': 'sum',
     'ttl_amt_settlement_jpy': 'sum',
@@ -212,6 +214,7 @@ ts_monthly = ts_monthly.merge(month_labels, on='year_month_iso', how='left')
 cols_order = [
     'year_month_iso', 'year_month', 'year_month_date',
     'ttl_cost_acquisition_jpy', 'ttl_gain_realized_jpy',
+    'ttl_gain_only', 'ttl_loss_only',
     'num_of_win_trades', 'win_rate', 'avg_gain_realized_per_trade_jpy',
     'num_of_trades', 'actual_trade_days', 'market_open_days',
     'avg_gain_per_day_jpy', 'avg_num_of_trades_per_day',

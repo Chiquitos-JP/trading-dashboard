@@ -479,8 +479,19 @@ output_path_cleaned = os.path.join(
 df_sbi.to_csv(output_path_cleaned, index=False, encoding="utf-8-sig")
 
 # %% ▼ 月次集計（合計）
-monthly_numeric_cols = numeric_cols + ["ttl_amt_settlement_usd"]
+# 利益と損失を事前に計算
+df_sbi['gain_only'] = df_sbi['ttl_gain_realized_usd'].apply(lambda x: x if x > 0 else 0)
+df_sbi['loss_only'] = df_sbi['ttl_gain_realized_usd'].apply(lambda x: abs(x) if x < 0 else 0)
+
+monthly_numeric_cols = numeric_cols + ["ttl_amt_settlement_usd", "gain_only", "loss_only"]
 df_sbi_monthly = df_sbi.groupby("year_month")[monthly_numeric_cols].sum().reset_index()
+
+# 列名を変更
+df_sbi_monthly = df_sbi_monthly.rename(columns={
+    'gain_only': 'ttl_gain_only',
+    'loss_only': 'ttl_loss_only'
+})
+
 df_sbi_monthly["currency"] = "USD"
 
 # %% ▼ 月次ベースで取得コストを逆算（ttl_cost_acquisition_usd, avg_UnitCost_acquisition_usd）

@@ -85,6 +85,56 @@ if merged_data is not None:
 
 print()
 
+# ===== 税金計算関数 =====
+def calc_tax(profit_before_tax):
+    """
+    税金を計算（利益がプラスの場合のみ）
+    
+    税率構造:
+    - 所得税: 15%
+    - 住民税: 5%
+    - 復興特別所得税: 0.315% (所得税の2.1%)
+    - 合計: 20.315%
+    
+    Parameters:
+    -----------
+    profit_before_tax : float
+        税引前利益
+        
+    Returns:
+    --------
+    dict : 税金の内訳と税引後利益
+    """
+    if pd.isna(profit_before_tax) or profit_before_tax <= 0:
+        return {
+            'Income Tax (所得税)': 0,
+            'Resident Tax (住民税)': 0,
+            'Special Reconstruction Tax (復興特別所得税)': 0,
+            'Total Tax (税額)': 0,
+            'Profit After Tax (PAT)': profit_before_tax if not pd.isna(profit_before_tax) else 0
+        }
+    
+    # 税率定義
+    income_tax_rate = 0.15  # 15%
+    resident_tax_rate = 0.05  # 5%
+    reconstruction_tax_rate = 0.00315  # 0.315% (所得税の2.1%)
+    
+    # 各税額計算
+    income_tax = profit_before_tax * income_tax_rate
+    resident_tax = profit_before_tax * resident_tax_rate
+    reconstruction_tax = profit_before_tax * reconstruction_tax_rate
+    
+    total_tax = income_tax + resident_tax + reconstruction_tax
+    pat = profit_before_tax - total_tax
+    
+    return {
+        'Income Tax (所得税)': income_tax,
+        'Resident Tax (住民税)': resident_tax,
+        'Special Reconstruction Tax (復興特別所得税)': reconstruction_tax,
+        'Total Tax (税額)': total_tax,
+        'Profit After Tax (PAT)': pat
+    }
+
 # ===== KPI計算関数 =====
 def calc_metrics(df, fx_data=None, year_month=None):
     """
@@ -114,16 +164,26 @@ def calc_metrics(df, fx_data=None, year_month=None):
         if len(fx_match) > 0:
             avg_fx_rate = fx_match['avg_fx_rate'].iloc[0]
     
-    # 利益と損失を分離
-    gains = df['ttl_gain_realized_jpy'][df['ttl_gain_realized_jpy'] > 0]
-    losses = df['ttl_gain_realized_jpy'][df['ttl_gain_realized_jpy'] < 0]
+    # 利益と損失を分離（新しい列を使用）
+    if 'ttl_gain_only' in df.columns and 'ttl_loss_only' in df.columns:
+        # 月次集計済みデータの場合（kpi_analysis.pyで計算済み）
+        total_gain = df['ttl_gain_only'].sum()
+        total_loss = df['ttl_loss_only'].sum()
+    else:
+        # 日次データの場合（フォールバック）
+        gains = df['ttl_gain_realized_jpy'][df['ttl_gain_realized_jpy'] > 0]
+        losses = df['ttl_gain_realized_jpy'][df['ttl_gain_realized_jpy'] < 0]
+        total_gain = gains.sum() if len(gains) > 0 else 0
+        total_loss = abs(losses.sum()) if len(losses) > 0 else 0
     
-    total_gain = gains.sum() if len(gains) > 0 else 0
-    total_loss = abs(losses.sum()) if len(losses) > 0 else 0
     total_investment = df['ttl_cost_acquisition_jpy'].sum()
     
     # Win Rate
     win_rate = total_win_trades / total_trades if total_trades > 0 else np.nan
+    
+    # Loss Rate
+    total_loss_trades = total_trades - total_win_trades
+    loss_rate = total_loss_trades / total_trades if total_trades > 0 else np.nan
     
     # Average Capital Invested per trade
     avg_capital_invested = total_investment / total_trades if total_trades > 0 else np.nan
@@ -132,8 +192,12 @@ def calc_metrics(df, fx_data=None, year_month=None):
     avg_gain = total_gain / total_win_trades if total_win_trades > 0 else np.nan
     
     # Average Loss per Trade
-    total_loss_trades = total_trades - total_win_trades
     avg_loss = total_loss / total_loss_trades if total_loss_trades > 0 else np.nan
+    
+    # デバッグ出力（一時的）
+    period_label = year_month if year_month else "YTD"
+    avg_loss_str = f"{avg_loss:,.2f}" if not np.isnan(avg_loss) else "N/A"
+    print(f"[DEBUG] {period_label}: total_loss={total_loss:,.2f} JPY, total_loss_trades={total_loss_trades}, avg_loss={avg_loss_str} JPY")
     
     # Risk/Reward Ratio
     risk_reward = avg_gain / avg_loss if not np.isnan(avg_loss) and avg_loss > 0 else np.nan
@@ -151,9 +215,16 @@ def calc_metrics(df, fx_data=None, year_month=None):
     else:
         expectancy = np.nan
     
+    # 税金計算（税引前利益 = Total Net P/L）
+    tax_info = calc_tax(total_net_pl)
+    
+    # 税引き後ROI
+    roi_after_tax = tax_info['Profit After Tax (PAT)'] / total_investment if total_investment > 0 else np.nan
+    
     return {
         'Expectancy (E)': expectancy,
         'Win Rate (WR)': win_rate,
+        'Loss Rate (LR)': loss_rate,
         'Mean Profit Rate (G)': mean_profit_rate,
         'Mean Loss Rate (L)': mean_loss_rate,
         'Mean Gain per Trade (JPY)': avg_gain,
@@ -163,10 +234,17 @@ def calc_metrics(df, fx_data=None, year_month=None):
         'ROI': roi,
         'Total Trades': total_trades,
         'Total Win Trades': total_win_trades,
+        'Total Loss Trades': total_loss_trades,
         'Total Net P/L (JPY)': total_net_pl,
         'Total Gain (JPY)': total_gain,
         'Total Loss (JPY)': total_loss,
-        'Total Investment (JPY)': total_investment
+        'Total Investment (JPY)': total_investment,
+        'Income Tax (所得税)': tax_info['Income Tax (所得税)'],
+        'Resident Tax (住民税)': tax_info['Resident Tax (住民税)'],
+        'Special Reconstruction Tax (復興特別所得税)': tax_info['Special Reconstruction Tax (復興特別所得税)'],
+        'Total Tax (税額)': tax_info['Total Tax (税額)'],
+        'Profit After Tax (PAT)': tax_info['Profit After Tax (PAT)'],
+        'ROI After Tax': roi_after_tax
     }
 
 # ===== YTD集計 =====
@@ -262,13 +340,15 @@ print("="*60)
 
 # カテゴリ別メトリック定義
 assumption_metrics = ['Trading Days', 'Market Open Days', 'Average Exchange Rate (JPY/USD)']
-lagging_metrics = ['Expectancy (E)', 'Win Rate (WR)', 'Mean Profit Rate (G)', 'Mean Loss Rate (L)', 
+lagging_metrics = ['Expectancy (E)', 'Win Rate (WR)', 'Loss Rate (LR)', 'Mean Profit Rate (G)', 'Mean Loss Rate (L)', 
                   'Mean Gain per Trade (JPY)', 'Mean Loss per Trade (JPY)', 
                   'Mean Capital Invested per trade (JPY) / Mean Position Size', 
                   'Risk/Reward Ratio (RRR)', 'ROI']
-interim_metrics = ['Total Trades', 'Total Win Trades']
+interim_metrics = ['Total Trades', 'Total Win Trades', 'Total Loss Trades']
 leading_metrics = []  # 将来的な指標用
 summary_metrics = ['Total Net P/L (JPY)', 'Total Gain (JPY)', 'Total Loss (JPY)', 'Total Investment (JPY)']
+tax_metrics = ['Income Tax (所得税)', 'Resident Tax (住民税)', 'Special Reconstruction Tax (復興特別所得税)', 
+               'Total Tax (税額)', 'Profit After Tax (PAT)', 'ROI After Tax']
 
 # 月列を日付順にソート
 month_cols_sorted = sorted(monthly_data.keys(), 
@@ -322,6 +402,15 @@ for metric in summary_metrics:
             row[month] = monthly_data[month][metric]
         rows.append(row)
 
+# Tax セクション
+rows.append({'Metric': 'TAX CALCULATION', 'YTD in 2025': '', **{m: '' for m in month_cols_sorted}, 'is_header': True})
+for metric in tax_metrics:
+    if metric in ytd_metrics:
+        row = {'Metric': metric, 'YTD in 2025': ytd_data[metric], 'is_header': False}
+        for month in month_cols_sorted:
+            row[month] = monthly_data[month][metric]
+        rows.append(row)
+
 kpi_results = pd.DataFrame(rows)
 
 # ===== 値のフォーマット =====
@@ -331,13 +420,15 @@ def format_value(metric, value):
         return "—"
     
     # パーセント表示
-    if metric in ['Expectancy (E)', 'Win Rate (WR)', 'Mean Profit Rate (G)', 
-                  'Mean Loss Rate (L)', 'ROI']:
+    if metric in ['Expectancy (E)', 'Win Rate (WR)', 'Loss Rate (LR)', 'Mean Profit Rate (G)', 
+                  'Mean Loss Rate (L)', 'ROI', 'ROI After Tax']:
         return f"{value:.2%}"
     
     # 金額表示（カンマ区切り）
     elif metric in ['Mean Gain per Trade (JPY)', 'Mean Loss per Trade (JPY)',
-                    'Total Gain (JPY)', 'Total Loss (JPY)', 'Total Investment (JPY)', 'Total Net P/L (JPY)']:
+                    'Total Gain (JPY)', 'Total Loss (JPY)', 'Total Investment (JPY)', 'Total Net P/L (JPY)',
+                    'Income Tax (所得税)', 'Resident Tax (住民税)', 'Special Reconstruction Tax (復興特別所得税)', 
+                    'Total Tax (税額)', 'Profit After Tax (PAT)']:
         return f"{value:,.0f}"
     
     # Mean Position Size（整数表示）
@@ -357,7 +448,7 @@ def format_value(metric, value):
         return f"{value:.1f}"
     
     # 整数（取引回数など）
-    elif metric in ['Trading Days', 'Market Open Days', 'Total Trades', 'Total Win Trades']:
+    elif metric in ['Trading Days', 'Market Open Days', 'Total Trades', 'Total Win Trades', 'Total Loss Trades']:
         return f"{int(value)}"
     
     else:
@@ -386,6 +477,10 @@ reference_row = pd.DataFrame([{
 # PeriodとReference情報を別途保存
 period_info = f"{start_date.date()} - {end_date.date()}"
 reference_info = 'E = WR × Mean Profit Rate − (1 − WR) × Mean Loss Rate'
+note_info = [
+    '①楽天とSBI証券では諸経費は差し引かれているものの、実現損益のデータには税金が含まれていない。',
+    '②適用為替はFREDの日別データから抜粋（<a href="https://fred.stlouisfed.org/series/DEXJPUS" target="_blank" rel="noopener noreferrer">リンク先</a>）。開示されていない場合には直近の開示情報を活用している。なお、通算損益は加重平均した為替情報を記載。'
+]
 
 # kpi_resultsにはPeriodとReferenceを含めない
 # kpi_results = pd.concat([period_row, kpi_results, reference_row], ignore_index=True)
@@ -496,7 +591,7 @@ html_content = f"""
             overflow: hidden;
         }}
         h1 {{
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
             color: white;
             font-size: 20px;
             font-weight: 700;
@@ -735,7 +830,7 @@ html_content = f"""
         }}
         .footer {{
             margin-top: 30px;
-            padding-top: 20px;
+            padding: 20px 32px;
             border-top: 1px solid #ecf0f1;
             font-size: 12px;
             color: #95a5a6;
@@ -760,7 +855,7 @@ html_content = f"""
 </head>
 <body>
     <div class="container">
-        <h1>📊 KPI YTD & Monthly Summary <span class="badge">2025</span></h1>
+        <h1> KPI YTD & Monthly Summary <span class="badge">2025</span></h1>
         <p class="subtitle">集計期間: {start_date.date()} 〜 {end_date.date()}</p>
         
         <div class="table-wrapper">
@@ -776,6 +871,12 @@ html_content = f"""
                 <span class="info-label">Reference:</span>
                 <span class="info-content">{reference_info}</span>
             </div>
+            <div class="info-row">
+                <span class="info-label">Note:</span>
+                <span class="info-content">
+                    {'<br>'.join(note_info)}
+                </span>
+            </div>
         </div>
         
         <div class="footer">
@@ -785,7 +886,7 @@ html_content = f"""
             </div>
             <div>
                 <p><strong>総取引回数:</strong> {kpi_results.loc[kpi_results['Metric'] == 'Total Trades', 'YTD in 2025'].values[0]}</p>
-                <p><strong>勝率:</strong> {kpi_results.loc[kpi_results['Metric'] == 'Win Rate (WR)', 'YTD in 2025'].values[0]}</p>
+                <p><strong>勝率:</strong> {kpi_results.loc[kpi_results['Metric'] == 'Win Rate (WR)', 'YTD in 2025'].values[0]} | <strong>敗率:</strong> {kpi_results.loc[kpi_results['Metric'] == 'Loss Rate (LR)', 'YTD in 2025'].values[0]}</p>
             </div>
         </div>
     </div>
