@@ -115,6 +115,11 @@ for col in rename_map.values():
         jpy_col = col.replace("_usd", "_jpy")
         df_merged[jpy_col] = df_merged[col] * df_merged["applied_fx_rate"]
 
+# %% ✅ gain_only / loss_only もUSDのまま残っていたため円転（SBIのみ）
+for col in ["ttl_gain_only", "ttl_loss_only"]:
+    if col in df_merged.columns:
+        df_merged[col] = df_merged[col] * df_merged["applied_fx_rate"]
+
 # %% 💾 保存（処理日付フォルダへ格納）
 output_path = os.path.join(
     dated_folder,

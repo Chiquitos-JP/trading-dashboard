@@ -155,7 +155,7 @@ def calc_metrics(df, fx_data=None, year_month=None):
     """
     total_trades = df['num_of_trades'].sum()
     total_win_trades = df['num_of_win_trades'].sum() if 'num_of_win_trades' in df.columns else 0
-    total_net_pl = df['ttl_gain_realized_jpy'].sum()
+    raw_net_pl = df['ttl_gain_realized_jpy'].sum()
     
     # 為替レート取得
     avg_fx_rate = np.nan
@@ -169,12 +169,18 @@ def calc_metrics(df, fx_data=None, year_month=None):
         # 月次集計済みデータの場合（kpi_analysis.pyで計算済み）
         total_gain = df['ttl_gain_only'].sum()
         total_loss = df['ttl_loss_only'].sum()
+        computed_net_pl = total_gain - total_loss
+        # 差異検証（2円以上ズレたら警告）
+        if not np.isnan(raw_net_pl) and abs(computed_net_pl - raw_net_pl) > 2:
+            print(f"[WARN] Net mismatch detected: raw={raw_net_pl:,.0f} / gain-loss={computed_net_pl:,.0f} (diff={computed_net_pl - raw_net_pl:,.0f})")
+        total_net_pl = computed_net_pl
     else:
         # 日次データの場合（フォールバック）
         gains = df['ttl_gain_realized_jpy'][df['ttl_gain_realized_jpy'] > 0]
         losses = df['ttl_gain_realized_jpy'][df['ttl_gain_realized_jpy'] < 0]
         total_gain = gains.sum() if len(gains) > 0 else 0
         total_loss = abs(losses.sum()) if len(losses) > 0 else 0
+        total_net_pl = raw_net_pl  # 日次レベルはそのまま
     
     total_investment = df['ttl_cost_acquisition_jpy'].sum()
     
@@ -295,6 +301,11 @@ ytd_data = {
     **ytd_metrics
 }
 
+# 整合性検証 (YTD)
+_ytd_diff = ytd_data['Total Net P/L (JPY)'] - (ytd_data['Total Gain (JPY)'] - ytd_data['Total Loss (JPY)'])
+if abs(_ytd_diff) > 2:
+    raise AssertionError(f"YTD Net P/L inconsistent: net={ytd_data['Total Net P/L (JPY)']:,.0f} gain-loss={ytd_data['Total Gain (JPY)'] - ytd_data['Total Loss (JPY)']:,.0f} diff={_ytd_diff:,.0f}")
+
 print(f"[OK] YTD trade days: {trade_days}")
 print(f"[OK] YTD market open days: {market_days}")
 print(f"[OK] YTD net P/L: {ytd_data['Total Net P/L (JPY)']:,.0f} JPY")
@@ -315,6 +326,10 @@ for ym_date, group_df in kpi_df.groupby('year_month_date'):
     market_days_m = group_df['market_open_days'].sum()
     
     monthly_metrics = calc_metrics(group_df)
+    # 月次整合性検証
+    _m_diff = monthly_metrics['Total Net P/L (JPY)'] - (monthly_metrics['Total Gain (JPY)'] - monthly_metrics['Total Loss (JPY)'])
+    if abs(_m_diff) > 2:
+        raise AssertionError(f"Monthly Net P/L inconsistent for {month_label}: net={monthly_metrics['Total Net P/L (JPY)']:,.0f} gain-loss={(monthly_metrics['Total Gain (JPY)'] - monthly_metrics['Total Loss (JPY)']):,.0f} diff={_m_diff:,.0f}")
     
     # 為替レート取得
     monthly_fx_rate = np.nan
