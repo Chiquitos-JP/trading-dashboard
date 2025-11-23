@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: ../../../docs
+
+website:
+  title: "Trading KPI Reports"
+  navbar:
+    left:
+      - href: dashboard.qmd
+        text: Dashboard
+      - href: analysis.qmd
+        text: Analysis
+
+format:
+  html:
+    theme: cosmo
+    css: styles.scss
+    toc: true
+    code-fold: false
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+resources:
+  - kpi/**
