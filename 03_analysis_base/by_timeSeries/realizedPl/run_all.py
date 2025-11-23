@@ -193,7 +193,7 @@ def run_quarto() -> bool:
     env["QUARTO_PROJECT_OUTPUT_DIR"] = str(output_dir)
     
     # レンダリング対象の .qmd ファイル
-    qmd_files = ["index.qmd", "analysis.qmd"]
+    qmd_files = ["index.qmd", "dashboard.qmd", "analysis.qmd"]
     
     for qmd in qmd_files:
         qmd_path = QUARTO_DIR / qmd
@@ -219,6 +219,7 @@ def run_quarto() -> bool:
     if output_dir.exists():
         print(f"\n📄 出力先: {output_dir}")
         print(f"   - {output_dir / 'index.html'}")
+        print(f"   - {output_dir / 'dashboard.html'}")
         print(f"   - {output_dir / 'analysis.html'}")
         
         # GitHub Pages用の追加処理
@@ -276,6 +277,7 @@ def main():
         output_dir = SCRIPT_DIR.parents[2] / "docs" / "quarto" / f"quarto_{today}"
         if output_dir.exists():
             print(f"   {output_dir / 'index.html'}")
+            print(f"   {output_dir / 'dashboard.html'}")
         
         sys.exit(0)
 

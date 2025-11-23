@@ -1,346 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KPI YTD & Monthly Summary</title>
+    <meta http-equiv="refresh" content="0; url=quarto/latest/index.html">
+    <title>Trading KPI Reports</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'SF Pro Display', 'Roboto', sans-serif;
-            background-color: #fafbfc;
-            color: #1a202c;
-            line-height: 1.5;
-            padding: 32px 16px;
-            font-feature-settings: 'kern' 1, 'liga' 1;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
         .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        h1 {
-            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-            padding: 24px 32px;
-            margin: 0;
-            letter-spacing: 0.025em;
-        }
-        .subtitle {
-            background-color: #f7fafc;
-            color: #718096;
-            font-size: 13px;
-            padding: 12px 32px;
-            border-bottom: 1px solid #e2e8f0;
-            font-weight: 400;
-        }
-        .table-wrapper {
-            overflow-x: auto;
-            overflow-y: auto;
-            max-height: 80vh;
-            position: relative;
-        }
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            font-size: 12px;
-            background-color: white;
-            table-layout: fixed;
-            font-variant-numeric: tabular-nums;
-        }
-        caption {
-            display: none;
-        }
-        thead th {
-            background-color: #2c3e50;
-            color: white;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            font-size: 10px;
-            letter-spacing: 0.3px;
-            padding: 12px;
             text-align: center;
         }
-        thead th:first-child {
-            text-align: left;
-            width: 240px;
-            max-width: 240px;
-            position: sticky;
-            left: 0;
-            z-index: 25;
-            box-shadow: 1px 0 3px rgba(0,0,0,0.1);
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
         }
-        thead th:not(:first-child) {
-            width: 100px;
-            min-width: 100px;
+        p {
+            font-size: 1.2em;
         }
-        thead th:first-child {
-            border-top-left-radius: 8px;
-        }
-        thead th:last-child {
-            border-top-right-radius: 8px;
-        }
-        tbody td, tbody th {
-            padding: 12px 10px;
-            border-bottom: 1px solid #ecf0f1;
-        }
-        tbody tr:hover:not(.header-row) {
-            background-color: #e8f4f8;
-        }
-        .header-row {
-            background-color: transparent !important;
-            position: sticky;
-            top: 45px;
-            z-index: 15;
-        }
-        .header-row th {
-            background-color: white;
-            color: #2d3748;
-            font-weight: 700;
-            font-size: 12px;
-            text-align: left;
-            padding: 16px 12px 8px 12px;
-            letter-spacing: 0.025em;
-            border-bottom: 3px solid #4299e1;
-            text-transform: uppercase;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
-        }
-        .header-row th[colspan] {
-            position: sticky;
-            left: 0;
-            z-index: 20;
-            box-shadow: 1px 0 3px rgba(0,0,0,0.1);
-            width: auto;
-            min-width: 240px;
-            white-space: normal;
-            word-wrap: break-word;
-        }
-        .section-header {
-            position: relative;
-        }
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 12px;
-            right: 12px;
-            height: 3px;
-            background: linear-gradient(90deg, #4299e1 0%, #63b3ed 100%);
-            border-radius: 1.5px;
-        }
-        tbody tr {
-            border-bottom: 1px solid #f1f2f6;
-        }
-        tbody tr:nth-child(even):not(.header-row) {
-            background-color: #fafbfc;
-        }
-        .metric-col {
-            font-weight: 500;
-            color: #2d3748;
-            background-color: #f7fafc;
-            text-align: left;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-            width: 240px;
-            min-width: 240px;
-            max-width: 240px;
-            padding: 12px 16px;
-            position: sticky;
-            left: 0;
-            z-index: 10;
-            box-shadow: 1px 0 3px rgba(0,0,0,0.05);
-            line-height: 1.3;
-            vertical-align: top;
-        }
-        .metric-col.header-cell {
-            z-index: 20;
-            background-color: white;
-        }
-        .value-col {
-            text-align: right;
-            font-family: 'SF Mono', 'Monaco', 'Roboto Mono', 'Consolas', monospace;
-            color: #4a5568;
-            padding: 12px 16px;
-            font-variant-numeric: tabular-nums;
-            font-size: 11px;
-        }
-        .period-row {
-            background-color: #fff9c4 !important;
-            font-weight: bold;
-        }
-        .period-row td {
-            border-top: 2px solid #fbc02d;
-            border-bottom: 2px solid #fbc02d;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .period-row .metric-col {
-            white-space: normal;
-            word-wrap: break-word;
-            overflow: visible;
-            text-overflow: unset;
-            width: 240px !important;
-            min-width: 240px !important;
-            max-width: 240px !important;
-            position: sticky;
-            left: 0;
-            z-index: 10;
-            background-color: #fff9c4;
-            line-height: 1.3;
-        }
-        .reference-row {
-            background-color: #e3f2fd !important;
-            font-style: italic;
-        }
-        .reference-row td {
-            border-top: 2px solid #2196f3;
-            font-size: 12px;
-            color: #1565c0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .reference-row .metric-col {
-            position: sticky;
-            left: 0;
-            z-index: 10;
-            background-color: #e3f2fd;
-            width: 240px !important;
-            min-width: 240px !important;
-            max-width: 240px !important;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow: visible;
-            text-overflow: unset;
-            line-height: 1.3;
-        }
-        .table-info {
-            margin-top: 20px;
-            padding: 12px;
-            background-color: #fafafa;
-            border-radius: 6px;
-            border-left: 3px solid #bdc3c7;
-            font-size: 11px;
-            color: #7f8c8d;
-        }
-        .info-row {
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-        }
-        .info-row:last-child {
-            margin-bottom: 0;
-        }
-        .info-label {
-            font-weight: 500;
-            color: #95a5a6;
-            min-width: 80px;
-            margin-right: 12px;
-            font-size: 11px;
-        }
-        .info-content {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #7f8c8d;
-            flex: 1;
-            font-size: 11px;
-        }
-        .period-row td:nth-child(2) {
-            white-space: nowrap;
-            min-width: 200px;
-            width: auto;
-        }
-        .footer {
-            margin-top: 30px;
-            padding: 20px 32px;
-            border-top: 1px solid #ecf0f1;
-            font-size: 12px;
-            color: #95a5a6;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        .footer p {
-            margin: 5px 0;
-        }
-        .badge {
-            display: inline-block;
-            padding: 4px 12px;
-            background-color: #3498db;
-            color: white;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-left: 10px;
+        a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 2px solid #fff;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1> KPI YTD & Monthly Summary <span class="badge">2025</span></h1>
-        <p class="subtitle">集計期間: 2025-01-01 〜 2025-10-26</p>
-        
-        <div class="table-wrapper">
-            
-<table aria-label="KPI YTD and Monthly Summary Table">
-    <caption>
-        KPI指標の年初来(YTD)および月次サマリー
-    </caption>
-    <thead>
-        <tr>
-            <th scope="col">Metric</th><th scope="col">YTD in 2025</th><th scope="col">Jan-2025</th><th scope="col">Feb-2025</th><th scope="col">Mar-2025</th><th scope="col">May-2025</th><th scope="col">Jun-2025</th><th scope="col">Jul-2025</th><th scope="col">Aug-2025</th><th scope="col">Sep-2025</th><th scope="col">Oct-2025</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="header-row"><th scope="row" class="section-header metric-col header-cell" colspan="11">ASSUMPTIONS</th></tr><tr><th scope="row" class="metric-col">Trading Days</th><td class="value-col">75</td><td class="value-col">4</td><td class="value-col">6</td><td class="value-col">8</td><td class="value-col">11</td><td class="value-col">9</td><td class="value-col">5</td><td class="value-col">12</td><td class="value-col">11</td><td class="value-col">9</td></tr><tr><th scope="row" class="metric-col">Market Open Days</th><td class="value-col">188</td><td class="value-col">20</td><td class="value-col">19</td><td class="value-col">21</td><td class="value-col">21</td><td class="value-col">20</td><td class="value-col">22</td><td class="value-col">21</td><td class="value-col">21</td><td class="value-col">23</td></tr><tr><th scope="row" class="metric-col">Average Exchange Rate (JPY/USD)</th><td class="value-col">147.8</td><td class="value-col">156.5</td><td class="value-col">151.6</td><td class="value-col">149.1</td><td class="value-col">144.9</td><td class="value-col">144.5</td><td class="value-col">—</td><td class="value-col">147.5</td><td class="value-col">147.9</td><td class="value-col">150.4</td></tr><tr class="header-row"><th scope="row" class="section-header metric-col header-cell" colspan="11">LAGGING INDICATORS</th></tr><tr><th scope="row" class="metric-col">Expectancy (E)</th><td class="value-col">0.71%</td><td class="value-col">0.07%</td><td class="value-col">-0.14%</td><td class="value-col">-5.48%</td><td class="value-col">0.84%</td><td class="value-col">0.75%</td><td class="value-col">0.86%</td><td class="value-col">1.08%</td><td class="value-col">0.78%</td><td class="value-col">1.00%</td></tr><tr><th scope="row" class="metric-col">Win Rate (WR)</th><td class="value-col">72.98%</td><td class="value-col">60.00%</td><td class="value-col">70.59%</td><td class="value-col">50.00%</td><td class="value-col">73.33%</td><td class="value-col">89.86%</td><td class="value-col">60.00%</td><td class="value-col">60.53%</td><td class="value-col">89.52%</td><td class="value-col">56.82%</td></tr><tr><th scope="row" class="metric-col">Loss Rate (LR)</th><td class="value-col">27.02%</td><td class="value-col">40.00%</td><td class="value-col">29.41%</td><td class="value-col">50.00%</td><td class="value-col">26.67%</td><td class="value-col">10.14%</td><td class="value-col">40.00%</td><td class="value-col">39.47%</td><td class="value-col">10.48%</td><td class="value-col">43.18%</td></tr><tr><th scope="row" class="metric-col">Mean Profit Rate (G)</th><td class="value-col">1.16%</td><td class="value-col">0.11%</td><td class="value-col">0.44%</td><td class="value-col">0.00%</td><td class="value-col">1.15%</td><td class="value-col">0.83%</td><td class="value-col">1.43%</td><td class="value-col">1.79%</td><td class="value-col">0.87%</td><td class="value-col">1.76%</td></tr><tr><th scope="row" class="metric-col">Mean Loss Rate (L)</th><td class="value-col">0.54%</td><td class="value-col">0.00%</td><td class="value-col">1.53%</td><td class="value-col">10.95%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td><td class="value-col">0.00%</td></tr><tr><th scope="row" class="metric-col">Mean Gain per Trade (JPY)</th><td class="value-col">37,161</td><td class="value-col">4,505</td><td class="value-col">10,161</td><td class="value-col">0</td><td class="value-col">27,275</td><td class="value-col">24,602</td><td class="value-col">88,932</td><td class="value-col">70,717</td><td class="value-col">28,366</td><td class="value-col">67,071</td></tr><tr><th scope="row" class="metric-col">Mean Loss per Trade (JPY)</th><td class="value-col">17,110</td><td class="value-col">0</td><td class="value-col">35,657</td><td class="value-col">154,696</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td></tr><tr><th scope="row" class="metric-col">Mean Capital Invested per trade (JPY) / Mean Position Size</th><td class="value-col">3,190,659</td><td class="value-col">4,048,105</td><td class="value-col">2,335,129</td><td class="value-col">1,412,188</td><td class="value-col">2,369,463</td><td class="value-col">2,950,314</td><td class="value-col">6,211,452</td><td class="value-col">3,948,298</td><td class="value-col">3,250,511</td><td class="value-col">3,819,465</td></tr><tr><th scope="row" class="metric-col">Risk/Reward Ratio (RRR)</th><td class="value-col">2.17</td><td class="value-col">—</td><td class="value-col">0.28</td><td class="value-col">0.00</td><td class="value-col">—</td><td class="value-col">—</td><td class="value-col">—</td><td class="value-col">—</td><td class="value-col">—</td><td class="value-col">—</td></tr><tr><th scope="row" class="metric-col">ROI</th><td class="value-col">0.71%</td><td class="value-col">0.07%</td><td class="value-col">-0.14%</td><td class="value-col">-5.48%</td><td class="value-col">0.84%</td><td class="value-col">0.75%</td><td class="value-col">0.86%</td><td class="value-col">1.08%</td><td class="value-col">0.78%</td><td class="value-col">1.00%</td></tr><tr class="header-row"><th scope="row" class="section-header metric-col header-cell" colspan="11">INTERIM INDICATORS</th></tr><tr><th scope="row" class="metric-col">Total Trades</th><td class="value-col">507</td><td class="value-col">5</td><td class="value-col">17</td><td class="value-col">28</td><td class="value-col">90</td><td class="value-col">69</td><td class="value-col">10</td><td class="value-col">76</td><td class="value-col">124</td><td class="value-col">88</td></tr><tr><th scope="row" class="metric-col">Total Win Trades</th><td class="value-col">370</td><td class="value-col">3</td><td class="value-col">12</td><td class="value-col">14</td><td class="value-col">66</td><td class="value-col">62</td><td class="value-col">6</td><td class="value-col">46</td><td class="value-col">111</td><td class="value-col">50</td></tr><tr><th scope="row" class="metric-col">Total Loss Trades</th><td class="value-col">137</td><td class="value-col">2</td><td class="value-col">5</td><td class="value-col">14</td><td class="value-col">24</td><td class="value-col">7</td><td class="value-col">4</td><td class="value-col">30</td><td class="value-col">13</td><td class="value-col">38</td></tr><tr class="header-row"><th scope="row" class="section-header metric-col header-cell" colspan="11">SUMMARY</th></tr><tr><th scope="row" class="metric-col">Total Net P/L (JPY)</th><td class="value-col">11,405,644</td><td class="value-col">13,514</td><td class="value-col">-56,346</td><td class="value-col">-2,165,743</td><td class="value-col">1,800,147</td><td class="value-col">1,525,344</td><td class="value-col">533,590</td><td class="value-col">3,252,990</td><td class="value-col">3,148,583</td><td class="value-col">3,353,566</td></tr><tr><th scope="row" class="metric-col">Total Gain (JPY)</th><td class="value-col">13,749,670</td><td class="value-col">13,514</td><td class="value-col">121,937</td><td class="value-col">0</td><td class="value-col">1,800,147</td><td class="value-col">1,525,344</td><td class="value-col">533,590</td><td class="value-col">3,252,990</td><td class="value-col">3,148,583</td><td class="value-col">3,353,566</td></tr><tr><th scope="row" class="metric-col">Total Loss (JPY)</th><td class="value-col">2,344,026</td><td class="value-col">0</td><td class="value-col">178,283</td><td class="value-col">2,165,743</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">0</td></tr><tr><th scope="row" class="metric-col">Total Investment (JPY)</th><td class="value-col">1,617,664,124</td><td class="value-col">20,240,526</td><td class="value-col">39,697,201</td><td class="value-col">39,541,275</td><td class="value-col">213,251,760</td><td class="value-col">203,571,733</td><td class="value-col">62,114,528</td><td class="value-col">300,070,684</td><td class="value-col">403,063,442</td><td class="value-col">336,112,976</td></tr><tr class="header-row"><th scope="row" class="section-header metric-col header-cell" colspan="11">TAX CALCULATION</th></tr><tr><th scope="row" class="metric-col">Income Tax (所得税)</th><td class="value-col">1,710,847</td><td class="value-col">2,027</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">270,022</td><td class="value-col">228,802</td><td class="value-col">80,038</td><td class="value-col">487,948</td><td class="value-col">472,287</td><td class="value-col">503,035</td></tr><tr><th scope="row" class="metric-col">Resident Tax (住民税)</th><td class="value-col">570,282</td><td class="value-col">676</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">90,007</td><td class="value-col">76,267</td><td class="value-col">26,680</td><td class="value-col">162,649</td><td class="value-col">157,429</td><td class="value-col">167,678</td></tr><tr><th scope="row" class="metric-col">Special Reconstruction Tax (復興特別所得税)</th><td class="value-col">35,928</td><td class="value-col">43</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">5,670</td><td class="value-col">4,805</td><td class="value-col">1,681</td><td class="value-col">10,247</td><td class="value-col">9,918</td><td class="value-col">10,564</td></tr><tr><th scope="row" class="metric-col">Total Tax (税額)</th><td class="value-col">2,317,057</td><td class="value-col">2,745</td><td class="value-col">0</td><td class="value-col">0</td><td class="value-col">365,700</td><td class="value-col">309,874</td><td class="value-col">108,399</td><td class="value-col">660,845</td><td class="value-col">639,635</td><td class="value-col">681,277</td></tr><tr><th scope="row" class="metric-col">Profit After Tax (PAT)</th><td class="value-col">9,088,587</td><td class="value-col">10,768</td><td class="value-col">-56,346</td><td class="value-col">-2,165,743</td><td class="value-col">1,434,447</td><td class="value-col">1,215,470</td><td class="value-col">425,191</td><td class="value-col">2,592,145</td><td class="value-col">2,508,948</td><td class="value-col">2,672,289</td></tr><tr><th scope="row" class="metric-col">ROI After Tax</th><td class="value-col">0.56%</td><td class="value-col">0.05%</td><td class="value-col">-0.14%</td><td class="value-col">-5.48%</td><td class="value-col">0.67%</td><td class="value-col">0.60%</td><td class="value-col">0.68%</td><td class="value-col">0.86%</td><td class="value-col">0.62%</td><td class="value-col">0.80%</td></tr>
-    </tbody>
-</table>
-
-        </div>
-        
-        <div class="table-info">
-            <div class="info-row">
-                <span class="info-label">Period:</span>
-                <span class="info-content">2025-01-01 - 2025-10-26</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Reference:</span>
-                <span class="info-content">E = WR × Mean Profit Rate − (1 − WR) × Mean Loss Rate</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Note:</span>
-                <span class="info-content">
-                    ①楽天とSBI証券では諸経費は差し引かれているものの、実現損益のデータには税金が含まれていない。<br>②適用為替はFREDの日別データから抜粋（<a href="https://fred.stlouisfed.org/series/DEXJPUS" target="_blank" rel="noopener noreferrer">リンク先</a>）。開示されていない場合には直近の開示情報を活用している。なお、通算損益は加重平均した為替情報を記載。
-                </span>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <div>
-                <p><strong>生成日時:</strong> 2025-10-26 17:16:36</p>
-                <p><strong>データソース:</strong> 03_ts_monthly_20251026.parquet</p>
-            </div>
-            <div>
-                <p><strong>総取引回数:</strong> 507</p>
-                <p><strong>勝率:</strong> 72.98% | <strong>敗率:</strong> 27.02%</p>
-            </div>
-        </div>
+        <h1>📊 Trading KPI Reports</h1>
+        <p>自動的にリダイレクトします...</p>
+        <p><a href="quarto/latest/index.html">最新のレポートを見る →</a></p>
     </div>
 </body>
 </html>

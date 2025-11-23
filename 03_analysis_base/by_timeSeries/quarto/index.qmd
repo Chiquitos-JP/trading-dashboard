@@ -4,19 +4,19 @@ page-layout: full
 ---
 
 <div style="text-align:center; padding:60px 0 40px; max-width:860px; margin:0 auto;">
-    <h1 style="font-size:2.4rem; margin-bottom:14px;">Trading KPI Reports</h1>
-    <p style="font-size:1.05rem; color:#4a5568; line-height:1.6; margin-bottom:32px;">
-        日次・月次のトレーディング実績を継続的に観測するためのレポート集です。<br>
-        最新のダッシュボードと分析ページへ下のボタンから移動してください。
-    </p>
-    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-        <a href="dashboard.html" class="btn btn-primary" style="padding:12px 28px; font-weight:600;">最新ダッシュボードを見る</a>
-        <a href="analysis.html" class="btn btn-secondary" style="padding:12px 28px; font-weight:600;">分析レポートを読む</a>
-    </div>
-    <div style="margin-top:48px; font-size:0.85rem; color:#718096;">
-        <p style="margin:6px 0;">更新手順: run_all.py &rarr; Quartoレンダリング &rarr; GitHub Pages自動反映</p>
-        <p style="margin:6px 0;">整合性: Net = Gain − Loss, 月次積上げ = YTD（±2円以内検証）</p>
-    </div>
+<h1 style="font-size:2.4rem; margin-bottom:14px;">Trading KPI Reports</h1>
+<p style="font-size:1.05rem; color:#4a5568; line-height:1.6; margin-bottom:32px;">
+日次・月次のトレーディング実績を継続的に観測するためのレポート集です。<br>
+最新のダッシュボードと分析ページへ下のボタンから移動してください。
+</p>
+<div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+<a href="dashboard.html" class="btn btn-primary" style="padding:12px 28px; font-weight:600;">最新ダッシュボードを見る</a>
+<a href="analysis.html" class="btn btn-secondary" style="padding:12px 28px; font-weight:600;">分析レポートを読む</a>
+</div>
+<div style="margin-top:48px; font-size:0.85rem; color:#718096;">
+<p style="margin:6px 0;">更新手順: run_all.py &rarr; Quartoレンダリング &rarr; GitHub Pages自動反映</p>
+<p style="margin:6px 0;">整合性: Net = Gain − Loss, 月次積上げ = YTD（±2円以内検証）</p>
+</div>
 </div>
 
 <section style="max-width:860px; margin:0 auto 60px;">
