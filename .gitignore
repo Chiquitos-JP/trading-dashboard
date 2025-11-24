@@ -26,8 +26,7 @@ wheels/
 # R
 .Rhistory
 .RData
-.Rproj.user
-*.Rproj
+.Rproj.user/
 .Renviron
 
 # Jupyter Notebook
@@ -45,16 +44,8 @@ wheels/
 Thumbs.db
 desktop.ini
 
-# Trading data - RAW (センシティブな取引データ)
-01_data/trading_account/realized_pl/raw/
-01_data/trading_account/transaction/
-
-# Processed data with sensitive information
-01_data/trading_account/realized_pl/processed/
-01_data/trading_account/realized_pl/checkpoints/
-
-# Macro economy raw data (APIキーが含まれる可能性)
-01_data/macro_economy/*/raw/
+# Trading / macro data - 生データやセンシティブな加工データはすべて除外
+01_data/
 
 # Temporary files
 *.tmp
@@ -69,11 +60,16 @@ desktop.ini
 renv/library/
 renv/staging/
 
-# Output figures - 必要に応じてコメントアウト
-# 04_output/figures/
-
-# Site docs - GitHub Pagesで公開する場合はコメントアウト
-# 05_site/docs/
-
-# Debug files
+# Output / analysis-specific / debug - 公開不要
+04_output/
+06_analysis_specific/
 99_debug/
+
+# Site docs - 旧構成は使わない想定のため除外
+05_site/
+
+# Notebooks は公開しない
+02_notebooks/
+
+# Python 仮想環境
+.venv/
