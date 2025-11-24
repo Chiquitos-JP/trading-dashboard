@@ -47,6 +47,10 @@ desktop.ini
 # Trading / macro data - 生データやセンシティブな加工データはすべて除外
 01_data/
 
+# Config / analysis プロジェクトも原則非公開
+00_config/
+03_analysis_base/
+
 # Temporary files
 *.tmp
 *.bak

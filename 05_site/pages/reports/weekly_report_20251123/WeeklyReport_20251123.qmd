@@ -1,6 +1,0 @@
----
-title: "Report_Template_TradingDashboard"
-format: html
----
-
-    keep-md: true

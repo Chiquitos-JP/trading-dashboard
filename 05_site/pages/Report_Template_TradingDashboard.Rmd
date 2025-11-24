@@ -1,5 +1,0 @@
----
-title: "Report_Template_TradingDashboard"
-output: html_document
----
-
