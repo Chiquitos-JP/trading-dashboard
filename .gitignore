@@ -28,6 +28,7 @@ wheels/
 .RData
 .Rproj.user/
 .Renviron
+.Rprofile
 
 # Jupyter Notebook
 .ipynb_checkpoints
