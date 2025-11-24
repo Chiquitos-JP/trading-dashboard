@@ -1,27 +1,31 @@
 ---
-title: "Trading KPI Reports"
+title: ""
 page-layout: full
+title-block: false
 ---
+```{=html}
+<section class="overview-panel hero">
+  <h2 class="hero-title">Trading Viz</h2>
+  <p class="hero-lead">
+    トレーディング実績の記録・分析するためのレポート集です。<br>
+    最新のダッシュボードと分析ページは下のボタンから移動してください。
+  </p>
 
-<div style="text-align:center; padding:60px 0 40px; max-width:860px; margin:0 auto;">
-<h1 style="font-size:2.4rem; margin-bottom:14px;">Trading KPI Reports</h1>
-<p style="font-size:1.05rem; color:#4a5568; line-height:1.6; margin-bottom:32px;">
-日次・月次のトレーディング実績を継続的に観測するためのレポート集です。<br>
-最新のダッシュボードと分析ページへ下のボタンから移動してください。
-</p>
-<div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-<a href="dashboard.html" class="btn btn-primary" style="padding:12px 28px; font-weight:600;">最新ダッシュボードを見る</a>
-<a href="analysis.html" class="btn btn-secondary" style="padding:12px 28px; font-weight:600;">分析レポートを読む</a>
-</div>
-<div style="margin-top:48px; font-size:0.85rem; color:#718096;">
-<p style="margin:6px 0;">更新手順: run_all.py &rarr; Quartoレンダリング &rarr; GitHub Pages自動反映</p>
-<p style="margin:6px 0;">整合性: Net = Gain − Loss, 月次積上げ = YTD（±2円以内検証）</p>
-</div>
-</div>
+  <div class="hero-buttons">
+    <a href="dashboard.html" class="btn btn-primary hero-btn">最新ダッシュボードへ</a>
+    <a href="analysis.html" class="btn btn-secondary hero-btn">分析レポートへ</a>
+  </div>
 
-<section style="max-width:860px; margin:0 auto 60px;">
-    <h2 style="font-size:1.4rem; margin-bottom:12px;">構成概要</h2>
-    <ul style="text-align:left; line-height:1.6; color:#4a5568; font-size:0.95rem;">
+  <div class="hero-meta">
+    <p>更新手順: [run_all.py](http://_vscodecontentref_/1) → Quartoレンダリング → GitHub Pages自動反映</p>
+    <p>今後方針: Githubをサーバー的に利用。Wordpressでもリン先を張る予定。今後adhocな分析も増やしたい。</p>
+  </div>
+</section>
+```
+
+<section class="overview-panel">
+    <h2>構成概要</h2>
+    <ul>
         <li><strong>Dashboard:</strong> KPIテーブルと主要チャート埋め込み</li>
         <li><strong>Analysis:</strong> MTD/YTDの解釈、リスク、改善アクション</li>
         <li><strong>FX更新:</strong> FRED DEXJPUS 月次集計 (step 1)</li>

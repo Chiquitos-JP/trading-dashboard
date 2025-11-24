@@ -1,0 +1,9 @@
+[15:53:54] INFO  Start rendering: WeeklyReport_20251123
+[15:53:54] INFO  Output dir     : C:/Users/alpac/Dropbox/03_individual_work/05_stockTrading/05_site/pages/reports/weekly_report_20251123
+[15:53:54] INFO  Source KPI script: C:/Users/alpac/Dropbox/03_individual_work/03_Whats_going_on/Work-wise/01_X_auto_tweets/02_R_stockTrade/01_analysis/01_byTimeSeries/kpi_calc.R
+[15:53:54] ERROR KPI error: No checkpoint found for: ts_monthly_d/ts_monthly_d
+[15:53:54] INFO  Prepared qmd: C:/Users/alpac/Dropbox/03_individual_work/05_stockTrading/05_site/pages/reports/weekly_report_20251123/WeeklyReport_20251123.qmd
+[15:53:54] INFO  Try: Quarto render
+[15:54:02] INFO  ✅ Quarto OK → C:/Users/alpac/Dropbox/03_individual_work/05_stockTrading/05_site/pages/reports/weekly_report_20251123/WeeklyReport_20251123.html
+RESULT: method_used = quarto
+HTML   : C:/Users/alpac/Dropbox/03_individual_work/05_stockTrading/05_site/pages/reports/weekly_report_20251123/WeeklyReport_20251123.html

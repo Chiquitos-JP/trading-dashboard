@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ちょこっと",
+    "section": "",
+    "text": "Trading Viz\n  \n    トレーディング実績の記録・分析するためのレポート集です。\n    最新のダッシュボードと分析ページは下のボタンから移動してください。\n  \n\n  \n    最新ダッシュボードへ\n    分析レポートへ\n  \n\n  \n    更新手順: [run_all.py](http://_vscodecontentref_/1) → Quartoレンダリング → GitHub Pages自動反映\n    今後方針: Githubをサーバー的に利用。Wordpressでもリン先を張る予定。今後adhocな分析も増やしたい。\n  \n\n\n\n構成概要\n\n\n\nDashboard: KPIテーブルと主要チャート埋め込み\n\n\nAnalysis: MTD/YTDの解釈、リスク、改善アクション\n\n\nFX更新: FRED DEXJPUS 月次集計 (step 1)"
+  },
+  {
+    "objectID": "dashboard.html",
+    "href": "dashboard.html",
+    "title": "Dashboard",
+    "section": "",
+    "text": "Note\n\n\n\n\n今後年度が替わる度に記録が更新できる構造にする事が課題。"
+  },
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Analysis Log",
+    "section": "",
+    "text": "ここでは週次のトレード分析を記録しています。日付やカテゴリで絞り込み・並び替えが可能です。"
+  }
+]

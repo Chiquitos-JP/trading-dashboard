@@ -1,0 +1,23 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/analysis_notes/2025-11-23.html",
+      "/analysis_notes/2025-11-22.html"
+    ]
+  },
+  {
+    "listing": "/dashboard.html",
+    "items": [
+      "/analysis_notes/2025-11-23.html",
+      "/analysis_notes/2025-11-22.html"
+    ]
+  },
+  {
+    "listing": "/analysis.html",
+    "items": [
+      "/analysis_notes/2025-11-23.html",
+      "/analysis_notes/2025-11-22.html"
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+/* ナビの配色などを調整 */
+.navbar,
+.navbar-dark {
+  background-color: #2d3748 !important; /* 落ち着いたダークグレー */
+}
+
+h1.title {
+  color: #2d3748;
+}
+
+.callout-note {
+  border-left: 4px solid #4a5568;
+}

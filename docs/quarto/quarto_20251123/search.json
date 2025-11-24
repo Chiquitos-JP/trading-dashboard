@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Trading Viz",
+    "section": "",
+    "text": "トレーディング実績を継続的に観測するためのレポート集です。\n        最新のダッシュボードと分析ページへ下のボタンから移動してください。\n    \n    \n        最新ダッシュボードへ\n        分析レポートへ\n    \n    \n        更新手順: run_all.py → Quartoレンダリング → GitHub Pages自動反映\n        今後方針: Githubをサーバー的に利用。Wordpressでもリン先を張る予定。今後adhocな分析も増やしたい。\n    \n\n\n\n構成概要\n\n\n\nDashboard: KPIテーブルと主要チャート埋め込み\n\n\nAnalysis: MTD/YTDの解釈、リスク、改善アクション\n\n\nFX更新: FRED DEXJPUS 月次集計 (step 1)"
+  },
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Analysis Log",
+    "section": "",
+    "text": "ここでは週次のトレード分析を記録しています。日付やカテゴリで絞り込み・並び替えが可能です。"
+  },
+  {
+    "objectID": "analysis.html#概要",
+    "href": "analysis.html#概要",
+    "title": "Performance Analysis",
+    "section": "",
+    "text": "本ページはダッシュボードの補足解説です。必要に応じて本文を編集してください。"
+  },
+  {
+    "objectID": "analysis.html#ハイライト編集可",
+    "href": "analysis.html#ハイライト編集可",
+    "title": "Performance Analysis",
+    "section": "ハイライト(編集可)",
+    "text": "ハイライト(編集可)\n\n勝率は高水準。一方で Risk/Reward は月によりブレが大きく、利大損小の徹底が改善ポイント。\n3月は平均損失が突出。損切りルールの厳格化とポジションサイズ調整が有効。\n7月/8月は RRR&gt;=2 を達成。再現可能なパターンの抽出対象。"
+  },
+  {
+    "objectID": "analysis.html#改善アクション編集可",
+    "href": "analysis.html#改善アクション編集可",
+    "title": "Performance Analysis",
+    "section": "改善アクション(編集可)",
+    "text": "改善アクション(編集可)\n\nストップロスを一貫して設定(例: 取得価格の -5% 以内、金額上限も併用)\n利益側はトレーリングで伸ばす(早期利確を抑制)\n高ボラ期は枚数縮小/エントリー頻度を抑制"
+  },
+  {
+    "objectID": "analysis.html#参考リンク",
+    "href": "analysis.html#参考リンク",
+    "title": "Performance Analysis",
+    "section": "参考リンク",
+    "text": "参考リンク\n\nFRED USD/JPY: https://fred.stlouisfed.org/series/DEXJPUS"
+  },
+  {
+    "objectID": "dashboard.html",
+    "href": "dashboard.html",
+    "title": "KPI YTD & Monthly Dashboard",
+    "section": "",
+    "text": "Note\n\n\n\n\n最新の KPI ダッシュボード (YTD & 月次) を下部に埋め込み表示しています。"
+  },
+  {
+    "objectID": "analysis.html#更新履歴",
+    "href": "analysis.html#更新履歴",
+    "title": "パフォーマンス分析ログ",
+    "section": "更新履歴",
+    "text": "更新履歴\n\n2025-11-23 · 11/23 ウィークリーレポート\n2025-11-22 · 11/22 チェックポイント"
+  },
+  {
+    "objectID": "analysis.html#最新アップデート",
+    "href": "analysis.html#最新アップデート",
+    "title": "パフォーマンス分析ログ",
+    "section": "最新アップデート",
+    "text": "最新アップデート\n\n2025-11-23 · 11/23 ウィークリーレポート\n年初来の純利益は1,590万円に到達し、11月分だけで追加の278万円を積み上げた。10月よりもリスクコントロールは改善しているものの、ポジション増加でROIはわずかに鈍化。 注目ポイント - 11月週次では勝率100%を維持した一方で平均獲得益は3.2万円まで低下し、利確を早めた影響が示唆される。 - およそ2.47億円の資金投入にもかかわらず、損失ゼロ運用のおかげでROIは1.1%付近を維持。 次のアクション 1. 損失コントロールが効いている局面では上昇余地を潰さないよう、利確延長ルールを再検討する。 2. モメンタム銘柄への段階的エントリーをシミュレーションし、取得単価のバラつきを抑える。 参考チャート\n\n\n\n累積損益\n\n\n\n\n\n月次損益\n\n\n\n\n\nWin Rate"
+  },
+  {
+    "objectID": "analysis.html#過去ログ",
+    "href": "analysis.html#過去ログ",
+    "title": "パフォーマンス分析ログ",
+    "section": "過去ログ",
+    "text": "過去ログ\n\n\n\n2025-11-22 · 11/22 チェックポイント\n\n10月のドローダウンは完全に取り戻し、10月の純益505万円と11月序盤の上乗せでYTD ROIは再び0.75%超へ。 注目ポイント - 平均損失が2.1万円を下回り、2か月連続でリスクリワードが3.0超に改善。 - 約定回数は87件まで抑えつつ期待値は1%付近を維持。 次のアクション 1. RRRが高い環境（8月・10月のケース）における戦略パターンを文書化する。 2. 月内の連続無損失が15件を超えたらアラートを出す自動化を行い、過信を抑制。 参考チャート\n\n\n\nROI\n\n\n\n\n\n取引回数"
+  },
+  {
+    "objectID": "analysis.html#overall-performance",
+    "href": "analysis.html#overall-performance",
+    "title": "パフォーマンス分析ログ",
+    "section": "Overall Performance",
+    "text": "Overall Performance\n\nこのセクションでは、最新の分析ノートと過去ログ（週次レポート）をまとめて確認できます。\n\n\n\n\n最新アップデート\n\n\n2025-11-23 · 11/23 ウィークリーレポート\n 年初来の純利益は1,590万円に到達し、11月分だけで追加の278万円を積み上げた。10月よりもリスクコントロールは改善しているものの、ポジション増加でROIはわずかに鈍化。\n\n注目ポイント - 11月週次では勝率100%を維持した一方で平均獲得益は3.2万円まで低下し、利確を早めた影響が示唆される。 - およそ2.47億円の資金投入にもかかわらず、損失ゼロ運用のおかげでROIは1.1%付近を維持。\n\n\n次のアクション 1. 損失コントロールが効いている局面では上昇余地を潰さないよう、利確延長ルールを再検討する。 2. モメンタム銘柄への段階的エントリーをシミュレーションし、取得単価のバラつきを抑える。\n\n参考チャート\n\n\n\n\n累積損益\n\n\n\n\n\n月次損益\n\n\n\n\n\nWin Rate\n\n\n\n\n\n\n\n過去ログリンク\n\n2025-11-22 · 11/22 チェックポイント\n\n\n\n\n\n過去ログ\n\n\n\n2025-11-22 · 11/22 チェックポイント\n\n10月のドローダウンは完全に取り戻し、10月の純益505万円と11月序盤の上乗せでYTD ROIは再び0.75%超へ。\n\n注目ポイント - 平均損失が2.1万円を下回り、2か月連続でリスクリワードが3.0超に改善。 - 約定回数は87件まで抑えつつ期待値は1%付近を維持。\n\n\n次のアクション 1. RRRが高い環境（8月・10月のケース）における戦略パターンを文書化する。 2. 月内の連続無損失が15件を超えたらアラートを出す自動化を行い、過信を抑制。\n\n参考チャート\n\n\n\n\nROI\n\n\n\n\n\n取引回数"
+  },
+  {
+    "objectID": "analysis.html#trade-breakdown",
+    "href": "analysis.html#trade-breakdown",
+    "title": "パフォーマンス分析ログ",
+    "section": "Trade Breakdown",
+    "text": "Trade Breakdown\nこのセクションは現在構築中です。詳細なトレード分析がここに追加される予定です。"
+  },
+  {
+    "objectID": "analysis.html#market-context",
+    "href": "analysis.html#market-context",
+    "title": "パフォーマンス分析ログ",
+    "section": "Market Context",
+    "text": "Market Context\nこのセクションは現在構築中です。関連する市場コンテキストがここに追加される予定です。\n\n\n参考リンク\n\nFRED USD/JPY"
+  }
+]

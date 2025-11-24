@@ -1,5 +1,5 @@
 ---
-title: "KPI YTD & Monthly Dashboard"
+title: "Dashboard"
 page-layout: full
 ---
 
@@ -37,7 +37,7 @@ if src_html and src_html.exists():
 ```
 
 <div class="callout-note">
-<p>最新の KPI ダッシュボード (YTD & 月次) を下部に埋め込み表示しています。</p>
+<p>今後年度が替わる度に記録が更新できる構造にする事が課題。</p>
 </div>
 
 <iframe src="kpi/index.html" width="100%" height="1600" style="border:none;"></iframe>

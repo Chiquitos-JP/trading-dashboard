@@ -1,0 +1,48 @@
+---
+title: "アーカイブ"
+page-layout: article
+description: "過去の分析レポートを日付ごとに一覧表示します。"
+---
+
+このページでは、`run_all.py` 実行ごとに生成された過去スナップショット(analysis.html)へのリンクを日付降順で表示します。
+
+::: {.archive-list}
+
+```{python}
+import os
+from datetime import datetime
+
+base_dir = os.path.abspath(os.path.join(os.getcwd(), "..", "..", ".."))
+docs_quarto_dir = os.path.join(base_dir, "docs", "quarto")
+
+entries = []
+for name in sorted(os.listdir(docs_quarto_dir)):
+	if not name.startswith("quarto_"):  # e.g. quarto_20251123
+		continue
+	date_part = name.replace("quarto_", "")
+	if not (len(date_part) == 8 and date_part.isdigit()):
+		continue
+	html_path = os.path.join(docs_quarto_dir, name, "analysis.html")
+	if not os.path.exists(html_path):
+		continue
+	try:
+		dt = datetime.strptime(date_part, "%Y%m%d")
+		display_date = dt.strftime("%Y-%m-%d")
+	except ValueError:
+		display_date = date_part
+	rel_path = f"../{name}/analysis.html"  # from latest -> dated folder
+	entries.append((date_part, display_date, rel_path))
+
+entries.sort(key=lambda x: x[0], reverse=True)
+
+if not entries:
+	print("*まだスナップショットがありません。run_all.py 実行後に追加されます。*")
+else:
+	for _, display_date, rel in entries:
+		print(f"- **{display_date}**  ")
+		print(f"  [Analysis Snapshot]({rel})")
+```
+:::
+
+（一時的に自動生成を停止しています）アーカイブ一覧は調整中です。後ほど復旧予定です。
+	if not (len(date_part) == 8 and date_part.isdigit()):
