@@ -103,29 +103,29 @@ main.content {
   padding: 0 1.5rem 4rem;
 }
 
-// Hero section (mirrors quarto.org simplicity)
+// Hero section - mimic Quarto Blog header strip
 .hero {
   text-align: left;
-  padding: 78px 72px 60px;
-  max-width: 940px;
-  margin: 46px auto 28px;
-  background: #ffffff;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.08);
+  padding: 36px 32px 32px;
+  margin: 0;
+  max-width: 100%;
+  background: #f7fafc; // same tone as navbar area
+  border-radius: 0;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: none;
 }
 .hero-title {
-  font-size: 2.8rem;
+  font-size: 1.9rem;
   font-weight: 600;
-  margin-bottom: 14px;
-  color: #1f2a37;
-  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  color: #111827;
+  letter-spacing: -0.01em;
 }
 .hero-lead {
-  font-size: 1.08rem;
-  color: #4a5568;
-  line-height: 1.65;
-  margin: 0 0 32px;
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
   max-width: 640px;
 }
 .hero-buttons {

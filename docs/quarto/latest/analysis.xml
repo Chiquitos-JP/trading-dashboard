@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>ちょこっと</title>
+<link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/analysis.html</link>
+<atom:link href="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/analysis.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Fri, 28 Nov 2025 15:00:00 GMT</lastBuildDate>
+<item>
+  <title>週間レビュー: 2025年11月第5週</title>
+  <dc:creator>chokkoto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-11-29-weekly-review/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="今週のサマリー" class="level2">
+<h2 class="anchored" data-anchor-id="今週のサマリー">今週のサマリー</h2>
+<p>今週も安定したパフォーマンスを維持しました。</p>
+</section>
+<section id="パフォーマンスハイライト" class="level2">
+<h2 class="anchored" data-anchor-id="パフォーマンスハイライト">パフォーマンスハイライト</h2>
+<section id="月の成績" class="level3">
+<h3 class="anchored" data-anchor-id="月の成績">11月の成績</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>11月実績</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>取引回数</td>
+<td>87件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>100.00%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>損失トレード</td>
+<td>0件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>純利益</td>
+<td>2,780,676円</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ROI</td>
+<td>1.13%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ytd年初来サマリー" class="level3">
+<h3 class="anchored" data-anchor-id="ytd年初来サマリー">YTD（年初来）サマリー</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>2025年累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>総純利益</td>
+<td><strong>15,892,296円</strong></td>
+</tr>
+<tr class="even">
+<td>税引後利益</td>
+<td>12,663,776円</td>
+</tr>
+<tr class="odd">
+<td>総取引回数</td>
+<td>628件</td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>78.18%</td>
+</tr>
+<tr class="odd">
+<td>期待値 (E)</td>
+<td>0.78%</td>
+</tr>
+<tr class="even">
+<td>ROI</td>
+<td>0.78%</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="注目ポイント" class="level2">
+<h2 class="anchored" data-anchor-id="注目ポイント">注目ポイント</h2>
+<section id="良かった点" class="level3">
+<h3 class="anchored" data-anchor-id="良かった点">良かった点</h3>
+<ol type="1">
+<li>継続的なリスク管理の徹底</li>
+<li>適度な取引頻度の維持</li>
+<li>安定した利益率の確保</li>
+</ol>
+</section>
+<section id="改善注意点" class="level3">
+<h3 class="anchored" data-anchor-id="改善注意点">改善・注意点</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>注意すべき点
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>過信は禁物、リスク管理を継続</li>
+<li>流動性低下時は取引を控える</li>
+<li>ポジションサイズの適切な管理</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="税金の状況" class="level2">
+<h2 class="anchored" data-anchor-id="税金の状況">税金の状況</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>11月</th>
+<th>YTD累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>税額合計</strong></td>
+<td>564,894円</td>
+<td>3,228,520円</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>税引後利益
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>11月の税引後利益は<strong>2,215,782円</strong>、YTD累計で<strong>12,663,776円</strong>となっています。</p>
+</div>
+</div>
+</section>
+<section id="まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="まとめ">まとめ</h2>
+<p>引き続きリスク管理を徹底し、安定したパフォーマンスを維持していきます。</p>
+<hr>
+<p><em>このレビューは run_all.py + AI分析 により自動生成されました。</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Weekly Review</category>
+  <category>Monthly Review</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-11-29-weekly-review/</guid>
+  <pubDate>Fri, 28 Nov 2025 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-11-29-weekly-review/thumbnail.svg" medium="image" type="image/svg+xml"/>
+</item>
+</channel>
+</rss>
