@@ -95,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Concept</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./analysis.html"> 
@@ -128,38 +128,74 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section class="overview-panel hero">
-  <h2 class="hero-title anchored">Trading Viz</h2>
-  <p class="hero-lead">
-    トレーディング実績の記録・分析するためのレポート集です。<br>
-    最新のダッシュボードと分析ページは下のボタンから移動してください。
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;700&amp;display=swap" rel="stylesheet">
+
+<style>
+/* ベースのスタイル */
+.landing-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85vh; /* 画面の高さの85%を使って抜け感を出す */
+  width: 100%;
+  background: #ffffff; /* 完全な白、または #fafafa */
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  color: #111;
+  text-align: center;
+  /* フェードインアニメーション */
+  animation: fadeIn 2s ease-out;
+}
+
+/* メインコピー：大きく、堂々と */
+.hero-title {
+  font-size: clamp(1.2rem, 4vw, 2.5rem); /* レスポンシブなサイズ */
+  font-weight: 700; /* 太字でインパクト */
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
+/* サブコピー：少し小さく、グレーで引く */
+.hero-subtitle {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 400;
+  color: #666;
+  line-height: 2;
+  margin-bottom: 4rem;
+  letter-spacing: 0.05em;
+}
+
+/* ブランド名：極小で、一番下に添えるような美学 */
+.hero-brand {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #aaa;
+  letter-spacing: 0.3em; /* 字間を広げて高級感 */
+  text-transform: uppercase;
+}
+
+/* アニメーション定義 */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<section class="landing-hero">
+  <h1 class="hero-title">
+    AIや分析ツールを、<br>
+    「ペンとノート」のように。
+  </h1>
+
+  <p class="hero-subtitle">
+    複雑なデータも、シンプルに。<br>
+    思考の道具として、自然に。
   </p>
 
-  <div class="hero-buttons">
-    <a href="dashboard.html" class="btn btn-primary hero-btn">最新ダッシュボードへ</a>
-    <a href="analysis.html" class="btn btn-secondary hero-btn">分析レポートへ</a>
-  </div>
-
-  <div class="hero-meta">
-    <p>更新手順: [run_all.py](http://_vscodecontentref_/1) → Quartoレンダリング → GitHub Pages自動反映</p>
-    <p>今後方針: Githubをサーバー的に利用。Wordpressでもリン先を張る予定。今後adhocな分析も増やしたい。</p>
-  </div>
-</section>
-<section class="overview-panel">
-<h2 class="anchored">
-構成概要
-</h2>
-<ul>
-<li>
-<strong>Dashboard:</strong> KPIテーブルと主要チャート埋め込み
-</li>
-<li>
-<strong>Analysis:</strong> MTD/YTDの解釈、リスク、改善アクション
-</li>
-<li>
-<strong>FX更新:</strong> FRED DEXJPUS 月次集計 (step 1)
-</li>
-</ul>
+  <p class="hero-brand">chokotto</p>
 </section>
 
 

@@ -44,9 +44,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ちょこっと",
+    "title": "\n    AIや分析ツールを、\n    「ペンとノート」のように。\n  ",
     "section": "",
-    "text": "Trading Viz\n  \n    トレーディング実績の記録・分析するためのレポート集です。\n    最新のダッシュボードと分析ページは下のボタンから移動してください。\n  \n\n  \n    最新ダッシュボードへ\n    分析レポートへ\n  \n\n  \n    更新手順: [run_all.py](http://_vscodecontentref_/1) → Quartoレンダリング → GitHub Pages自動反映\n    今後方針: Githubをサーバー的に利用。Wordpressでもリン先を張る予定。今後adhocな分析も増やしたい。\n  \n\n\n\n構成概要\n\n\n\nDashboard: KPIテーブルと主要チャート埋め込み\n\n\nAnalysis: MTD/YTDの解釈、リスク、改善アクション\n\n\nFX更新: FRED DEXJPUS 月次集計 (step 1)"
+    "text": "AIや分析ツールを、\n    「ペンとノート」のように。\n  \n\n  \n    複雑なデータも、シンプルに。\n    思考の道具として、自然に。\n  \n\n  chokotto"
   },
   {
     "objectID": "archive.html",
@@ -60,7 +60,7 @@
     "href": "analysis.html",
     "title": "Trading Analysis Blog",
     "section": "",
-    "text": "週間レビュー: 2025年11月第5週\n\n\n\nWeekly Review\n\nMonthly Review\n\n\n\n11月は全勝継続中！YTD純利益が15,892,296円を突破\n\n\n\n\n\nNov 30, 2025\n\n\nchokotto\n\n\n\n\n\n\n\n\n\n\n\n\n週間レビュー: 2025年11月第5週\n\n\n\nWeekly Review\n\nMonthly Review\n\n\n\n11月は全勝継続中！YTD純利益が15,892,296円を突破\n\n\n\n\n\nNov 29, 2025\n\n\nchokotto\n\n\n\n\n\nNo matching items"
+    "text": "Noteお知らせ\n\n\n\n同じタイトルの投稿が複数表示される場合があります。これはバックエンドでシステム改修・テストを行っているためです。最新の日付の投稿をご参照ください。\n\n\n\n\n\n\n\n\n\n\n\n\n週間レビュー: 2025年11月第5週\n\n\n\nWeekly Review\n\nMonthly Review\n\n\n\n11月は全勝継続中！YTD純利益が15,892,296円を突破\n\n\n\n\n\nNov 30, 2025\n\n\nchokotto\n\n\n\n\n\n\n\n\n\n\n\n\n週間レビュー: 2025年11月第5週\n\n\n\nWeekly Review\n\nMonthly Review\n\n\n\n11月は全勝継続中！YTD純利益が15,892,296円を突破\n\n\n\n\n\nNov 29, 2025\n\n\nchokotto\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "dashboard.html",
