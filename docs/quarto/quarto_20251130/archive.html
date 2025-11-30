@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="過去の分析レポートを日付ごとに一覧表示します。">
 
-<title>Trading Analysis Blog – ちょこっと</title>
+<title>アーカイブ – ちょこっと</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +66,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -70,72 +104,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-posts .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-posts'] = new List('listing-posts', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="alternate" type="application/rss+xml" title="ちょこっと" href="analysis.xml" data-external="1"></head>
+</head>
 
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -158,7 +134,7 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./analysis.html" aria-current="page"> 
+    <a class="nav-link" href="./analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item">
@@ -176,105 +152,93 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Trading Analysis Blog</h1>
-            <p class="subtitle lead">News, tips, and commentary about your trading</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TW9udGhseSUyMFJldmlldw==">Monthly Review <span class="quarto-category-count">(2)</span></div><div class="category" data-category="V2Vla2x5JTIwUmV2aWV3">Weekly Review <span class="quarto-category-count">(2)</span></div></div></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-
-
-
-
-<div id="listing-posts" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764428400000" data-listing-file-modified-sort="1764477249710" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
-<div class="thumbnail"><a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/2025-11-30-weekly-review/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">週間レビュー: 2025年11月第5週</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">
-<p>11月は全勝継続中！YTD純利益が15,892,296円を突破</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">
-<div class="listing-date">
-Nov 30, 2025
-</div>
-<div class="listing-author">
-chokotto
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764342000000" data-listing-file-modified-sort="1764420587067" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
-<div class="thumbnail"><a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/2025-11-29-weekly-review/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">週間レビュー: 2025年11月第5週</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">
-<p>11月は全勝継続中！YTD純利益が15,892,296円を突破</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">
-<div class="listing-date">
-Nov 29, 2025
-</div>
-<div class="listing-author">
-chokotto
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">アーカイブ</h1>
 </div>
 
+<div>
+  <div class="description">
+    過去の分析レポートを日付ごとに一覧表示します。
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>このページでは、<code>run_all.py</code> 実行ごとに生成された過去スナップショット(analysis.html)へのリンクを日付降順で表示します。</p>
+<div class="archive-list">
+<div id="6229d6ad" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>base_dir <span class="op">=</span> os.path.abspath(os.path.join(os.getcwd(), <span class="st">".."</span>, <span class="st">".."</span>, <span class="st">".."</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>docs_quarto_dir <span class="op">=</span> os.path.join(base_dir, <span class="st">"docs"</span>, <span class="st">"quarto"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>entries <span class="op">=</span> []</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> <span class="bu">sorted</span>(os.listdir(docs_quarto_dir)):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> name.startswith(<span class="st">"quarto_"</span>):  <span class="co"># e.g. quarto_20251123</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    date_part <span class="op">=</span> name.replace(<span class="st">"quarto_"</span>, <span class="st">""</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> (<span class="bu">len</span>(date_part) <span class="op">==</span> <span class="dv">8</span> <span class="kw">and</span> date_part.isdigit()):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    html_path <span class="op">=</span> os.path.join(docs_quarto_dir, name, <span class="st">"analysis.html"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(html_path):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        dt <span class="op">=</span> datetime.strptime(date_part, <span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        display_date <span class="op">=</span> dt.strftime(<span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        display_date <span class="op">=</span> date_part</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    rel_path <span class="op">=</span> <span class="ss">f"../</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">/analysis.html"</span>  <span class="co"># from latest -&gt; dated folder</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    entries.append((date_part, display_date, rel_path))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>entries.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">0</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> entries:</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"*まだスナップショットがありません。run_all.py 実行後に追加されます。*"</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, display_date, rel <span class="kw">in</span> entries:</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"- **</span><span class="sc">{</span>display_date<span class="sc">}</span><span class="ss">**  "</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"  [Analysis Snapshot](</span><span class="sc">{</span>rel<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>- **2025-11-30**  
+  [Analysis Snapshot](../quarto_20251130/analysis.html)
+- **2025-11-29**  
+  [Analysis Snapshot](../quarto_20251129/analysis.html)
+- **2025-11-25**  
+  [Analysis Snapshot](../quarto_20251125/analysis.html)
+- **2025-11-24**  
+  [Analysis Snapshot](../quarto_20251124/analysis.html)
+- **2025-11-23**  
+  [Analysis Snapshot](../quarto_20251123/analysis.html)
+- **2025-11-22**  
+  [Analysis Snapshot](../quarto_20251122/analysis.html)
+- **2025-11-16**  
+  [Analysis Snapshot](../quarto_20251116/analysis.html)</code></pre>
+</div>
+</div>
+</div>
+<p>（一時的に自動生成を停止しています）アーカイブ一覧は調整中です。後ほど復旧予定です。 if not (len(date_part) == 8 and date_part.isdigit()):</p>
 
 
 
