@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-52888d6dc5861fa028bc82f8beca5cfa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-61fae871ef4b27bbacc224a1e772c245.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -97,21 +97,51 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
 <span class="menu-text">Concept</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../dashboard.html"> 
-<span class="menu-text">Dashboard</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-dashboard" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-speedometer2" role="img">
+</i> 
+ <span class="menu-text">Dashboard</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-dashboard">    
+        <li>
+    <a class="dropdown-item" href="../../dashboard.html"><i class="bi bi-grid-fill" role="img">
+</i> 
+ <span class="dropdown-text">Overview</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="http://localhost:5007/dashboard_panel" target="_blank"> 
-<span class="menu-text">📊 Live Dashboard</span></a>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../dashboard_panel_info.html"><i class="bi bi-graph-up-arrow" role="img">
+</i> 
+ <span class="dropdown-text">Market Monitor (Panel)</span></a>
   </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../dashboard_static.html"><i class="bi bi-calendar-check" role="img">
+</i> 
+ <span class="dropdown-text">Monthly Performance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../dashboard_financials_timeseries.html"><i class="bi bi-graph-up" role="img">
+</i> 
+ <span class="dropdown-text">Asset Timeseries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../dashboard_2025.html"><i class="bi bi-bar-chart-line-fill" role="img">
+</i> 
+ <span class="dropdown-text">2025 KPI Dashboard</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Experimental Labs</li>
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 </ul>
@@ -121,10 +151,112 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">週間レビュー: 2025年12月第1週</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dashboard</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="px-0"><hr class="sidebar-divider hi "></li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Market Monitor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dashboard_panel_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">起動方法</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="px-0"><hr class="sidebar-divider hi "></li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../dashboard_static.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Performance Reports</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../dashboard_financials_timeseries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Financials</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+ <span class="menu-text">2024年</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../dashboard_2025.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2025年 ✓</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">2026年 (予定)</span>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Experimental Labs</span>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -192,7 +324,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="今週のサマリー" class="level2">
 <h2 class="anchored" data-anchor-id="今週のサマリー">今週のサマリー</h2>
-<p>今月は100%の勝率を達成し、単一トレードでの高い利益を記録しましたが、ROIの向上が今後の課題です。</p>
+<p>今週のパフォーマンスは素晴らしく、勝率100%を達成し、安定したリスク管理が功を奏しました。</p>
 </section>
 <section id="パフォーマンスハイライト" class="level2">
 <h2 class="anchored" data-anchor-id="パフォーマンスハイライト">パフォーマンスハイライト</h2>
@@ -278,9 +410,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="良かった点" class="level3">
 <h3 class="anchored" data-anchor-id="良かった点">良かった点</h3>
 <ol type="1">
-<li>1回のトレードで257,741の純利益を達成し、月間勝率100%を記録しました。</li>
-<li>YTDの勝率が78.22%と高水準を維持しており、安定したパフォーマンスを示しています。</li>
-<li>継続的なリスク管理の徹底が安定したパフォーマンスと利益率を支えています。</li>
+<li>今月のトレードは1件でありながら、257,741の純利益を上げ、月間勝率は100%を達成しました。</li>
+<li>年間を通じて629件のトレードで78.22%の高勝率を維持し、16,150,037の純利益を確保しています。</li>
+<li>リスク管理の徹底により、安定したパフォーマンスと利益率を維持しています。</li>
 </ol>
 </section>
 <section id="改善注意点" class="level3">
@@ -296,9 +428,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>ROIが1.39%と低いため、利益率向上のための戦略再評価が必要です。</li>
-<li>期待値が0.79%と低いため、トレード選定の精度向上を図り、取引戦略の強化を求められます。</li>
-<li>流動性が低下した場合は取引を控えるべきであり、ポジションサイズの適切な管理を続けることが重要です。</li>
+<li>ROIが1.39%と低めであるため、より高いリターンを目指して戦略の見直しやポジションサイズの適切な管理を行いましょう。</li>
+<li>トレード機会が限られているため、流動性が高い市場を選び、取引機会を増やすことを検討しましょう。</li>
+<li>年間勝率をさらに向上させるために、リスク管理を継続しつつ、過信を避けた慎重な判断を心掛けましょう。</li>
 </ul>
 </div>
 </div>
@@ -338,7 +470,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="まとめ" class="level2">
 <h2 class="anchored" data-anchor-id="まとめ">まとめ</h2>
-<p>今後も高い勝率を維持しつつ、ROIや期待値の改善に取り組みます。リスク管理を徹底しつつ、トレード戦略の最適化と利益率の向上を目指します。市場の動向を注視し、適切なタイミングでの取引を心がけます。</p>
+<p>今後も勝率を維持しつつ、ROIの向上とトレード機会の増加を目指した戦略を検討します。リスク管理を徹底し、流動性の高い市場での取引を増やすことで、より良い結果を目指していきます。</p>
 <hr>
 <p><em>このレビューは run_all.py + AI分析 により自動生成されました。</em></p>
 

@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -76,7 +41,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-52888d6dc5861fa028bc82f8beca5cfa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-61fae871ef4b27bbacc224a1e772c245.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -130,21 +95,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Concept</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./dashboard.html"> 
-<span class="menu-text">Dashboard</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-dashboard" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-speedometer2" role="img">
+</i> 
+ <span class="menu-text">Dashboard</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-dashboard">    
+        <li>
+    <a class="dropdown-item" href="./dashboard.html"><i class="bi bi-grid-fill" role="img">
+</i> 
+ <span class="dropdown-text">Overview</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="http://localhost:5007/dashboard_panel" target="_blank"> 
-<span class="menu-text">📊 Live Dashboard</span></a>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./dashboard_panel_info.html"><i class="bi bi-graph-up-arrow" role="img">
+</i> 
+ <span class="dropdown-text">Market Monitor (Panel)</span></a>
   </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./dashboard_static.html"><i class="bi bi-calendar-check" role="img">
+</i> 
+ <span class="dropdown-text">Monthly Performance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./dashboard_financials_timeseries.html"><i class="bi bi-graph-up" role="img">
+</i> 
+ <span class="dropdown-text">Asset Timeseries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./dashboard_2025.html"><i class="bi bi-bar-chart-line-fill" role="img">
+</i> 
+ <span class="dropdown-text">2025 KPI Dashboard</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Experimental Labs</li>
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 </ul>
@@ -154,10 +149,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">アーカイブ</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dashboard</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="px-0"><hr class="sidebar-divider hi "></li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Market Monitor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dashboard_panel_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">起動方法</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="px-0"><hr class="sidebar-divider hi "></li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dashboard_static.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Performance Reports</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dashboard_financials_timeseries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Financials</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+ <span class="menu-text">2024年</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dashboard_2025.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2025年 ✓</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">2026年 (予定)</span>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Experimental Labs</span>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
@@ -191,58 +288,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>このページでは、<code>run_all.py</code> 実行ごとに生成された過去スナップショット(analysis.html)へのリンクを日付降順で表示します。</p>
 <div class="archive-list">
-<div id="a58f843d" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>base_dir <span class="op">=</span> os.path.abspath(os.path.join(os.getcwd(), <span class="st">".."</span>, <span class="st">".."</span>, <span class="st">".."</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>docs_quarto_dir <span class="op">=</span> os.path.join(base_dir, <span class="st">"docs"</span>, <span class="st">"quarto"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>entries <span class="op">=</span> []</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> <span class="bu">sorted</span>(os.listdir(docs_quarto_dir)):</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> name.startswith(<span class="st">"quarto_"</span>):  <span class="co"># e.g. quarto_20251123</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    date_part <span class="op">=</span> name.replace(<span class="st">"quarto_"</span>, <span class="st">""</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> (<span class="bu">len</span>(date_part) <span class="op">==</span> <span class="dv">8</span> <span class="kw">and</span> date_part.isdigit()):</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    html_path <span class="op">=</span> os.path.join(docs_quarto_dir, name, <span class="st">"analysis.html"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(html_path):</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        dt <span class="op">=</span> datetime.strptime(date_part, <span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">"</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        display_date <span class="op">=</span> dt.strftime(<span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        display_date <span class="op">=</span> date_part</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    rel_path <span class="op">=</span> <span class="ss">f"../</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">/analysis.html"</span>  <span class="co"># from latest -&gt; dated folder</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    entries.append((date_part, display_date, rel_path))</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>entries.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">0</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> entries:</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"*まだスナップショットがありません。run_all.py 実行後に追加されます。*"</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, display_date, rel <span class="kw">in</span> entries:</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"- **</span><span class="sc">{</span>display_date<span class="sc">}</span><span class="ss">**  "</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"  [Analysis Snapshot](</span><span class="sc">{</span>rel<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>- **2025-11-30**  
-  [Analysis Snapshot](../quarto_20251130/analysis.html)
-- **2025-11-29**  
-  [Analysis Snapshot](../quarto_20251129/analysis.html)
-- **2025-11-25**  
-  [Analysis Snapshot](../quarto_20251125/analysis.html)
-- **2025-11-24**  
-  [Analysis Snapshot](../quarto_20251124/analysis.html)
-- **2025-11-23**  
-  [Analysis Snapshot](../quarto_20251123/analysis.html)
-- **2025-11-22**  
-  [Analysis Snapshot](../quarto_20251122/analysis.html)
-- **2025-11-16**  
-  [Analysis Snapshot](../quarto_20251116/analysis.html)</code></pre>
+<ul>
+<li><strong>2025-12-07</strong> <a href="../quarto_20251207/analysis.html">Analysis Snapshot</a></li>
+<li><strong>2025-11-30</strong> <a href="../quarto_20251130/analysis.html">Analysis Snapshot</a></li>
+<li><strong>2025-11-29</strong> <a href="../quarto_20251129/analysis.html">Analysis Snapshot</a></li>
+<li><strong>2025-11-25</strong> <a href="../quarto_20251125/analysis.html">Analysis Snapshot</a></li>
+<li><strong>2025-11-24</strong> <a href="../quarto_20251124/analysis.html">Analysis Snapshot</a></li>
+<li><strong>2025-11-23</strong> <a href="../quarto_20251123/analysis.html">Analysis Snapshot</a></li>
+<li><strong>2025-11-22</strong> <a href="../quarto_20251122/analysis.html">Analysis Snapshot</a></li>
+<li><strong>2025-11-16</strong> <a href="../quarto_20251116/analysis.html">Analysis Snapshot</a></li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>アーカイブ一覧は手動で更新されます。</p>
 </div>
-<p>（一時的に自動生成を停止しています）アーカイブ一覧は調整中です。後ほど復旧予定です。 if not (len(date_part) == 8 and date_part.isdigit()):</p>
+</div>
 
 
 

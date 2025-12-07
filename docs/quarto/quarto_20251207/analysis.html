@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-52888d6dc5861fa028bc82f8beca5cfa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-61fae871ef4b27bbacc224a1e772c245.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -132,10 +132,10 @@ window.Quarto = {
 
 <link rel="alternate" type="application/rss+xml" title="ちょこっと" href="analysis.xml" data-external="1"></head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -154,21 +154,51 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Concept</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./analysis.html" aria-current="page"> 
+    <a class="nav-link" href="./analysis.html"> 
 <span class="menu-text">Analysis</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./dashboard.html"> 
-<span class="menu-text">Dashboard</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-dashboard" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-speedometer2" role="img">
+</i> 
+ <span class="menu-text">Dashboard</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-dashboard">    
+        <li>
+    <a class="dropdown-item" href="./dashboard.html"><i class="bi bi-grid-fill" role="img">
+</i> 
+ <span class="dropdown-text">Overview</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="http://localhost:5007/dashboard_panel" target="_blank"> 
-<span class="menu-text">📊 Live Dashboard</span></a>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./dashboard_panel_info.html"><i class="bi bi-graph-up-arrow" role="img">
+</i> 
+ <span class="dropdown-text">Market Monitor (Panel)</span></a>
   </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./dashboard_static.html"><i class="bi bi-calendar-check" role="img">
+</i> 
+ <span class="dropdown-text">Monthly Performance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./dashboard_financials_timeseries.html"><i class="bi bi-graph-up" role="img">
+</i> 
+ <span class="dropdown-text">Asset Timeseries</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./dashboard_2025.html"><i class="bi bi-bar-chart-line-fill" role="img">
+</i> 
+ <span class="dropdown-text">2025 KPI Dashboard</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Experimental Labs</li>
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 </ul>
@@ -178,62 +208,287 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Trading Analysis Blog</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Trading Analysis Blog</h1>
-            <p class="subtitle lead">News, tips, and commentary about your trading</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dashboard</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dashboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="px-0"><hr class="sidebar-divider hi "></li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Market Monitor</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dashboard_panel_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">起動方法</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="px-0"><hr class="sidebar-divider hi "></li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dashboard_static.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Performance Reports</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./dashboard_financials_timeseries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Financials</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+ <span class="menu-text">2024年</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dashboard_2025.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2025年 ✓</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">2026年 (予定)</span>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">Experimental Labs</span>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="TW9udGhseSUyMFJldmlldw==">Monthly Review <span class="quarto-category-count">(3)</span></div><div class="category" data-category="V2Vla2x5JTIwUmV2aWV3">Weekly Review <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-
-
-
-
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Trading Analysis Blog</h1>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>お知らせ
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>同じタイトルの投稿が複数表示される場合があります。これはバックエンドでシステム改修・テストを行っているためです。最新の日付の投稿をご参照ください。</p>
-</div>
-</div>
-<div id="listing-posts" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1765033200000" data-listing-file-modified-sort="1765083200623" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
-<div class="thumbnail"><a href="./posts/2025-12-07-weekly-review/index.html" class="no-external">
 
-<img loading="lazy" src="./posts/2025-12-07-weekly-review/thumbnail.jpg" class="thumbnail-image">
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-12-07-weekly-review/index.html" class="no-external">週間レビュー: 2025年12月第1週</a>
-</h3>
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+  :root {
+    --brand-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    --card-hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* --- 1. カスタムヘッダーデザイン --- */
+  .quarto-title-block.default {
+    display: none; /* デフォルトのタイトルを隠す */
+  }
+
+  .hero-section {
+    background: var(--brand-gradient);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    font-weight: 400;
+  }
+
+  /* 背景の装飾（薄いチャートっぽい線など） */
+  .hero-bg-decoration {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 20% 150%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* --- 2. お知らせバー（System Status風） --- */
+  .system-alert {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    color: #9a3412;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: -1.5rem auto 3rem;
+    max-width: 900px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+  }
+
+  .alert-icon {
+    background: #f97316;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* --- 3. 記事カード（Listing）の調整 --- */
+  .quarto-grid-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: white;
+    overflow: hidden;
+  }
+
+  .quarto-grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: #cbd5e1;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  /* カテゴリバッジのデザイン */
+  .listing-categories .listing-category {
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    transition: background 0.2s;
+  }
+  
+  .listing-categories .listing-category:hover {
+    background: #2563eb;
+    color: white;
+  }
+
+  /* 日付のスタイル */
+  .listing-date {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .listing-title {
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+</style>
+
+<div class="hero-section">
+  <div class="hero-bg-decoration"></div>
+  <h1 class="hero-title">Trading Analysis Blog</h1>
+  <div class="hero-subtitle">Market Insights, Performance Review &amp; Strategy Notes</div>
+</div>
+
+<div class="system-alert">
+  <div class="alert-icon"><i class="bi bi-cone-striped"></i></div>
+  <div>
+    <strong>System Notice:</strong> 
+    現在バックエンド改修・テスト中のため、同一タイトルの投稿が複数表示される場合があります。最新の日付を参照してください。
+  </div>
+</div>
+<div id="listing-posts" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1765033200000" data-listing-file-modified-sort="1765101603772" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
+<a href="./posts/2025-12-07-weekly-review/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/2025-12-07-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+週間レビュー: 2025年12月第1週
+</h5>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -241,31 +496,30 @@ window.Quarto = {
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="delink listing-description"><a href="./posts/2025-12-07-weekly-review/index.html" class="no-external">
+<div class="card-text listing-description delink">
 <p>12月は全勝継続中！YTD純利益が16,150,037円を突破</p>
-</a></div>
 </div>
-<div class="metadata">
-<a href="./posts/2025-12-07-weekly-review/index.html" class="no-external">
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+chokotto
+</div>
 <div class="listing-date">
 Dec 7, 2025
 </div>
-<div class="listing-author">
-chokotto
-</div>
-</a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764428400000" data-listing-file-modified-sort="1764477721609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
-<div class="thumbnail"><a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/2025-11-30-weekly-review/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">週間レビュー: 2025年11月第5週</a>
-</h3>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764428400000" data-listing-file-modified-sort="1764477721609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
+<a href="./posts/2025-11-30-weekly-review/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/2025-11-30-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+週間レビュー: 2025年11月第5週
+</h5>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -273,31 +527,30 @@ chokotto
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="delink listing-description"><a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">
+<div class="card-text listing-description delink">
 <p>11月は全勝継続中！YTD純利益が15,892,296円を突破</p>
-</a></div>
 </div>
-<div class="metadata">
-<a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+chokotto
+</div>
 <div class="listing-date">
 Nov 30, 2025
 </div>
-<div class="listing-author">
-chokotto
-</div>
-</a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764342000000" data-listing-file-modified-sort="1764420587067" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
-<div class="thumbnail"><a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/2025-11-29-weekly-review/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">週間レビュー: 2025年11月第5週</a>
-</h3>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764342000000" data-listing-file-modified-sort="1764420587067" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
+<a href="./posts/2025-11-29-weekly-review/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/2025-11-29-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+週間レビュー: 2025年11月第5週
+</h5>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -305,20 +558,19 @@ chokotto
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="delink listing-description"><a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">
+<div class="card-text listing-description delink">
 <p>11月は全勝継続中！YTD純利益が15,892,296円を突破</p>
-</a></div>
 </div>
-<div class="metadata">
-<a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">
-<div class="listing-date">
-Nov 29, 2025
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 chokotto
 </div>
-</a>
+<div class="listing-date">
+Nov 29, 2025
 </div>
+</div>
+</div>
+</div></a>
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
