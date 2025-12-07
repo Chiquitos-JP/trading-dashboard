@@ -60,7 +60,7 @@
     "href": "analysis.html",
     "title": "Trading Analysis Blog",
     "section": "",
-    "text": "Noteお知らせ\n\n\n\n同じタイトルの投稿が複数表示される場合があります。これはバックエンドでシステム改修・テストを行っているためです。最新の日付の投稿をご参照ください。\n\n\n\n\n\n\n\n\n\n\n\n\n週間レビュー: 2025年11月第5週\n\n\n\nWeekly Review\n\nMonthly Review\n\n\n\n11月は全勝継続中！YTD純利益が15,892,296円を突破\n\n\n\n\n\nNov 30, 2025\n\n\nchokotto\n\n\n\n\n\n\n\n\n\n\n\n\n週間レビュー: 2025年11月第5週\n\n\n\nWeekly Review\n\nMonthly Review\n\n\n\n11月は全勝継続中！YTD純利益が15,892,296円を突破\n\n\n\n\n\nNov 29, 2025\n\n\nchokotto\n\n\n\n\n\nNo matching items"
+    "text": "Noteお知らせ\n\n\n\n同じタイトルの投稿が複数表示される場合があります。これはバックエンドでシステム改修・テストを行っているためです。最新の日付の投稿をご参照ください。\n\n\n\n\n\n\n\n\n\n\n\n\n週間レビュー: 2025年12月第1週\n\n\n\nWeekly Review\n\nMonthly Review\n\n\n\n12月は全勝継続中！YTD純利益が16,150,037円を突破\n\n\n\n\n\nDec 7, 2025\n\n\nchokotto\n\n\n\n\n\n\n\n\n\n\n\n\n週間レビュー: 2025年11月第5週\n\n\n\nWeekly Review\n\nMonthly Review\n\n\n\n11月は全勝継続中！YTD純利益が15,892,296円を突破\n\n\n\n\n\nNov 30, 2025\n\n\nchokotto\n\n\n\n\n\n\n\n\n\n\n\n\n週間レビュー: 2025年11月第5週\n\n\n\nWeekly Review\n\nMonthly Review\n\n\n\n11月は全勝継続中！YTD純利益が15,892,296円を突破\n\n\n\n\n\nNov 29, 2025\n\n\nchokotto\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "dashboard.html",
@@ -152,5 +152,47 @@
     "title": "Dashboard",
     "section": "静的KPIレポート",
     "text": "静的KPIレポート\n\n\n\n\n\n\nNote\n\n\n\n\n今後年度が替わる度に記録が更新できる構造にする事が課題。"
+  },
+  {
+    "objectID": "posts/2025-12-07-weekly-review/index.html",
+    "href": "posts/2025-12-07-weekly-review/index.html",
+    "title": "週間レビュー: 2025年12月第1週",
+    "section": "",
+    "text": "今月は100%の勝率を達成し、単一トレードでの高い利益を記録しましたが、ROIの向上が今後の課題です。"
+  },
+  {
+    "objectID": "posts/2025-12-07-weekly-review/index.html#今週のサマリー",
+    "href": "posts/2025-12-07-weekly-review/index.html#今週のサマリー",
+    "title": "週間レビュー: 2025年12月第1週",
+    "section": "",
+    "text": "今月は100%の勝率を達成し、単一トレードでの高い利益を記録しましたが、ROIの向上が今後の課題です。"
+  },
+  {
+    "objectID": "posts/2025-12-07-weekly-review/index.html#パフォーマンスハイライト",
+    "href": "posts/2025-12-07-weekly-review/index.html#パフォーマンスハイライト",
+    "title": "週間レビュー: 2025年12月第1週",
+    "section": "パフォーマンスハイライト",
+    "text": "パフォーマンスハイライト\n\n12月の成績\n\n\n\n指標\n12月実績\n備考\n\n\n\n\n取引回数\n1件\n\n\n\n勝率\n100.00%\n\n\n\n損失トレード\n0件\n\n\n\n純利益\n257,741円\n\n\n\nROI\n1.39%\n\n\n\n\n\n\nYTD（年初来）サマリー\n\n\n\n指標\n2025年累計\n\n\n\n\n総純利益\n16,150,037円\n\n\n税引後利益\n12,869,157円\n\n\n総取引回数\n629件\n\n\n勝率\n78.22%\n\n\n期待値 (E)\n0.79%\n\n\nROI\n0.79%"
+  },
+  {
+    "objectID": "posts/2025-12-07-weekly-review/index.html#注目ポイント",
+    "href": "posts/2025-12-07-weekly-review/index.html#注目ポイント",
+    "title": "週間レビュー: 2025年12月第1週",
+    "section": "注目ポイント",
+    "text": "注目ポイント\n\n良かった点\n\n1回のトレードで257,741の純利益を達成し、月間勝率100%を記録しました。\nYTDの勝率が78.22%と高水準を維持しており、安定したパフォーマンスを示しています。\n継続的なリスク管理の徹底が安定したパフォーマンスと利益率を支えています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\nROIが1.39%と低いため、利益率向上のための戦略再評価が必要です。\n期待値が0.79%と低いため、トレード選定の精度向上を図り、取引戦略の強化を求められます。\n流動性が低下した場合は取引を控えるべきであり、ポジションサイズの適切な管理を続けることが重要です。"
+  },
+  {
+    "objectID": "posts/2025-12-07-weekly-review/index.html#税金の状況",
+    "href": "posts/2025-12-07-weekly-review/index.html#税金の状況",
+    "title": "週間レビュー: 2025年12月第1週",
+    "section": "税金の状況",
+    "text": "税金の状況\n\n\n\n項目\n12月\nYTD累計\n\n\n\n\n税額合計\n52,360円\n3,280,880円\n\n\n\n\n\n\n\n\n\nTip税引後利益\n\n\n\n12月の税引後利益は205,381円、YTD累計で12,869,157円となっています。"
+  },
+  {
+    "objectID": "posts/2025-12-07-weekly-review/index.html#まとめ",
+    "href": "posts/2025-12-07-weekly-review/index.html#まとめ",
+    "title": "週間レビュー: 2025年12月第1週",
+    "section": "まとめ",
+    "text": "まとめ\n今後も高い勝率を維持しつつ、ROIや期待値の改善に取り組みます。リスク管理を徹底しつつ、トレード戦略の最適化と利益率の向上を目指します。市場の動向を注視し、適切なタイミングでの取引を心がけます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。"
   }
 ]
