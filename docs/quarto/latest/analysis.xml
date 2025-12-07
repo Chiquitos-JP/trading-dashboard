@@ -10,7 +10,178 @@
 <atom:link href="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/analysis.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Sat, 06 Dec 2025 15:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 07 Dec 2025 15:00:00 GMT</lastBuildDate>
+<item>
+  <title>週間レビュー: 2025年12月第2週</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-08-weekly-review/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="今週のサマリー" class="level2">
+<h2 class="anchored" data-anchor-id="今週のサマリー">今週のサマリー</h2>
+<p>今月は全トレードで勝利し、安定したリスク管理の下で優れたパフォーマンスを示しました。</p>
+</section>
+<section id="パフォーマンスハイライト" class="level2">
+<h2 class="anchored" data-anchor-id="パフォーマンスハイライト">パフォーマンスハイライト</h2>
+<section id="月の成績" class="level3">
+<h3 class="anchored" data-anchor-id="月の成績">12月の成績</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>12月実績</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>取引回数</td>
+<td>1件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>100.00%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>損失トレード</td>
+<td>0件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>純利益</td>
+<td>257,741円</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ROI</td>
+<td>1.39%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ytd年初来サマリー" class="level3">
+<h3 class="anchored" data-anchor-id="ytd年初来サマリー">YTD（年初来）サマリー</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>2025年累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>総純利益</td>
+<td><strong>16,150,037円</strong></td>
+</tr>
+<tr class="even">
+<td>税引後利益</td>
+<td>12,869,157円</td>
+</tr>
+<tr class="odd">
+<td>総取引回数</td>
+<td>629件</td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>78.22%</td>
+</tr>
+<tr class="odd">
+<td>期待値 (E)</td>
+<td>0.79%</td>
+</tr>
+<tr class="even">
+<td>ROI</td>
+<td>0.79%</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="注目ポイント" class="level2">
+<h2 class="anchored" data-anchor-id="注目ポイント">注目ポイント</h2>
+<section id="良かった点" class="level3">
+<h3 class="anchored" data-anchor-id="良かった点">良かった点</h3>
+<ol type="1">
+<li>勝率100.00%を達成し、月間の純利益は257,741円、ROIは1.39%となりました。</li>
+<li>年初来の純利益16,150,037円、勝率78.22%を維持し、安定した成果を示しています。</li>
+<li>リスク管理の徹底と適度な取引頻度が、安定した利益率の確保に寄与しています。</li>
+</ol>
+</section>
+<section id="改善注意点" class="level3">
+<h3 class="anchored" data-anchor-id="改善注意点">改善・注意点</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>注意すべき点
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>今後の収益機会を増やすため、トレード数を増やし、取引戦略を再評価してください。</li>
+<li>ROI向上のため、ポジションサイズの最適化と流動性低下時の取引抑制を検討してください。</li>
+<li>過信を避け、引き続きリスク管理を徹底することで、安定したパフォーマンスを維持してください。</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="税金の状況" class="level2">
+<h2 class="anchored" data-anchor-id="税金の状況">税金の状況</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>12月</th>
+<th>YTD累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>税額合計</strong></td>
+<td>52,360円</td>
+<td>3,280,880円</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>税引後利益
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>12月の税引後利益は<strong>205,381円</strong>、YTD累計で<strong>12,869,157円</strong>となっています。</p>
+</div>
+</div>
+</section>
+<section id="まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="まとめ">まとめ</h2>
+<p>今後も高い勝率を維持しつつ、ROIの向上を目指し、収益機会を拡大するために戦略を再評価し、リスク管理を強化していきます。</p>
+<hr>
+<p><em>このレビューは run_all.py + AI分析 により自動生成されました。</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Weekly Review</category>
+  <category>Monthly Review</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-08-weekly-review/</guid>
+  <pubDate>Sun, 07 Dec 2025 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-08-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>週間レビュー: 2025年12月第1週</title>
   <dc:creator>chokotto </dc:creator>
