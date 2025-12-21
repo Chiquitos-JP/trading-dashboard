@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>ちょこっと</title>
+<link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/analysis.html</link>
+<atom:link href="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/analysis.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Sat, 20 Dec 2025 15:00:00 GMT</lastBuildDate>
+<item>
+  <title>週間レビュー: 2025年12月第3週</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-21-weekly-review/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="今週のサマリー" class="level2">
+<h2 class="anchored" data-anchor-id="今週のサマリー">今週のサマリー</h2>
+<p>12月は3回の取引で100%の勝率を達成し、1,097,587の純利益を上げるなど、安定したパフォーマンスを示しました。</p>
+</section>
+<section id="パフォーマンスハイライト" class="level2">
+<h2 class="anchored" data-anchor-id="パフォーマンスハイライト">パフォーマンスハイライト</h2>
+<section id="月の成績" class="level3">
+<h3 class="anchored" data-anchor-id="月の成績">12月の成績</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 46%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>指標</th>
+<th style="text-align: center;">12月実績</th>
+<th style="text-align: center;">月次推移</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>取引回数</td>
+<td style="text-align: center;">3件</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><rect x="8.3" y="11.6" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <rect x="14.7" y="10.6" width="5.1" height="1.4" fill="#22c55e" rx="1"></rect> <rect x="21.0" y="9.7" width="5.1" height="2.3" fill="#22c55e" rx="1"></rect> <rect x="27.3" y="4.7" width="5.1" height="7.3" fill="#22c55e" rx="1"></rect> <rect x="33.7" y="6.4" width="5.1" height="5.6" fill="#22c55e" rx="1"></rect> <rect x="40.0" y="11.2" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <rect x="46.3" y="5.9" width="5.1" height="6.1" fill="#22c55e" rx="1"></rect> <rect x="52.7" y="2.0" width="5.1" height="10.0" fill="#22c55e" rx="1"></rect> <rect x="59.0" y="2.2" width="5.1" height="9.8" fill="#22c55e" rx="1"></rect> <rect x="65.3" y="5.0" width="5.1" height="7.0" fill="#22c55e" rx="1"></rect> <rect x="71.7" y="11.8" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <line x1="2" y1="12.0" x2="78" y2="12.0" stroke="#e2e8f0" stroke-width="0.5"></line></svg></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td style="text-align: center;">100.00%</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><polyline points="8.9,18.0 15.8,13.8 22.7,22.0 29.6,12.7 36.5,6.1 43.5,18.0 50.4,17.8 57.3,6.2 64.2,14.5 71.1,2.0 78.0,2.0" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></polyline><circle cx="78.0" cy="2.0" r="2" fill="#22c55e"></circle></svg></td>
+</tr>
+<tr class="odd">
+<td>損失トレード</td>
+<td style="text-align: center;">0件</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><rect x="8.3" y="11.5" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <rect x="14.7" y="10.7" width="5.1" height="1.3" fill="#22c55e" rx="1"></rect> <rect x="21.0" y="8.3" width="5.1" height="3.7" fill="#22c55e" rx="1"></rect> <rect x="27.3" y="5.7" width="5.1" height="6.3" fill="#22c55e" rx="1"></rect> <rect x="33.7" y="10.2" width="5.1" height="1.8" fill="#22c55e" rx="1"></rect> <rect x="40.0" y="10.9" width="5.1" height="1.1" fill="#22c55e" rx="1"></rect> <rect x="46.3" y="4.1" width="5.1" height="7.9" fill="#22c55e" rx="1"></rect> <rect x="52.7" y="8.6" width="5.1" height="3.4" fill="#22c55e" rx="1"></rect> <rect x="59.0" y="2.0" width="5.1" height="10.0" fill="#22c55e" rx="1"></rect> <rect x="65.3" y="12.0" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <rect x="71.7" y="12.0" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <line x1="2" y1="12.0" x2="78" y2="12.0" stroke="#e2e8f0" stroke-width="0.5"></line></svg></td>
+</tr>
+<tr class="even">
+<td>純利益</td>
+<td style="text-align: center;">1,097,587円</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><rect x="8.3" y="12.0" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <rect x="14.7" y="12.0" width="5.1" height="1.0" fill="#ef4444" rx="1"></rect> <rect x="21.0" y="12.0" width="5.1" height="4.3" fill="#ef4444" rx="1"></rect> <rect x="27.3" y="8.4" width="5.1" height="3.6" fill="#22c55e" rx="1"></rect> <rect x="33.7" y="9.0" width="5.1" height="3.0" fill="#22c55e" rx="1"></rect> <rect x="40.0" y="10.9" width="5.1" height="1.1" fill="#22c55e" rx="1"></rect> <rect x="46.3" y="5.6" width="5.1" height="6.4" fill="#22c55e" rx="1"></rect> <rect x="52.7" y="5.8" width="5.1" height="6.2" fill="#22c55e" rx="1"></rect> <rect x="59.0" y="2.0" width="5.1" height="10.0" fill="#22c55e" rx="1"></rect> <rect x="65.3" y="6.5" width="5.1" height="5.5" fill="#22c55e" rx="1"></rect> <rect x="71.7" y="9.8" width="5.1" height="2.2" fill="#22c55e" rx="1"></rect> <line x1="2" y1="12.0" x2="78" y2="12.0" stroke="#e2e8f0" stroke-width="0.5"></line></svg></td>
+</tr>
+<tr class="odd">
+<td>ROI</td>
+<td style="text-align: center;">2.20%</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><polyline points="8.9,7.5 15.8,8.1 22.7,22.0 29.6,5.5 36.5,5.8 43.5,5.5 50.4,4.9 57.3,5.7 64.2,5.1 71.1,4.8 78.0,2.0" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></polyline><circle cx="78.0" cy="2.0" r="2" fill="#22c55e"></circle></svg></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ytd年初来サマリー" class="level3">
+<h3 class="anchored" data-anchor-id="ytd年初来サマリー">YTD（年初来）サマリー</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 46%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>指標</th>
+<th style="text-align: left;">2025年累計</th>
+<th style="text-align: center;">月次推移</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>総純利益</td>
+<td style="text-align: left;"><strong>16,989,883円</strong></td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><rect x="8.3" y="12.0" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <rect x="14.7" y="12.0" width="5.1" height="1.0" fill="#ef4444" rx="1"></rect> <rect x="21.0" y="12.0" width="5.1" height="4.3" fill="#ef4444" rx="1"></rect> <rect x="27.3" y="8.4" width="5.1" height="3.6" fill="#22c55e" rx="1"></rect> <rect x="33.7" y="9.0" width="5.1" height="3.0" fill="#22c55e" rx="1"></rect> <rect x="40.0" y="10.9" width="5.1" height="1.1" fill="#22c55e" rx="1"></rect> <rect x="46.3" y="5.6" width="5.1" height="6.4" fill="#22c55e" rx="1"></rect> <rect x="52.7" y="5.8" width="5.1" height="6.2" fill="#22c55e" rx="1"></rect> <rect x="59.0" y="2.0" width="5.1" height="10.0" fill="#22c55e" rx="1"></rect> <rect x="65.3" y="6.5" width="5.1" height="5.5" fill="#22c55e" rx="1"></rect> <rect x="71.7" y="9.8" width="5.1" height="2.2" fill="#22c55e" rx="1"></rect> <line x1="2" y1="12.0" x2="78" y2="12.0" stroke="#e2e8f0" stroke-width="0.5"></line></svg></td>
+</tr>
+<tr class="even">
+<td>税引後利益</td>
+<td style="text-align: left;">13,538,389円</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><rect x="8.3" y="12.0" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <rect x="14.7" y="12.0" width="5.1" height="1.0" fill="#ef4444" rx="1"></rect> <rect x="21.0" y="12.0" width="5.1" height="5.4" fill="#ef4444" rx="1"></rect> <rect x="27.3" y="8.4" width="5.1" height="3.6" fill="#22c55e" rx="1"></rect> <rect x="33.7" y="9.0" width="5.1" height="3.0" fill="#22c55e" rx="1"></rect> <rect x="40.0" y="10.9" width="5.1" height="1.1" fill="#22c55e" rx="1"></rect> <rect x="46.3" y="5.6" width="5.1" height="6.4" fill="#22c55e" rx="1"></rect> <rect x="52.7" y="5.8" width="5.1" height="6.2" fill="#22c55e" rx="1"></rect> <rect x="59.0" y="2.0" width="5.1" height="10.0" fill="#22c55e" rx="1"></rect> <rect x="65.3" y="6.5" width="5.1" height="5.5" fill="#22c55e" rx="1"></rect> <rect x="71.7" y="9.8" width="5.1" height="2.2" fill="#22c55e" rx="1"></rect> <line x1="2" y1="12.0" x2="78" y2="12.0" stroke="#e2e8f0" stroke-width="0.5"></line></svg></td>
+</tr>
+<tr class="odd">
+<td>総取引回数</td>
+<td style="text-align: left;">631件</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><rect x="8.3" y="11.6" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <rect x="14.7" y="10.6" width="5.1" height="1.4" fill="#22c55e" rx="1"></rect> <rect x="21.0" y="9.7" width="5.1" height="2.3" fill="#22c55e" rx="1"></rect> <rect x="27.3" y="4.7" width="5.1" height="7.3" fill="#22c55e" rx="1"></rect> <rect x="33.7" y="6.4" width="5.1" height="5.6" fill="#22c55e" rx="1"></rect> <rect x="40.0" y="11.2" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <rect x="46.3" y="5.9" width="5.1" height="6.1" fill="#22c55e" rx="1"></rect> <rect x="52.7" y="2.0" width="5.1" height="10.0" fill="#22c55e" rx="1"></rect> <rect x="59.0" y="2.2" width="5.1" height="9.8" fill="#22c55e" rx="1"></rect> <rect x="65.3" y="5.0" width="5.1" height="7.0" fill="#22c55e" rx="1"></rect> <rect x="71.7" y="11.8" width="5.1" height="1.0" fill="#22c55e" rx="1"></rect> <line x1="2" y1="12.0" x2="78" y2="12.0" stroke="#e2e8f0" stroke-width="0.5"></line></svg></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td style="text-align: left;">78.29%</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><polyline points="8.9,18.0 15.8,13.8 22.7,22.0 29.6,12.7 36.5,6.1 43.5,18.0 50.4,17.8 57.3,6.2 64.2,14.5 71.1,2.0 78.0,2.0" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></polyline><circle cx="78.0" cy="2.0" r="2" fill="#22c55e"></circle></svg></td>
+</tr>
+<tr class="odd">
+<td>期待値 (E)</td>
+<td style="text-align: left;">0.81%</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><polyline points="8.9,5.1 15.8,5.7 22.7,22.0 29.6,2.7 36.5,3.0 43.5,2.7 50.4,2.0 57.3,2.9 64.2,2.2" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></polyline><circle cx="64.2" cy="2.2" r="2" fill="#22c55e"></circle></svg></td>
+</tr>
+<tr class="even">
+<td>ROI</td>
+<td style="text-align: left;">0.81%</td>
+<td style="text-align: center;"><svg width="80" height="24" style="vertical-align:middle;"><polyline points="8.9,7.5 15.8,8.1 22.7,22.0 29.6,5.5 36.5,5.8 43.5,5.5 50.4,4.9 57.3,5.7 64.2,5.1 71.1,4.8 78.0,2.0" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></polyline><circle cx="78.0" cy="2.0" r="2" fill="#22c55e"></circle></svg></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ltvlife-time-value目標進捗" class="level3">
+<h3 class="anchored" data-anchor-id="ltvlife-time-value目標進捗">LTV（Life Time Value）目標進捗</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>目標: 1億円
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<svg width="100" height="24" style="vertical-align:middle;">
+<polyline points="10.7,19.7 19.5,19.7 28.2,22.0 36.9,20.1 45.6,18.5 54.4,18.0 63.1,14.6 71.8,11.3 80.5,6.0 89.3,3.1 98.0,2.0" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></polyline><circle cx="98.0" cy="2.0" r="2" fill="#22c55e"></circle>
+</svg>
+<p><strong>累計損益: 16,989,883円</strong></p>
+<div style="display:inline-flex;align-items:center;gap:8px;">
+<div style="width:150px;height:20px;background:#e2e8f0;border-radius:4px;overflow:hidden;position:relative;">
+<div style="width:17.0%;height:100%;background:#94a3b8;">
+
+</div>
+<span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:0.65rem;font-weight:600;color:#1e293b;">17.0%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="注目ポイント" class="level2">
+<h2 class="anchored" data-anchor-id="注目ポイント">注目ポイント</h2>
+<section id="良かった点" class="level3">
+<h3 class="anchored" data-anchor-id="良かった点">良かった点</h3>
+<ol type="1">
+<li>勝率100%を達成したことは、優れたリスク管理と市場分析の成果を示しています。</li>
+<li>月間ROIが2.20%と高く、全取引が利益を生み出したことは堅実な戦略の証です。</li>
+<li>年初来の純利益が16,989,883に達し、長期的な成長を示すポジティブな指標です。</li>
+</ol>
+</section>
+<section id="改善注意点" class="level3">
+<h3 class="anchored" data-anchor-id="改善注意点">改善・注意点</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>注意すべき点
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>取引数が少ないため、流動性が高いタイミングを見極め、より多くの機会を探ることが求められます。</li>
+<li>過信を避けるためにもリスク管理を強化し、特に流動性が低下する時期には取引を控えましょう。</li>
+<li>ポジションサイズを適切に管理し、年初来の78.29%の勝率を維持しつつ、損失取引を減らす戦略を見直すことが重要です。</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="銘柄分析" class="level2">
+<h2 class="anchored" data-anchor-id="銘柄分析">銘柄分析</h2>
+<section id="月別取扱い銘柄数" class="level3">
+<h3 class="anchored" data-anchor-id="月別取扱い銘柄数">月別取扱い銘柄数</h3>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.0.min.js" integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI=" crossorigin="anonymous"></script>                <div id="24affe16-3393-4d13-9a2f-03b4476041ed" class="plotly-graph-div" style="height:400px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("24affe16-3393-4d13-9a2f-03b4476041ed")) {                    Plotly.newPlot(                        "24affe16-3393-4d13-9a2f-03b4476041ed",                        [{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003e\u9298\u67c4\u6570: %{y}\u9298\u67c4\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#3b82f6"},"name":"\u9298\u67c4\u6570","text":["2","6","4","13","7","2","8","17","6","2","2","9","2","14","13","3","6","7"],"textposition":"outside","x":["2025-01","2025-02","2025-03","2025-05","2025-06","2025-08","2025-09","2025-10","2025-11","2025-12","2025-2\u002f","2025-3\u002f","2025-4\u002f","2025-5\u002f","2025-6\u002f","2025-7\u002f","2025-8\u002f","2025-9\u002f"],"y":[2,6,4,13,7,2,8,17,6,2,2,9,2,14,13,3,6,7],"type":"bar"},{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003e\u53d6\u5f15\u56de\u6570: %{y}\u56de\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#f97316","width":2},"marker":{"size":8},"mode":"lines+markers","name":"\u53d6\u5f15\u56de\u6570","x":["2025-01","2025-02","2025-03","2025-05","2025-06","2025-08","2025-09","2025-10","2025-11","2025-12","2025-2\u002f","2025-3\u002f","2025-4\u002f","2025-5\u002f","2025-6\u002f","2025-7\u002f","2025-8\u002f","2025-9\u002f"],"y":[3,9,5,31,15,3,11,60,21,3,3,10,3,24,19,7,13,15],"yaxis":"y2","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":16,"color":"#1e293b"},"text":"\u6708\u5225\u53d6\u6271\u3044\u9298\u67c4\u6570\u3068\u53d6\u5f15\u56de\u6570\uff082025\u5e74\uff09","x":0.5},"xaxis":{"title":{"text":"\u6c7a\u6e08\u6708"},"tickangle":-45,"gridcolor":"#e2e8f0"},"yaxis":{"title":{"text":"\u9298\u67c4\u6570"},"gridcolor":"#e2e8f0","rangemode":"tozero"},"yaxis2":{"title":{"text":"\u53d6\u5f15\u56de\u6570"},"overlaying":"y","side":"right","gridcolor":"#e2e8f0","rangemode":"tozero"},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5},"margin":{"l":60,"r":60,"t":80,"b":60},"plot_bgcolor":"white","paper_bgcolor":"white","height":400},                        {"responsive": true}                    )                };            </script>        </div>
+</section>
+<section id="銘柄別保有期間" class="level3">
+<h3 class="anchored" data-anchor-id="銘柄別保有期間">銘柄別保有期間</h3>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.0.min.js" integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI=" crossorigin="anonymous"></script>                <div id="d4c4c0c7-67a9-41a4-955d-846edca75e88" class="plotly-graph-div" style="height:450px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("d4c4c0c7-67a9-41a4-955d-846edca75e88")) {                    Plotly.newPlot(                        "d4c4c0c7-67a9-41a4-955d-846edca75e88",                        [{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e\u53d6\u5f15\u56de\u6570: %{x}\u56de\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#3b82f6"},"name":"\u53d6\u5f15\u56de\u6570","orientation":"h","text":["6","6","7","7","9","9","10","11","11","16","21","38"],"textposition":"outside","x":[6,6,7,7,9,9,10,11,11,16,21,38],"y":["FUTU","RMBS","APP","TSLA","AMD","CRWV","IOT","TEM","RDDT","HIMS","PLTR","SOFI"],"type":"bar","xaxis":"x","yaxis":"y"},{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e\u5e73\u5747: %{x}\u65e5\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#22c55e","#f97316","#22c55e","#22c55e","#f97316","#22c55e","#ef4444","#f97316","#22c55e","#22c55e","#f97316","#f97316"]},"name":"\u5e73\u5747\u4fdd\u6709\u65e5\u6570","orientation":"h","text":["0.83\u65e5","15.83\u65e5","2.29\u65e5","0.29\u65e5","23.67\u65e5","1.56\u65e5","46.6\u65e5","25.27\u65e5","0.91\u65e5","0.44\u65e5","18.14\u65e5","8.68\u65e5"],"textposition":"outside","x":[0.83,15.83,2.29,0.29,23.67,1.56,46.6,25.27,0.91,0.44,18.14,8.68],"y":["FUTU","RMBS","APP","TSLA","AMD","CRWV","IOT","TEM","RDDT","HIMS","PLTR","SOFI"],"type":"bar","xaxis":"x2","yaxis":"y2"},{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e\u7dcf\u5229\u76ca: %{x:,.0f}\u5186\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#22c55e","#22c55e","#ef4444","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e"]},"name":"\u7dcf\u5229\u76ca","orientation":"h","text":["0\u5186","380,478\u5186","-81,354\u5186","297,573\u5186","115,172\u5186","181,668\u5186","259,101\u5186","366,599\u5186","96,895\u5186","2,382,260\u5186","122,311\u5186","5,926,659\u5186"],"textposition":"outside","x":[0.0,380478.0,-81354.0,297573.0,115172.0,181668.0,259101.0,366599.0,96895.0,2382260.0,122311.0,5926659.0],"y":["FUTU","RMBS","APP","TSLA","AMD","CRWV","IOT","TEM","RDDT","HIMS","PLTR","SOFI"],"type":"bar","xaxis":"x3","yaxis":"y3"},{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e\u5e73\u5747\u640d\u76ca: %{x:,.0f}\u5186\u002f\u53d6\u5f15\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#94a3b8","#22c55e","#ef4444","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e"]},"name":"\u5e73\u5747\u640d\u76ca\u002f\u53d6\u5f15","orientation":"h","text":["\u2014","126,826\u5186","-16,271\u5186","99,191\u5186","28,793\u5186","45,417\u5186","86,367\u5186","122,200\u5186","16,149\u5186","170,161\u5186","15,289\u5186","395,111\u5186"],"textposition":"outside","x":[0,126826.0,-16271.0,99191.0,28793.0,45417.0,86367.0,122200.0,16149.0,170161.0,15289.0,395111.0],"y":["FUTU","RMBS","APP","TSLA","AMD","CRWV","IOT","TEM","RDDT","HIMS","PLTR","SOFI"],"type":"bar","xaxis":"x4","yaxis":"y4"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,0.19],"gridcolor":"#e2e8f0"},"yaxis":{"anchor":"x","domain":[0.0,1.0]},"xaxis2":{"anchor":"y2","domain":[0.27,0.46],"gridcolor":"#e2e8f0"},"yaxis2":{"anchor":"x2","domain":[0.0,1.0]},"xaxis3":{"anchor":"y3","domain":[0.54,0.73],"gridcolor":"#e2e8f0"},"yaxis3":{"anchor":"x3","domain":[0.0,1.0]},"xaxis4":{"anchor":"y4","domain":[0.81,1.0],"gridcolor":"#e2e8f0"},"yaxis4":{"anchor":"x4","domain":[0.0,1.0]},"annotations":[{"font":{"size":16},"showarrow":false,"text":"\u53d6\u5f15\u56de\u6570","x":0.095,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"\u5e73\u5747\u4fdd\u6709\u671f\u9593","x":0.365,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"\u7dcf\u5229\u76ca","x":0.635,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"\u5e73\u5747\u640d\u76ca\u002f\u53d6\u5f15","x":0.905,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"}],"title":{"font":{"size":16,"color":"#1e293b"},"text":"\u9298\u67c4\u5225\u53d6\u5f15\u5b9f\u7e3e\uff082025\u5e74 Top 12\uff09","x":0.5},"margin":{"l":80,"r":40,"t":80,"b":40},"showlegend":false,"plot_bgcolor":"white","paper_bgcolor":"white","height":450},                        {"responsive": true}                    )                };            </script>        </div>
+</section>
+<section id="保有期間分布" class="level3">
+<h3 class="anchored" data-anchor-id="保有期間分布">保有期間分布</h3>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.0.min.js" integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI=" crossorigin="anonymous"></script>                <div id="9349e0ca-c855-4692-825b-302e9284df40" class="plotly-graph-div" style="height:400px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("9349e0ca-c855-4692-825b-302e9284df40")) {                    Plotly.newPlot(                        "9349e0ca-c855-4692-825b-302e9284df40",                        [{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003e\u53d6\u5f15\u6570: %{y}\u4ef6\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#22c55e","#84cc16","#eab308","#f97316","#ef4444","#dc2626","#b91c1c","#991b1b","#7f1d1d"]},"text":["128","43","29","18","11","13","6","7","0","0"],"textposition":"outside","x":["\u540c\u65e5","1-2\u65e5","3-6\u65e5","1-2\u9031","2-4\u9031","1-2\u30f6\u6708","2-3\u30f6\u6708","3-6\u30f6\u6708","6\u30f6\u6708+"],"y":[128,43,29,18,11,13,6,7,0,0],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":16,"color":"#1e293b"},"text":"\u4fdd\u6709\u671f\u9593\u5206\u5e03\uff082025\u5e74\uff09","x":0.5},"xaxis":{"title":{"text":"\u4fdd\u6709\u671f\u9593"},"tickangle":-45},"yaxis":{"title":{"text":"\u53d6\u5f15\u6570"},"gridcolor":"#e2e8f0"},"margin":{"l":60,"r":40,"t":80,"b":80},"plot_bgcolor":"white","paper_bgcolor":"white","height":400},                        {"responsive": true}                    )                };            </script>        </div>
+</section>
+<section id="銘柄別利益分析" class="level3">
+<h3 class="anchored" data-anchor-id="銘柄別利益分析">銘柄別利益分析</h3>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.0.min.js" integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI=" crossorigin="anonymous"></script>                <div id="cf961447-9bfc-435f-8c1a-ad9040ef7381" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("cf961447-9bfc-435f-8c1a-ad9040ef7381")) {                    Plotly.newPlot(                        "cf961447-9bfc-435f-8c1a-ad9040ef7381",                        [{"customdata":[4,1,4,1,1,6,9,5,10,7,11,6,3,16,38],"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e\u7dcf\u5229\u76ca: %{x:,.0f}\u5186\u003cbr\u003e\u53d6\u5f15\u56de\u6570: %{customdata}\u56de\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e","#22c55e"]},"orientation":"h","text":["126,119\u5186","130,149\u5186","143,060\u5186","160,329\u5186","165,789\u5186","175,088\u5186","181,668\u5186","194,978\u5186","259,101\u5186","297,573\u5186","366,599\u5186","380,478\u5186","488,105\u5186","2,382,260\u5186","5,926,659\u5186"],"textposition":"outside","x":[126119.0,130149.0,143060.0,160329.0,165789.0,175088.0,181668.0,194978.0,259101.0,297573.0,366599.0,380478.0,488105.0,2382260.0,5926659.0],"y":["OKLO","HOOD","GS","TWLO","INSM","KTOS","CRWV","HMY","IOT","TSLA","TEM","RMBS","SMCI","HIMS","SOFI"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":16,"color":"#1e293b"},"text":"\u9298\u67c4\u5225\u7dcf\u5229\u76ca\uff082025\u5e74 Top 15\uff09","x":0.5},"xaxis":{"title":{"text":"\u7dcf\u5229\u76ca\uff08\u5186\uff09"},"gridcolor":"#e2e8f0","zeroline":true,"zerolinecolor":"#64748b"},"yaxis":{"title":{"text":""},"autorange":"reversed"},"margin":{"l":100,"r":60,"t":80,"b":40},"plot_bgcolor":"white","paper_bgcolor":"white","height":500},                        {"responsive": true}                    )                };            </script>        </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>保有期間サマリー
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>取扱い銘柄数</strong>: 56銘柄</li>
+<li><strong>平均保有期間</strong>: 9.62日</li>
+<li><strong>同日決済率</strong>: 50.2%</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="まとめ">まとめ</h2>
+<p>今後も勝率を維持しつつ、取引の機会を増やすことを目指します。リスク管理とポジションサイズの適切な管理を徹底し、安定した成長を続けるための戦略を強化していきます。</p>
+<hr>
+<p><em>このレビューは run_all.py + AI分析 により自動生成されました。</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Weekly Review</category>
+  <category>Monthly Review</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-21-weekly-review/</guid>
+  <pubDate>Sat, 20 Dec 2025 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-21-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>週間レビュー: 2025年12月第2週</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-14-weekly-review/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="今週のサマリー" class="level2">
+<h2 class="anchored" data-anchor-id="今週のサマリー">今週のサマリー</h2>
+<p>12月のパフォーマンスは、100%の勝率と高いROIを達成し、安定したリスク管理が功を奏しました。</p>
+</section>
+<section id="パフォーマンスハイライト" class="level2">
+<h2 class="anchored" data-anchor-id="パフォーマンスハイライト">パフォーマンスハイライト</h2>
+<section id="月の成績" class="level3">
+<h3 class="anchored" data-anchor-id="月の成績">12月の成績</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>12月実績</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>取引回数</td>
+<td>3件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>100.00%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>損失トレード</td>
+<td>0件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>純利益</td>
+<td>1,097,587円</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ROI</td>
+<td>2.20%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ytd年初来サマリー" class="level3">
+<h3 class="anchored" data-anchor-id="ytd年初来サマリー">YTD（年初来）サマリー</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>2025年累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>総純利益</td>
+<td><strong>16,989,883円</strong></td>
+</tr>
+<tr class="even">
+<td>税引後利益</td>
+<td>13,538,389円</td>
+</tr>
+<tr class="odd">
+<td>総取引回数</td>
+<td>631件</td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>78.29%</td>
+</tr>
+<tr class="odd">
+<td>期待値 (E)</td>
+<td>0.81%</td>
+</tr>
+<tr class="even">
+<td>ROI</td>
+<td>0.81%</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="注目ポイント" class="level2">
+<h2 class="anchored" data-anchor-id="注目ポイント">注目ポイント</h2>
+<section id="良かった点" class="level3">
+<h3 class="anchored" data-anchor-id="良かった点">良かった点</h3>
+<ol type="1">
+<li>月間勝率は100.00%で、3件のトレード全てで勝利を収め、月間ネットPLは1,097,587を達成。</li>
+<li>安定したリスク管理の徹底により、月間ROIは2.20%と高水準を維持。</li>
+<li>YTDでの勝率78.29%は、年間を通じての安定したパフォーマンスを示す指標。</li>
+</ol>
+</section>
+<section id="改善注意点" class="level3">
+<h3 class="anchored" data-anchor-id="改善注意点">改善・注意点</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>注意すべき点
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>トレード数が少ないため、より多くのトレード機会を模索し、ポートフォリオの多様化を図るべきです。</li>
+<li>YTDの期待値が0.81%であるため、ポジションサイズの見直しや戦略の最適化が必要です。</li>
+<li>流動性が低下する可能性がある時期には取引を慎重に行い、リスクを最小限に抑える方策を考慮すべきです。</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="保有期間分析2025年" class="level2">
+<h2 class="anchored" data-anchor-id="保有期間分析2025年">保有期間分析（2025年）</h2>
+<section id="月別取扱い銘柄数" class="level3">
+<h3 class="anchored" data-anchor-id="月別取扱い銘柄数">月別取扱い銘柄数</h3>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.0.min.js" integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI=" crossorigin="anonymous"></script>                <div id="829a4a69-3ed3-4c52-bb79-0805d6c88352" class="plotly-graph-div" style="height:400px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("829a4a69-3ed3-4c52-bb79-0805d6c88352")) {                    Plotly.newPlot(                        "829a4a69-3ed3-4c52-bb79-0805d6c88352",                        [{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003e\u9298\u67c4\u6570: %{y}\u9298\u67c4\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#3b82f6"},"name":"\u9298\u67c4\u6570","text":["2","6","4","13","7","2","8","17","6","2","2","9","2","14","13","3","6","7"],"textposition":"outside","x":["2025-01","2025-02","2025-03","2025-05","2025-06","2025-08","2025-09","2025-10","2025-11","2025-12","2025-2\u002f","2025-3\u002f","2025-4\u002f","2025-5\u002f","2025-6\u002f","2025-7\u002f","2025-8\u002f","2025-9\u002f"],"y":[2,6,4,13,7,2,8,17,6,2,2,9,2,14,13,3,6,7],"type":"bar"},{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003e\u53d6\u5f15\u56de\u6570: %{y}\u56de\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#f97316","width":2},"marker":{"size":8},"mode":"lines+markers","name":"\u53d6\u5f15\u56de\u6570","x":["2025-01","2025-02","2025-03","2025-05","2025-06","2025-08","2025-09","2025-10","2025-11","2025-12","2025-2\u002f","2025-3\u002f","2025-4\u002f","2025-5\u002f","2025-6\u002f","2025-7\u002f","2025-8\u002f","2025-9\u002f"],"y":[3,9,5,31,15,3,11,60,21,3,3,10,3,24,19,7,13,15],"yaxis":"y2","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":16,"color":"#1e293b"},"text":"\u6708\u5225\u53d6\u6271\u3044\u9298\u67c4\u6570\u3068\u53d6\u5f15\u56de\u6570\uff082025\u5e74\uff09","x":0.5},"xaxis":{"title":{"text":"\u6c7a\u6e08\u6708"},"tickangle":-45,"gridcolor":"#e2e8f0"},"yaxis":{"title":{"text":"\u9298\u67c4\u6570"},"gridcolor":"#e2e8f0","rangemode":"tozero"},"yaxis2":{"title":{"text":"\u53d6\u5f15\u56de\u6570"},"overlaying":"y","side":"right","gridcolor":"#e2e8f0","rangemode":"tozero"},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5},"margin":{"l":60,"r":60,"t":80,"b":60},"plot_bgcolor":"white","paper_bgcolor":"white","height":400},                        {"responsive": true}                    )                };            </script>        </div>
+</section>
+<section id="銘柄別保有期間" class="level3">
+<h3 class="anchored" data-anchor-id="銘柄別保有期間">銘柄別保有期間</h3>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.0.min.js" integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI=" crossorigin="anonymous"></script>                <div id="7c46102b-4a19-4faa-939d-8265a953fdbf" class="plotly-graph-div" style="height:450px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("7c46102b-4a19-4faa-939d-8265a953fdbf")) {                    Plotly.newPlot(                        "7c46102b-4a19-4faa-939d-8265a953fdbf",                        [{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e\u53d6\u5f15\u56de\u6570: %{x}\u56de\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#3b82f6"},"name":"\u53d6\u5f15\u56de\u6570","orientation":"h","text":["6","6","7","7","9","9","10","11","11","16","21","38"],"textposition":"outside","x":[6,6,7,7,9,9,10,11,11,16,21,38],"y":["KTOS","FUTU","APP","TSLA","CRWV","AMD","IOT","RDDT","TEM","HIMS","PLTR","SOFI"],"type":"bar","xaxis":"x","yaxis":"y"},{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e\u5e73\u5747: %{x}\u65e5\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#f97316","#22c55e","#22c55e","#22c55e","#22c55e","#f97316","#ef4444","#22c55e","#f97316","#22c55e","#f97316","#f97316"]},"name":"\u5e73\u5747\u4fdd\u6709\u65e5\u6570","orientation":"h","text":["10.67\u65e5","0.83\u65e5","2.29\u65e5","0.29\u65e5","1.56\u65e5","23.67\u65e5","46.6\u65e5","0.91\u65e5","25.27\u65e5","0.44\u65e5","18.14\u65e5","8.68\u65e5"],"textposition":"outside","x":[10.67,0.83,2.29,0.29,1.56,23.67,46.6,0.91,25.27,0.44,18.14,8.68],"y":["KTOS","FUTU","APP","TSLA","CRWV","AMD","IOT","RDDT","TEM","HIMS","PLTR","SOFI"],"type":"bar","xaxis":"x2","yaxis":"y2"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,0.425],"gridcolor":"#e2e8f0"},"yaxis":{"anchor":"x","domain":[0.0,1.0]},"xaxis2":{"anchor":"y2","domain":[0.575,1.0],"gridcolor":"#e2e8f0"},"yaxis2":{"anchor":"x2","domain":[0.0,1.0]},"annotations":[{"font":{"size":16},"showarrow":false,"text":"\u53d6\u5f15\u56de\u6570","x":0.2125,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"\u5e73\u5747\u4fdd\u6709\u671f\u9593","x":0.7875,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"}],"title":{"font":{"size":16,"color":"#1e293b"},"text":"\u9298\u67c4\u5225\u53d6\u5f15\u5b9f\u7e3e\uff082025\u5e74 Top 12\uff09","x":0.5},"margin":{"l":80,"r":60,"t":80,"b":40},"showlegend":false,"plot_bgcolor":"white","paper_bgcolor":"white","height":450},                        {"responsive": true}                    )                };            </script>        </div>
+</section>
+<section id="保有期間分布" class="level3">
+<h3 class="anchored" data-anchor-id="保有期間分布">保有期間分布</h3>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.0.min.js" integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI=" crossorigin="anonymous"></script>                <div id="44cfb2d7-6829-4c55-a55c-5fcbe752881a" class="plotly-graph-div" style="height:400px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("44cfb2d7-6829-4c55-a55c-5fcbe752881a")) {                    Plotly.newPlot(                        "44cfb2d7-6829-4c55-a55c-5fcbe752881a",                        [{"hovertemplate":"\u003cb\u003e%{x}\u003c\u002fb\u003e\u003cbr\u003e\u53d6\u5f15\u6570: %{y}\u4ef6\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#22c55e","#84cc16","#eab308","#f97316","#ef4444","#dc2626","#b91c1c","#991b1b","#7f1d1d"]},"text":["128","43","29","18","11","13","6","7","0","0"],"textposition":"outside","x":["\u540c\u65e5","1-2\u65e5","3-6\u65e5","1-2\u9031","2-4\u9031","1-2\u30f6\u6708","2-3\u30f6\u6708","3-6\u30f6\u6708","6\u30f6\u6708+"],"y":[128,43,29,18,11,13,6,7,0,0],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":16,"color":"#1e293b"},"text":"\u4fdd\u6709\u671f\u9593\u5206\u5e03\uff082025\u5e74\uff09","x":0.5},"xaxis":{"title":{"text":"\u4fdd\u6709\u671f\u9593"},"tickangle":-45},"yaxis":{"title":{"text":"\u53d6\u5f15\u6570"},"gridcolor":"#e2e8f0"},"margin":{"l":60,"r":40,"t":80,"b":80},"plot_bgcolor":"white","paper_bgcolor":"white","height":400},                        {"responsive": true}                    )                };            </script>        </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>保有期間サマリー
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>取扱い銘柄数</strong>: 56銘柄</li>
+<li><strong>平均保有期間</strong>: 9.62日</li>
+<li><strong>同日決済率</strong>: 50.2%</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="まとめ">まとめ</h2>
+<p>今後も高い勝率と安定した利益率を維持するために、トレード機会を増やし、戦略の見直しを行いつつ、リスク管理を継続的に強化します。流動性の変動に対する対応策も講じる必要があります。</p>
+<hr>
+<p><em>このレビューは run_all.py + AI分析 により自動生成されました。</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Weekly Review</category>
+  <category>Monthly Review</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-14-weekly-review/</guid>
+  <pubDate>Sat, 13 Dec 2025 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-14-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>週間レビュー: 2025年12月第2週</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-08-weekly-review/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="今週のサマリー" class="level2">
+<h2 class="anchored" data-anchor-id="今週のサマリー">今週のサマリー</h2>
+<p>今月は全トレードで勝利し、安定したリスク管理の下で優れたパフォーマンスを示しました。</p>
+</section>
+<section id="パフォーマンスハイライト" class="level2">
+<h2 class="anchored" data-anchor-id="パフォーマンスハイライト">パフォーマンスハイライト</h2>
+<section id="月の成績" class="level3">
+<h3 class="anchored" data-anchor-id="月の成績">12月の成績</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>12月実績</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>取引回数</td>
+<td>1件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>100.00%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>損失トレード</td>
+<td>0件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>純利益</td>
+<td>257,741円</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ROI</td>
+<td>1.39%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ytd年初来サマリー" class="level3">
+<h3 class="anchored" data-anchor-id="ytd年初来サマリー">YTD（年初来）サマリー</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>2025年累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>総純利益</td>
+<td><strong>16,150,037円</strong></td>
+</tr>
+<tr class="even">
+<td>税引後利益</td>
+<td>12,869,157円</td>
+</tr>
+<tr class="odd">
+<td>総取引回数</td>
+<td>629件</td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>78.22%</td>
+</tr>
+<tr class="odd">
+<td>期待値 (E)</td>
+<td>0.79%</td>
+</tr>
+<tr class="even">
+<td>ROI</td>
+<td>0.79%</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="注目ポイント" class="level2">
+<h2 class="anchored" data-anchor-id="注目ポイント">注目ポイント</h2>
+<section id="良かった点" class="level3">
+<h3 class="anchored" data-anchor-id="良かった点">良かった点</h3>
+<ol type="1">
+<li>勝率100.00%を達成し、月間の純利益は257,741円、ROIは1.39%となりました。</li>
+<li>年初来の純利益16,150,037円、勝率78.22%を維持し、安定した成果を示しています。</li>
+<li>リスク管理の徹底と適度な取引頻度が、安定した利益率の確保に寄与しています。</li>
+</ol>
+</section>
+<section id="改善注意点" class="level3">
+<h3 class="anchored" data-anchor-id="改善注意点">改善・注意点</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>注意すべき点
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>今後の収益機会を増やすため、トレード数を増やし、取引戦略を再評価してください。</li>
+<li>ROI向上のため、ポジションサイズの最適化と流動性低下時の取引抑制を検討してください。</li>
+<li>過信を避け、引き続きリスク管理を徹底することで、安定したパフォーマンスを維持してください。</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="税金の状況" class="level2">
+<h2 class="anchored" data-anchor-id="税金の状況">税金の状況</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>12月</th>
+<th>YTD累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>税額合計</strong></td>
+<td>52,360円</td>
+<td>3,280,880円</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>税引後利益
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>12月の税引後利益は<strong>205,381円</strong>、YTD累計で<strong>12,869,157円</strong>となっています。</p>
+</div>
+</div>
+</section>
+<section id="まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="まとめ">まとめ</h2>
+<p>今後も高い勝率を維持しつつ、ROIの向上を目指し、収益機会を拡大するために戦略を再評価し、リスク管理を強化していきます。</p>
+<hr>
+<p><em>このレビューは run_all.py + AI分析 により自動生成されました。</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Weekly Review</category>
+  <category>Monthly Review</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-08-weekly-review/</guid>
+  <pubDate>Sun, 07 Dec 2025 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-08-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>週間レビュー: 2025年12月第1週</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-07-weekly-review/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="今週のサマリー" class="level2">
+<h2 class="anchored" data-anchor-id="今週のサマリー">今週のサマリー</h2>
+<p>今週のパフォーマンスは素晴らしく、勝率100%を達成し、安定したリスク管理が功を奏しました。</p>
+</section>
+<section id="パフォーマンスハイライト" class="level2">
+<h2 class="anchored" data-anchor-id="パフォーマンスハイライト">パフォーマンスハイライト</h2>
+<section id="月の成績" class="level3">
+<h3 class="anchored" data-anchor-id="月の成績">12月の成績</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>12月実績</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>取引回数</td>
+<td>1件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>100.00%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>損失トレード</td>
+<td>0件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>純利益</td>
+<td>257,741円</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ROI</td>
+<td>1.39%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ytd年初来サマリー" class="level3">
+<h3 class="anchored" data-anchor-id="ytd年初来サマリー">YTD（年初来）サマリー</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>2025年累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>総純利益</td>
+<td><strong>16,150,037円</strong></td>
+</tr>
+<tr class="even">
+<td>税引後利益</td>
+<td>12,869,157円</td>
+</tr>
+<tr class="odd">
+<td>総取引回数</td>
+<td>629件</td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>78.22%</td>
+</tr>
+<tr class="odd">
+<td>期待値 (E)</td>
+<td>0.79%</td>
+</tr>
+<tr class="even">
+<td>ROI</td>
+<td>0.79%</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="注目ポイント" class="level2">
+<h2 class="anchored" data-anchor-id="注目ポイント">注目ポイント</h2>
+<section id="良かった点" class="level3">
+<h3 class="anchored" data-anchor-id="良かった点">良かった点</h3>
+<ol type="1">
+<li>今月のトレードは1件でありながら、257,741の純利益を上げ、月間勝率は100%を達成しました。</li>
+<li>年間を通じて629件のトレードで78.22%の高勝率を維持し、16,150,037の純利益を確保しています。</li>
+<li>リスク管理の徹底により、安定したパフォーマンスと利益率を維持しています。</li>
+</ol>
+</section>
+<section id="改善注意点" class="level3">
+<h3 class="anchored" data-anchor-id="改善注意点">改善・注意点</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>注意すべき点
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>ROIが1.39%と低めであるため、より高いリターンを目指して戦略の見直しやポジションサイズの適切な管理を行いましょう。</li>
+<li>トレード機会が限られているため、流動性が高い市場を選び、取引機会を増やすことを検討しましょう。</li>
+<li>年間勝率をさらに向上させるために、リスク管理を継続しつつ、過信を避けた慎重な判断を心掛けましょう。</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="税金の状況" class="level2">
+<h2 class="anchored" data-anchor-id="税金の状況">税金の状況</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>12月</th>
+<th>YTD累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>税額合計</strong></td>
+<td>52,360円</td>
+<td>3,280,880円</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>税引後利益
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>12月の税引後利益は<strong>205,381円</strong>、YTD累計で<strong>12,869,157円</strong>となっています。</p>
+</div>
+</div>
+</section>
+<section id="まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="まとめ">まとめ</h2>
+<p>今後も勝率を維持しつつ、ROIの向上とトレード機会の増加を目指した戦略を検討します。リスク管理を徹底し、流動性の高い市場での取引を増やすことで、より良い結果を目指していきます。</p>
+<hr>
+<p><em>このレビューは run_all.py + AI分析 により自動生成されました。</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Weekly Review</category>
+  <category>Monthly Review</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-07-weekly-review/</guid>
+  <pubDate>Sat, 06 Dec 2025 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-07-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>週間レビュー: 2025年11月第5週</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-11-30-weekly-review/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="今週のサマリー" class="level2">
+<h2 class="anchored" data-anchor-id="今週のサマリー">今週のサマリー</h2>
+<p>11月は取引数87回で勝率100%を達成し、純利益2,780,676円と堅実な成果を上げましたが、ROIの改善が今後の課題です。</p>
+</section>
+<section id="パフォーマンスハイライト" class="level2">
+<h2 class="anchored" data-anchor-id="パフォーマンスハイライト">パフォーマンスハイライト</h2>
+<section id="月の成績" class="level3">
+<h3 class="anchored" data-anchor-id="月の成績">11月の成績</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>11月実績</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>取引回数</td>
+<td>87件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>100.00%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>損失トレード</td>
+<td>0件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>純利益</td>
+<td>2,780,676円</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ROI</td>
+<td>1.13%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ytd年初来サマリー" class="level3">
+<h3 class="anchored" data-anchor-id="ytd年初来サマリー">YTD（年初来）サマリー</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>2025年累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>総純利益</td>
+<td><strong>15,892,296円</strong></td>
+</tr>
+<tr class="even">
+<td>税引後利益</td>
+<td>12,663,776円</td>
+</tr>
+<tr class="odd">
+<td>総取引回数</td>
+<td>628件</td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>78.18%</td>
+</tr>
+<tr class="odd">
+<td>期待値 (E)</td>
+<td>0.78%</td>
+</tr>
+<tr class="even">
+<td>ROI</td>
+<td>0.78%</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="注目ポイント" class="level2">
+<h2 class="anchored" data-anchor-id="注目ポイント">注目ポイント</h2>
+<section id="良かった点" class="level3">
+<h3 class="anchored" data-anchor-id="良かった点">良かった点</h3>
+<ol type="1">
+<li>11月の取引数は87回で、勝率100%と驚異的な数字を記録しました。これにより、月間純利益2,780,676円を達成しました。</li>
+<li>月間ROIは1.13%で、リスク管理の効率を示しています。特に月間のPATが2,215,782円であることから、リスク管理の徹底が伺えます。</li>
+<li>年初来の純利益が15,892,296円に達し、勝率78.18%を維持している点は長期的な安定性を示しています。</li>
+</ol>
+</section>
+<section id="改善注意点" class="level3">
+<h3 class="anchored" data-anchor-id="改善注意点">改善・注意点</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>注意すべき点
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>ROIが1.13%と比較的低いので、リスク管理やポジションサイズの見直しが必要です。特に、月間のROIを年初来に反映させるための戦略が求められます。</li>
+<li>年間取引数628回に対して、月間取引数87回は機会損失の可能性があるため、取引機会の更なる探求が必要です。</li>
+<li>年初来の期待値が0.78%と低いため、取引戦略の再現性を高め、安定した成果を目指しましょう。</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="税金の状況" class="level2">
+<h2 class="anchored" data-anchor-id="税金の状況">税金の状況</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>11月</th>
+<th>YTD累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>税額合計</strong></td>
+<td>564,894円</td>
+<td>3,228,520円</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>税引後利益
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>11月の税引後利益は<strong>2,215,782円</strong>、YTD累計で<strong>12,663,776円</strong>となっています。</p>
+</div>
+</div>
+</section>
+<section id="まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="まとめ">まとめ</h2>
+<p>勝率100%を維持しつつ、ROIと期待値の向上を目指し、リスク管理と取引機会の最大化に努めるべきです。特に、取引戦略の再現性を高めることで、来月も同様の高いパフォーマンスを維持することを期待します。</p>
+<hr>
+<p><em>このレビューは run_all.py + AI分析 により自動生成されました。</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Weekly Review</category>
+  <category>Monthly Review</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-11-30-weekly-review/</guid>
+  <pubDate>Sat, 29 Nov 2025 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-11-30-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>週間レビュー: 2025年11月第5週</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-11-29-weekly-review/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="今週のサマリー" class="level2">
+<h2 class="anchored" data-anchor-id="今週のサマリー">今週のサマリー</h2>
+<p>11月のトレードパフォーマンスは、勝率100.00%と非常に高い収益性を記録し、全体として非常に優れた結果を残しました。</p>
+</section>
+<section id="パフォーマンスハイライト" class="level2">
+<h2 class="anchored" data-anchor-id="パフォーマンスハイライト">パフォーマンスハイライト</h2>
+<section id="月の成績" class="level3">
+<h3 class="anchored" data-anchor-id="月の成績">11月の成績</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>11月実績</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>取引回数</td>
+<td>87件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>100.00%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>損失トレード</td>
+<td>0件</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>純利益</td>
+<td>2,780,676円</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ROI</td>
+<td>1.13%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ytd年初来サマリー" class="level3">
+<h3 class="anchored" data-anchor-id="ytd年初来サマリー">YTD（年初来）サマリー</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>2025年累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>総純利益</td>
+<td><strong>15,892,296円</strong></td>
+</tr>
+<tr class="even">
+<td>税引後利益</td>
+<td>12,663,776円</td>
+</tr>
+<tr class="odd">
+<td>総取引回数</td>
+<td>628件</td>
+</tr>
+<tr class="even">
+<td>勝率</td>
+<td>78.18%</td>
+</tr>
+<tr class="odd">
+<td>期待値 (E)</td>
+<td>0.78%</td>
+</tr>
+<tr class="even">
+<td>ROI</td>
+<td>0.78%</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="注目ポイント" class="level2">
+<h2 class="anchored" data-anchor-id="注目ポイント">注目ポイント</h2>
+<section id="良かった点" class="level3">
+<h3 class="anchored" data-anchor-id="良かった点">良かった点</h3>
+<ol type="1">
+<li>月間勝率は驚異の100.00%を達成し、87回の取引全てが成功しました。これはリスク管理が適切であったことを示しています。</li>
+<li>月間のネットPLは2,780,676円、PATは2,215,782円を達成し、リスクを抑えつつ十分な利益を確保しました。</li>
+<li>YTDのネットPLは15,892,296円であり、年間を通じて安定したパフォーマンスが維持されています。</li>
+</ol>
+</section>
+<section id="改善注意点" class="level3">
+<h3 class="anchored" data-anchor-id="改善注意点">改善・注意点</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>注意すべき点
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>ROIが1.13%とやや低いため、利益率の向上を目指すべきです。特に、リスクとリターンのバランスを見直すことが重要です。</li>
+<li>年間期待値が0.78%にとどまっているため、トレード戦略のさらなる最適化が求められます。特に、勝率を維持しつつ期待値を高める手法を検討しましょう。</li>
+<li>11月の取引数が年間に比べて多いため、取引頻度とリスク管理のバランスを再評価し、持続可能な取引戦略を構築することが重要です。</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="税金の状況" class="level2">
+<h2 class="anchored" data-anchor-id="税金の状況">税金の状況</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>11月</th>
+<th>YTD累計</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>税額合計</strong></td>
+<td>564,894円</td>
+<td>3,228,520円</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>税引後利益
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>11月の税引後利益は<strong>2,215,782円</strong>、YTD累計で<strong>12,663,776円</strong>となっています。</p>
+</div>
+</div>
+</section>
+<section id="まとめ" class="level2">
+<h2 class="anchored" data-anchor-id="まとめ">まとめ</h2>
+<p>11月の成果に慢心せず、今後も高い勝率を維持しつつROIの改善に努めることが重要です。データに基づいたリスク管理と戦略の最適化を続け、さらなる利益向上を目指しましょう。</p>
+<hr>
+<p><em>このレビューは run_all.py + AI分析 により自動生成されました。</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Weekly Review</category>
+  <category>Monthly Review</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-11-29-weekly-review/</guid>
+  <pubDate>Fri, 28 Nov 2025 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-11-29-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
+</channel>
+</rss>
