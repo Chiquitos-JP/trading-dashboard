@@ -473,14 +473,14 @@
     "href": "posts/2025-12-26-weekly-review/index.html",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "",
-    "text": "12月のトレードパフォーマンスは素晴らしく、勝率100%を達成しました。全体として安定した利益を上げることができました。"
+    "text": "12月のパフォーマンスは非常に優秀で、全てのトレードで勝利を収めました。"
   },
   {
     "objectID": "posts/2025-12-26-weekly-review/index.html#今週のサマリー",
     "href": "posts/2025-12-26-weekly-review/index.html#今週のサマリー",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "",
-    "text": "12月のトレードパフォーマンスは素晴らしく、勝率100%を達成しました。全体として安定した利益を上げることができました。"
+    "text": "12月のパフォーマンスは非常に優秀で、全てのトレードで勝利を収めました。"
   },
   {
     "objectID": "posts/2025-12-26-weekly-review/index.html#パフォーマンスハイライト",
@@ -494,7 +494,7 @@
     "href": "posts/2025-12-26-weekly-review/index.html#注目ポイント",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n今月の勝率は100.00%で、損失トレードは0件でした。\n月間ネットPLは1,097,587円で、ROIは2.20%を記録しました。\n年初来のネットPLは16,989,883円で、良好なパフォーマンスが維持されています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\nトレード数が今月は3件と少なく、さらなる機会を探る必要があります。\n年初来のROIは0.81%にとどまっており、長期的なパフォーマンス向上が求められます。\n期待値が0.81%であるため、リスク管理の見直しを行い、より高い期待値を目指すべきです。"
+    "text": "注目ポイント\n\n良かった点\n\n勝率100.00%を達成し、月の取引は3件で全て成功しました。\n月間のネットPLは1,097,587円で、堅実な利益を上げました。\nYTD（年初来）のネットPLは16,989,883円に達し、安定した成長を維持しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\nROIが2.20%と比較的低いため、より効率的な資本運用を検討する必要があります。\n年間勝率78.29%は良好ですが、さらなる向上を目指すための戦略を見直すことが重要です。\n取引数631件に対して、期待値（Expectancy）が0.81%であるため、リスク管理の強化を図りましょう。"
   },
   {
     "objectID": "posts/2025-12-26-weekly-review/index.html#銘柄分析",
@@ -536,6 +536,6 @@
     "href": "posts/2025-12-26-weekly-review/index.html#まとめ",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "まとめ",
-    "text": "まとめ\n今後も勝率を維持しつつ、トレードの機会を増やし、ROIと期待値の向上を目指していきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後も勝率を維持しつつ、ROI向上に向けた施策を講じていくことが求められます。安定した成績を基に、継続的な改善を目指していきましょう。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
