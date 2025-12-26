@@ -66,7 +66,7 @@ renv/library/
 renv/staging/
 
 # Output / analysis-specific / debug - 公開不要
-output/
+outputs/
 06_analysis_specific/
 99_debug/
 

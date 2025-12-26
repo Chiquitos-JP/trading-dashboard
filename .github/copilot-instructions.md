@@ -6,11 +6,13 @@
 
 ## ディレクトリ構成と主要コンポーネント
 
-- `00_config/`：設定ファイル（`config.yml`）、初期化スクリプト（`init.R`/`python_bootstrap.py`）
+- `config/`：設定ファイル、初期化スクリプト（`init.R`/`bootstrap.py`）
 - `data/`：データストレージ（生データ・加工済みデータ、経済指標、市場データ、取引履歴等）
-- `output_intermediate/`：中間生成物（HTML, CSV, 図表）
+- `outputs/`：出力ディレクトリ
+  - `outputs/figures/`：最終図表（分析結果の可視化）
+  - `outputs/interim/`：中間生成物（HTML, CSV, 図表）
+  - `outputs/reports/`：レポート（将来拡張用）
 - `scripts/`：分析ロジック（by_timeSeries 配下に各種分析）
-- `output/`：最終成果物（レポート、図表、ページ）
 - `docs/`：公開用ドキュメント、Quarto 出力
 
 ## 主要ワークフロー
@@ -25,8 +27,9 @@
 
 ## プロジェクト固有のパターン・注意点
 
-- R と Python の連携は`00_config/init.R`や`python_bootstrap.py`で制御
-- データは日付ごとにサブディレクトリ/ファイルで管理（例: `output/figures/holdingPeriod_YYYYMMDD/`）
+- R と Python の連携は`config/R/init.R`や`config/py/bootstrap.py`で制御
+- データは日付ごとにサブディレクトリ/ファイルで管理（例: `outputs/figures/holdingPeriod_YYYYMMDD/`）
+- 出力パスは`config/py/data_paths.py`で統一管理
 - 分析スクリプトは「by_timeSeries」配下に時系列ごとに整理
 - 新しい分析を追加する場合は、`run_all.py`や SCRIPTS リストへの登録を推奨
 - 設定値やパスは`config.yml`を参照
