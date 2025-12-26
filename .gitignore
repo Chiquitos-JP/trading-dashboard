@@ -46,11 +46,11 @@ Thumbs.db
 desktop.ini
 
 # Trading / macro data - 生データやセンシティブな加工データはすべて除外
-01_data/
+data/
 
 # Config / analysis プロジェクトも原則非公開
 00_config/
-03_analysis_base/
+scripts/
 
 # Temporary files
 *.tmp
@@ -66,7 +66,7 @@ renv/library/
 renv/staging/
 
 # Output / analysis-specific / debug - 公開不要
-04_output/
+output/
 06_analysis_specific/
 99_debug/
 
