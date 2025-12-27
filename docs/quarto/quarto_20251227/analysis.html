@@ -81,8 +81,9 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+      page: 9,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -316,7 +317,7 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(9)</span></div><div class="category" data-category="TW9udGhseSUyMFJldmlldw==">Monthly Review <span class="quarto-category-count">(9)</span></div><div class="category" data-category="V2Vla2x5JTIwUmV2aWV3">Weekly Review <span class="quarto-category-count">(9)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div><div class="category" data-category="TW9udGhseSUyMFJldmlldw==">Monthly Review <span class="quarto-category-count">(10)</span></div><div class="category" data-category="V2Vla2x5JTIwUmV2aWV3">Weekly Review <span class="quarto-category-count">(10)</span></div></div></div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
@@ -341,89 +342,89 @@ window.Quarto = {
 
 <style>
   :root {
-    --brand-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    --card-hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --card-hover-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 
-  /* --- 1. カスタムヘッダーデザイン --- */
+  /* --- 1. カスタムヘッダーデザイン（Quarto公式ブログスタイル） --- */
   .quarto-title-block.default {
     display: none; /* デフォルトのタイトルを隠す */
   }
 
   .hero-section {
-    background: var(--brand-gradient);
-    color: white;
-    padding: 4rem 2rem;
-    border-radius: 0 0 20px 20px;
-    margin-bottom: 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    background: #f5f5f5;
+    color: #111;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero-title {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.01em;
+    color: #111;
+    line-height: 1.2;
   }
 
   .hero-subtitle {
-    font-size: 1.1rem;
-    color: #cbd5e1;
+    font-size: 1rem;
+    color: #666;
     font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5;
+    margin-top: 0.5rem;
   }
 
-  /* 背景の装飾（薄いチャートっぽい線など） */
-  .hero-bg-decoration {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: radial-gradient(circle at 20% 150%, rgba(255,255,255,0.1) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  /* --- 2. お知らせバー（System Status風） --- */
+  /* --- 2. お知らせバー --- */
   .system-alert {
-    background: #fff7ed;
-    border: 1px solid #fed7aa;
-    color: #9a3412;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    padding: 0.875rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: -1.5rem auto 3rem;
-    max-width: 900px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 2rem;
+    max-width: 800px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     position: relative;
     z-index: 10;
   }
 
   .alert-icon {
-    background: #f97316;
+    background: #64748b;
     color: white;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     flex-shrink: 0;
   }
 
   /* --- 3. 記事カード（Listing）の調整 --- */
   .quarto-grid-item {
     border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    transition: all 0.3s ease;
+    border-radius: 6px;
+    transition: all 0.2s ease;
     background: white;
     overflow: hidden;
   }
 
   .quarto-grid-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     box-shadow: var(--card-hover-shadow);
     border-color: #cbd5e1;
   }
@@ -436,36 +437,38 @@ window.Quarto = {
   .listing-categories .listing-category {
     background: #f1f5f9;
     color: #475569;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    padding: 4px 10px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
     border: none;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
   }
   
   .listing-categories .listing-category:hover {
-    background: #2563eb;
+    background: #334155;
     color: white;
   }
 
   /* 日付のスタイル */
   .listing-date {
-    color: #94a3b8;
-    font-size: 0.85rem;
-    font-weight: 500;
+    color: #64748b;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0;
   }
 
   .listing-title {
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.4;
     margin-bottom: 0.5rem;
+    color: #111;
   }
 </style>
 
 <div class="hero-section">
-  <div class="hero-bg-decoration"></div>
   <h1 class="hero-title">Trading Analysis Blog</h1>
   <div class="hero-subtitle">Market Insights, Performance Review &amp; Strategy Notes</div>
 </div>
@@ -477,18 +480,18 @@ window.Quarto = {
     現在バックエンド改修・テスト中のため、同一タイトルの投稿が複数表示される場合があります。最新の日付を参照してください。
   </div>
 </div>
-<div id="listing-posts" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1766674800000" data-listing-file-modified-sort="1766752936813" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="61" data-listing-word-count-sort="12170">
-<a href="./posts/2025-12-26-weekly-review/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/2025-12-26-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-週間レビュー: 2025年12月第4週
-</h5>
+<div id="listing-posts" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1766761200000" data-listing-file-modified-sort="1766822296801" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="62" data-listing-word-count-sort="12246">
+<div class="thumbnail"><a href="./posts/2025-12-27-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-12-27-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-27-weekly-review/index.html" class="no-external">週間レビュー: 2025年12月第4週</a>
+</h3>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -496,30 +499,63 @@ window.Quarto = {
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="card-text listing-description delink">
+<div class="delink listing-description"><a href="./posts/2025-12-27-weekly-review/index.html" class="no-external">
 <p>12月は無敗を継続、YTD純利益は16,989,883円に到達</p>
+</a></div>
 </div>
-<div class="card-attribution card-text-small justify">
+<div class="metadata">
+<a href="./posts/2025-12-27-weekly-review/index.html" class="no-external">
+<div class="listing-date">
+Dec 27, 2025
+</div>
 <div class="listing-author">
 chokotto
 </div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1766674800000" data-listing-file-modified-sort="1766752936813" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="61" data-listing-word-count-sort="12170">
+<div class="thumbnail"><a href="./posts/2025-12-26-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-12-26-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-26-weekly-review/index.html" class="no-external">週間レビュー: 2025年12月第4週</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/2025-12-26-weekly-review/index.html" class="no-external">
+<p>12月は無敗を継続、YTD純利益は16,989,883円に到達</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/2025-12-26-weekly-review/index.html" class="no-external">
 <div class="listing-date">
 Dec 26, 2025
 </div>
+<div class="listing-author">
+chokotto
+</div>
+</a>
 </div>
 </div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1766588400000" data-listing-file-modified-sort="1766673636584" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="60" data-listing-word-count-sort="11861">
-<a href="./posts/2025-12-25-weekly-review/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/2025-12-25-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-週間レビュー: 2025年12月第4週
-</h5>
+<div class="quarto-post image-right" data-index="2" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1766588400000" data-listing-file-modified-sort="1766673636584" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="60" data-listing-word-count-sort="11861">
+<div class="thumbnail"><a href="./posts/2025-12-25-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-12-25-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-25-weekly-review/index.html" class="no-external">週間レビュー: 2025年12月第4週</a>
+</h3>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -527,30 +563,31 @@ Dec 26, 2025
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="card-text listing-description delink">
+<div class="delink listing-description"><a href="./posts/2025-12-25-weekly-review/index.html" class="no-external">
 <p>12月は無敗を継続、YTD純利益は16,989,883円に到達</p>
+</a></div>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-chokotto
-</div>
+<div class="metadata">
+<a href="./posts/2025-12-25-weekly-review/index.html" class="no-external">
 <div class="listing-date">
 Dec 25, 2025
 </div>
+<div class="listing-author">
+chokotto
+</div>
+</a>
 </div>
 </div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1766329200000" data-listing-file-modified-sort="1766336288940" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="30" data-listing-word-count-sort="5880">
-<a href="./posts/2025-12-22-weekly-review/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/2025-12-22-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-週間レビュー: 2025年12月第4週
-</h5>
+<div class="quarto-post image-right" data-index="3" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1766329200000" data-listing-file-modified-sort="1766336288940" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="30" data-listing-word-count-sort="5880">
+<div class="thumbnail"><a href="./posts/2025-12-22-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-12-22-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-22-weekly-review/index.html" class="no-external">週間レビュー: 2025年12月第4週</a>
+</h3>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -558,30 +595,31 @@ Dec 25, 2025
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="card-text listing-description delink">
+<div class="delink listing-description"><a href="./posts/2025-12-22-weekly-review/index.html" class="no-external">
 <p>12月は無敗を継続、YTD純利益は16,989,883円に到達</p>
+</a></div>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-chokotto
-</div>
+<div class="metadata">
+<a href="./posts/2025-12-22-weekly-review/index.html" class="no-external">
 <div class="listing-date">
 Dec 22, 2025
 </div>
+<div class="listing-author">
+chokotto
+</div>
+</a>
 </div>
 </div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1766242800000" data-listing-file-modified-sort="1766327761263" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3033">
-<a href="./posts/2025-12-21-weekly-review/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/2025-12-21-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-週間レビュー: 2025年12月第3週
-</h5>
+<div class="quarto-post image-right" data-index="4" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1766242800000" data-listing-file-modified-sort="1766327761263" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3033">
+<div class="thumbnail"><a href="./posts/2025-12-21-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-12-21-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-21-weekly-review/index.html" class="no-external">週間レビュー: 2025年12月第3週</a>
+</h3>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -589,30 +627,31 @@ Dec 22, 2025
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="card-text listing-description delink">
+<div class="delink listing-description"><a href="./posts/2025-12-21-weekly-review/index.html" class="no-external">
 <p>12月は無敗を継続、YTD純利益は16,989,883円に到達</p>
+</a></div>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-chokotto
-</div>
+<div class="metadata">
+<a href="./posts/2025-12-21-weekly-review/index.html" class="no-external">
 <div class="listing-date">
 Dec 21, 2025
 </div>
+<div class="listing-author">
+chokotto
+</div>
+</a>
 </div>
 </div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1765638000000" data-listing-file-modified-sort="1765709879549" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="991">
-<a href="./posts/2025-12-14-weekly-review/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/2025-12-14-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-週間レビュー: 2025年12月第2週
-</h5>
+<div class="quarto-post image-right" data-index="5" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1765638000000" data-listing-file-modified-sort="1765709879549" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="991">
+<div class="thumbnail"><a href="./posts/2025-12-14-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-12-14-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-14-weekly-review/index.html" class="no-external">週間レビュー: 2025年12月第2週</a>
+</h3>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -620,30 +659,31 @@ Dec 21, 2025
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="card-text listing-description delink">
+<div class="delink listing-description"><a href="./posts/2025-12-14-weekly-review/index.html" class="no-external">
 <p>12月は全勝継続中！YTD純利益が16,989,883円を突破</p>
+</a></div>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-chokotto
-</div>
+<div class="metadata">
+<a href="./posts/2025-12-14-weekly-review/index.html" class="no-external">
 <div class="listing-date">
 Dec 14, 2025
 </div>
+<div class="listing-author">
+chokotto
+</div>
+</a>
 </div>
 </div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1765119600000" data-listing-file-modified-sort="1765122339547" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
-<a href="./posts/2025-12-08-weekly-review/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/2025-12-08-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-週間レビュー: 2025年12月第2週
-</h5>
+<div class="quarto-post image-right" data-index="6" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1765119600000" data-listing-file-modified-sort="1765122339547" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
+<div class="thumbnail"><a href="./posts/2025-12-08-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-12-08-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-08-weekly-review/index.html" class="no-external">週間レビュー: 2025年12月第2週</a>
+</h3>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -651,30 +691,31 @@ Dec 14, 2025
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="card-text listing-description delink">
+<div class="delink listing-description"><a href="./posts/2025-12-08-weekly-review/index.html" class="no-external">
 <p>12月は全勝継続中！YTD純利益が16,150,037円を突破</p>
+</a></div>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-chokotto
-</div>
+<div class="metadata">
+<a href="./posts/2025-12-08-weekly-review/index.html" class="no-external">
 <div class="listing-date">
 Dec 8, 2025
 </div>
+<div class="listing-author">
+chokotto
+</div>
+</a>
 </div>
 </div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1765033200000" data-listing-file-modified-sort="1765101603772" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
-<a href="./posts/2025-12-07-weekly-review/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/2025-12-07-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-週間レビュー: 2025年12月第1週
-</h5>
+<div class="quarto-post image-right" data-index="7" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1765033200000" data-listing-file-modified-sort="1765101603772" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
+<div class="thumbnail"><a href="./posts/2025-12-07-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-12-07-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-12-07-weekly-review/index.html" class="no-external">週間レビュー: 2025年12月第1週</a>
+</h3>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -682,30 +723,31 @@ Dec 8, 2025
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="card-text listing-description delink">
+<div class="delink listing-description"><a href="./posts/2025-12-07-weekly-review/index.html" class="no-external">
 <p>12月は全勝継続中！YTD純利益が16,150,037円を突破</p>
+</a></div>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-chokotto
-</div>
+<div class="metadata">
+<a href="./posts/2025-12-07-weekly-review/index.html" class="no-external">
 <div class="listing-date">
 Dec 7, 2025
 </div>
+<div class="listing-author">
+chokotto
+</div>
+</a>
 </div>
 </div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764428400000" data-listing-file-modified-sort="1764477721609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
-<a href="./posts/2025-11-30-weekly-review/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/2025-11-30-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-週間レビュー: 2025年11月第5週
-</h5>
+<div class="quarto-post image-right" data-index="8" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764428400000" data-listing-file-modified-sort="1764477721609" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
+<div class="thumbnail"><a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" src="./posts/2025-11-30-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">週間レビュー: 2025年11月第5週</a>
+</h3>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -713,30 +755,31 @@ Dec 7, 2025
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="card-text listing-description delink">
+<div class="delink listing-description"><a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">
 <p>11月は全勝継続中！YTD純利益が15,892,296円を突破</p>
+</a></div>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-chokotto
-</div>
+<div class="metadata">
+<a href="./posts/2025-11-30-weekly-review/index.html" class="no-external">
 <div class="listing-date">
 Nov 30, 2025
 </div>
+<div class="listing-author">
+chokotto
+</div>
+</a>
 </div>
 </div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="8" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764342000000" data-listing-file-modified-sort="1764420587067" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
-<a href="./posts/2025-11-29-weekly-review/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/2025-11-29-weekly-review/thumbnail.jpg" class="thumbnail-image card-img" style="height: 200px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-週間レビュー: 2025年11月第5週
-</h5>
+<div class="quarto-post image-right" data-index="9" data-categories="V2Vla2x5JTIwUmV2aWV3JTJDTW9udGhseSUyMFJldmlldw==" data-listing-date-sort="1764342000000" data-listing-file-modified-sort="1764420587067" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
+<div class="thumbnail"><a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">
+
+<img loading="lazy" data-src="./posts/2025-11-29-weekly-review/thumbnail.jpg" class="thumbnail-image" style="height: 200px;">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">週間レビュー: 2025年11月第5週</a>
+</h3>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('V2Vla2x5JTIwUmV2aWV3'); return false;">Weekly Review</div>
@@ -744,22 +787,26 @@ Nov 30, 2025
 <div class="listing-category" onclick="window.quartoListingCategory('TW9udGhseSUyMFJldmlldw=='); return false;">Monthly Review</div>
 
 </div>
-<div class="card-text listing-description delink">
+<div class="delink listing-description"><a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">
 <p>11月は全勝継続中！YTD純利益が15,892,296円を突破</p>
+</a></div>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-chokotto
-</div>
+<div class="metadata">
+<a href="./posts/2025-11-29-weekly-review/index.html" class="no-external">
 <div class="listing-date">
 Nov 29, 2025
 </div>
+<div class="listing-author">
+chokotto
 </div>
+</a>
 </div>
-</div></a>
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
+<nav id="posts-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
 </div>
 
 
