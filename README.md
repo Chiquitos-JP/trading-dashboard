@@ -4,7 +4,9 @@ format:
     code-copy: true
 ---
 
-![alt text](image.png)# 株式トレーディング分析プロジェクト README
+![alt text](image.png)
+
+# データハンドリング -- 株式トレーディング偏 -- README
 
 ## 概要
 
@@ -14,7 +16,7 @@ format:
 
 ### データ処理フロー
 
-```
+```text
 1. データ取得
    外部ソース（証券会社、API等）
        ↓
