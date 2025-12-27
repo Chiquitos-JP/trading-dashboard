@@ -613,14 +613,14 @@
     "href": "posts/2025-12-28-weekly-review/index.html",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "",
-    "text": "12月のトレードは非常に好調で、勝率100%を達成しました。月間のネット損益は1,097,587円です。"
+    "text": "12月のパフォーマンスは素晴らしく、勝率は100%を達成しました。"
   },
   {
     "objectID": "posts/2025-12-28-weekly-review/index.html#今週のサマリー",
     "href": "posts/2025-12-28-weekly-review/index.html#今週のサマリー",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "",
-    "text": "12月のトレードは非常に好調で、勝率100%を達成しました。月間のネット損益は1,097,587円です。"
+    "text": "12月のパフォーマンスは素晴らしく、勝率は100%を達成しました。"
   },
   {
     "objectID": "posts/2025-12-28-weekly-review/index.html#パフォーマンスハイライト",
@@ -634,7 +634,7 @@
     "href": "posts/2025-12-28-weekly-review/index.html#注目ポイント",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n月間勝率100%で、損失トレードはゼロでした。\n月間ROIは2.20%と良好で、資本効率が高い結果となりました。\nYTDネット損益は16,989,883円で、年間を通じて安定した成績を維持しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\nトレード数が3と少ないため、今後は取引機会を増やすことを検討しましょう。\nYTDの勝率は78.29%ですが、さらなる向上を目指すための戦略の見直しが必要です。\nROIが0.81%に留まっているため、リスク管理やポジションサイズの最適化を図るべきです。"
+    "text": "注目ポイント\n\n良かった点\n\n今月のトレード数は3で、全てのトレードが成功しました。\n月間のネットPLは1,097,587円で、ROIは2.20%に達しました。\nYTD（年初来）のネットPLは16,989,883円で、年間勝率は78.29%です。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\nトレード数が少ないため、今後はさらなるエントリー機会を模索する必要があります。\n勝率は良好ですが、長期的なROIを向上させるためにリスク管理を強化することが求められます。\nYTDの期待値が0.81%であるため、エントリー戦略の見直しが必要です。"
   },
   {
     "objectID": "posts/2025-12-28-weekly-review/index.html#銘柄分析",
@@ -676,6 +676,6 @@
     "href": "posts/2025-12-28-weekly-review/index.html#まとめ",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "まとめ",
-    "text": "まとめ\n今後も良好な結果を維持するため、取引の機会を増やしながらリスク管理を強化していく方針です。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後も勝率を維持しつつ、リスク管理を強化してトレード数を増やす方針で取り組んでいきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
