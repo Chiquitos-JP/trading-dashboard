@@ -130,6 +130,52 @@ quarto render index.qmd --no-cache
 
 </details>
 
+<details>
+<summary><strong>オプション実行</strong></summary>
+
+### マーケットデータ可視化のキャッシュ機能
+
+マーケットデータ可視化スクリプトは、SPY とセクター ETF データをキャッシュして処理時間を短縮します。通常実行ではキャッシュが有効な限り API 呼び出しをスキップします。
+
+**実行前の準備:**
+
+- プロジェクトルート（`stockTrading/`）に移動
+- Python 仮想環境を有効化（`.venv\Scripts\Activate.ps1`）
+
+```bash
+# 通常実行（キャッシュ使用）
+python scripts/by_timeSeries/marketData/market_data_visualization.py
+
+# 強制更新（キャッシュを無視して最新データを取得）
+python scripts/by_timeSeries/marketData/market_data_visualization.py --force-update
+```
+
+### run_all.py のオプション
+
+**実行前の準備:**
+
+- プロジェクトルート（`stockTrading/`）に移動
+- Python 仮想環境を有効化（`.venv\Scripts\Activate.ps1`）
+
+```bash
+# 全実行（チェックポイント有効）
+python scripts/by_timeSeries/realizedPl/run_all.py
+
+# 強制再実行（チェックポイント無視）
+python scripts/by_timeSeries/realizedPl/run_all.py --force
+
+# 特定ステップのみ実行
+python scripts/by_timeSeries/realizedPl/run_all.py --steps "楽天証券データ処理" "SBI証券データ処理"
+
+# チェックポイント機能を無効化
+python scripts/by_timeSeries/realizedPl/run_all.py --skip-checkpoint
+
+# 可視化のみ実行（データ取得・処理をスキップ）
+python scripts/by_timeSeries/realizedPl/run_visualization_only.py
+```
+
+</details>
+
 </details>
 
 ---
