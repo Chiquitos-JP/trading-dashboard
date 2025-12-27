@@ -1,20 +1,19 @@
----
-format:
-  html:
-    code-copy: true
----
+<img src="docs/quarto/latest/assets/chokotto_ver01.png" alt="プロジェクトロゴ" width="200">
 
-![alt text](image.png)
+# Noise-to-Value README
 
-# データハンドリング -- 株式トレーディング偏 -- README
+**Portable information → signal, not noise → actionable value.**
 
 ## 概要
 
-本プロジェクトは、株式トレーディングのデータ分析・レポート生成を自動化する R/Python 混在プロジェクトです。データ取得から特徴量生成、KPI 計算、レポート・ダッシュボード生成、成果物公開まで一連のフローを管理します。
+本プロジェクトは、「情報を持ち運び可能なシグナルに加工する」ことを可能にするための学習プロジェクトです。残念ながら無料で程良いデータは保有していないため、身銭を切って株式売買を行う事でデータを取得します。
+データ取得から特徴量生成、KPI 計算、レポート・ダッシュボード生成、成果物公開まで一連のフローを管理します。
 
-## 全体フロー
+<details>
+<summary><strong>全体フロー</strong></summary>
 
-### データ処理フロー
+<details>
+<summary><strong>データ処理フロー</strong></summary>
 
 ```text
 1. データ取得
@@ -43,7 +42,10 @@ format:
    docs/quarto/latest/         # 公開用ドキュメント
 ```
 
-### 実行手順
+</details>
+
+<details>
+<summary><strong>実行手順</strong></summary>
 
 1. **初期設定・環境構築**
    - Python 仮想環境のセットアップ（`scripts/setup_python_env.ps1` または VSCode タスク「Py: setup venv」）
@@ -59,19 +61,31 @@ format:
 6. **成果物公開**
    - VSCode タスク「Publish: build & push」でレポート・サイト生成＋ Git コミット＆プッシュ
 
-## 各種ファイル・ディレクトリの説明
+</details>
 
-### Git 関連
+</details>
+
+<details>
+<summary><strong>各種ファイル・ディレクトリの説明</strong></summary>
+
+<details>
+<summary><strong>Git 関連</strong></summary>
 
 - `.github/`：GitHub 上でコードを自動実行（テストやデプロイ）したり、バグ報告・機能要望のテンプレートを管理するための設定フォルダ。通常は触る必要はありません。
 - `.gitignore`：Git 管理対象外ファイル・ディレクトリのリスト
 - `.env`：環境変数ファイル（API キーやパスワード等、機密情報はここに記載し.gitignore 推奨）
 
-### VSCode 関連
+</details>
+
+<details>
+<summary><strong>VSCode 関連</strong></summary>
 
 - `.vscode/`：VSCode 用の設定（タスク、拡張機能、デバッグ構成など）
 
-### R 関連
+</details>
+
+<details>
+<summary><strong>R 関連</strong></summary>
 
 - `stockTrading.Rproj`：RStudio プロジェクトファイル（RStudio での作業用）
 - `.Rprofile`：R 起動時に実行される設定ファイル（カスタム設定やパッケージ自動読込等）
@@ -79,12 +93,20 @@ format:
 - `.Rhistory`：R のコマンド履歴ファイル（自動生成、共有不要）
 - `.Rproj.user/`：RStudio プロジェクトのユーザー設定（自動生成、共有不要）
 
-### Python 関連
+</details>
+
+<details>
+<summary><strong>Python 関連</strong></summary>
 
 - `.venv/`：Python 仮想環境ディレクトリ（依存パッケージ管理、共有不要、環境そのもの）
 - `requirements_backup.txt`：Python パッケージのバックアップリスト（`pip freeze`等で生成、依存パッケージのメモ書き）
 
-## 参考
+</details>
+
+</details>
+
+<details>
+<summary><strong>参考</strong></summary>
 
 - **プロジェクト構造**: `PROJECT_STRUCTURE.md` を参照
 - **データ構造**: `data/README.md` を参照
@@ -93,17 +115,25 @@ format:
 - **詳細なワークフロー**: `scripts/by_timeSeries/holdingPeriod/README.md` を参照
 - **R/Python の連携**: `config/R/init.R` や `config/py/bootstrap.py` で制御
 
-## tips
+</details>
 
-### 特定のファイルだけ再レンダリング（キャッシュクリアあり）
+<details>
+<summary><strong>tips</strong></summary>
+
+<details>
+<summary><strong>特定のファイルだけ再レンダリング（キャッシュクリアあり）</strong></summary>
 
 ```bash
 cd scripts/by_timeSeries/quarto
 quarto render index.qmd --no-cache
 ```
 
+</details>
+
+</details>
+
 ---
 
 # English Summary
 
-This project automates stock trading analytics using R and Python. See above for the workflow and file descriptions. For details, refer to the scripts and config files in each directory.
+This project is a learning initiative that enables the transformation of information into portable signals. Unfortunately, we do not have access to free, high-quality data, so we acquire data by actually trading stocks at our own expense. This project manages the entire workflow from data acquisition to feature generation, KPI calculation, report and dashboard creation, and publication of deliverables.
