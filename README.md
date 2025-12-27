@@ -1,3 +1,9 @@
+---
+format:
+  html:
+    code-copy: true
+---
+
 ![alt text](image.png)# 株式トレーディング分析プロジェクト README
 
 ## 概要
@@ -84,6 +90,15 @@
 - **Python 共通ユーティリティ**: `config/py/README.md` を参照
 - **詳細なワークフロー**: `scripts/by_timeSeries/holdingPeriod/README.md` を参照
 - **R/Python の連携**: `config/R/init.R` や `config/py/bootstrap.py` で制御
+
+## tips
+
+### 特定のファイルだけ再レンダリング（キャッシュクリアあり）
+
+```bash
+cd scripts/by_timeSeries/quarto
+quarto render index.qmd --no-cache
+```
 
 ---
 
