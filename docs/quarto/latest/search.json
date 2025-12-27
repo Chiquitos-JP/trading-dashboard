@@ -241,7 +241,7 @@
     "href": "archive.html",
     "title": "アーカイブ",
     "section": "",
-    "text": "このページでは、run_all.py 実行ごとに生成された過去スナップショット(analysis.html)へのリンクを日付降順で表示します。\n\n\n2025-12-07 Analysis Snapshot\n2025-11-30 Analysis Snapshot\n2025-11-29 Analysis Snapshot\n2025-11-25 Analysis Snapshot\n2025-11-24 Analysis Snapshot\n2025-11-23 Analysis Snapshot\n2025-11-22 Analysis Snapshot\n2025-11-16 Analysis Snapshot\n\n\n\n\n\n\n\n\nNote\n\n\n\nアーカイブ一覧は手動で更新されます。"
+    "text": "このページでは、run_all.py 実行ごとに生成された過去スナップショット(analysis.html)へのリンクを日付降順で表示します。\n\nアーカイブ一覧の読み込み中にエラーが発生しました。\n\n\n\n\n\n\n\nNote\n\n\n\nアーカイブ一覧は自動的に更新されます。存在するアーカイブのみが表示されます。"
   },
   {
     "objectID": "analysis.html",
@@ -543,28 +543,28 @@
     "href": "posts/2025-12-27-weekly-review/index.html",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "",
-    "text": "今週も安定したパフォーマンスを維持しました。"
+    "text": "12月のパフォーマンスは素晴らしく、勝率100%を達成しました。今月は3回のトレードで、順調な利益を上げています。"
   },
   {
     "objectID": "posts/2025-12-27-weekly-review/index.html#今週のサマリー",
     "href": "posts/2025-12-27-weekly-review/index.html#今週のサマリー",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "",
-    "text": "今週も安定したパフォーマンスを維持しました。"
+    "text": "12月のパフォーマンスは素晴らしく、勝率100%を達成しました。今月は3回のトレードで、順調な利益を上げています。"
   },
   {
     "objectID": "posts/2025-12-27-weekly-review/index.html#パフォーマンスハイライト",
     "href": "posts/2025-12-27-weekly-review/index.html#パフォーマンスハイライト",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "パフォーマンスハイライト",
-    "text": "パフォーマンスハイライト\n\n12月の成績\n\n\n\n\n\n\n\n\n\n\n\n\n指標\n12月実績\n前月比（MoM）\n前年同月比（YoY）\n目標比（TBC）\nトレンド\n\n\n\n\n\n税前利益\n1,097,587円\n-3,961,956円 (-78.3%)\n—\n—\n           \n\n\n\n税後利益\n874,612円\n-3,157,085円 (-78.3%)\n—\n—\n           \n\n\n\nRRR\n—\n—\n—\n—\n—\n\n\n\n勝率\n100.00%\n+31.2pt\n—\n—\n\n\n\n\n期待値 (E)\n—\n—\n—\n—\n\n\n\n\nROI\n2.20%\n+120.0%\n—\n—\n\n\n\n\n平均利益/trade\n—円\n—\n—\n—\n\n\n\n\n平均損失/trade\n—円\n—\n—\n—\n\n\n\n\n\n\n\n\n\n\n\nNote参考\n\n\n\n\n\n指標は基本的に税前利益ベースで記載。\n\n\n\n\n\nYTD（年初来）サマリー\n\n\n\n\n\n\n\n\n\n\n\n\n指標\n2025年累計\n前年同期比（YoYTD）\n目標比（TBC）\nペース（Pace）\nトレンド\n\n\n\n\n\n税前利益\n16,989,883円\n—\n—\n月1,415,824円ペース\n           \n\n\n\n税後利益\n13,538,389円\n—\n—\n月1,128,199円ペース\n           \n\n\n\nRRR\n—\n—\n—\n—\n—\n\n\n\n勝率\n78.29%\n—\n—\n—\n\n\n\n\n期待値 (E)\n0.81%\n—\n—\n—\n\n\n\n\nROI\n0.81%\n—\n—\n—\n\n\n\n\n平均利益/trade\n—円\n—\n—\n—\n\n\n\n\n平均損失/trade\n50,081円\n—\n—\n—\n\n\n\n\n\n\n\nLTV（Life Time Value）目標進捗\n\n\n\n\n\n\nTip目標: 1億円\n\n\n\n\n\n\n累計損益: 16,989,883円\n\n\n\n\n\n17.0%\n\n\n\n\n\n\n月次損益 / 累計損益推移\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py"
+    "text": "パフォーマンスハイライト\n\n12月の成績\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12月の成績\n\n\n指標\n実績\n前月比（MoM）\n前年同月比（YoY）\n目標比（TBC）\nトレンド\n\n\n\n\nPBT\n1,097,587円\n-3,961,956円 (-78.3%)\n—\n—\n\n           \n\n\n\nPAT\n874,612円\n-3,157,085円 (-78.3%)\n—\n—\n\n           \n\n\n\nRRR\n—\n—\n—\n—\n\n\n\n\n\n└ Avg Gain\n365,862円\n—\n—\n—\n\n\n\n└ Avg Loss\n—円\n—\n—\n—\n\n\n\nWin Rate\n100.00%\n+31.2pt\n—\n—\n\n\n\n\n\nExpectancy\n—\n—\n—\n—\n\n\n\n\n\nROI\n2.20%\n+120.0%\n—\n—\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote参考\n\n\n\n\n\n指標は基本的に税前利益ベースで記載。\n\n\n\n\n\nYTD（年初来）サマリー\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYTD（年初来）サマリー\n\n\n指標\n2025年累計\n前年同期比（YoYTD）\n目標比（TBC）\nペース（Pace）\nトレンド\n\n\n\n\nPBT\n16,989,883円\n—\n—\n月1,415,824円ペース\n\n           \n\n\n\nPAT\n13,538,389円\n—\n—\n月1,128,199円ペース\n\n           \n\n\n\nRRR\n0.96\n—\n—\n—\n\n\n\n\n\n└ Avg Gain\n48,281円\n—\n—\n—\n\n\n\n└ Avg Loss\n50,081円\n—\n—\n—\n\n\n\nWin Rate\n78.29%\n—\n—\n—\n\n\n\n\n\nExpectancy\n0.81%\n—\n—\n—\n\n\n\n\n\nROI\n0.81%\n—\n—\n—\n\n\n\n\n\n\n\n\n\n\n\nLTV（Life Time Value）目標進捗\n\n\n\n\n\n\nTip目標: 1億円\n\n\n\n\n\n\n累計損益: 16,989,883円\n\n\n\n\n\n17.0%\n\n\n\n\n\n\n月次損益 / 累計損益推移\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py"
   },
   {
     "objectID": "posts/2025-12-27-weekly-review/index.html#注目ポイント",
     "href": "posts/2025-12-27-weekly-review/index.html#注目ポイント",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n継続的なリスク管理の徹底\n適度な取引頻度の維持\n安定した利益率の確保\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n過信は禁物、リスク管理を継続\n流動性低下時は取引を控える\nポジションサイズの適切な管理"
+    "text": "注目ポイント\n\n良かった点\n\n勝率は100.00%で、損失トレードが0件でした。\n月間のネットPLは1,097,587で、ROIは2.20%となりました。\nYTDでのネットPLは16,989,883で、全体的に安定した成績を維持しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\nトレード数が3件と少ないため、さらなる機会を探る必要があります。\nYTDの勝率は78.29%ですが、今後はこれをさらに向上させる戦略を検討しましょう。\nROIが0.81%と低めのため、リスク管理と資金運用の見直しが必要です。"
   },
   {
     "objectID": "posts/2025-12-27-weekly-review/index.html#銘柄分析",
@@ -606,6 +606,6 @@
     "href": "posts/2025-12-27-weekly-review/index.html#まとめ",
     "title": "週間レビュー: 2025年12月第4週",
     "section": "まとめ",
-    "text": "まとめ\n引き続きリスク管理を徹底し、安定したパフォーマンスを維持していきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後も勝率を維持しつつ、トレードの機会を増やし、リスク管理を強化していきます。引き続き良好なパフォーマンスを目指しましょう。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
