@@ -747,5 +747,75 @@
     "title": "週間レビュー: 2025年12月第5週",
     "section": "まとめ",
     "text": "まとめ\n今後も勝率を維持しつつ、トレード機会の増加とROIの向上を目指していきます。引き続き市場の動向に注目し、戦略を柔軟に調整していきましょう。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html",
+    "href": "posts/2025-12-30-weekly-review/index.html",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "",
+    "text": "12月のパフォーマンスは非常に優れた結果となり、勝率100%を達成しました。"
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html#今週のサマリー",
+    "href": "posts/2025-12-30-weekly-review/index.html#今週のサマリー",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "",
+    "text": "12月のパフォーマンスは非常に優れた結果となり、勝率100%を達成しました。"
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html#パフォーマンスハイライト",
+    "href": "posts/2025-12-30-weekly-review/index.html#パフォーマンスハイライト",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "パフォーマンスハイライト",
+    "text": "パフォーマンスハイライト\n\nMonthly Performance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDecember, 2025\n\n\n指標\n実績\nMoM\nYoY\nvs_Plan\nTrend\n\n\n\n\nPBT\n1,098\n-3,962 (-78.3%)\n—\n—\n\n           \n\n\n\nPAT\n875\n-3,157 (-78.3%)\n—\n—\n\n           \n\n\n\nRRR\n—\n—\n—\n—\n\n\n\n\n\n└ Avg Gain\n366\n—\n—\n—\n\n           \n\n\n\n└ Avg Loss\n—\n—\n—\n—\n\n\n\nWin Rate\n100%\n+31.2pt\n—\n—\n\n\n\n\n\nExpectancy\n—\n—\n—\n—\n\n\n\n\n\nROI\n2.20%\n+120.0%\n—\n—\n\n\n\n\n\n\n\n\n\n\n\nYear-to-Date Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJanuary to December, 2025\n\n\n指標\n累計実績\nYoY_ytd\nvs_Plan\nPace\nTrend\n\n\n\n\nPBT\n16,990\n—\n—\n1,416\n\n           \n\n\n\nPAT\n13,538\n—\n—\n1,128\n\n           \n\n\n\nRRR\n0.96\n—\n—\n—\n\n\n\n\n\n└ Avg Gain\n48\n—\n—\n—\n\n           \n\n\n\n└ Avg Loss\n50\n—\n—\n—\n\n         \n\n\n\nWin Rate\n78.29%\n—\n—\n—\n\n\n\n\n\nExpectancy\n0.81%\n—\n—\n—\n\n\n\n\n\nROI\n0.81%\n—\n—\n—\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote参考\n\n\n\n\n\n\n指標: 基本的に税前利益ベースで記載\n単位: 通貨値は千円単位で表示\nPace: 現在の実績ベースの月次平均ペースを千円単位で表示（年間目標が設定されている場合は、目標達成に必要な月次ペースを表示）\n\n\n\n\n\n\nLife Time Value Progress\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n\n\n\n\n\nNote説明\n\n\n\n\n\n\n年間累計損益: 現在の年の累計損益を目標額と比較して表示\n売上高_月次推移: 月次損益の推移を表示（実績と見通しを分けて表示）\n目標: 1億円\n累計損益: 16,989,883円\n\n\n\n\n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py\n\n\n\n月次損益 / 累計損益推移\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py"
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html#注目ポイント",
+    "href": "posts/2025-12-30-weekly-review/index.html#注目ポイント",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "注目ポイント",
+    "text": "注目ポイント\n\n良かった点\n\n今月のトレードは3件で、全てが成功しました。\n月間純利益は1,097,587円で、ROIは2.20%を記録しました。\n年初来の純利益は16,989,883円で、安定した成績を維持しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\nトレード件数が少ないため、さらなるエントリー機会を探ることが重要です。\n年初来のROIが0.81%と比較的低いため、リスク管理やエントリー戦略の見直しを検討しましょう。\n期待値の向上に向けて、取引の質をさらに高める必要があります。"
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html#銘柄分析",
+    "href": "posts/2025-12-30-weekly-review/index.html#銘柄分析",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "銘柄分析",
+    "text": "銘柄分析\n\n月別取扱い銘柄数\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/holdingPeriod/holding_period_visualization.py (create_monthly_ticker_count_chart)\n\n\n\n銘柄別パラメーター分析\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/holdingPeriod/holding_period_visualization.py (create_ticker_summary_chart)\n\n\n\n\n\n\n\nNoteコメント\n\n\n\n\n\nコメントを追加予定\n\n\n\n\n\n保有期間分布\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/holdingPeriod/holding_period_visualization.py (create_holding_days_distribution)\n\n\n\n銘柄別利益分析\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/holdingPeriod/holding_period_visualization.py (create_ticker_profit_chart)\n\n\n\n\n\n\n\nNote保有期間サマリー\n\n\n\n\n取扱い銘柄数: 33銘柄\n平均保有期間: 4.05日\n同日決済率: 52.1%"
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html#リスク分析",
+    "href": "posts/2025-12-30-weekly-review/index.html#リスク分析",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "リスク分析",
+    "text": "リスク分析\n\n現在のポジション\n                        \n                                            \n\n\n\n\n\n\nImportantポジションサマリー\n\n\n\n\n保有銘柄数: 11銘柄（総額 345,873,637円）\n信用取引: 2銘柄 / 296,987,228円\n現物取引: 9銘柄 / 48,886,409円\n証券会社: 楽天 6銘柄 / SBI 5銘柄\n為替レート: 157.0円/USD（概算）\n\n\n\n\n\n信用取引 保有期間\n                        \n                                            \n\n\n\n\n\n\nWarning保有期間の目安（※自分の投資スタイルに対する目安です）\n\n\n\n\n🟢 30日未満: 短期回転（安全圏）\n🟠 30-60日: 中期保有（要注意）\n🔴 60日超: 長期滞留（リスク高）\n\n信用取引平均保有: 56.0日 / 最長: 56日"
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html#マーケットデータ",
+    "href": "posts/2025-12-30-weekly-review/index.html#マーケットデータ",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "マーケットデータ",
+    "text": "マーケットデータ\n\nS&P500 Advance-Decline Line\n                        \n                                            \n    \n    \n\n関連ファイル: scripts/by_timeSeries/marketData/market_data.py\n\n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nS&P500指数: S&P 500 Index (^GSPC)\nA/D Line: S&P500構成銘柄の日次騰落率から計算（上昇銘柄数 - 下落銘柄数の累積）\nSector Rotation: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する日次超過リターン\n\nデータソース: Yahoo Finance (yfinance)"
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html#経済指標カレンダー",
+    "href": "posts/2025-12-30-weekly-review/index.html#経済指標カレンダー",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "経済指標カレンダー",
+    "text": "経済指標カレンダー\n\n    \n    \n    \n    2025年12月2026年1月📅 経済指標カレンダー 2025年12月\n    \n        重要\n        中程度\n        休場\n        その他\n    \n    月火水木金土日1米国消費者物価指数（CPI）（米国消費者物価指数（CPI）（+62米国ISM製造業景気指数34米国ISM非製造業景気指数5678日本実質GDP（前期比年率）（日本実質GDP（前期比）（2次910米国消費者物価指数（CPI）（米国消費者物価指数（CPI）（+211米国FRB政策金利（上限金利）1213141516米国非農業部門雇用者数（NFP米国失業率17米国小売売上高（前月比）米国小売売上高（自動車除くコア18ユーロECB政策金利英国英中銀政策金利19日本全国消費者物価指数（CPI日本全国消費者物価指数（CPI202122232425🇺🇸 クリスマス (Chris2627282930311🇺🇸 元日 (New Year234📅 経済指標カレンダー 2026年1月\n    \n        重要\n        中程度\n        休場\n        その他\n    \n    月火水木金土日2930311🇺🇸 元日 (New Year23456米国ISM製造業景気指数78米国ISM非製造業景気指数9米国非農業部門雇用者数（NFP米国失業率10111213米国消費者物価指数（CPI）（米国消費者物価指数（CPI）（+21415米国小売売上高（自動車除くコア米国小売売上高（前月比）16171819🇺🇸 キング牧師記念日 (ML20212223日本全国消費者物価指数（CPI日本全国消費者物価指数（CPI242526272829米国実質GDP（前期比年率）（米国FRB政策金利（上限金利）30311\n    \n    \n\n今後の重要指標\n\n    📈 今後45日間の重要経済指標📅 今後10日間\n        \n\n\n\n日付\n時刻\n国\n指標\n重要度\n\n\n\n\n01/01(木)\n終日\n🇺🇸\n🇺🇸 元日 (New Year's Day)\n重要\n\n\n01/06(火)\n00:00\n🇺🇸\n米国ISM製造業景気指数\n中\n\n\n01/08(木)\n00:00\n🇺🇸\n米国ISM非製造業景気指数\n中\n\n\n01/09(金)\n22:30\n🇺🇸\n米国非農業部門雇用者数（NFP）（前月比）\n重要\n\n\n01/09(金)\n22:30\n🇺🇸\n米国失業率\n重要\n\n\n\n\n        \n            \n                📅 10日以降（11件）\n            \n            \n\n\n\n日付\n時刻\n国\n指標\n重要度\n\n\n\n\n01/13(火)\n22:30\n🇺🇸\n米国消費者物価指数（CPI）（前月比）\n重要\n\n\n01/13(火)\n22:30\n🇺🇸\n米国消費者物価指数（CPI）（食品・エネルギー除くコア）（前年比）\n重要\n\n\n01/13(火)\n22:30\n🇺🇸\n米国消費者物価指数（CPI）（食品・エネルギー除くコア）（前月比）\n重要\n\n\n01/13(火)\n22:30\n🇺🇸\n米国消費者物価指数（CPI）（前年比）\n重要\n\n\n01/15(木)\n22:30\n🇺🇸\n米国小売売上高（自動車除くコア）（前月比）\n中\n\n\n01/15(木)\n22:30\n🇺🇸\n米国小売売上高（前月比）\n中\n\n\n01/19(月)\n終日\n🇺🇸\n🇺🇸 キング牧師記念日 (MLK Day)\n重要\n\n\n01/23(金)\n08:30\n🇯🇵\n日本全国消費者物価指数（CPI）（前年比）\n重要\n\n\n01/23(金)\n08:30\n🇯🇵\n日本全国消費者物価指数（CPI）（生鮮食料品除くコア）（前年比）\n重要\n\n\n01/29(木)\n04:00\n🇺🇸\n米国FRB政策金利（上限金利）\n重要\n\n\n01/29(木)\n22:30\n🇺🇸\n米国実質GDP（前期比年率）（速報）\n重要\n\n\n\n\n\n\n\n\n\n\nNote経済指標サマリー\n\n\n\n\n総イベント: 2551件\n今後45日間: 0件\n重要指標: 10件\n\nデータソース: Monex経済指標カレンダー"
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html#マクロデータ",
+    "href": "posts/2025-12-30-weekly-review/index.html#マクロデータ",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "マクロデータ",
+    "text": "マクロデータ\n\n金利・社債スプ・Nasdaq & SP500\n                        \n                                            \n\n\n\n\n\n\nTip読み方のポイント\n\n\n\n\n\n\n全体の見方\n\nBAA10Y spreadとFFrateが同時に上昇する場合は危険信号（財政緊縮＋資金調達難）\nBAA10Y spreadが下降傾向ならソフトランディングの可能性\n\n\n\n各グラフの見方\n上段：SP500 (log scale) & 10Y Treasury Yield - SP500の対数スケールで長期トレンドを把握 - 10Y金利（10年国債利回り）とSP500の関係を観察 - 金利上昇時は株式市場に圧力がかかる傾向\n中段：BAA-10Y Spread & Rates (10Y, FF) - BAA-10Yスプレッド（社債と国債の利回り差）で信用リスクを評価 - スプレッド拡大は市場のリスク回避を示す - 10Y金利とFFrate（政策金利）の動きを同時に確認\n下段：Rolling Correlation (60d window) - スプレッド変化と各種指標の相関を60日移動平均で表示 - 相関が高い期間は市場の連動性が強いことを示す - 負の相関（-1に近い）は逆相関、正の相関（+1に近い）は同方向の動き\n\n\n\n\n\n\n主要経済指標\n\n    \n    \n    \n\n        \n            \n                VIX（恐怖指数）\n                📈\n            \n            \n                13.60\n            \n            \n                \n                    MoM: +1.0%\n                \n                \n                    YoY: -21.8%\n                \n            \n            市場の不安度を示す指標\n            更新: 2025/12/26\n        \n        \n\n        \n            \n                FFR（政策金利）\n                📉\n            \n            \n                3.88%\n            \n            \n                \n                    MoM: -5.1%\n                \n                \n                    YoY: -13.4%\n                \n            \n            FRBの政策金利\n            更新: 2025/11/01\n        \n        \n\n        \n            \n                失業率\n                📈\n            \n            \n                4.60%\n            \n            \n                \n                    MoM: +4.5%\n                \n                \n                    YoY: +12.2%\n                \n            \n            米国失業率\n            更新: 2025/11/01\n        \n        \n\n        \n            \n                CPI（物価指数）\n                ➡️\n            \n            \n                325.03\n            \n            \n                \n                    MoM: +0.2%\n                \n                \n                    YoY: +2.3%\n                \n            \n            消費者物価指数\n            更新: 2025/11/01\n        \n        \n\n        \n            \n                金価格\n                📉\n            \n            \n                4378.60USD/oz\n            \n            \n                \n                    MoM: -3.3%\n                \n                \n                    YoY: +68.0%\n                \n            \n            ロンドン金価格\n            更新: 2025/12/29\n        \n        \n\n        \n            \n                ドル円\n                📈\n            \n            \n                157.43JPY/USD\n            \n            \n                \n                    MoM: +1.2%\n                \n                \n                    YoY: +0.1%\n                \n            \n            USD/JPY為替レート\n            更新: 2025/12/19\n        \n        \n\n\n\n推移チャート\n                        \n                                            \n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nVIX: CBOE Volatility Index - 市場の恐怖度・ボラティリティを示す\nFFR: Federal Funds Effective Rate - FRBの政策金利\n失業率: US Unemployment Rate - 労働市場の健全性指標\nCPI: Consumer Price Index - インフレ動向の指標\nBAA10Y: Moody’s Baa Corporate Bond Spread - 社債スプレッド\nNasdaq/SP500: 主要株価指数\n金価格: Gold Fixing Price (London) - ロンドン金価格（USD/オンス）\nドル円: USD/JPY Exchange Rate - ドル円為替レート\n\nデータソース: FRED (Federal Reserve Economic Data)"
+  },
+  {
+    "objectID": "posts/2025-12-30-weekly-review/index.html#まとめ",
+    "href": "posts/2025-12-30-weekly-review/index.html#まとめ",
+    "title": "週間レビュー: 2025年12月第5週",
+    "section": "まとめ",
+    "text": "まとめ\n今後も勝率を維持しつつ、トレードの件数を増やし、ROIの向上を図る方針で進めていきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
