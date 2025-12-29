@@ -54,6 +54,19 @@ class DataPaths:
         """
         return self.data_root / "trading_account" / data_type / "raw" / broker
     
+    def raw_trading_account_master(self, broker: str, data_type: str) -> Path:
+        """
+        取引アカウントのマスターデータパス（rawフォルダ内）
+        
+        Args:
+            broker: 証券会社名（"rakuten", "sbi"）
+            data_type: データタイプ（"realized_pl", "transaction"）
+            
+        Returns:
+            Path: マスターデータディレクトリのパス
+        """
+        return self.data_root / "trading_account" / data_type / "raw" / broker / "master"
+    
     def raw_forex(self, source: str) -> Path:
         """
         為替レートの生データパス
