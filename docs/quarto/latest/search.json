@@ -683,28 +683,28 @@
     "href": "posts/2025-12-29-weekly-review/index.html",
     "title": "週間レビュー: 2025年12月第5週",
     "section": "",
-    "text": "今週は素晴らしいパフォーマンスを発揮しました。勝率100%を達成し、安定した利益を確保しました。"
+    "text": "12月のトレードパフォーマンスは非常に良好で、勝率100%を達成しました。月間のネットPLは1,097,587となりました。"
   },
   {
     "objectID": "posts/2025-12-29-weekly-review/index.html#今週のサマリー",
     "href": "posts/2025-12-29-weekly-review/index.html#今週のサマリー",
     "title": "週間レビュー: 2025年12月第5週",
     "section": "",
-    "text": "今週は素晴らしいパフォーマンスを発揮しました。勝率100%を達成し、安定した利益を確保しました。"
+    "text": "12月のトレードパフォーマンスは非常に良好で、勝率100%を達成しました。月間のネットPLは1,097,587となりました。"
   },
   {
     "objectID": "posts/2025-12-29-weekly-review/index.html#パフォーマンスハイライト",
     "href": "posts/2025-12-29-weekly-review/index.html#パフォーマンスハイライト",
     "title": "週間レビュー: 2025年12月第5週",
     "section": "パフォーマンスハイライト",
-    "text": "パフォーマンスハイライト\n\nMonthly Performance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDecember, 2025\n\n\n指標\n実績\nMoM\nYoY\nvs_Plan\nTrend\n\n\n\n\nPBT\n1,098\n-3,962 (-78.3%)\n—\n—\n\n           \n\n\n\nPAT\n875\n-3,157 (-78.3%)\n—\n—\n\n           \n\n\n\nRRR\n—\n—\n—\n—\n\n\n\n\n\n└ Avg Gain\n366\n—\n—\n—\n\n           \n\n\n\n└ Avg Loss\n—\n—\n—\n—\n\n\n\nWin Rate\n100%\n+31.2pt\n—\n—\n\n\n\n\n\nExpectancy\n—\n—\n—\n—\n\n\n\n\n\nROI\n2.20%\n+120.0%\n—\n—\n\n\n\n\n\n\n\n\n\n\n\nYear-to-Date Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJanuary to December, 2025\n\n\n指標\n累計実績\nYoY_ytd\nvs_Plan\nPace\nTrend\n\n\n\n\nPBT\n16,990\n—\n—\n1,416\n\n           \n\n\n\nPAT\n13,538\n—\n—\n1,128\n\n           \n\n\n\nRRR\n0.96\n—\n—\n—\n\n\n\n\n\n└ Avg Gain\n48\n—\n—\n—\n\n           \n\n\n\n└ Avg Loss\n50\n—\n—\n—\n\n         \n\n\n\nWin Rate\n78.29%\n—\n—\n—\n\n\n\n\n\nExpectancy\n0.81%\n—\n—\n—\n\n\n\n\n\nROI\n0.81%\n—\n—\n—\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote参考\n\n\n\n\n\n\n指標: 基本的に税前利益ベースで記載\n単位: 通貨値は千円単位で表示\nPace: 現在の実績ベースの月次平均ペースを千円単位で表示（年間目標が設定されている場合は、目標達成に必要な月次ペースを表示）\n\n\n\n\n\n\nLife Time Value Progress\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n\n\n\n\n\nNote説明\n\n\n\n\n\n\n年間累計損益: 現在の年の累計損益を目標額と比較して表示\n売上高_月次推移: 月次損益の推移を表示（実績と見通しを分けて表示）\n目標: 1億円\n累計損益: 16,989,883円\n\n\n\n\n\n\n月次損益 / 累計損益推移\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py"
+    "text": "パフォーマンスハイライト\n\nMonthly Performance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDecember, 2025\n\n\n指標\n実績\nMoM\nYoY\nvs_Plan\nTrend\n\n\n\n\nPBT\n1,098\n-3,962 (-78.3%)\n—\n—\n\n           \n\n\n\nPAT\n875\n-3,157 (-78.3%)\n—\n—\n\n           \n\n\n\nRRR\n—\n—\n—\n—\n\n\n\n\n\n└ Avg Gain\n366\n—\n—\n—\n\n           \n\n\n\n└ Avg Loss\n—\n—\n—\n—\n\n\n\nWin Rate\n100%\n+31.2pt\n—\n—\n\n\n\n\n\nExpectancy\n—\n—\n—\n—\n\n\n\n\n\nROI\n2.20%\n+120.0%\n—\n—\n\n\n\n\n\n\n\n\n\n\n\nYear-to-Date Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJanuary to December, 2025\n\n\n指標\n累計実績\nYoY_ytd\nvs_Plan\nPace\nTrend\n\n\n\n\nPBT\n16,990\n—\n—\n1,416\n\n           \n\n\n\nPAT\n13,538\n—\n—\n1,128\n\n           \n\n\n\nRRR\n0.96\n—\n—\n—\n\n\n\n\n\n└ Avg Gain\n48\n—\n—\n—\n\n           \n\n\n\n└ Avg Loss\n50\n—\n—\n—\n\n         \n\n\n\nWin Rate\n78.29%\n—\n—\n—\n\n\n\n\n\nExpectancy\n0.81%\n—\n—\n—\n\n\n\n\n\nROI\n0.81%\n—\n—\n—\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote参考\n\n\n\n\n\n\n指標: 基本的に税前利益ベースで記載\n単位: 通貨値は千円単位で表示\nPace: 現在の実績ベースの月次平均ペースを千円単位で表示（年間目標が設定されている場合は、目標達成に必要な月次ペースを表示）\n\n\n\n\n\n\nLife Time Value Progress\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n\n\n\n\n\nNote説明\n\n\n\n\n\n\n年間累計損益: 現在の年の累計損益を目標額と比較して表示\n売上高_月次推移: 月次損益の推移を表示（実績と見通しを分けて表示）\n目標: 1億円\n累計損益: 16,989,883円\n\n\n\n\n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py\n\n\n\n月次損益 / 累計損益推移\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py"
   },
   {
     "objectID": "posts/2025-12-29-weekly-review/index.html#注目ポイント",
     "href": "posts/2025-12-29-weekly-review/index.html#注目ポイント",
     "title": "週間レビュー: 2025年12月第5週",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n月間トレード数は3件で、勝率は100%でした。\n月間のネットPLは1,097,587で、ROIは2.20%と高水準です。\nYTDにおいても、トレード数は631件、勝率は78.29%と好調を維持しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n今後のトレード数が少ないため、戦略の多様化を検討する必要があります。\nROIがYTDで0.81%と比較的低いため、さらなる利益向上策を模索することが重要です。\nリスク管理を徹底し、利益を維持するための損切りルールを再確認することが必要です。"
+    "text": "注目ポイント\n\n良かった点\n\n月間勝率が100%で、損失トレードはゼロでした。\n月間ROIは2.20%で、安定した利益を上げています。\nYTDのネットPLは16,989,883に達し、全体的に好調です。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\nトレード数が3と少ないため、さらなるエントリー機会を模索する必要があります。\nYTDのROIは0.81%であり、今後の改善が求められます。\nリスク管理の観点から、ポジションサイズやストップロスの設定を見直すことが必要です。"
   },
   {
     "objectID": "posts/2025-12-29-weekly-review/index.html#銘柄分析",
@@ -746,6 +746,6 @@
     "href": "posts/2025-12-29-weekly-review/index.html#まとめ",
     "title": "週間レビュー: 2025年12月第5週",
     "section": "まとめ",
-    "text": "まとめ\n今週の成果を基に、引き続き安定したトレードを目指し、戦略の見直しと改善に努めます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後も勝率を維持しつつ、トレード数を増やし、ROIの向上を目指していきます。引き続き、リスク管理を徹底しながら安定した利益を追求します。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
