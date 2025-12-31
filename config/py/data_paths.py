@@ -67,6 +67,18 @@ class DataPaths:
         """
         return self.data_root / "trading_account" / data_type / "raw" / broker / "master"
     
+    def raw_trading_account_merged_master(self, data_type: str) -> Path:
+        """
+        取引アカウントの統合マスターデータパス（rawフォルダ内）
+        
+        Args:
+            data_type: データタイプ（"realized_pl", "transaction"）
+            
+        Returns:
+            Path: 統合マスターデータディレクトリのパス
+        """
+        return self.data_root / "trading_account" / data_type / "raw" / "master"
+    
     def raw_forex(self, source: str) -> Path:
         """
         為替レートの生データパス
