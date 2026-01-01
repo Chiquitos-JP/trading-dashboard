@@ -893,14 +893,14 @@
     "href": "posts/2026-01-01-weekly-review/index.html",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "",
-    "text": "12月のパフォーマンスは安定しており、6回のトレードで50%の勝率を記録しました。"
+    "text": "12月のパフォーマンスは良好で、月間で50%の勝率を達成しました。全体的にプラスの結果となりましたが、改善の余地もあります。"
   },
   {
     "objectID": "posts/2026-01-01-weekly-review/index.html#今週のサマリー",
     "href": "posts/2026-01-01-weekly-review/index.html#今週のサマリー",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "",
-    "text": "12月のパフォーマンスは安定しており、6回のトレードで50%の勝率を記録しました。"
+    "text": "12月のパフォーマンスは良好で、月間で50%の勝率を達成しました。全体的にプラスの結果となりましたが、改善の余地もあります。"
   },
   {
     "objectID": "posts/2026-01-01-weekly-review/index.html#パフォーマンスハイライト",
@@ -914,7 +914,7 @@
     "href": "posts/2026-01-01-weekly-review/index.html#注目ポイント",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n月間ネット利益は1,097,587で、ROIは2.20%と好調です。\n年間のネット利益は16,989,883に達し、資産成長が順調です。\n月間トレード数が6回と少ない中で、勝率が50%を維持しました。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n勝率が50%であるため、さらなる戦略の見直しを検討する必要があります。\n年間の勝率が42.44%と低めなので、トレードの質を向上させる取り組みが求められます。\nリスク管理を強化し、損失トレードを減らすためのルールを明確にすることが重要です。"
+    "text": "注目ポイント\n\n良かった点\n\n月間純利益は1,097,587円で、ROIは2.20%と好調でした。\n月間勝率は50.00%で、トレード数は6回と安定しています。\n年初来の純利益は16,989,883円で、前年と比較して順調に推移しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n損失トレードが3回あり、勝率を上げるためには戦略の見直しが必要です。\n年初来の勝率は42.44%と低いため、トレードの精度を向上させる必要があります。\nリスク管理を見直し、損失を最小限に抑える方法を模索することが重要です。"
   },
   {
     "objectID": "posts/2026-01-01-weekly-review/index.html#銘柄分析",
@@ -956,6 +956,6 @@
     "href": "posts/2026-01-01-weekly-review/index.html#まとめ",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "まとめ",
-    "text": "まとめ\n今後は戦略の精度向上とリスク管理の強化を図り、さらなる利益の最大化を目指していきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後は利益をさらに最大化するために、トレード戦略を強化し、勝率向上に努めます。リスク管理の見直しも行い、安定したパフォーマンスを目指します。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
