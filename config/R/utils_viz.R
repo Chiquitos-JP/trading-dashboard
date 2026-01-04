@@ -226,8 +226,8 @@ make_key_insights_panel <- function(body_html,
 
 ## A-4. Caption ---- 
 .current_year <- function() format(Sys.Date(), "%Y")
-.default_author <- function() paste0("Casual-Investment©", .current_year())
-.default_source <- function() "Source: SBI, Rakuten"
+.default_author <- function() ""
+.default_source <- function() ""
 
 # HTMLでスタイル込みのキャプション文字列を作成
 make_caption <- function(
@@ -241,11 +241,8 @@ make_caption <- function(
     family  = "roboto, 'Noto Sans JP', 'Noto Sans', sans-serif",  # ★ フォントを明示
     lineheight = 1
 ) {
-  style <- sprintf(
-    "color:%s; font-size:%spt; font-style:%s; font-weight:%s; opacity:%s;",
-    color, size, if (italic) "italic" else "normal", weight, opacity
-  )
-  paste0("<span style='", style, "'>", author, " | ", src, "</span>")
+  # 空文字列を返す（クレジット情報を削除）
+  ""
 }
 
 
