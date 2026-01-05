@@ -1103,7 +1103,7 @@
     "href": "posts/2026-01-05-weekly-review/index.html",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "",
-    "text": "12月は3取引全勝で、純利益は1,097,587円となりました。"
+    "text": "12月は3取引を行い、全勝を達成し、純利益額は1,097,587円でした。"
   },
   {
     "objectID": "posts/2026-01-05-weekly-review/index.html#今週のサマリー",
@@ -1124,7 +1124,7 @@
     "href": "posts/2026-01-05-weekly-review/index.html#注目ポイント",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n勝率100%を達成し、損失は0でした。\nROIは2.20%と良好な結果を残しました。\n年初来の純利益は17,899,294円に達し、安定した成長を示しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が少ないため、さらなるエントリー機会の検討が必要です。\nROIを向上させるために、よりリスクを考慮した戦略の策定が望まれます。\n年初来の勝率78.37%を維持するために、過信せず着実な取引を心掛けるべきです。"
+    "text": "注目ポイント\n\n良かった点\n\n勝率100%を維持し、無敗の結果を出しました。\n月間ROIは2.20%で、安定したパフォーマンスを示しました。\nYTDの純利益は17,899,294円に達し、全体的に良好な結果です。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が少ないため、さらなる取引機会を探る必要があります。\nROIをさらに向上させるための戦略を検討することが重要です。\nリスク管理の観点から、ポジションサイズやエントリーポイントの見直しを行うべきです。"
   },
   {
     "objectID": "posts/2026-01-05-weekly-review/index.html#銘柄分析",
@@ -1138,7 +1138,7 @@
     "href": "posts/2026-01-05-weekly-review/index.html#リスク分析",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "リスク分析",
-    "text": "リスク分析\n\n現在のポジション\n                        \n                                            \n\n\n\n\n\n\nImportantポジションサマリー\n\n\n\n\n保有銘柄数: 16銘柄（総額 77,100,688円）\n信用取引: 3銘柄 / 37,311,768円\n現物取引: 13銘柄 / 39,788,920円\n証券会社: 楽天 11銘柄 / SBI 5銘柄\n為替レート: 157.0円/USD（概算）\n\n\n\n\n\n信用取引 保有期間\n                        \n                                            \n\n\n\n\n\n\nWarning保有期間の目安（※自分の投資スタイルに対する目安です）\n\n\n\n前提: 信用取引のリスク分析は、2025年1月1日以降に建てたポジションのみを対象としています（過去データが不完全な可能性があるため）。\n\n🟢 30日未満: 短期回転（安全圏）\n🟠 30-60日: 中期保有（要注意）\n🔴 60日超: 長期滞留（リスク高）\n\n信用取引平均保有: 133.6日 / 最長: 300日"
+    "text": "リスク分析\n\n現在のポジション\n                        \n                                            \n\n\n\n\n\n\nImportantポジションサマリー\n\n\n\n\n保有銘柄数: 16銘柄（総額 90,548,191円）\n信用取引: 3銘柄 / 43,187,243円\n現物取引: 13銘柄 / 47,360,948円\n証券会社: 楽天 11銘柄 / SBI 5銘柄\n為替レート: 157.0円/USD（概算）\n\n\n\n\n\n信用取引 保有期間\n                        \n                                            \n\n\n\n\n\n\nWarning保有期間の目安（※自分の投資スタイルに対する目安です）\n\n\n\n前提: 信用取引のリスク分析は、2025年1月1日以降に建てたポジションのみを対象としています（過去データが不完全な可能性があるため）。\n\n🟢 30日未満: 短期回転（安全圏）\n🟠 30-60日: 中期保有（要注意）\n🔴 60日超: 長期滞留（リスク高）\n\n信用取引平均保有: 133.6日 / 最長: 300日"
   },
   {
     "objectID": "posts/2026-01-05-weekly-review/index.html#マーケットデータ",
@@ -1166,13 +1166,13 @@
     "href": "posts/2026-01-05-weekly-review/index.html#まとめ",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "まとめ",
-    "text": "まとめ\n今後も勝率を維持しつつ、取引機会を増やしていく方針です。リスク管理を強化し、ROIの向上に努めます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後は取引機会を増やしつつ、リスク管理を強化することで、さらなる成長を目指します。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   },
   {
     "objectID": "posts/2026-01-05-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-01-05-weekly-review/index.html#月のサマリー",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "",
-    "text": "12月は3取引全勝で、純利益は1,097,587円となりました。"
+    "text": "12月は3取引を行い、全勝を達成し、純利益額は1,097,587円でした。"
   }
 ]
