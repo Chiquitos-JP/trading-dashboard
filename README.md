@@ -16,30 +16,64 @@
 <summary><strong>データ処理フロー</strong></summary>
 
 ```text
-1. データ取得
-   外部ソース（証券会社、API等）
+1. データ取得（Raw CSV）
+   外部ソース（楽天証券、SBI証券）
        ↓
-   data/raw/{source}/          # 生データ（変更不可）
+   data/trading_account/{data_type}/raw/{broker}/  # 生データ（ソース）
 
-2. データ処理
-   data/raw/
-       ↓ [処理スクリプト]
-   data/processed/{data_type}_{YYYYMMDD}/  # 処理済みデータ
+2. マスターデータ更新（Optimized Pipeline）
+   data/.../raw/
+       ↓ [optimized_data_pipeline.py]
+   data/trading_account/{data_type}/master/        # 統合マスター（Parquet）
+       ├── realized_pl_merged.parquet              # 実現損益マスター（全ブローカー統合）
+       ├── realized_pl_rakuten.parquet             # 楽天個別マスター
+       └── realized_pl_sbi.parquet                 # SBI個別マスター
 
-3. 可視化・分析
-   data/processed/
+3. 集計データ生成
+   data/.../master/
+       ↓ [自動生成]
+   data/trading_account/{data_type}/aggregated/    # 集計データ
+       ├── monthly_summary.parquet                 # 月次サマリー
+       └── kpi_metrics.parquet                     # KPI指標
+
+4. 可視化・分析
+   data/.../master/ + data/.../aggregated/
        ↓ [分析スクリプト]
-   outputs/interim/{category}/  # 中間可視化（HTML、CSV）
-
-4. 最終成果物
-   outputs/interim/
-       ↓ [統合処理]
-   outputs/figures/{analysis_type}_{YYYYMMDD}/  # 最終図表
+   outputs/interim/{category}/                     # 中間可視化（HTML）
 
 5. レポート生成
-   outputs/figures/
+   outputs/interim/
        ↓ [Quartoレンダリング]
-   docs/quarto/latest/         # 公開用ドキュメント
+   docs/quarto/latest/                             # 公開用ドキュメント
+```
+
+</details>
+
+<details>
+<summary><strong>ディレクトリ構造</strong></summary>
+
+```text
+data/trading_account/
+├── realized_pl/                    # 実現損益データ
+│   ├── raw/                        # 生CSV（ソース of truth）
+│   │   ├── rakuten/               # 楽天証券
+│   │   └── sbi/                   # SBI証券
+│   ├── master/                     # マスターParquet（統合・正規化済み）
+│   │   ├── realized_pl_merged.parquet
+│   │   ├── realized_pl_rakuten.parquet
+│   │   ├── realized_pl_sbi.parquet
+│   │   └── show_tbl.R             # マスター確認用Rスクリプト
+│   └── aggregated/                 # 集計データ
+│       ├── monthly_summary.parquet
+│       └── kpi_metrics.parquet
+└── transaction/                    # 取引履歴データ
+    ├── raw/
+    │   ├── rakuten/
+    │   └── sbi/
+    └── master/
+        ├── transaction_merged.parquet
+        ├── transaction_rakuten.parquet
+        └── transaction_sbi.parquet
 ```
 
 </details>
@@ -50,16 +84,24 @@
 1. **初期設定・環境構築**
    - Python 仮想環境のセットアップ（`scripts/setup_python_env.ps1` または VSCode タスク「Py: setup venv」）
    - R 環境の初期化（`config/R/init.R`）
+
 2. **データ取得・格納**
-   - `data/raw/`配下に生データ・経済指標・市場データ・取引履歴等を日付ごとに保存
-3. **特徴量生成・KPI 計算**
-   - R スクリプト（例: `R: build features`, `R: KPI calc`タスク）や Python スクリプトで分析・計算
-4. **中間生成物の出力**
-   - `outputs/interim/`に HTML, CSV, 図表などを一時保存
-5. **レポート・ダッシュボード生成**
-   - Quarto や R/Python スクリプトで`outputs/figures/`や`docs/`に最終成果物を出力
-6. **成果物公開**
-   - VSCode タスク「Publish: build & push」でレポート・サイト生成＋ Git コミット＆プッシュ
+   - `data/trading_account/realized_pl/raw/` 配下に楽天・SBIの生CSVを格納
+   - `data/trading_account/transaction/raw/` 配下に取引履歴CSVを格納
+
+3. **パイプライン実行（一括）**
+   ```bash
+   python scripts/runners/run_all.py
+   ```
+   これにより以下が自動実行されます:
+   - マスターデータの差分更新
+   - 月次サマリー・KPI生成
+   - 週間レビュー生成
+   - Quartoレンダリング
+   - ダッシュボードHTML出力
+
+4. **成果物公開**
+   - VSCode タスク「Publish: build & push」でGitコミット＆プッシュ
 
 </details>
 
@@ -103,17 +145,22 @@
 
 </details>
 
-</details>
-
 <details>
-<summary><strong>参考</strong></summary>
+<summary><strong>主要スクリプト</strong></summary>
 
-- **プロジェクト構造**: `PROJECT_STRUCTURE.md` を参照
-- **データ構造**: `data/README.md` を参照
-- **出力構造**: `outputs/README.md` を参照
-- **Python 共通ユーティリティ**: `config/py/README.md` を参照
-- **詳細なワークフロー**: `scripts/by_timeSeries/holdingPeriod/README.md` を参照
-- **R/Python の連携**: `config/R/init.R` や `config/py/bootstrap.py` で制御
+**実行系（scripts/runners/）**
+- `run_all.py`：一括実行スクリプト（推奨）
+- `run_visualization_only.py`：可視化のみ実行
+- `run_render_only.py`：レンダリングのみ実行
+- `run_quarto_only.py`：Quartoのみ実行
+
+**分析系（scripts/by_timeSeries/）**
+- `common/optimized_data_pipeline.py`：データパイプライン（マスター更新・集計生成）
+- `holdingPeriod/risk_analysis.py`：リスク分析・ポジション計算
+- `holdingPeriod/holding_period_visualization.py`：保有期間可視化
+- `cleanup_old_files.py`：古い出力ファイルのクリーンアップ
+
+</details>
 
 </details>
 
@@ -133,23 +180,6 @@ quarto render index.qmd --no-cache
 <details>
 <summary><strong>オプション実行</strong></summary>
 
-### マーケットデータ可視化のキャッシュ機能
-
-マーケットデータ可視化スクリプトは、SPY とセクター ETF データをキャッシュして処理時間を短縮します。通常実行ではキャッシュが有効な限り API 呼び出しをスキップします。
-
-**実行前の準備:**
-
-- プロジェクトルート（`stockTrading/`）に移動
-- Python 仮想環境を有効化（`.venv\Scripts\Activate.ps1`）
-
-```bash
-# 通常実行（キャッシュ使用）
-python scripts/by_timeSeries/marketData/market_data_visualization.py
-
-# 強制更新（キャッシュを無視して最新データを取得）
-python scripts/by_timeSeries/marketData/market_data_visualization.py --force-update
-```
-
 ### run_all.py のオプション
 
 **実行前の準備:**
@@ -158,20 +188,30 @@ python scripts/by_timeSeries/marketData/market_data_visualization.py --force-upd
 - Python 仮想環境を有効化（`.venv\Scripts\Activate.ps1`）
 
 ```bash
-# 全実行（チェックポイント有効）
-python scripts/by_timeSeries/realizedPl/run_all.py
+# 全実行
+python scripts/runners/run_all.py
 
-# 強制再実行（チェックポイント無視）
-python scripts/by_timeSeries/realizedPl/run_all.py --force
+# レンダリングのみ（データ処理をスキップ）
+python scripts/runners/run_all.py --render-only
 
-# 特定ステップのみ実行
-python scripts/by_timeSeries/realizedPl/run_all.py --steps "楽天証券データ処理" "SBI証券データ処理"
+# 可視化のみ（データ処理をスキップ）
+python scripts/runners/run_visualization_only.py
 
-# チェックポイント機能を無効化
-python scripts/by_timeSeries/realizedPl/run_all.py --skip-checkpoint
+# 強制再実行（キャッシュ無視）
+python scripts/runners/run_all.py --force
+```
 
-# 可視化のみ実行（データ取得・処理をスキップ）
-python scripts/by_timeSeries/realizedPl/run_visualization_only.py
+### マスターデータの確認（R）
+
+```r
+# Rで実行
+source("data/trading_account/realized_pl/master/show_tbl.R")
+```
+
+### データパイプラインの単独実行
+
+```bash
+python scripts/by_timeSeries/common/optimized_data_pipeline.py
 ```
 
 </details>

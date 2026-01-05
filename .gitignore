@@ -1,80 +1,67 @@
-# Python
+# ===========================================
+# .gitignore - 最小限の公開（GitHub Pages用）
+# ===========================================
+# 方針: docs/ のみ公開、それ以外は全て除外
+# ===========================================
+
+# ----- 全データ・スクリプトを除外 -----
+data/
+scripts/
+outputs/
+config/
+temp/
+
+# ----- 環境・機密情報 -----
+.env
+.env.*
+*.pem
+*.key
+
+# ----- Python -----
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-env/
+.venv/
 venv/
-ENV/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
-.installed.cfg
-*.egg
 
-# R
+# ----- R -----
 .Rhistory
 .RData
 .Rproj.user/
 .Renviron
 .Rprofile
+renv/library/
+renv/staging/
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IDEs
+# ----- IDE・エディタ -----
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# ----- OS -----
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Trading / macro data - 生データやセンシティブな加工データはすべて除外
-data/
-
-# Config / analysis プロジェクトも原則非公開
-00_config/
-scripts/
-
-# Temporary files
+# ----- 一時ファイル -----
 *.tmp
 *.bak
 *.log
+*.cache
 
-# Environment variables
-.env
-.env.local
+# ----- Jupyter -----
+.ipynb_checkpoints/
 
-# renv (R package management) - ライブラリは除外
-renv/library/
-renv/staging/
-
-# Output / analysis-specific / debug - 公開不要
-outputs/
+# ----- 旧構成（使用しない） -----
+00_config/
+02_notebooks/
+05_site/
 06_analysis_specific/
 99_debug/
 
-# Site docs - 旧構成は使わない想定のため除外
-05_site/
-
-# Notebooks は公開しない
-02_notebooks/
-
-# Python 仮想環境
-.venv/
+# ----- ルートレベルの除外 -----
+*.Rproj
+fix_*.py
+requirements*.txt
