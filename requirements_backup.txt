@@ -1,5 +1,0 @@
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-    import pkg_resources; print('\n'.join([f'{p.key}=={p.version}' for p in pkg_resources.working_set]))
-    ^^^^^^^^^^^^^^^^^^^^
-ModuleNotFoundError: No module named 'pkg_resources'
