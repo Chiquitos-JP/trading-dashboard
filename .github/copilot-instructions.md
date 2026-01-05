@@ -9,18 +9,20 @@
 ```
 stockTrading/
 ├── scripts/
-│   ├── runners/                    # 実行エントリーポイント
-│   │   ├── run_all.py             # 全実行（推奨）
-│   │   ├── run_visualization_only.py
-│   │   ├── run_render_only.py
-│   │   └── run_quarto_only.py
-│   ├── by_timeSeries/              # 分析・可視化スクリプト
-│   │   ├── common/                # 共通モジュール（optimized_data_pipeline.py）
+│   ├── by_timeSeries/              # 株式トレーディング分析
+│   │   ├── runners/               # 実行エントリーポイント
+│   │   │   ├── run_all.py        # 全実行（推奨）
+│   │   │   ├── run_visualization_only.py
+│   │   │   ├── run_render_only.py
+│   │   │   └── run_quarto_only.py
+│   │   ├── cleanup_old_files.py   # クリーンアップ
+│   │   ├── common/                # 共通モジュール
 │   │   ├── realizedPl/            # 実現損益分析
 │   │   ├── holdingPeriod/         # 保有期間分析
-│   │   ├── quarto/                # Quartoテンプレート・設定
+│   │   ├── quarto/                # Quartoテンプレート
 │   │   └── ...
-│   └── cleanup_old_files.py
+│   ├── tidytuesday/                # 将来追加
+│   └── MakeoverMonday/             # 将来追加
 ├── data/
 │   └── trading_account/
 │       ├── realized_pl/
@@ -43,17 +45,17 @@ stockTrading/
 
 ```bash
 # 全実行（データ処理→可視化→レンダリング）
-python scripts/runners/run_all.py
+python scripts/by_timeSeries/runners/run_all.py
 
 # 可視化のみ（データ処理済みの場合）
-python scripts/runners/run_visualization_only.py
+python scripts/by_timeSeries/runners/run_visualization_only.py
 
 # レンダリングのみ（週間レビュー生成＋Quarto）
-python scripts/runners/run_render_only.py
+python scripts/by_timeSeries/runners/run_render_only.py
 
 # オプション
-python scripts/runners/run_all.py --force        # キャッシュ無視
-python scripts/runners/run_all.py --render-only  # レンダリングのみ
+python scripts/by_timeSeries/runners/run_all.py --force        # キャッシュ無視
+python scripts/by_timeSeries/runners/run_all.py --render-only  # レンダリングのみ
 ```
 
 ### データフロー

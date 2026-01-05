@@ -91,7 +91,7 @@ data/trading_account/
 
 3. **パイプライン実行（一括）**
    ```bash
-   python scripts/runners/run_all.py
+   python scripts/by_timeSeries/runners/run_all.py
    ```
    これにより以下が自動実行されます:
    - マスターデータの差分更新
@@ -148,7 +148,7 @@ data/trading_account/
 <details>
 <summary><strong>主要スクリプト</strong></summary>
 
-**実行系（scripts/runners/）**
+**実行系（scripts/by_timeSeries/runners/）**
 - `run_all.py`：一括実行スクリプト（推奨）
 - `run_visualization_only.py`：可視化のみ実行
 - `run_render_only.py`：レンダリングのみ実行
@@ -189,16 +189,16 @@ quarto render index.qmd --no-cache
 
 ```bash
 # 全実行
-python scripts/runners/run_all.py
+python scripts/by_timeSeries/runners/run_all.py
 
 # レンダリングのみ（データ処理をスキップ）
-python scripts/runners/run_all.py --render-only
+python scripts/by_timeSeries/runners/run_all.py --render-only
 
 # 可視化のみ（データ処理をスキップ）
-python scripts/runners/run_visualization_only.py
+python scripts/by_timeSeries/runners/run_visualization_only.py
 
 # 強制再実行（キャッシュ無視）
-python scripts/runners/run_all.py --force
+python scripts/by_timeSeries/runners/run_all.py --force
 ```
 
 ### マスターデータの確認（R）
