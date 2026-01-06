@@ -452,7 +452,7 @@
       "Dashboard",
       "Performance Reports",
       "Financials",
-      "2025年 ✓"
+      "2025年"
     ]
   },
   {
@@ -1244,5 +1244,19 @@
     "title": "週間レビュー: 2026年1月第1週",
     "section": "まとめ",
     "text": "まとめ\n今後は取引数を増やし、リスクを分散させることでさらなる利益を追求していきます。安定した勝率を維持しつつ、取引機会を増やすことが目標です。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+  },
+  {
+    "objectID": "dashboard_2026.html",
+    "href": "dashboard_2026.html",
+    "title": "2026 Trading Dashboard",
+    "section": "",
+    "text": "Financial Statements — FY2026\n  Year-to-Date Performance & Financial Position\n  \n    Investment Performance Dashboard • \n    Updated: \n  \n\n\n\n  Abstract\n  \n    本ダッシュボードは2026年度の取引パフォーマンスを財務諸表形式で表示したものである。\n    月次KPI（Table 1）に加え、損益計算書 (P/L: Table 2)、貸借対照表 (BS: Table 3)、\n    キャッシュフロー計算書 (CF: Table 4) を通じて、投資活動の財務的影響を定量的に把握する。\n    なお、本年度においては取引活動以外の収益・投資は存在しない。\n  \n\n\n\n  Contents\n  \n    Table 1. Monthly KPI Summary (業績指標)\n    Table 2. Income Statement (損益計算書 / P/L)\n    Table 3. Balance Sheet (貸借対照表 / BS)\n    Table 4. Cash Flow Statement (CF計算書)\n  \n\n\n⁂\n\n\n  \n    \n      \n      \n    \n  \n\n\n\n  \n    \n      [1]\n      楽天証券およびSBI証券のデータでは諸経費は差し引かれているが、税金は含まれていない。\n    \n    \n      [2]\n      適用為替レートはFRED (Federal Reserve Economic Data) の日次データを使用。\n      DEXJPUS Series\n    \n    \n      [3]\n      BS・CFは取引損益の累積のみを反映。期首の元本・借入等は含まない。\n    \n    \n      [4]\n      本レポートは run_all.py により自動生成される。",
+    "crumbs": [
+      "Concept",
+      "Dashboard",
+      "Performance Reports",
+      "Financials",
+      "2026年 ✓"
+    ]
   }
 ]
