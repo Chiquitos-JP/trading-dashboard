@@ -1418,14 +1418,14 @@
     "href": "posts/2026-01-08-weekly-review/index.html",
     "title": "週間レビュー: 2026年1月第2週",
     "section": "",
-    "text": "1月は税前利益621,489円、取引数1回、勝率100.00%という素晴らしい結果を達成しました。"
+    "text": "1月は税前利益621,489円、1取引で勝率100.00%を達成しました。"
   },
   {
     "objectID": "posts/2026-01-08-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-01-08-weekly-review/index.html#月のサマリー",
     "title": "週間レビュー: 2026年1月第2週",
     "section": "",
-    "text": "1月は税前利益621,489円、取引数1回、勝率100.00%という素晴らしい結果を達成しました。"
+    "text": "1月は税前利益621,489円、1取引で勝率100.00%を達成しました。"
   },
   {
     "objectID": "posts/2026-01-08-weekly-review/index.html#パフォーマンスハイライト",
@@ -1439,7 +1439,7 @@
     "href": "posts/2026-01-08-weekly-review/index.html#注目ポイント",
     "title": "週間レビュー: 2026年1月第2週",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n全勝で、1回の取引で利益を上げました。\nROIは3.20%と健全な水準を維持しています。\n税前利益495,234円は良好なパフォーマンスを示しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が1回のため、今後は取引機会を増やすことが重要です。\n勝率は完璧ですが、リスク管理や多様な戦略の検討が必要です。\n期待値の算出が行われていないため、今後は期待値の分析を行うことを推奨します。"
+    "text": "注目ポイント\n\n良かった点\n\n全勝であり、勝率は100%でした。\nROIは3.20%と良好な結果を残しました。\n月間利益においても高いパフォーマンスを示しました。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が1回のみのため、さらなる取引機会を模索する必要があります。\n月間の期待値やリスク管理に関する指標を明確にすることが望ましいです。\n今後は多様な戦略を試し、取引のボリュームを増やすことを検討しましょう。"
   },
   {
     "objectID": "posts/2026-01-08-weekly-review/index.html#銘柄分析",
@@ -1481,6 +1481,6 @@
     "href": "posts/2026-01-08-weekly-review/index.html#まとめ",
     "title": "週間レビュー: 2026年1月第2週",
     "section": "まとめ",
-    "text": "まとめ\n今後の方針として、取引機会を増やしつつ、リスク管理を徹底し、多様な戦略を検討していきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後も全勝を維持しつつ、取引機会を増やすことでより安定したパフォーマンスを目指します。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
