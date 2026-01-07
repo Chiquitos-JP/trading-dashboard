@@ -1418,28 +1418,28 @@
     "href": "posts/2026-01-08-weekly-review/index.html",
     "title": "週間レビュー: 2026年1月第2週",
     "section": "",
-    "text": "1月は税前利益621,489円、1取引で勝率100.00%を達成しました。"
+    "text": "1月は税前利益621,489円、取引数1件、勝率100.00%という素晴らしい結果を達成しました。"
   },
   {
     "objectID": "posts/2026-01-08-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-01-08-weekly-review/index.html#月のサマリー",
     "title": "週間レビュー: 2026年1月第2週",
     "section": "",
-    "text": "1月は税前利益621,489円、1取引で勝率100.00%を達成しました。"
+    "text": "1月は税前利益621,489円、取引数1件、勝率100.00%という素晴らしい結果を達成しました。"
   },
   {
     "objectID": "posts/2026-01-08-weekly-review/index.html#パフォーマンスハイライト",
     "href": "posts/2026-01-08-weekly-review/index.html#パフォーマンスハイライト",
     "title": "週間レビュー: 2026年1月第2週",
     "section": "パフォーマンスハイライト",
-    "text": "パフォーマンスハイライト\n\nKey Metrics - This Month\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMonthly Performance\n\n\nJanuary, 2026\n\n\nMetric\nActual\nMoM\nYoY\nvs Plan\nTrend\n\n\n\n\nPBT (JPY)\n621k\n-\n-\n-\n\n\n\n\n746K0621K\n\n\n\n\nPAT (JPY)\n495k\n-\n-\n-\n\n\n\n\n594K0495K\n\n\n\n\nRRR\n-\n-\n-\n-\nNone\n\n\n└ Avg Gain (JPY)\n621k\n-\n-\n-\n\n\n\n\n746K0621K\n\n\n\n\n└ Avg Loss (JPY)\n-\n-\n-\n-\nNone\n\n\nTotal Trades\n1\n-\n-\n-\n\n\n\n\n101\n\n\n\n\n└ Win Trades\n1\n-\n-\n-\nNone\n\n\n└ Loss Trades\n0\n-\n-\n-\nNone\n\n\nWin Rate\n100%\n-\n-\n-\n\n\n\n\n1200100\n\n\n\n\nExpectancy\n-\n-\n-\n-\nNone\n\n\nROI\n3.20%\n-\n-\n-\n\n\n\n\n3.8403.20\n\n\n\n\n\n\nNote: Target to be determined | Ref. table_generator.py, run_all.py\n\n\n\n\n© 2026 chokotto\n\n\n\n\n\n\n\n\n\n\nKey Metrics - Year to Date\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYear-to-Date Summary\n\n\nJanuary to December, 2026\n\n\nMetric\nYTD Actual\nYoY\nvs Plan\nPace\nTrend\n\n\n\n\nPBT (JPY)\n621k\n-\n-\n621k\n\n\n\n\n746K0621K\n\n\n\n\nPAT (JPY)\n495k\n-\n-\n495k\n\n\n\n\n594K0495K\n\n\n\n\nRRR\n-\n-\n-\n-\nNone\n\n\n└ Avg Gain (JPY)\n621k\n-\n-\n-\n\n\n\n\n746K0621K\n\n\n\n\n└ Avg Loss (JPY)\n-\n-\n-\n-\nNone\n\n\nTotal Trades\n1\n-\n-\n-\n\n\n\n\n101\n\n\n\n\n└ Win Trades\n1\n-\n-\n-\nNone\n\n\n└ Loss Trades\n0\n-\n-\n-\nNone\n\n\nWin Rate\n100%\n-\n-\n-\n\n\n\n\n1200100\n\n\n\n\nExpectancy\n-\n-\n-\n-\nNone\n\n\nROI\n3.20%\n-\n-\n-\n\n\n\n\n3.8403.20\n\n\n\n\n\n\nNote: Pace shows monthly average pace based on current results in thousands of JPY (if annual target is set, shows required monthly pace to achieve target) | Ref. table_generator.py, run_all.py\n\n\n\n\n© 2026 chokotto\n\n\n\n\n\n\n\n\n\n\nLife Time Value Progress\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\nRef. ltv_visualization.py\n\n\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\nNote: 2025年1月〜現在（12ヶ月）の月次平均 1.5百万円/月 を基準に、Base（100%）、-50%、-80%の3シナリオで算出。\n\n\n\n\nRef. ltv_visualization.py\n\n\n\n\n\n月次損益 / 累計損益推移\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py"
+    "text": "パフォーマンスハイライト\n\nKey Metrics - This Month\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMonthly Performance\n\n\nJanuary, 2026\n\n\nMetric\nActual\nMoM\nYoY\nvs Plan\nTrend\n\n\n\n\nPBT (JPY)\n621k\n-\n-\n-\n\n\n\n\n746K0621K\n\n\n\n\nPAT (JPY)\n495k\n-\n-\n-\n\n\n\n\n594K0495K\n\n\n\n\nRRR\n-\n-\n-\n-\nNone\n\n\n└ Avg Gain (JPY)\n621k\n-\n-\n-\n\n\n\n\n746K0621K\n\n\n\n\n└ Avg Loss (JPY)\n-\n-\n-\n-\nNone\n\n\nTotal Trades\n1\n-\n-\n-\n\n\n\n\n101\n\n\n\n\n└ Win Trades\n1\n-\n-\n-\nNone\n\n\n└ Loss Trades\n0\n-\n-\n-\nNone\n\n\nWin Rate\n100%\n-\n-\n-\n\n\n\n\n1200100\n\n\n\n\nExpectancy\n-\n-\n-\n-\nNone\n\n\nROI\n3.20%\n-\n-\n-\n\n\n\n\n3.8403.20\n\n\n\n\n\n\nNote: Target to be determined | Ref. table_generator.py, run_all.py\n\n\n\n\n© 2026 chokotto\n\n\n\n\n\n\n\n\n\n\nKey Metrics - Year to Date\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYear-to-Date Summary\n\n\nJanuary to December, 2026\n\n\nMetric\nYTD Actual\nYoY\nvs Plan\nPace\nTrend\n\n\n\n\nPBT (JPY)\n621k\n-\n-\n621k\n\n\n\n\n746K0621K\n\n\n\n\nPAT (JPY)\n495k\n-\n-\n495k\n\n\n\n\n594K0495K\n\n\n\n\nRRR\n-\n-\n-\n-\nNone\n\n\n└ Avg Gain (JPY)\n621k\n-\n-\n-\n\n\n\n\n746K0621K\n\n\n\n\n└ Avg Loss (JPY)\n-\n-\n-\n-\nNone\n\n\nTotal Trades\n1\n-\n-\n-\n\n\n\n\n101\n\n\n\n\n└ Win Trades\n1\n-\n-\n-\nNone\n\n\n└ Loss Trades\n0\n-\n-\n-\nNone\n\n\nWin Rate\n100%\n-\n-\n-\n\n\n\n\n1200100\n\n\n\n\nExpectancy\n-\n-\n-\n-\nNone\n\n\nROI\n3.20%\n-\n-\n-\n\n\n\n\n3.8403.20\n\n\n\n\n\n\nNote: Pace shows monthly average pace based on current results in thousands of JPY (if annual target is set, shows required monthly pace to achieve target) | Ref. table_generator.py, run_all.py\n\n\n\n\n© 2026 chokotto\n\n\n\n\n\n\n\n\n\n\nLife Time Value Progress\n\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n\nRef. ltv_visualization.py\n\n\n\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n\nNote: 2025年1月〜現在（12ヶ月）の月次平均 1.5百万円/月 を基準に、Base（100%）、-50%、-80%の3シナリオで算出。\n\n\n\n\nRef. ltv_visualization.py\n\n\n\n\n\n損益推移\n                        \n                                            Ref. run_all.py"
   },
   {
     "objectID": "posts/2026-01-08-weekly-review/index.html#注目ポイント",
     "href": "posts/2026-01-08-weekly-review/index.html#注目ポイント",
     "title": "週間レビュー: 2026年1月第2週",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n全勝であり、勝率は100%でした。\nROIは3.20%と良好な結果を残しました。\n月間利益においても高いパフォーマンスを示しました。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が1回のみのため、さらなる取引機会を模索する必要があります。\n月間の期待値やリスク管理に関する指標を明確にすることが望ましいです。\n今後は多様な戦略を試し、取引のボリュームを増やすことを検討しましょう。"
+    "text": "注目ポイント\n\n良かった点\n\n全勝で、勝率は100.00%を維持しました。\nROIは3.20%と良好な数値を記録しました。\n月間利益をしっかり確保し、目標に向けた第一歩を踏み出しました。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が1件であったため、さらなる取引機会を模索する必要があります。\nリスクを分散するために、複数の取引を検討することが重要です。\n期待値（expectancy）が未算出のため、今後のパフォーマンスを分析する基準を設定する必要があります。"
   },
   {
     "objectID": "posts/2026-01-08-weekly-review/index.html#銘柄分析",
@@ -1481,6 +1481,6 @@
     "href": "posts/2026-01-08-weekly-review/index.html#まとめ",
     "title": "週間レビュー: 2026年1月第2週",
     "section": "まとめ",
-    "text": "まとめ\n今後も全勝を維持しつつ、取引機会を増やすことでより安定したパフォーマンスを目指します。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n1月の成果を基に、今後は取引機会を増やし、さらなる成長を目指していきます。リスク管理を強化し、安定したパフォーマンスを追求していきましょう。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
