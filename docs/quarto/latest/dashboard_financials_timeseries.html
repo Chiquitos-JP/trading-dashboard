@@ -135,6 +135,11 @@ ul.task-list li input[type="checkbox"] {
 </i> 
  <span class="dropdown-text">2025 KPI Dashboard</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./dashboard_2026.html"><i class="bi bi-file-earmark-text" role="img">
+</i> 
+ <span class="dropdown-text">2026 KPI Dashboard</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Experimental Labs</li>
     </ul>
@@ -230,17 +235,17 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
- <span class="menu-text">2024年</span>
-  </li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dashboard_2025.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2025年 ✓</span></a>
+ <span class="menu-text">2025年</span></a>
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">2026年 (予定)</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./dashboard_2026.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2026年 ✓</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item">
@@ -382,8 +387,23 @@ ul.task-list li input[type="checkbox"] {
   }
 
   .status-live { color: var(--primary-blue); }
-  .status-wip { color: #d97706; }
+  .status-completed { color: #16a34a; }
   .status-future { color: #94a3b8; }
+  
+  /* Completed Year (clickable archive) */
+  a.year-card-completed {
+    text-decoration: none;
+    border-color: #bbf7d0;
+    background: linear-gradient(to bottom right, #ffffff, #f0fdf4);
+    box-shadow: 0 2px 4px -1px rgba(22, 163, 74, 0.08);
+  }
+  a.year-card-completed:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -3px rgba(22, 163, 74, 0.15);
+    border-color: #16a34a;
+  }
+  .card-completed-text .year-number { color: #16a34a; }
+  .card-completed-text .action-arrow { color: #16a34a; }
 
   .year-desc {
     font-size: 0.95rem;
@@ -412,25 +432,27 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="years-grid">
 
-  <div class="year-card year-card-inactive card-inactive-text">
+  <a href="dashboard_2025.html" class="year-card year-card-completed card-completed-text">
     <div>
-      <div class="year-status status-wip">
-        <i class="bi bi-cone-striped"></i> Preparation
+      <div class="year-status status-completed">
+        <i class="bi bi-check-circle-fill" style="font-size:0.8em; vertical-align:middle;"></i> Completed
       </div>
-      <div class="year-number">2024</div>
-      <p class="year-desc">
-        データインポートおよび整合性チェック中。<br>
-        公開までお待ちください。
+      <div class="year-number">2025</div>
+      <p class="year-desc" style="color:#1e293b;">
+        2025年度の取引履歴と損益分析のアーカイブです。
       </p>
     </div>
-  </div>
+    <div class="action-arrow">
+      View Archive <i class="bi bi-arrow-right"></i>
+    </div>
+  </a>
 
-  <a href="dashboard_2025.html" class="year-card year-card-active card-active-text">
+  <a href="dashboard_2026.html" class="year-card year-card-active card-active-text">
     <div>
       <div class="year-status status-live">
         <i class="bi bi-circle-fill" style="font-size:0.6em; vertical-align:middle;"></i> Live Updating
       </div>
-      <div class="year-number">2025</div>
+      <div class="year-number">2026</div>
       <p class="year-desc" style="color:#1e293b;">
         現在進行中の年度データ。YTD損益および月次詳細分析を閲覧できます。
       </p>
@@ -445,9 +467,9 @@ ul.task-list li input[type="checkbox"] {
       <div class="year-status status-future">
         <i class="bi bi-calendar-event"></i> Future
       </div>
-      <div class="year-number">2026</div>
+      <div class="year-number">2027</div>
       <p class="year-desc">
-        2026年1月より記録開始予定。
+        2027年1月より記録開始予定。
       </p>
     </div>
   </div>
@@ -864,7 +886,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>© 2025 chokotto All Rights Reserved.</p>
+<p>© 2026 chokotto All Rights Reserved.</p>
 <div class="toc-actions"><ul><li><a href="https://github.com/Chiquitos-JP/trading-dashboard/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">

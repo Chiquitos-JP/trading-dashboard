@@ -408,7 +408,7 @@
     "href": "dashboard_financials_timeseries.html",
     "title": "Timeseries Reports",
     "section": "",
-    "text": "Annual Performance\n  \n    年度ごとの取引履歴、KPI推移、損益分析のアーカイブです。\n  \n\n\n\n\n  \n    \n      \n         Preparation\n      \n      2024\n      \n        データインポートおよび整合性チェック中。\n        公開までお待ちください。\n      \n    \n  \n\n  \n    \n      \n         Live Updating\n      \n      2025\n      \n        現在進行中の年度データ。YTD損益および月次詳細分析を閲覧できます。\n      \n    \n    \n      View Report \n    \n  \n\n  \n    \n      \n         Future\n      \n      2026\n      \n        2026年1月より記録開始予定。",
+    "text": "Annual Performance\n  \n    年度ごとの取引履歴、KPI推移、損益分析のアーカイブです。\n  \n\n\n\n\n  \n    \n      \n         Completed\n      \n      2025\n      \n        2025年度の取引履歴と損益分析のアーカイブです。\n      \n    \n    \n      View Archive \n    \n  \n\n  \n    \n      \n         Live Updating\n      \n      2026\n      \n        現在進行中の年度データ。YTD損益および月次詳細分析を閲覧できます。\n      \n    \n    \n      View Report \n    \n  \n\n  \n    \n      \n         Future\n      \n      2027\n      \n        2027年1月より記録開始予定。",
     "crumbs": [
       "Concept",
       "Dashboard",
