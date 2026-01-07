@@ -1264,28 +1264,28 @@
     "href": "posts/2026-01-07-weekly-review/index.html",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "",
-    "text": "1月は税前利益621,489円を達成し、1取引全勝という素晴らしい結果を残しました。"
+    "text": "1月は税前利益621,489円を達成し、1取引全勝という素晴らしい成果を収めました。"
   },
   {
     "objectID": "posts/2026-01-07-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-01-07-weekly-review/index.html#月のサマリー",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "",
-    "text": "1月は税前利益621,489円を達成し、1取引全勝という素晴らしい結果を残しました。"
+    "text": "1月は税前利益621,489円を達成し、1取引全勝という素晴らしい成果を収めました。"
   },
   {
     "objectID": "posts/2026-01-07-weekly-review/index.html#パフォーマンスハイライト",
     "href": "posts/2026-01-07-weekly-review/index.html#パフォーマンスハイライト",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "パフォーマンスハイライト",
-    "text": "パフォーマンスハイライト\n\nMonthly Performance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMonthly Performance\n\n\nJanuary, 2026\n\n\n指標\n実績\nMoM\nYoY\nvs_Plan\nTrend\n\n\n\n\nPBT\n621\n—\n—\n—\n\n\n\n\n5.06M-2.16M14.4K-46.4K-2.16M1.81M1.52M534K3.25M3.15M5.06M2.78M1.10M621K\n\n\n\n\nPAT\n495\n—\n—\n—\n\n\n\n\n594K0495K\n\n\n\n\nRRR\n—\n—\n—\n—\nNone\n\n\n└ Avg Gain\n621\n—\n—\n—\n\n\n\n\n746K0621K\n\n\n\n\n└ Avg Loss\n—\n—\n—\n—\nNone\n\n\nTotal Trades\n1\n—\n—\n—\n\n\n\n\n101\n\n\n\n\n└ Win Trades\n1\n—\n—\n—\nNone\n\n\n└ Loss Trades\n0\n—\n—\n—\nNone\n\n\nWin Rate\n100%\n—\n—\n—\n\n\n\n\n1200100\n\n\n\n\nExpectancy\n—\n—\n—\n—\nNone\n\n\nROI\n3.20%\n—\n—\n—\n\n\n\n\n3.8403.20\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYear-to-Date Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYear-to-Date Summary\n\n\nJanuary to December, 2026\n\n\n指標\n累計実績\nYoY_ytd\nvs_Plan\nPace\nTrend\n\n\n\n\nPBT\n621\n—\n—\n621\n\n\n\n\n5.06M-2.16M14.4K-46.4K-2.16M1.81M1.52M534K3.25M3.15M5.06M2.78M1.10M621K\n\n\n\n\nPAT\n495\n—\n—\n495\n\n\n\n\n594K0495K\n\n\n\n\nRRR\n—\n—\n—\n—\nNone\n\n\n└ Avg Gain\n621\n—\n—\n—\n\n\n\n\n746K0621K\n\n\n\n\n└ Avg Loss\n—\n—\n—\n—\nNone\n\n\nTotal Trades\n1\n—\n—\n—\n\n\n\n\n101\n\n\n\n\n└ Win Trades\n1\n—\n—\n—\nNone\n\n\n└ Loss Trades\n0\n—\n—\n—\nNone\n\n\nWin Rate\n100%\n—\n—\n—\n\n\n\n\n1200100\n\n\n\n\nExpectancy\n—\n—\n—\n—\nNone\n\n\nROI\n3.20%\n—\n—\n—\n\n\n\n\n3.8403.20\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote参考\n\n\n\n\n\n\n指標: 基本的に税前利益ベースで記載\n単位: 通貨値は千円単位で表示\nPace: 現在の実績ベースの月次平均ペースを千円単位で表示（年間目標が設定されている場合は、目標達成に必要な月次ペースを表示）\n\n\n\n\n\n\nLife Time Value Progress\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n\n    \n        算出方法：2025年1月〜現在（12ヶ月）の月次平均 1.5百万円/月 を基準に、\n        Base（100%）、-50%、-80%の3シナリオで年間予測・累積見通しを算出。\n    \n\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n\n\n\n\n\nNote説明\n\n\n\n\n\n\n年間累計損益: 現在の年の累計損益を目標額と比較して表示\n売上高_月次推移: 月次損益の推移を表示（実績と見通しを分けて表示）\n目標: 1億円\n累計損益: 17,637,949円\n\n\n\n\n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py\n\n\n\n月次損益 / 累計損益推移\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py"
+    "text": "パフォーマンスハイライト\n\nMonthly Performance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMonthly Performance\n\n\nJanuary, 2026\n\n\nMetric\nActual\nMoM\nYoY\nvs Plan\nTrend\n\n\n\n\nPBT\n621\n—\n—\n—\n\n\n\n\n746K0621K\n\n\n\n\nPAT\n495\n—\n—\n—\n\n\n\n\n594K0495K\n\n\n\n\nRRR\n—\n—\n—\n—\nNone\n\n\n└ Avg Gain\n621\n—\n—\n—\n\n\n\n\n746K0621K\n\n\n\n\n└ Avg Loss\n—\n—\n—\n—\nNone\n\n\nTotal Trades\n1\n—\n—\n—\n\n\n\n\n101\n\n\n\n\n└ Win Trades\n1\n—\n—\n—\nNone\n\n\n└ Loss Trades\n0\n—\n—\n—\nNone\n\n\nWin Rate\n100%\n—\n—\n—\n\n\n\n\n1200100\n\n\n\n\nExpectancy\n—\n—\n—\n—\nNone\n\n\nROI\n3.20%\n—\n—\n—\n\n\n\n\n3.8403.20\n\n\n\n\n\n\n© 2026 chokotto\n\n\n\n\n\n\n\n\n\n\nYear-to-Date Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYear-to-Date Summary\n\n\nJanuary to December, 2026\n\n\nMetric\nYTD Actual\nYoY\nvs Plan\nPace\nTrend\n\n\n\n\nPBT\n621\n—\n—\n621\n\n\n\n\n746K0621K\n\n\n\n\nPAT\n495\n—\n—\n495\n\n\n\n\n594K0495K\n\n\n\n\nRRR\n—\n—\n—\n—\nNone\n\n\n└ Avg Gain\n621\n—\n—\n—\n\n\n\n\n746K0621K\n\n\n\n\n└ Avg Loss\n—\n—\n—\n—\nNone\n\n\nTotal Trades\n1\n—\n—\n—\n\n\n\n\n101\n\n\n\n\n└ Win Trades\n1\n—\n—\n—\nNone\n\n\n└ Loss Trades\n0\n—\n—\n—\nNone\n\n\nWin Rate\n100%\n—\n—\n—\n\n\n\n\n1200100\n\n\n\n\nExpectancy\n—\n—\n—\n—\nNone\n\n\nROI\n3.20%\n—\n—\n—\n\n\n\n\n3.8403.20\n\n\n\n\n\n\n© 2026 chokotto\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote参考\n\n\n\n\n\n\n指標: 基本的に税前利益ベースで記載\n単位: 通貨値は千円単位で表示\nPace: 現在の実績ベースの月次平均ペースを千円単位で表示（年間目標が設定されている場合は、目標達成に必要な月次ペースを表示）\n\n\n\n\n\n\nLife Time Value Progress\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n\n    \n        算出方法：2025年1月〜現在（12ヶ月）の月次平均 1.5百万円/月 を基準に、\n        Base（100%）、-50%、-80%の3シナリオで年間予測・累積見通しを算出。\n    \n\n\n\n    \n        \n                                            \n    \n    \n                            \n    \n\n\n\n\n\n\n\n\nNote説明\n\n\n\n\n\n\n年間累計損益: 現在の年の累計損益を目標額と比較して表示\n売上高_月次推移: 月次損益の推移を表示（実績と見通しを分けて表示）\n目標: 1億円\n累計損益: 17,637,949円\n\n\n\n\n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py\n\n\n\n月次損益 / 累計損益推移\n                        \n                                            \n\n関連ファイル: scripts/by_timeSeries/realizedPl/kpi_visualization.py, scripts/by_timeSeries/realizedPl/kpi_calc_ytd_monthly_simple.py"
   },
   {
     "objectID": "posts/2026-01-07-weekly-review/index.html#注目ポイント",
     "href": "posts/2026-01-07-weekly-review/index.html#注目ポイント",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n勝率100%を維持し、無敗のパフォーマンスを発揮しました。\nROIは3.20%と安定したリターンを記録しました。\n1回の取引で495,234円の利益を確保しました。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が1回のため、更なる取引機会を増やす必要があります。\nリスク管理の観点から、複数の取引シナリオを検討することが望ましいです。\n期待値の算出がないため、今後は期待値を明確にする分析を行うことが重要です。"
+    "text": "注目ポイント\n\n良かった点\n\n勝率100%を維持し、全ての取引で利益を上げました。\nROIは3.20%と良好で、効率的な資本運用が実現できています。\n年初からのパフォーマンスも良好で、YTDでも同様の成績を保持しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が1にとどまっているため、今後は取引機会の拡大を目指す必要があります。\n期待値の計算ができていないため、今後の取引に役立てるために期待値の分析を行うべきです。\nリスク管理の観点から、ポートフォリオの多様化を検討することが望ましいです。"
   },
   {
     "objectID": "posts/2026-01-07-weekly-review/index.html#銘柄分析",
@@ -1327,6 +1327,6 @@
     "href": "posts/2026-01-07-weekly-review/index.html#まとめ",
     "title": "週間レビュー: 2026年1月第1週",
     "section": "まとめ",
-    "text": "まとめ\n今後は取引機会を増やし、さらなる利益の最大化を目指します。また、リスク管理を強化し、安定したパフォーマンスを維持していきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後もこの好調なパフォーマンスを維持するため、取引機会の拡大とリスク管理の強化に努めていきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
