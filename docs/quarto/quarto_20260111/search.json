@@ -1488,14 +1488,14 @@
     "href": "posts/2026-01-11-weekly-review/index.html",
     "title": "Week 2 - Jan 2026",
     "section": "",
-    "text": "1月は税前利益689,430円、4取引全勝、勝率100.00%という素晴らしい結果を達成しました。"
+    "text": "1月は、税前利益689,430円を達成し、4取引全勝という素晴らしい成果を収めました。"
   },
   {
     "objectID": "posts/2026-01-11-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-01-11-weekly-review/index.html#月のサマリー",
     "title": "Week 2 - Jan 2026",
     "section": "",
-    "text": "1月は税前利益689,430円、4取引全勝、勝率100.00%という素晴らしい結果を達成しました。"
+    "text": "1月は、税前利益689,430円を達成し、4取引全勝という素晴らしい成果を収めました。"
   },
   {
     "objectID": "posts/2026-01-11-weekly-review/index.html#パフォーマンスハイライト",
@@ -1509,14 +1509,14 @@
     "href": "posts/2026-01-11-weekly-review/index.html#注目ポイント",
     "title": "Week 2 - Jan 2026",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n全ての取引が成功し、勝率100%を維持しました。\n税前利益689,430円は非常に良好な結果です。\nROIが3.55%であり、効率的な投資ができました。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が少ないため、さらなる機会を探る必要があります。\nリスク管理の観点から、次回は多様な戦略を試みることを検討しましょう。\nパフォーマンスの持続可能性を向上させるために、期待値の分析を行うことが重要です。"
+    "text": "注目ポイント\n\n良かった点\n\n勝率100%を維持し、全ての取引が成功しました。\n月間ROIは3.55%で、良好な投資効率を示しています。\n税前利益549,372円の安定した獲得がありました。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が4と少ないため、さらなる取引機会を模索する必要があります。\n期待値の計算が未実施のため、今後は期待値を明確にすることが重要です。\nリスク管理の観点から、ポジションサイズやストップロスの設定を再評価することを推奨します。"
   },
   {
     "objectID": "posts/2026-01-11-weekly-review/index.html#銘柄分析",
     "href": "posts/2026-01-11-weekly-review/index.html#銘柄分析",
     "title": "Week 2 - Jan 2026",
     "section": "銘柄分析",
-    "text": "銘柄分析\n\n月別取扱い銘柄数\n                        \n                                            \n\nNote: 2025年と2026年の月別データを比較。棒グラフは銘柄数、折れ線グラフは取引回数を示す。\n\n\n\n銘柄別パラメーター分析\n                        \n                                            \n\nNote: 取引回数Top12銘柄のパラメーター。ドロップダウンでソート軸を切替可能。\n\n\n\n\n\n\n\nNoteコメント\n\n\n\n\n\nコメントを追加予定\n\n\n\n\n\n保有期間分布\n                        \n                                            \n\nNote: 信用取引のみを対象。左図は日数ヒストグラム、右図はカテゴリ別分布。\n\n\n\n\n\n\n\nNote保有期間サマリー\n\n\n\n\n取扱い銘柄数: 33銘柄\n平均保有期間: 4.05日\n同日決済率: 52.1%\n\n\n\n\n\n銘柄別損益分析\n                        \n                                            \n\nNote: 税前損益の上位80%を占める銘柄を表示。左が利益、右が損失。"
+    "text": "銘柄分析\n\n月別取扱い銘柄数\n                        \n                                            \n\nNote: 2025年と2026年の月別データを比較。棒グラフは銘柄数、折れ線グラフは取引回数を示す。\n\n\n\n銘柄別パラメーター分析\n                        \n                                            \n\nNote: 取引回数Top12銘柄のパラメーター。ドロップダウンでソート軸を切替可能。\n\n\n\n\n\n\n\nNoteコメント\n\n\n\n\n\nコメントを追加予定\n\n\n\n\n\n保有期間分布\n                        \n                                            \n\nNote: 信用取引のみを対象。左図は日数ヒストグラム、右図はカテゴリ別分布。\n\n\n\n\n\n\n\nNote保有期間サマリー\n\n\n\n\n取扱い銘柄数: 66銘柄\n平均保有期間: 3.49日\n同日決済率: 57.2%\n\n\n\n\n\n銘柄別損益分析\n                        \n                                            \n\nNote: 税前損益の上位80%を占める銘柄を表示。左が利益、右が損失。"
   },
   {
     "objectID": "posts/2026-01-11-weekly-review/index.html#リスク分析",
@@ -1551,6 +1551,6 @@
     "href": "posts/2026-01-11-weekly-review/index.html#まとめ",
     "title": "Week 2 - Jan 2026",
     "section": "まとめ",
-    "text": "まとめ\nこの結果を基に、今後も安定したパフォーマンスを維持しつつ、取引機会の拡大に努めていきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後も勝率を維持しつつ、取引機会を増やし、リスク管理を強化していく方針です。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
