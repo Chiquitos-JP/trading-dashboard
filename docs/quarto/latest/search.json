@@ -473,7 +473,7 @@
     "href": "index.html",
     "title": "\n    ペンとノート\n  ",
     "section": "",
-    "text": "ペンとノート\n  \n\n  \n    実データでデータハンドリングを学ぶ。\n    「持ち歩く」感じを楽しむ。\n  \n\n  chokotto"
+    "text": "ペンとノート\n  \n\n  \n    実データでデータハンドリングを学ぶ。\n  \n\n  chokotto"
   },
   {
     "objectID": "posts/2025-11-30-weekly-review/index.html",
@@ -1558,14 +1558,14 @@
     "href": "posts/2026-01-12-weekly-review/index.html",
     "title": "Week 2 - Jan 2026",
     "section": "",
-    "text": "1月は税前利益689,430円を達成し、4取引全勝という素晴らしい結果を収めました。"
+    "text": "1月は税前利益689,430円を上げ、4取引全勝という素晴らしい結果を残しました。"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-01-12-weekly-review/index.html#月のサマリー",
     "title": "Week 2 - Jan 2026",
     "section": "",
-    "text": "1月は税前利益689,430円を達成し、4取引全勝という素晴らしい結果を収めました。"
+    "text": "1月は税前利益689,430円を上げ、4取引全勝という素晴らしい結果を残しました。"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#パフォーマンスハイライト",
@@ -1579,7 +1579,7 @@
     "href": "posts/2026-01-12-weekly-review/index.html#注目ポイント",
     "title": "Week 2 - Jan 2026",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n勝率100.00%を維持し、全ての取引で利益を上げました。\n月間ROIは3.55%で、効率的な資本運用ができています。\n年初からのパフォーマンスも良好で、YTDでも同様の成果を上げています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が少ないため、今後は取引の機会を増やすことが重要です。\n期待値の算出ができていないため、将来的には期待値についての分析を行うべきです。\nリスク管理の観点から、資金配分の見直しを検討することが必要です。"
+    "text": "注目ポイント\n\n良かった点\n\n勝率が100.00%で、全ての取引が成功しました。\n月間ROIは3.55%で、資本を効率的に運用できました。\n税前利益は549,372円と、安定した利益を確保しました。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が少ないため、さらなるトレード機会を模索する必要があります。\nリスク管理の観点から、次月にはポジションサイズの適切な見直しを検討することが重要です。\n期待値の分析を行い、次回のトレード戦略をより効果的にするためのデータ収集を進めるべきです。"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#銘柄分析",
@@ -1600,7 +1600,7 @@
     "href": "posts/2026-01-12-weekly-review/index.html#マーケットデータ",
     "title": "Week 2 - Jan 2026",
     "section": "マーケットデータ",
-    "text": "マーケットデータ\n\nS&P500 Advance-Decline Line\n                        \n                                            \n    \n    \n\nNote: A/D Lineは上昇銘柄数 - 下落銘柄数の累積。市場の内部強度を測定。\n\n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nS&P500指数: S&P 500 Index (^GSPC)\nA/D Line: S&P500構成銘柄の日次騰落率から計算（上昇銘柄数 - 下落銘柄数の累積）\nSector Rotation: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する日次超過リターン\n\nデータソース: Yahoo Finance (yfinance)"
+    "text": "マーケットデータ\n\nS&P500 Advance-Decline Line\n                        \n                                            \n\nNote: A/D Lineは上昇銘柄数 - 下落銘柄数の累積。市場の内部強度を測定。\n\n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nS&P500指数: S&P 500 Index (^GSPC)\nA/D Line: S&P500構成銘柄の日次騰落率から計算（上昇銘柄数 - 下落銘柄数の累積）\nSector Rotation: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する日次超過リターン\n\nデータソース: Yahoo Finance (yfinance)"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#経済指標カレンダー",
@@ -1621,6 +1621,6 @@
     "href": "posts/2026-01-12-weekly-review/index.html#まとめ",
     "title": "Week 2 - Jan 2026",
     "section": "まとめ",
-    "text": "まとめ\n今後もこの好調なパフォーマンスを維持しつつ、取引機会を増やし、リスク管理を強化していく方針です。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後も安定したパフォーマンスを維持しつつ、取引機会を増やし、リスク管理を強化していきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
