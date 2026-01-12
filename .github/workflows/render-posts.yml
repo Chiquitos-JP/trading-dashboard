@@ -1,0 +1,165 @@
+name: Render Weekly Posts (TidyTuesday/MakeoverMonday)
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_type:
+        description: 'Post type to render'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - tidytuesday
+          - makeover-monday
+      post_date:
+        description: 'Specific date (YYYY-MM-DD) or leave empty for all'
+        required: false
+        default: ''
+        type: string
+
+env:
+  QUARTO_PROJECT_DIR: scripts/by_timeSeries/quarto
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.0'
+          use-public-rspm: true
+
+      - name: Setup R dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::tidyverse
+            any::lubridate
+            any::scales
+            any::ggplot2
+            any::here
+            any::arrow
+            any::knitr
+            any::rmarkdown
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy plotly pyarrow jupyter
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: '1.4.557'
+
+      - name: Find posts to render
+        id: find-posts
+        run: |
+          cd ${{ env.QUARTO_PROJECT_DIR }}/posts
+          
+          POST_TYPE="${{ github.event.inputs.post_type }}"
+          POST_DATE="${{ github.event.inputs.post_date }}"
+          
+          # Build pattern based on input
+          if [ "$POST_TYPE" = "tidytuesday" ]; then
+            PATTERN="*-tidytuesday"
+          elif [ "$POST_TYPE" = "makeover-monday" ]; then
+            PATTERN="*-makeover-monday"
+          else
+            PATTERN="*-tidytuesday *-makeover-monday"
+          fi
+          
+          # Find matching directories
+          POSTS=""
+          for p in $PATTERN; do
+            for dir in $p/; do
+              if [ -d "$dir" ]; then
+                # Filter by date if specified
+                if [ -n "$POST_DATE" ]; then
+                  if [[ "$dir" == *"$POST_DATE"* ]]; then
+                    POSTS="$POSTS $dir"
+                  fi
+                else
+                  POSTS="$POSTS $dir"
+                fi
+              fi
+            done
+          done
+          
+          echo "Found posts: $POSTS"
+          echo "posts=$POSTS" >> $GITHUB_OUTPUT
+
+      - name: Render TidyTuesday posts (R)
+        if: contains(github.event.inputs.post_type, 'tidytuesday') || github.event.inputs.post_type == 'all'
+        run: |
+          cd ${{ env.QUARTO_PROJECT_DIR }}
+          
+          for post_dir in posts/*-tidytuesday/; do
+            if [ -d "$post_dir" ]; then
+              echo "📝 Rendering: $post_dir"
+              quarto render "$post_dir" || echo "⚠️ Failed: $post_dir"
+            fi
+          done
+
+      - name: Render MakeoverMonday posts (Python)
+        if: contains(github.event.inputs.post_type, 'makeover-monday') || github.event.inputs.post_type == 'all'
+        run: |
+          cd ${{ env.QUARTO_PROJECT_DIR }}
+          
+          for post_dir in posts/*-makeover-monday/; do
+            if [ -d "$post_dir" ]; then
+              echo "📝 Rendering: $post_dir"
+              quarto render "$post_dir" || echo "⚠️ Failed: $post_dir"
+            fi
+          done
+
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if [ -n "$(git status --porcelain docs/)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "📊 Changes detected in docs/"
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No changes to commit"
+          fi
+
+      - name: Commit and push
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add docs/
+          git add ${{ env.QUARTO_PROJECT_DIR }}/_freeze/ || true
+          
+          COMMIT_MSG="🎨 Render weekly posts (${{ github.event.inputs.post_type }})"
+          if [ -n "${{ github.event.inputs.post_date }}" ]; then
+            COMMIT_MSG="$COMMIT_MSG - ${{ github.event.inputs.post_date }}"
+          fi
+          
+          git commit -m "$COMMIT_MSG"
+          git push
+
+      - name: Summary
+        run: |
+          echo "## 📊 Render Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Post Type**: ${{ github.event.inputs.post_type }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Date Filter**: ${{ github.event.inputs.post_date || 'All' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Changes Committed**: ${{ steps.check-changes.outputs.changes }}" >> $GITHUB_STEP_SUMMARY
