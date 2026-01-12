@@ -1250,7 +1250,7 @@
     "href": "dashboard_2026.html",
     "title": "2026 Trading Dashboard",
     "section": "",
-    "text": "Financial Statements — FY2026\n  Year-to-Date Performance & Financial Position\n  \n    Investment Performance Dashboard • \n    Updated: \n  \n\n\n\n  Abstract\n  \n    本ダッシュボードは2026年度の取引パフォーマンスを財務諸表形式で表示したものである。\n    月次KPI（Table 1）に加え、損益計算書 (P/L: Table 2)、貸借対照表 (BS: Table 3)、\n    キャッシュフロー計算書 (CF: Table 4) を通じて、投資活動の財務的影響を定量的に把握する。\n    なお、本年度においては取引活動以外の収益・投資は存在しない。\n  \n\n\n\n  Contents\n  \n    Table 1. Monthly KPI Summary (業績指標)\n    Table 2. Income Statement (損益計算書 / P/L)\n    Table 3. Balance Sheet (貸借対照表 / BS)\n    Table 4. Cash Flow Statement (CF計算書)\n  \n\n\n⁂\n\n\n  \n    \n      \n      \n    \n  \n\n\n\n  \n    \n      [1]\n      楽天証券およびSBI証券のデータでは諸経費は差し引かれているが、税金は含まれていない。\n    \n    \n      [2]\n      適用為替レートはFRED (Federal Reserve Economic Data) の日次データを使用。\n      DEXJPUS Series\n    \n    \n      [3]\n      BS・CFは取引損益の累積のみを反映。期首の元本・借入等は含まない。\n    \n    \n      [4]\n      本レポートは run_all.py により自動生成される。",
+    "text": "Financial Statements — FY2026\n  Year-to-Date Performance & Financial Position\n  \n    Investment Performance Dashboard • \n    Updated: \n  \n\n\n\n  Abstract\n  \n    本ダッシュボードは2026年度の取引パフォーマンスを財務諸表形式で表示したものである。\n    月次KPI（Table 1）に加え、損益計算書 (P/L: Table 2)、貸借対照表 (BS: Table 3)、\n    キャッシュフロー計算書 (CF: Table 4)、口座別リスク分析 (Table 5) を通じて、\n    投資活動の財務的影響を定量的に把握する。\n    なお、本年度においては取引活動以外の収益・投資は存在しない。\n  \n\n\n\n  Contents\n  \n    Table 1. Monthly KPI Summary (業績指標)\n    Table 2. Income Statement (損益計算書 / P/L)\n    Table 3. Balance Sheet (貸借対照表 / BS)\n    Table 4. Cash Flow Statement (CF計算書)\n    Table 5. Cash Reserve Ratio (口座別リスク分析)\n  \n\n\n⁂\n\n\n  \n    \n      \n      \n    \n  \n\n\n\n  \n    \n      [1]\n      楽天証券およびSBI証券のデータでは諸経費は差し引かれているが、税金は含まれていない。\n    \n    \n      [2]\n      適用為替レートはFRED (Federal Reserve Economic Data) の日次データを使用。\n      DEXJPUS Series\n    \n    \n      [3]\n      BS・CFは取引損益の累積のみを反映。期首の元本・借入等は含まない。\n    \n    \n      [4]\n      本レポートは run_all.py により自動生成される。",
     "crumbs": [
       "Concept",
       "Dashboard",
@@ -1558,14 +1558,14 @@
     "href": "posts/2026-01-12-weekly-review/index.html",
     "title": "Week 2 - Jan 2026",
     "section": "",
-    "text": "1月は、税前利益689,430円を達成し、4取引全勝の素晴らしいパフォーマンスを記録しました。"
+    "text": "1月は税前利益689,430円、取引数4で全勝を達成しました。"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-01-12-weekly-review/index.html#月のサマリー",
     "title": "Week 2 - Jan 2026",
     "section": "",
-    "text": "1月は、税前利益689,430円を達成し、4取引全勝の素晴らしいパフォーマンスを記録しました。"
+    "text": "1月は税前利益689,430円、取引数4で全勝を達成しました。"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#パフォーマンスハイライト",
@@ -1579,7 +1579,7 @@
     "href": "posts/2026-01-12-weekly-review/index.html#注目ポイント",
     "title": "Week 2 - Jan 2026",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n勝率100%を維持し、全ての取引で利益を上げました。\nROIは3.55%で、安定したリターンを確保しました。\nYTDでも同様の結果を反映し、前年からの成長が見られます。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が少ないため、さらなる機会を模索する必要があります。\nリスク管理の強化を図り、より多様な戦略を検討することが重要です。\n期待値の算出が未設定のため、今後の取引の期待値を明確にすることが求められます。"
+    "text": "注目ポイント\n\n良かった点\n\n勝率100%を維持し、全取引で利益を上げました。\nROIは3.55%と健全な水準を保っています。\n月間税前利益689,430円は素晴らしい成果です。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が4と少ないため、さらなるエントリー機会を模索する必要があります。\nリスク管理の観点から、ポートフォリオの多様化を検討することが望ましいです。\n期待値（expectancy）の計算が未実施なので、今後のデータ分析に取り入れるべきです。"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#銘柄分析",
@@ -1621,6 +1621,6 @@
     "href": "posts/2026-01-12-weekly-review/index.html#まとめ",
     "title": "Week 2 - Jan 2026",
     "section": "まとめ",
-    "text": "まとめ\n引き続き高い勝率を維持しつつ、取引機会を増やすことで成長を目指していきます。さらなる戦略の見直しとリスク管理の強化に努めます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後も高い勝率を維持しつつ、取引機会の拡大とリスク管理の強化を図ります。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
