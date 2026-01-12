@@ -1558,14 +1558,14 @@
     "href": "posts/2026-01-12-weekly-review/index.html",
     "title": "Week 2 - Jan 2026",
     "section": "",
-    "text": "1月は税前利益689,430円、取引数4で全勝を達成しました。"
+    "text": "1月は税前利益689,430円を達成し、4取引全勝という素晴らしい結果を残しました。"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-01-12-weekly-review/index.html#月のサマリー",
     "title": "Week 2 - Jan 2026",
     "section": "",
-    "text": "1月は税前利益689,430円、取引数4で全勝を達成しました。"
+    "text": "1月は税前利益689,430円を達成し、4取引全勝という素晴らしい結果を残しました。"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#パフォーマンスハイライト",
@@ -1579,7 +1579,7 @@
     "href": "posts/2026-01-12-weekly-review/index.html#注目ポイント",
     "title": "Week 2 - Jan 2026",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n勝率100%を維持し、全取引で利益を上げました。\nROIは3.55%と健全な水準を保っています。\n月間税前利益689,430円は素晴らしい成果です。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が4と少ないため、さらなるエントリー機会を模索する必要があります。\nリスク管理の観点から、ポートフォリオの多様化を検討することが望ましいです。\n期待値（expectancy）の計算が未実施なので、今後のデータ分析に取り入れるべきです。"
+    "text": "注目ポイント\n\n良かった点\n\n勝率100%を達成し、全ての取引が成功しました。\nROIは3.55%で、効率的な投資ができました。\n月間税前利益689,430円は良好な結果です。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引数が4と少ないため、今後は取引機会を増やすことを検討しましょう。\n勝率は良好ですが、次回はリスク管理の強化を図りましょう。\n期待値を算出するためのデータ収集を進める必要があります。"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#銘柄分析",
@@ -1593,7 +1593,7 @@
     "href": "posts/2026-01-12-weekly-review/index.html#リスク分析",
     "title": "Week 2 - Jan 2026",
     "section": "リスク分析",
-    "text": "リスク分析\n\n現在のポジション\n                        \n                                            \n\n\n\n\n\n\nImportantポジションサマリー\n\n\n\n\n保有銘柄数: 11銘柄（総額 47,343,474円）\n信用取引: 2銘柄 / 35,398,346円\n現物取引: 9銘柄 / 11,945,128円\n信用倍率: 2.96倍 (信用取引金額 ÷ 現物取引金額)\n為替レート: 156.72円/USD\n\n\n\n\n\n信用取引 保有期間\n                        \n                                            \n\n\n\n\n\n\nWarning保有期間の目安（※自分の投資スタイルに対する目安です）\n\n\n\n前提: 信用取引のリスク分析は、2025年1月1日以降に建てたポジションのみを対象としています（過去データが不完全な可能性があるため）。\n\n🟢 30日未満: 短期回転（安全圏）\n🟠 30-60日: 中期保有（要注意）\n🔴 60日超: 長期滞留（リスク高）\n\n信用取引平均保有: 37.5日 / 最長: 69日"
+    "text": "リスク分析\n\n現在のポジション\n                        \n                                            \n\n\n\n\n\n\nImportantポジションサマリー\n\n\n\n\n保有銘柄数: 11銘柄（総額 47,343,474円）\n信用取引: 2銘柄 / 35,398,346円\n現物取引: 9銘柄 / 11,945,128円\n信用倍率: 2.96倍 (信用取引金額 ÷ 現物取引金額)\n為替レート: 156.72円/USD\n\n\n\n\n\n信用取引 保有期間\n                        \n                                            \n\n\n\n\n\n\nWarning保有期間の目安（※自分の投資スタイルに対する目安です）\n\n\n\n\n\n前提: 信用取引のリスク分析は、2025年1月1日以降に建てたポジションのみを対象としています（過去データが不完全な可能性があるため）。\n\n🟢 30日未満: 短期回転（安全圏）\n🟠 30-60日: 中期保有（要注意）\n🔴 60日超: 長期滞留（リスク高）\n\n信用取引平均保有: 37.5日 / 最長: 69日"
   },
   {
     "objectID": "posts/2026-01-12-weekly-review/index.html#マーケットデータ",
@@ -1621,6 +1621,6 @@
     "href": "posts/2026-01-12-weekly-review/index.html#まとめ",
     "title": "Week 2 - Jan 2026",
     "section": "まとめ",
-    "text": "まとめ\n今後も高い勝率を維持しつつ、取引機会の拡大とリスク管理の強化を図ります。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n1月の成果を基に、今後も安定したパフォーマンスを維持しつつ、取引機会を増やしていく方針です。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
