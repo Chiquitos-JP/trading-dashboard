@@ -1,0 +1,455 @@
+/*-- scss:defaults --*/
+
+// Base font
+$font-family-sans-serif: "Roboto", -apple-system, "Segoe UI", "Helvetica Neue",
+  Arial, sans-serif;
+
+// Colors
+$primary: #007bff; // Accent blue
+
+/*-- scss:rules --*/
+
+/* ナビバー: Quarto公式サイト風の設定 */
+.navbar,
+nav.navbar,
+header#quarto-header .navbar {
+  background-color: #f7f9fb !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  min-height: 56px;
+}
+
+/* navbar-containerのスタイル */
+.navbar-container {
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ロゴスタイル */
+.navbar .navbar-brand img,
+.navbar .navbar-brand-logo img {
+  height: 28px;
+  width: auto;
+  margin-right: 8px;
+}
+
+/* ブランド名 (サイトタイトル) */
+nav[data-bs-theme="dark"].navbar .navbar-brand,
+.navbar .navbar-brand {
+  color: #404040 !important;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: color 0.15s ease;
+}
+
+.navbar .navbar-brand:hover {
+  color: #1a1a1a !important;
+}
+
+/* ナビバーリンクのスタイル - Quarto風 */
+nav[data-bs-theme="dark"].navbar .navbar-nav .nav-link,
+.navbar .navbar-nav .nav-link {
+  color: #545555 !important;
+  font-size: 0.925rem;
+  font-weight: 400;
+  padding: 0.5rem 0.85rem;
+  transition: color 0.15s ease;
+  position: relative;
+}
+
+/* ホバー時のスタイル */
+nav[data-bs-theme="dark"].navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:hover {
+  color: #1a1a1a !important;
+}
+
+/* アクティブリンクのスタイル - 下線付き */
+nav[data-bs-theme="dark"].navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link.active {
+  color: #1a1a1a !important;
+  font-weight: 500;
+}
+
+.navbar .navbar-nav .nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0.85rem;
+  right: 0.85rem;
+  height: 2px;
+  background-color: #4a5568;
+  border-radius: 1px;
+}
+
+/* ========================
+   ドロップダウンメニュー - モダンApp風
+   ======================== */
+
+/* メインドロップダウンパネル */
+.navbar .navbar-nav .dropdown-menu,
+.dropdown-menu {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  padding: 0.8rem 0;
+  margin-top: 10px !important;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-width: 220px;
+}
+
+/* サブメニュー（ネストしたドロップダウン）*/
+.dropdown-menu .dropdown-menu {
+  margin-top: 0 !important;
+  margin-left: 4px;
+  border-radius: 10px;
+}
+
+/* メニュー項目のスタイル */
+.navbar .navbar-nav .dropdown-item,
+.dropdown-item {
+  padding: 0.65rem 1.5rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ホバー時の挙動 - スライドアニメーション */
+.navbar .navbar-nav .dropdown-item:hover,
+.navbar .navbar-nav .dropdown-item:focus,
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #f3f4f6;
+  color: #2563eb;
+  transform: translateX(4px);
+}
+
+/* アクティブなページのスタイル */
+.navbar .navbar-nav .dropdown-item.active,
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+/* 区切り線（セパレーター）のスタイル */
+.dropdown-divider {
+  border-top: 1px solid #f0f0f0;
+  margin: 0.5rem 1rem;
+  opacity: 1;
+}
+
+/* アイコンのスタイル (Bootstrap Icons) */
+.dropdown-item i,
+.dropdown-item .bi {
+  font-size: 1rem;
+  opacity: 0.7;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.dropdown-item:hover i,
+.dropdown-item:hover .bi {
+  opacity: 1;
+}
+
+/* サブメニュー矢印インジケーター */
+.dropdown-item.dropdown-toggle::after {
+  margin-left: auto;
+  opacity: 0.5;
+}
+
+/* ドロップダウンヘッダー（グループ名）*/
+.dropdown-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1.5rem;
+  margin-top: 0.25rem;
+}
+
+/* GitHubアイコンなどナビバー右側ツール */
+nav[data-bs-theme="dark"].navbar .quarto-navbar-tools a,
+.navbar .quarto-navbar-tools a {
+  color: #545555 !important;
+  font-size: 1.1rem;
+  transition: color 0.15s ease;
+}
+
+nav[data-bs-theme="dark"].navbar .quarto-navbar-tools a:hover,
+.navbar .quarto-navbar-tools a:hover {
+  color: #1a1a1a !important;
+}
+
+/* 検索ボタン/アイコン - Quarto風 */
+nav[data-bs-theme="dark"].navbar #quarto-search,
+.navbar #quarto-search {
+  color: #545555 !important;
+}
+
+.navbar #quarto-search button {
+  color: #545555 !important;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background-color: #ffffff;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.85rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.navbar #quarto-search button:hover {
+  border-color: #c5c7ca;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* ハンバーガーメニュー (モバイル) */
+.navbar .navbar-toggler {
+  border: 1px solid #e5e7eb;
+  padding: 0.4rem 0.6rem;
+}
+
+.navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2884, 85, 85, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+h1.title {
+  color: #2d3748;
+}
+
+.callout-note {
+  border-left: 4px solid #4a5568;
+}
+
+// 本文の読みやすさ調整
+body {
+  line-height: 1.7;
+  background-color: #ffffff;
+  color: #1f2933;
+}
+
+main.content {
+  max-width: 1040px;
+  padding: 0 1.5rem 4rem;
+}
+
+// Quarto Blog Style Banner - Quarto公式サイト風（コンパクト）
+.quarto-title-banner {
+  background-color: #f7f9fb;
+  color: #1a1a1a;
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.quarto-title-banner .title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+}
+
+.quarto-title-banner .subtitle,
+.quarto-title-banner .lead {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+// Listing（ブログ一覧）のスタイル - Quarto公式風
+#quarto-document-content {
+  padding-top: 0;
+}
+
+.quarto-listing {
+  margin-top: 0;
+}
+
+// 記事カードのスタイル
+.quarto-post {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1.5rem 0;
+}
+
+.quarto-post:first-child {
+  padding-top: 0;
+}
+
+.quarto-post .thumbnail {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.quarto-post .body h3.listing-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
+}
+
+.quarto-post .body h3.listing-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.quarto-post .body h3.listing-title a:hover {
+  color: #2563eb;
+}
+
+.quarto-post .listing-description {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+.quarto-post .listing-categories {
+  margin-top: 0.5rem;
+}
+
+.quarto-post .listing-category {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  background-color: #f3f4f6;
+  color: #374151;
+  border-radius: 4px;
+  margin-right: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.quarto-post .metadata {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+// Categories サイドバー
+.quarto-listing-category {
+  font-size: 0.9rem;
+}
+
+.quarto-listing-category .category {
+  padding: 0.25rem 0;
+  color: #4b5563;
+}
+
+.quarto-listing-category .category:hover {
+  color: #2563eb;
+}
+
+.quarto-listing-category-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
+  text-transform: none;
+}
+
+.archive-list {
+  max-width: 820px;
+  margin: 0 auto 40px;
+  padding: 10px 20px 4px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.archive-list ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.archive-list li {
+  padding: 8px 4px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.archive-list li:last-child {
+  border-bottom: none;
+}
+
+.archive-list a {
+  text-decoration: none;
+}
+
+.archive-list a:hover {
+  text-decoration: underline;
+}
+
+.overview-panel {
+  max-width: 880px;
+  margin: 0 auto 70px;
+  padding: 32px 38px;
+  background: #ffffff;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.05);
+}
+
+.overview-panel h2 {
+  font-size: 1.35rem;
+  margin-bottom: 14px;
+  color: #1f2937;
+}
+
+.overview-panel ul {
+  text-align: left;
+  line-height: 1.65;
+  color: #4a5568;
+  font-size: 0.96rem;
+  padding-left: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .overview-panel {
+    padding: 28px;
+  }
+}
+
+// カードタイトル
+.card-title {
+  color: $primary;
+}
+
+// 分析ノートのボックス風スタイル
+.analysis-note-highlight {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #4a5568;
+  background-color: #f7fafc;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.analysis-note-actions {
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #3182ce;
+  background-color: #ebf8ff;
+  margin: 0.5rem 0 1rem 0;
+}
+
+// チャートを2列で並べるための簡易グリッド
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.chart-grid figure {
+  margin: 0;
+}

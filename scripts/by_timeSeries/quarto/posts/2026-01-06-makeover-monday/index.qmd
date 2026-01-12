@@ -1,0 +1,97 @@
+---
+title: "MakeoverMonday: Sample Visualization"
+description: "A sample MakeoverMonday post demonstrating the template structure"
+date: "2026-01-06"
+author: "chokotto"
+categories: [MakeoverMonday, Data Viz, Python]
+image: "thumbnail.svg"
+
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.svg"
+  title: "MakeoverMonday: Sample Visualization"
+  description: "A sample MakeoverMonday post demonstrating the template structure"
+---
+
+## Overview
+
+This is a sample MakeoverMonday post to demonstrate the template structure. MakeoverMonday is a weekly project where participants redesign existing data visualizations to improve clarity and impact.
+
+## Original Visualization
+
+**Source**: [MakeoverMonday](https://www.makeovermonday.co.uk/)
+
+The original visualization showed data using a standard chart format. This makeover aims to improve readability and visual appeal.
+
+## Dataset
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+```
+
+```{python}
+#| label: sample-data
+
+# Sample data for demonstration
+df = pd.DataFrame({
+    'category': ['A', 'B', 'C', 'D'],
+    'value': [25, 40, 15, 20]
+})
+df
+```
+
+## My Makeover
+
+### What I Changed
+
+- Improved color scheme for better accessibility
+- Added clear labels and annotations
+- Simplified the layout for easier interpretation
+- Used interactive elements for exploration
+
+### Visualization
+
+```{python}
+#| label: main-viz
+
+fig = px.bar(
+    df, 
+    x='category', 
+    y='value',
+    color='category',
+    title='Sample Bar Chart - Makeover',
+    labels={'category': 'Category', 'value': 'Value'}
+)
+
+fig.update_layout(
+    template='plotly_white',
+    showlegend=False,
+    height=400
+)
+
+fig.show()
+```
+
+## Key Takeaways
+
+- Clear visual hierarchy helps communicate the main message
+- Minimal design reduces cognitive load
+- Interactive elements enhance exploration
+
+---
+
+*This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project.*
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## ⚠️ Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information.
+:::
+:::
+

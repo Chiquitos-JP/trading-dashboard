@@ -6,10 +6,26 @@
 
 # ----- 全データ・スクリプトを除外 -----
 data/
-scripts/
 outputs/
 config/
 temp/
+
+# ----- scripts/ の除外設定 -----
+# 基本: scriptsは除外
+scripts/*
+# 例外: by_timeSeries/quarto は一部追跡
+!scripts/by_timeSeries/
+scripts/by_timeSeries/*
+!scripts/by_timeSeries/quarto/
+scripts/by_timeSeries/quarto/*
+!scripts/by_timeSeries/quarto/_quarto.yml
+!scripts/by_timeSeries/quarto/styles.scss
+!scripts/by_timeSeries/quarto/posts/
+# posts内は基本除外（weekly-reviewなど）
+scripts/by_timeSeries/quarto/posts/*
+# TidyTuesday/MakeoverMondayのみ追跡
+!scripts/by_timeSeries/quarto/posts/*-tidytuesday/
+!scripts/by_timeSeries/quarto/posts/*-makeover-monday/
 
 # ----- 環境・機密情報 -----
 .env

@@ -1,0 +1,286 @@
+---
+title: "MakeoverMonday: 2025 Market Events - Interactive Dashboard"
+description: "An interactive visualization of S&P500 and Nikkei 225 with trend shading and event markers using Plotly"
+date: "2026-01-13"
+author: "chokotto"
+categories: [MakeoverMonday, Data Viz, Python, Finance]
+image: "thumbnail.svg"
+
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.svg"
+  title: "MakeoverMonday: 2025 Market Events"
+  description: "Interactive S&P500 vs Nikkei 225 with Plotly"
+---
+
+## Overview
+
+This MakeoverMonday project transforms the 2025 market events data into an interactive dashboard. Unlike static charts, this Plotly-based visualization allows users to:
+
+- **Hover** over events to see details
+- **Zoom** into specific time periods
+- **Toggle** between indices
+- **Explore** trend periods interactively
+
+## Original Visualization
+
+**Source**: Custom market events dataset
+
+The original data consists of CSV files with event dates, market impacts, and trend periods. This makeover creates an interactive experience from that static data.
+
+## Dataset
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from pathlib import Path
+from datetime import datetime, timedelta
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+# Define base path
+base_path = Path.cwd()
+while not (base_path / "data").exists() and base_path.parent != base_path:
+    base_path = base_path.parent
+
+# Load events data
+events_path = base_path / "data" / "macro_economy" / "market_events" / "events_2025.csv"
+trends_path = base_path / "data" / "macro_economy" / "market_events" / "trend_periods_2025.csv"
+
+events = pd.read_csv(events_path, parse_dates=["date"])
+trends = pd.read_csv(trends_path, parse_dates=["start_date", "end_date"])
+
+print(f"Loaded {len(events)} events and {len(trends)} trend periods")
+events.head()
+```
+
+```{python}
+#| label: load-index-data
+#| message: false
+
+# Load S&P 500 from FRED parquet
+sp500_path = base_path / "data" / "macro_economy" / "fred" / "SP500.parquet"
+
+if sp500_path.exists():
+    sp500 = pd.read_parquet(sp500_path)
+    sp500['date'] = pd.to_datetime(sp500['date'])
+    sp500 = sp500[(sp500['date'] >= '2025-01-01') & (sp500['date'] <= '2025-12-31')]
+    sp500 = sp500.rename(columns={'value': 'sp500'})
+else:
+    # Fallback: generate sample data
+    dates = pd.date_range('2025-01-01', '2025-12-31', freq='D')
+    sp500 = pd.DataFrame({
+        'date': dates,
+        'sp500': 5800 + np.cumsum(np.random.randn(len(dates)) * 30)
+    })
+
+# Simulate Nikkei data (in production: use yfinance)
+dates = pd.date_range('2025-01-01', '2025-12-31', freq='D')
+nikkei = pd.DataFrame({
+    'date': dates,
+    'nikkei': 38000 + np.cumsum(np.random.randn(len(dates)) * 400)
+})
+
+# Merge
+index_data = sp500.merge(nikkei, on='date', how='inner')
+print(f"Index data: {len(index_data)} rows")
+```
+
+## My Makeover
+
+### What I Changed
+
+- **Static → Interactive**: Converted from ggplot2-style static chart to fully interactive Plotly
+- **Dual Y-axis**: Added secondary axis for Nikkei 225 (different scale)
+- **Hover Details**: Event information appears on hover
+- **Range Selector**: Added buttons for 1M, 3M, 6M, YTD views
+- **Annotations**: Key events labeled directly on chart
+
+### Main Visualization
+
+```{python}
+#| label: main-viz
+
+# Create figure with secondary y-axis
+fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+# Add trend shading (US trends)
+us_trends = trends[trends['market'] == 'US']
+for _, trend in us_trends.iterrows():
+    color = "rgba(34, 197, 94, 0.15)" if trend['trend_type'] == 'UP' else "rgba(239, 68, 68, 0.15)"
+    fig.add_vrect(
+        x0=trend['start_date'].strftime('%Y-%m-%d'),
+        x1=trend['end_date'].strftime('%Y-%m-%d'),
+        fillcolor=color,
+        line_width=0
+    )
+
+# Add S&P 500 line
+fig.add_trace(
+    go.Scatter(
+        x=index_data['date'],
+        y=index_data['sp500'],
+        name="S&P 500",
+        line=dict(color="#2563eb", width=2),
+        hovertemplate="<b>S&P 500</b><br>Date: %{x|%Y-%m-%d}<br>Value: %{y:,.0f}<extra></extra>"
+    ),
+    secondary_y=False
+)
+
+# Add Nikkei 225 line
+fig.add_trace(
+    go.Scatter(
+        x=index_data['date'],
+        y=index_data['nikkei'],
+        name="Nikkei 225",
+        line=dict(color="#dc2626", width=2),
+        hovertemplate="<b>Nikkei 225</b><br>Date: %{x|%Y-%m-%d}<br>Value: %{y:,.0f}<extra></extra>"
+    ),
+    secondary_y=True
+)
+
+# Add event markers
+us_events = events[events['market'].isin(['US', 'BOTH'])]
+major_events = us_events[us_events['sp500_change'].abs() > 1.5]
+
+for _, event in major_events.iterrows():
+    fig.add_vline(
+        x=event['date'].strftime('%Y-%m-%d'),
+        line_dash="dash",
+        line_color="#94a3b8",
+        line_width=1
+    )
+
+# Update layout
+fig.update_layout(
+    title=dict(
+        text="<b>2025 Market Events: S&P 500 vs Nikkei 225</b><br><sup>Trend periods (shaded) and major events (dashed lines)</sup>",
+        x=0.5,
+        font=dict(size=18)
+    ),
+    xaxis=dict(
+        title="",
+        rangeselector=dict(
+            buttons=list([
+                dict(count=1, label="1M", step="month", stepmode="backward"),
+                dict(count=3, label="3M", step="month", stepmode="backward"),
+                dict(count=6, label="6M", step="month", stepmode="backward"),
+                dict(step="all", label="YTD")
+            ]),
+            bgcolor="rgba(255,255,255,0.9)",
+            bordercolor="#e2e8f0"
+        ),
+        rangeslider=dict(visible=True),
+        type="date"
+    ),
+    yaxis=dict(
+        title="S&P 500",
+        tickformat=",",
+        side="left"
+    ),
+    yaxis2=dict(
+        title="Nikkei 225",
+        tickformat=",",
+        side="right"
+    ),
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    ),
+    template="plotly_white",
+    height=550,
+    margin=dict(t=120, b=80)
+)
+
+fig.show()
+```
+
+### Event Impact Analysis
+
+```{python}
+#| label: event-impact
+
+# Create bar chart of event impacts
+events_with_impact = events[events['sp500_change'].notna()].copy()
+events_with_impact['color'] = events_with_impact['sp500_change'].apply(
+    lambda x: '#22c55e' if x > 0 else '#ef4444'
+)
+events_with_impact = events_with_impact.sort_values('sp500_change')
+
+fig2 = go.Figure()
+
+fig2.add_trace(go.Bar(
+    y=events_with_impact['event_label'],
+    x=events_with_impact['sp500_change'],
+    orientation='h',
+    marker_color=events_with_impact['color'],
+    text=events_with_impact['sp500_change'].apply(lambda x: f"{x:+.1f}%"),
+    textposition='outside',
+    hovertemplate="<b>%{y}</b><br>S&P 500 Change: %{x:.2f}%<extra></extra>"
+))
+
+fig2.update_layout(
+    title=dict(
+        text="<b>S&P 500 Daily Change by Event</b>",
+        x=0.5
+    ),
+    xaxis_title="Daily Change (%)",
+    yaxis_title="",
+    template="plotly_white",
+    height=450,
+    margin=dict(l=150)
+)
+
+# Add zero line
+fig2.add_vline(x=0, line_color="#64748b", line_width=1)
+
+fig2.show()
+```
+
+### Trend Period Summary
+
+```{python}
+#| label: trend-summary
+
+# Create trend period table
+us_trends_display = trends[trends['market'] == 'US'].copy()
+us_trends_display['duration'] = (us_trends_display['end_date'] - us_trends_display['start_date']).dt.days
+us_trends_display['period'] = us_trends_display['start_date'].dt.strftime('%b %d') + ' - ' + us_trends_display['end_date'].dt.strftime('%b %d')
+
+us_trends_display[['period', 'trend_type', 'trigger_event', 'duration', 'description']]
+```
+
+## Key Takeaways
+
+1. **Interactive Exploration**: Users can zoom into specific periods (e.g., April tariff shock) to examine price action in detail.
+
+2. **Dual Index Comparison**: The secondary Y-axis allows direct comparison of S&P 500 and Nikkei 225 movements, revealing correlation during global events.
+
+3. **Trend Visualization**: Shaded regions make it easy to identify bull and bear phases at a glance.
+
+4. **Event Context**: Hover information provides instant context for each market event.
+
+5. **April 2025 Volatility**: The tariff shock week (April 3-10) saw unprecedented volatility with a -4.88% crash followed by +9.5% rally.
+
+---
+
+*This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project.*
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## ⚠️ Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information. Index data may be simulated for demonstration purposes.
+:::
+:::

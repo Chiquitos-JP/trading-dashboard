@@ -1,0 +1,72 @@
+---
+title: "TidyTuesday: Sample Analysis"
+description: "A sample TidyTuesday post demonstrating the template structure"
+date: "2026-01-07"
+author: "chokotto"
+categories: [TidyTuesday, Data Viz, R]
+image: "thumbnail.svg"
+
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.svg"
+  title: "TidyTuesday: Sample Analysis"
+  description: "A sample TidyTuesday post demonstrating the template structure"
+---
+
+## Overview
+
+This is a sample TidyTuesday post to demonstrate the template structure. TidyTuesday is a weekly social data project where participants explore and visualize a new dataset each week.
+
+## Dataset
+
+**Source**: [TidyTuesday GitHub](https://github.com/rfordatascience/tidytuesday)
+
+```r
+# Load packages
+library(tidyverse)
+library(ggplot2)
+```
+
+```r
+# Sample data for demonstration
+df <- tibble(
+  category = c("A", "B", "C", "D"),
+  value = c(25, 40, 15, 20)
+)
+```
+
+## Exploratory Analysis
+
+In this section, we explore the dataset's structure, identify key variables, and look for interesting patterns.
+
+## Visualization
+
+```r
+# Example visualization
+ggplot(df, aes(x = category, y = value, fill = category)) +
+  geom_col() +
+  theme_minimal() +
+  labs(
+    title = "Sample Bar Chart",
+    x = "Category",
+    y = "Value"
+  )
+```
+
+## Key Findings
+
+- This is a placeholder for key findings
+- Add your insights from the data analysis here
+- Include any interesting patterns or observations
+
+---
+
+*This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project.*
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## ⚠️ Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information.
+:::
+:::

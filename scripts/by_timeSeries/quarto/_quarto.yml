@@ -1,0 +1,108 @@
+project:
+  type: website
+  # GitHub Pages用: docs/quarto/latestに出力（ルートのindex.htmlからリダイレクト）
+  # quarto -> by_timeSeries -> scripts -> 05_stockTrading(root)
+  output-dir: ../../../docs/quarto/latest
+  resources:
+    - "posts/**/*.svg"
+    - "posts/**/*.png"
+    - "posts/**/*.jpg"
+
+website:
+  title: "ちょこっと"
+  site-url: https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/
+  repo-url: https://github.com/Chiquitos-JP/trading-dashboard
+  repo-actions: [issue]
+  sidebar:
+    style: "floating"
+    search: true
+    contents:
+      - section: "Dashboard"
+        href: dashboard.qmd
+        contents:
+          - text: "Overview"
+            href: dashboard.qmd
+          - text: "---"
+          - section: "Market Monitor"
+            contents:
+              - text: "起動方法"
+                href: dashboard_panel_info.qmd
+          - text: "---"
+          - section: "Performance Reports"
+            href: dashboard_static.qmd
+            contents:
+              - section: "Financials"
+                href: dashboard_financials_timeseries.qmd
+                contents:
+                  - text: "2025年"
+                    href: dashboard_2025.qmd
+                  - text: "2026年 ✓"
+                    href: dashboard_2026.qmd
+              - text: "Experimental Labs"
+  navbar:
+    background: "#f7f9fb"
+    foreground: "#636667"
+    logo: assets/chokotto_ver01.png
+    left:
+      - href: index.qmd
+        text: Concept
+      - href: analysis.qmd
+        text: Analysis
+      - text: Dashboard
+        icon: speedometer2
+        menu:
+          # --- セクション1: 概要 ---
+          - text: "Overview"
+            icon: grid-fill
+            href: dashboard.qmd
+          - text: "---"
+
+          # --- セクション2: リアルタイム監視 ---
+          - text: "Market Monitor (Panel)"
+            icon: graph-up-arrow
+            href: dashboard_panel_info.qmd
+          - text: "---"
+
+          # --- セクション3: 定型レポート ---
+          - text: "Monthly Performance"
+            icon: calendar-check
+            href: dashboard_static.qmd
+          - text: "Asset Timeseries"
+            icon: graph-up
+            href: dashboard_financials_timeseries.qmd
+          - text: "2025 KPI Dashboard"
+            icon: bar-chart-line-fill
+            href: dashboard_2025.qmd
+          - text: "2026 KPI Dashboard"
+            icon: file-earmark-text
+            href: dashboard_2026.qmd
+          - text: "---"
+
+          # --- セクション4: 実験室 ---
+          - text: "Experimental Labs"
+            icon: cone-striped
+    right: []
+    tools:
+      - icon: github
+        href: https://github.com/Chiquitos-JP/trading-dashboard
+        aria-label: GitHub repository
+  page-footer:
+    center: "© 2026 chokotto All Rights Reserved."
+    right:
+      - icon: github
+        href: https://github.com/Chiquitos-JP/trading-dashboard
+
+execute:
+  enabled: true
+jupyter:
+  kernel: python3
+  python:
+    path: "C:/Users/alpac/Dropbox/03_individual_work/05_stockTrading/.venv/Scripts/python.exe"
+
+format:
+  html:
+    theme:
+      light:
+        - default
+        - styles.scss
+    toc: true
