@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d5a87;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <text x="400" y="180" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">TidyTuesday</text>
+  <text x="400" y="240" font-family="Arial, sans-serif" font-size="24" fill="#94a3b8" text-anchor="middle">Weekly Data Visualization</text>
+  <text x="400" y="300" font-family="Arial, sans-serif" font-size="18" fill="#64748b" text-anchor="middle">2026-01-07</text>
+</svg>
+
