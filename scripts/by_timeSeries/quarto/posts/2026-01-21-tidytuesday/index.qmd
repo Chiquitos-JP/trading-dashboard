@@ -40,6 +40,9 @@ library(tidyverse)
 library(lubridate)
 library(scales)
 library(arrow)
+
+# Load TidyTuesday helpers
+source(here::here("config", "R", "tidytuesday_helpers.R"))
 ```
 
 ```{r}
@@ -192,7 +195,7 @@ create_calendar_heatmap <- function(data, year, title_suffix = "") {
     labs(
       title = paste0(year, " Trading P/L Calendar", title_suffix),
       subtitle = "Daily realized profit/loss from stock trading",
-      caption = "Source: Personal trading records | Created for TidyTuesday",
+      caption = tt_caption(source = "Personal trading records"),
       x = NULL,
       y = NULL
     ) +

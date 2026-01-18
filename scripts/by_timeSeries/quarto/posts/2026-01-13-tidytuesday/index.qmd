@@ -40,6 +40,9 @@ library(tidyverse)
 library(lubridate)
 library(scales)
 library(ggplot2)
+
+# Load TidyTuesday helpers
+source(here::here("config", "R", "tidytuesday_helpers.R"))
 ```
 
 ```{r}
@@ -206,7 +209,7 @@ p <- ggplot() +
     subtitle = "Trend periods (shaded) and major events (dashed lines)",
     x = NULL,
     y = "S&P 500 Index",
-    caption = "Source: FRED, Reuters | Created for TidyTuesday"
+    caption = tt_caption(source = "FRED, Reuters")
   ) +
 
   theme_minimal(base_size = 12) +
