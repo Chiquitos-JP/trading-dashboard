@@ -5,7 +5,7 @@ date: "2026-01-21"
 author: "chokotto"
 categories: [TidyTuesday, Data Viz, R, Finance, Trading]
 image: "thumbnail.svg"
-freeze: true
+freeze: false
 execute:
   warning: false
   message: false
@@ -71,7 +71,20 @@ if (file.exists(pl_path)) {
   cat("Loaded", nrow(df), "trading records\n")
   cat("Date range:", as.character(min(df$settlement_date)), "to", as.character(max(df$settlement_date)), "\n")
 } else {
-  stop("Data file not found")
+  # Generate sample data for demonstration (GitHub Actions)
+  set.seed(42)
+  trading_days <- seq(as.Date("2025-01-02"), as.Date("2026-01-17"), by = "day")
+  trading_days <- trading_days[!weekdays(trading_days) %in% c("Saturday", "Sunday")]
+  # Simulate ~60% of days have trades
+  trading_days <- sample(trading_days, size = floor(length(trading_days) * 0.6))
+  
+  df <- tibble(
+    settlement_date = trading_days,
+    ticker = sample(c("AAPL", "NVDA", "MSFT", "TSLA", "GOOGL"), length(trading_days), replace = TRUE),
+    profit_jpy = round(rnorm(length(trading_days), mean = 5000, sd = 50000))
+  )
+  cat("Using sample data for demonstration\n")
+  cat("Generated", nrow(df), "sample trading records\n")
 }
 
 df %>%
