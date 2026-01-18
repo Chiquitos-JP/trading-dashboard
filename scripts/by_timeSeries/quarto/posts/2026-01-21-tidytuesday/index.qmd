@@ -56,57 +56,17 @@ if (file.exists(helpers_path)) {
 #| label: load-data
 #| message: false
 
-# Navigate to project root
-base_path <- here::here()
-if (!dir.exists(file.path(base_path, "data"))) {
-  base_path <- dirname(dirname(dirname(base_path)))
-}
-
-# Load realized P/L data
-pl_path <- file.path(base_path, "data/trading_account/realized_pl/silver/realized_pl.parquet")
-
-if (file.exists(pl_path)) {
-  df <- read_parquet(pl_path) %>%
-    mutate(settlement_date = as.Date(settlement_date))
-  cat("Loaded", nrow(df), "trading records\n")
-  cat("Date range:", as.character(min(df$settlement_date)), "to", as.character(max(df$settlement_date)), "\n")
-} else {
-  # Generate sample data for demonstration (GitHub Actions)
-  set.seed(42)
-  trading_days <- seq(as.Date("2025-01-02"), as.Date("2026-01-17"), by = "day")
-  trading_days <- trading_days[!weekdays(trading_days) %in% c("Saturday", "Sunday")]
-  # Simulate ~60% of days have trades
-  trading_days <- sample(trading_days, size = floor(length(trading_days) * 0.6))
-  
-  df <- tibble(
-    settlement_date = trading_days,
-    ticker = sample(c("AAPL", "NVDA", "MSFT", "TSLA", "GOOGL"), length(trading_days), replace = TRUE),
-    profit_jpy = round(rnorm(length(trading_days), mean = 5000, sd = 50000))
-  )
-  cat("Using sample data for demonstration\n")
-  cat("Generated", nrow(df), "sample trading records\n")
-}
-
-df %>%
-  select(settlement_date, ticker, profit_jpy) %>%
-  head()
-```
-
-```{r}
-#| label: aggregate-daily
-
-# Aggregate profit/loss by date
-daily_pl <- df %>%
-  group_by(date = settlement_date) %>%
-  summarise(
-    profit_jpy = sum(profit_jpy, na.rm = TRUE),
-    trades = n()
-  ) %>%
-  ungroup()
+# Load aggregated daily P/L data (pre-processed)
+daily_pl_path <- file.path(project_root, "data", "daily_pl.parquet")
+daily_pl <- read_parquet(daily_pl_path) %>%
+  mutate(date = as.Date(date))
 
 cat("Trading days:", nrow(daily_pl), "\n")
+cat("Date range:", as.character(min(daily_pl$date)), "to", as.character(max(daily_pl$date)), "\n")
 cat("Profitable days:", sum(daily_pl$profit_jpy > 0), "\n")
 cat("Losing days:", sum(daily_pl$profit_jpy < 0), "\n")
+
+daily_pl %>% head()
 ```
 
 ## Calendar Visualization Function
