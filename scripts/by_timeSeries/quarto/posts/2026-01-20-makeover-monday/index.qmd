@@ -1,0 +1,293 @@
+---
+title: "MakeoverMonday: Trading P/L Calendar Heatmap"
+description: "A traditional calendar visualization showing daily realized profit/loss from stock trading"
+date: "2026-01-20"
+author: "chokotto"
+categories: [MakeoverMonday, Data Viz, Python, Finance, Trading]
+image: "thumbnail.svg"
+
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.svg"
+  title: "MakeoverMonday: Trading P/L Calendar"
+  description: "Daily profit/loss calendar heatmap with Python"
+---
+
+## Overview
+
+This MakeoverMonday project visualizes my personal stock trading realized profit/loss in a traditional calendar format. Each day shows:
+
+- **Date number**
+- **Profit/Loss amount** (in JPY)
+- **Color coding**: Green for profit, Red for loss, Gray for no trading
+
+The visualization allows quick identification of profitable and losing days across the year.
+
+## Dataset
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+from matplotlib.colors import LinearSegmentedColormap
+from pathlib import Path
+from datetime import datetime
+import calendar
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+# Define base path
+base_path = Path.cwd()
+while not (base_path / "data").exists() and base_path.parent != base_path:
+    base_path = base_path.parent
+
+# Load realized P/L data
+pl_path = base_path / "data" / "trading_account" / "realized_pl" / "silver" / "realized_pl.parquet"
+
+if pl_path.exists():
+    df = pd.read_parquet(pl_path)
+    df['settlement_date'] = pd.to_datetime(df['settlement_date'])
+    print(f"Loaded {len(df)} trading records")
+else:
+    print(f"Data not found at {pl_path}")
+    df = pd.DataFrame()
+
+# Show data summary
+if not df.empty:
+    print(f"Date range: {df['settlement_date'].min().date()} to {df['settlement_date'].max().date()}")
+    df[['settlement_date', 'ticker', 'profit_jpy']].head()
+```
+
+```{python}
+#| label: aggregate-daily
+#| message: false
+
+# Aggregate profit/loss by date
+daily_pl = df.groupby(df['settlement_date'].dt.date)['profit_jpy'].sum().reset_index()
+daily_pl.columns = ['date', 'profit_jpy']
+daily_pl['date'] = pd.to_datetime(daily_pl['date'])
+
+print(f"Trading days: {len(daily_pl)}")
+print(f"Profitable days: {(daily_pl['profit_jpy'] > 0).sum()}")
+print(f"Losing days: {(daily_pl['profit_jpy'] < 0).sum()}")
+```
+
+## Calendar Visualization Function
+
+```{python}
+#| label: calendar-function
+
+def create_calendar_heatmap(daily_data: pd.DataFrame, year: int, figsize=(16, 12)):
+    """
+    Create a traditional calendar heatmap showing daily P/L.
+    
+    Args:
+        daily_data: DataFrame with 'date' and 'profit_jpy' columns
+        year: Year to display
+        figsize: Figure size tuple
+    
+    Returns:
+        matplotlib figure
+    """
+    # Filter data for the specified year
+    year_data = daily_data[daily_data['date'].dt.year == year].copy()
+    year_data['day'] = year_data['date'].dt.day
+    year_data['month'] = year_data['date'].dt.month
+    
+    # Create profit lookup dictionary
+    profit_lookup = {(row['date'].month, row['date'].day): row['profit_jpy'] 
+                     for _, row in year_data.iterrows()}
+    
+    # Create figure
+    fig, axes = plt.subplots(3, 4, figsize=figsize)
+    fig.suptitle(f'{year} Trading P/L Calendar', fontsize=20, fontweight='bold', y=0.98)
+    
+    # Color settings
+    max_abs = max(abs(year_data['profit_jpy'].min()), abs(year_data['profit_jpy'].max())) if len(year_data) > 0 else 1000000
+    
+    # Weekday headers
+    weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    
+    for month in range(1, 13):
+        ax = axes[(month-1) // 4, (month-1) % 4]
+        
+        # Month title
+        month_name = calendar.month_name[month]
+        ax.set_title(month_name, fontsize=14, fontweight='bold', pad=10)
+        
+        # Get calendar matrix for this month
+        cal = calendar.monthcalendar(year, month)
+        
+        # Draw grid
+        ax.set_xlim(-0.5, 6.5)
+        ax.set_ylim(-0.5, len(cal) + 0.5)
+        ax.set_aspect('equal')
+        ax.invert_yaxis()
+        
+        # Weekday headers
+        for i, day_name in enumerate(weekdays):
+            ax.text(i, -0.3, day_name, ha='center', va='bottom', fontsize=8, color='#64748b')
+        
+        # Draw each day
+        for week_idx, week in enumerate(cal):
+            for day_idx, day in enumerate(week):
+                if day == 0:
+                    continue
+                
+                # Get profit for this day
+                profit = profit_lookup.get((month, day), None)
+                
+                # Determine cell color
+                if profit is None:
+                    color = '#f1f5f9'  # Light gray for no trading
+                    text_color = '#94a3b8'
+                elif profit > 0:
+                    # Green gradient for profit
+                    intensity = min(abs(profit) / max_abs, 1.0)
+                    color = plt.cm.Greens(0.3 + 0.5 * intensity)
+                    text_color = '#166534' if intensity > 0.3 else '#22c55e'
+                else:
+                    # Red gradient for loss
+                    intensity = min(abs(profit) / max_abs, 1.0)
+                    color = plt.cm.Reds(0.3 + 0.5 * intensity)
+                    text_color = '#991b1b' if intensity > 0.3 else '#ef4444'
+                
+                # Draw cell
+                rect = mpatches.FancyBboxPatch(
+                    (day_idx - 0.45, week_idx - 0.45), 0.9, 0.9,
+                    boxstyle="round,pad=0.02,rounding_size=0.1",
+                    facecolor=color,
+                    edgecolor='white',
+                    linewidth=1
+                )
+                ax.add_patch(rect)
+                
+                # Day number
+                ax.text(day_idx, week_idx - 0.25, str(day), 
+                       ha='center', va='center', fontsize=10, fontweight='bold',
+                       color='#334155')
+                
+                # Profit/Loss value
+                if profit is not None:
+                    if abs(profit) >= 1000000:
+                        label = f'{profit/1000000:+.1f}M'
+                    elif abs(profit) >= 1000:
+                        label = f'{profit/1000:+.0f}K'
+                    else:
+                        label = f'{profit:+.0f}'
+                    ax.text(day_idx, week_idx + 0.2, label,
+                           ha='center', va='center', fontsize=7,
+                           color=text_color, fontweight='medium')
+        
+        # Remove axes
+        ax.axis('off')
+    
+    # Add legend
+    legend_elements = [
+        mpatches.Patch(facecolor='#22c55e', edgecolor='white', label='Profit'),
+        mpatches.Patch(facecolor='#ef4444', edgecolor='white', label='Loss'),
+        mpatches.Patch(facecolor='#f1f5f9', edgecolor='white', label='No Trading')
+    ]
+    fig.legend(handles=legend_elements, loc='lower center', ncol=3, 
+               fontsize=11, frameon=False, bbox_to_anchor=(0.5, 0.02))
+    
+    plt.tight_layout(rect=[0, 0.05, 1, 0.96])
+    return fig
+```
+
+## 2025 Calendar
+
+```{python}
+#| label: calendar-2025
+#| fig-width: 16
+#| fig-height: 12
+
+fig_2025 = create_calendar_heatmap(daily_pl, 2025)
+plt.show()
+```
+
+## 2026 Calendar (Year to Date)
+
+```{python}
+#| label: calendar-2026
+#| fig-width: 16
+#| fig-height: 12
+
+fig_2026 = create_calendar_heatmap(daily_pl, 2026)
+plt.show()
+```
+
+## Monthly Summary Statistics
+
+```{python}
+#| label: monthly-summary
+
+# Calculate monthly statistics for 2025
+df_2025 = daily_pl[daily_pl['date'].dt.year == 2025].copy()
+df_2025['month'] = df_2025['date'].dt.month
+
+monthly_stats = df_2025.groupby('month').agg({
+    'profit_jpy': ['sum', 'count', 'mean', lambda x: (x > 0).sum()]
+}).reset_index()
+monthly_stats.columns = ['Month', 'Total P/L', 'Trading Days', 'Avg P/L', 'Profitable Days']
+monthly_stats['Month'] = monthly_stats['Month'].apply(lambda x: calendar.month_name[x])
+monthly_stats['Win Rate'] = (monthly_stats['Profitable Days'] / monthly_stats['Trading Days'] * 100).round(1)
+
+# Format numbers
+monthly_stats['Total P/L'] = monthly_stats['Total P/L'].apply(lambda x: f'¥{x:,.0f}')
+monthly_stats['Avg P/L'] = monthly_stats['Avg P/L'].apply(lambda x: f'¥{x:,.0f}')
+monthly_stats['Win Rate'] = monthly_stats['Win Rate'].apply(lambda x: f'{x}%')
+
+monthly_stats
+```
+
+## Key Insights
+
+```{python}
+#| label: insights
+
+# Calculate key metrics
+total_2025 = daily_pl[daily_pl['date'].dt.year == 2025]['profit_jpy'].sum()
+best_day = daily_pl.loc[daily_pl['profit_jpy'].idxmax()]
+worst_day = daily_pl.loc[daily_pl['profit_jpy'].idxmin()]
+avg_profit = daily_pl[daily_pl['profit_jpy'] > 0]['profit_jpy'].mean()
+avg_loss = daily_pl[daily_pl['profit_jpy'] < 0]['profit_jpy'].mean()
+
+print(f"=== 2025 Trading Summary ===")
+print(f"Total P/L: ¥{total_2025:,.0f}")
+print(f"Best Day: {best_day['date'].strftime('%Y-%m-%d')} (¥{best_day['profit_jpy']:+,.0f})")
+print(f"Worst Day: {worst_day['date'].strftime('%Y-%m-%d')} (¥{worst_day['profit_jpy']:+,.0f})")
+print(f"Average Profit (winning days): ¥{avg_profit:,.0f}")
+print(f"Average Loss (losing days): ¥{avg_loss:,.0f}")
+```
+
+## Design Decisions
+
+1. **Traditional Calendar Layout**: Familiar format makes it easy to navigate and understand temporal patterns.
+
+2. **Color Intensity**: Gradient intensity reflects the magnitude of profit/loss, allowing quick identification of best and worst days.
+
+3. **Compact Labels**: Using K (thousands) and M (millions) notation keeps cells readable.
+
+4. **Monthly Grid**: 3x4 layout shows the entire year at once for pattern recognition.
+
+5. **Light Theme**: Clean, professional appearance suitable for sharing and printing.
+
+---
+
+*This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project.*
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. The profit/loss figures shown are from personal trading records and should not be considered as investment advice or performance guarantees.
+:::
+:::
