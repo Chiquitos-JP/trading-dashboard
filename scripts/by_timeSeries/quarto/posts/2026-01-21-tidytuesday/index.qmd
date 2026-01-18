@@ -9,6 +9,9 @@ freeze: false
 execute:
   warning: false
   message: false
+code-fold: true
+code-tools: true
+code-summary: "Show code"
 
 twitter-card:
   card-type: summary_large_image

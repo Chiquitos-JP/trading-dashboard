@@ -5,6 +5,9 @@ date: "2026-01-20"
 author: "chokotto"
 categories: [MakeoverMonday, Data Viz, Python, Finance, Trading]
 image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
 
 twitter-card:
   card-type: summary_large_image
