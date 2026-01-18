@@ -8,6 +8,9 @@
 data/
 outputs/
 config/
+!config/R/
+config/R/*
+!config/R/tidytuesday_helpers.R
 temp/
 
 # ----- scripts/ の除外設定 -----
