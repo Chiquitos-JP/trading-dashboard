@@ -5,7 +5,7 @@ date: "2026-01-21"
 author: "chokotto"
 categories: [TidyTuesday, Data Viz, R, Finance, Trading]
 image: "thumbnail.svg"
-freeze: false
+freeze: true
 execute:
   warning: false
   message: false
@@ -42,7 +42,14 @@ library(scales)
 library(arrow)
 
 # Load TidyTuesday helpers
-source(here::here("config", "R", "tidytuesday_helpers.R"))
+# Project root is 5 levels up from this qmd file
+project_root <- normalizePath(file.path(getwd(), "../../../../.."))
+helpers_path <- file.path(project_root, "config", "R", "tidytuesday_helpers.R")
+if (file.exists(helpers_path)) {
+  source(helpers_path, local = FALSE)
+} else {
+  message("Helpers not found at: ", helpers_path)
+}
 ```
 
 ```{r}
