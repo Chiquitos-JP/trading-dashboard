@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../Obsidian Vault"
+		}
+	],
+	"settings": {
+		"terminal.integrated.env.windows": {
+			"PYTHONPATH": "${workspaceFolder};${workspaceFolder}/00_config;${workspaceFolder}/11_lib/py"
+		},
+		"r.alwaysUseActiveTerminal": true
+	}
+}
