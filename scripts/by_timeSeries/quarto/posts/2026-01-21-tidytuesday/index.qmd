@@ -22,10 +22,8 @@ twitter-card:
 
 ## Overview
 
-This week's TidyTuesday visualizes my personal stock trading realized profit/loss in a traditional calendar format. Using ggplot2's `geom_tile()`, each day displays:
-- **Date number**
-- **Profit/Loss amount** (in JPY)
-- **Color coding**: Green for profit, Red for loss, Gray for no trading
+This week's TidyTuesday visualizes my personal stock trading realized profit/loss in a traditional calendar format.
+Using ggplot2's `geom_tile()`, each day displays: - **Date number** - **Profit/Loss amount** (in JPY) - **Color coding**: Green for profit, Red for loss, Gray for no trading
 
 This visualization makes it easy to identify profitable and losing days across the year.
 
@@ -103,7 +101,7 @@ create_calendar_heatmap <- function(data, year, title_suffix = "") {
       wday = wday(date, week_start = 1),  # Monday = 1
       week_of_month = ceiling((day + wday(floor_date(date, "month"), week_start = 1) - 1) / 7)
     )
-  
+
   # Create full calendar grid
   all_dates <- tibble(
     date = seq(ymd(paste0(year, "-01-01")), ymd(paste0(year, "-12-31")), by = "day")
@@ -115,7 +113,7 @@ create_calendar_heatmap <- function(data, year, title_suffix = "") {
       week_of_month = ceiling((day + wday(floor_date(date, "month"), week_start = 1) - 1) / 7),
       month_name = factor(month.name[month], levels = month.name)
     )
-  
+
   # Join with trading data
   calendar_data <- all_dates %>%
     left_join(year_data %>% select(date, profit_jpy, trades), by = "date") %>%
@@ -134,10 +132,10 @@ create_calendar_heatmap <- function(data, year, title_suffix = "") {
         TRUE ~ sprintf("%+.0f", profit_jpy)
       )
     )
-  
+
   # Weekday labels
   wday_labels <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-  
+
   # Create plot
   p <- ggplot(calendar_data, aes(x = wday, y = week_of_month)) +
     # Tiles
@@ -212,7 +210,7 @@ create_calendar_heatmap <- function(data, year, title_suffix = "") {
       legend.key.width = unit(2, "cm"),
       plot.margin = margin(20, 20, 20, 20)
     )
-  
+
   return(p)
 }
 ```
@@ -303,24 +301,25 @@ cat("Average Loss (losing days):", scales::number(avg_loss, prefix = "¥", big.m
 
 ## Design Approach
 
-1. **ggplot2 + geom_tile()**: Creates a clean grid-based calendar layout with proper spacing.
+1.  **ggplot2 + geom_tile()**: Creates a clean grid-based calendar layout with proper spacing.
 
-2. **Diverging Color Scale**: `scale_fill_gradient2()` centers at zero, making profits (green) and losses (red) immediately distinguishable.
+2.  **Diverging Color Scale**: `scale_fill_gradient2()` centers at zero, making profits (green) and losses (red) immediately distinguishable.
 
-3. **Faceted Layout**: `facet_wrap()` with 4 columns displays all 12 months in a compact 3x4 grid.
+3.  **Faceted Layout**: `facet_wrap()` with 4 columns displays all 12 months in a compact 3x4 grid.
 
-4. **Dual Text Labels**: Day numbers at top, P/L values below, with conditional coloring for readability.
+4.  **Dual Text Labels**: Day numbers at top, P/L values below, with conditional coloring for readability.
 
-5. **Clean Theme**: Minimal gridlines and muted colors keep focus on the data.
+5.  **Clean Theme**: Minimal gridlines and muted colors keep focus on the data.
 
----
+------------------------------------------------------------------------
 
 *This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project.*
 
-:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+:::: {.callout-caution collapse="false" appearance="minimal" icon="false"}
 ## Disclaimer
 
 ::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
-This analysis is for educational and practice purposes only. The profit/loss figures shown are from personal trading records and should not be considered as investment advice or performance guarantees.
+This analysis is for educational and practice purposes only.
+The profit/loss figures shown are from personal trading records and should not be considered as investment advice or performance guarantees.
 :::
-:::
+::::
