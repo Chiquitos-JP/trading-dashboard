@@ -453,3 +453,29 @@ main.content {
 .chart-grid figure {
   margin: 0;
 }
+
+// ページネーション（ページ選択ボタン）のスタイル - クールなグレー系
+.pagination .page-link {
+  color: #4b5563;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  transition: all 0.15s ease;
+}
+
+.pagination .page-link:hover {
+  color: #1f2937;
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.pagination .page-item.active .page-link {
+  color: #ffffff;
+  background-color: #4b5563;
+  border-color: #4b5563;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #9ca3af;
+  background-color: #f9fafb;
+  border-color: #e5e7eb;
+}
