@@ -1,0 +1,23 @@
+
+
+processing file: index.qmd
+1/15                    
+2/15 [load-packages]    
+3/15                    
+4/15 [load-data]        
+5/15                    
+6/15 [calendar-function]
+7/15                    
+8/15 [calendar-2025]    
+9/15                    
+10/15 [calendar-2026]    
+11/15                    
+12/15 [monthly-summary]  
+13/15                    
+14/15 [insights]         
+15/15                    
+output file: index.knit.md
+
+"C:/Program Files/Quarto/bin/tools/pandoc" +RTS -K512m -RTS index.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output index_test.html --lua-filter "C:\Users\alpac\AppData\Local\R\win-library\4.5\rmarkdown\rmarkdown\lua\pagebreak.lua" --lua-filter "C:\Users\alpac\AppData\Local\R\win-library\4.5\rmarkdown\rmarkdown\lua\latex-div.lua" --lua-filter "C:\Users\alpac\AppData\Local\R\win-library\4.5\rmarkdown\rmarkdown\lua\table-classes.lua" --embed-resources --standalone --variable bs3=TRUE --section-divs --template "C:\Users\alpac\AppData\Local\R\win-library\4.5\rmarkdown\rmd\h\default.html" --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable "mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --include-in-header "C:\Users\alpac\AppData\Local\Temp\RtmpG2DYyL\rmarkdown-str6738781739f1.html" 
+
+Output created: index_test.html

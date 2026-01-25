@@ -10,7 +10,18 @@
 <atom:link href="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/analysis.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Tue, 20 Jan 2026 15:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 24 Jan 2026 15:00:00 GMT</lastBuildDate>
+<item>
+  <title>{B4F502887207:/posts/2026-01-25-weekly-review/index.html}</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-25-weekly-review/</link>
+  <description>{B4F502887207:/posts/2026-01-25-weekly-review/index.html}</description>
+  <category>Weekly Review</category>
+  <category>Monthly Review</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-25-weekly-review/</guid>
+  <pubDate>Sat, 24 Jan 2026 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-25-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>{B4F502887207:/posts/2026-01-21-tidytuesday/index.html}</title>
   <dc:creator>chokotto </dc:creator>
@@ -22,6 +33,34 @@
   <category>Finance</category>
   <category>Trading</category>
   <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/</guid>
+  <pubDate>Tue, 20 Jan 2026 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/thumbnail.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2026-01-21-tidytuesday/index.html}</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/</link>
+  <description>{B4F502887207:/posts/2026-01-21-tidytuesday/index.html}</description>
+  <category>TidyTuesday</category>
+  <category>Data Viz</category>
+  <category>R</category>
+  <category>Finance</category>
+  <category>Trading</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/</guid>
+  <pubDate>Tue, 20 Jan 2026 15:00:00 GMT</pubDate>
+  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/thumbnail.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>{B4F502887207:/posts/2026-01-21-tidytuesday/test.html}</title>
+  <dc:creator>chokotto </dc:creator>
+  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/test.html</link>
+  <description>{B4F502887207:/posts/2026-01-21-tidytuesday/test.html}</description>
+  <category>TidyTuesday</category>
+  <category>Data Viz</category>
+  <category>R</category>
+  <category>Finance</category>
+  <category>Trading</category>
+  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/test.html</guid>
   <pubDate>Tue, 20 Jan 2026 15:00:00 GMT</pubDate>
   <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/thumbnail.svg" medium="image" type="image/svg+xml"/>
 </item>
@@ -209,39 +248,6 @@
   <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-01-weekly-review/</guid>
   <pubDate>Wed, 31 Dec 2025 15:00:00 GMT</pubDate>
   <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-01-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>{B4F502887207:/posts/2025-12-31-weekly-review/index.html}</title>
-  <dc:creator>chokotto </dc:creator>
-  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-31-weekly-review/</link>
-  <description>{B4F502887207:/posts/2025-12-31-weekly-review/index.html}</description>
-  <category>Weekly Review</category>
-  <category>Monthly Review</category>
-  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-31-weekly-review/</guid>
-  <pubDate>Tue, 30 Dec 2025 15:00:00 GMT</pubDate>
-  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-31-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>{B4F502887207:/posts/2025-12-30-weekly-review/index.html}</title>
-  <dc:creator>chokotto </dc:creator>
-  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-30-weekly-review/</link>
-  <description>{B4F502887207:/posts/2025-12-30-weekly-review/index.html}</description>
-  <category>Weekly Review</category>
-  <category>Monthly Review</category>
-  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-30-weekly-review/</guid>
-  <pubDate>Mon, 29 Dec 2025 15:00:00 GMT</pubDate>
-  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-30-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>{B4F502887207:/posts/2025-12-29-weekly-review/index.html}</title>
-  <dc:creator>chokotto </dc:creator>
-  <link>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-29-weekly-review/</link>
-  <description>{B4F502887207:/posts/2025-12-29-weekly-review/index.html}</description>
-  <category>Weekly Review</category>
-  <category>Monthly Review</category>
-  <guid>https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-29-weekly-review/</guid>
-  <pubDate>Sun, 28 Dec 2025 15:00:00 GMT</pubDate>
-  <media:content url="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2025-12-29-weekly-review/thumbnail.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

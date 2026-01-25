@@ -36,8 +36,10 @@ This visualization makes it easy to identify profitable and losing days across t
 #| message: false
 #| warning: false
 
+# Increase R stack size to prevent overflow with large plots
+options(expressions = 50000)
+
 library(tidyverse)
-library(lubridate)
 library(scales)
 library(arrow)
 
@@ -57,7 +59,7 @@ if (file.exists(helpers_path)) {
 #| message: false
 
 # Load aggregated daily P/L data (pre-processed)
-daily_pl_path <- file.path(project_root, "data", "daily_pl.parquet")
+daily_pl_path <- file.path(getwd(), "data", "daily_pl.parquet")
 daily_pl <- read_parquet(daily_pl_path) %>%
   mutate(date = as.Date(date))
 

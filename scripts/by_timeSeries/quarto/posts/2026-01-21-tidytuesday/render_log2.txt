@@ -1,0 +1,63 @@
+Quarto version: 1.8.25
+projectContext: Found Quarto project in C:\Users\alpac\Dropbox\03_individual_work\05_stockTrading\scripts\by_timeSeries\quarto
+
+[1/2] posts\2026-01-21-tidytuesday\index.qmd
+Loaded deno-dom-native
+-- Searching for R binary --
+Looking for 'Rscript' in QUARTO_R: undefined
+Looking for 'Rscript' in R_HOME: undefined
+Looking for 'Rscript' in PATH.
+[execProcess] CMD /C where Rscript
+[execProcess] Success: true, code: 0
+Found in PATH at C:\R\R-4.5.1\bin\x64\Rscript.exe
+[execProcess] C:\R\R-4.5.1\bin\x64\Rscript.exe C:\Program Files\Quarto\share\rmd\rmd.R
+
+
+processing file: index.qmd
+1/15                    
+2/15 [load-packages]    
+3/15                    
+4/15 [load-data]        
+5/15                    
+6/15 [calendar-function]
+7/15                    
+8/15 [calendar-2025]    
+9/15                    
+10/15 [calendar-2026]    
+11/15                    
+12/15 [monthly-summary]  
+13/15                    
+14/15 [insights]         
+15/15                    
+output file: index.knit.md
+
+[execProcess] Success: false, code: -1073741569
+[execProcess] C:\R\R-4.5.1\bin\x64\Rscript.exe --version
+[execProcess] Success: true, code: 0
+
+++R found at C:\R\R-4.5.1\bin\x64\Rscript.exe is working.
+-- Checking knitr engine capabilities --
+[execProcess] C:\R\R-4.5.1\bin\x64\Rscript.exe C:\Program Files\Quarto\share\capabilities\knitr.R
+[execProcess] Success: false, code: -1073741569
+
+++ Problem with results of knitr capabilities check.
+    Return Code: -1073741569 (success is false)
+    with stdout from R:
+--- YAML_START ---
+versionMajor: 4 
+versionMinor: 5 
+versionPatch: 1 
+home: C:/R/R-4.5.1 
+libPaths:
+  - "C:/Users/alpac/AppData/Local/R/win-library/4.5" 
+  - "C:/R/R-4.5.1/library" 
+packages:
+  knitr: "1.51"
+  rmarkdown: "2.30"
+--- YAML_END ---
+
+Problem with running R found at C:\R\R-4.5.1\bin\x64\Rscript.exe to check environment configurations.
+Please check your installation of R.
+
+WARN: Error encountered when rendering files
+[NotebookContext]: Starting Cleanup
