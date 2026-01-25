@@ -1,0 +1,499 @@
+---
+title: "MakeoverMonday: Risk Exposure Analysis"
+description: "Visualizing the relationship between Cash Reserve (PAT Balance) and Margin Exposure over time"
+date: "2026-01-27"
+author: "chokotto"
+categories: [MakeoverMonday, Data Viz, Python, Finance, Trading, Risk]
+image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.svg"
+  title: "MakeoverMonday: Risk Exposure Analysis"
+  description: "Cash Reserve vs Margin Exposure time series visualization"
+---
+
+## Overview
+
+This MakeoverMonday project visualizes the relationship between **Cash Reserve** (cumulative post-tax profit) and **Margin Exposure** (open margin positions) from my personal trading accounts.
+
+Key metrics:
+
+- **PAT Balance**: Cumulative Profit After Tax - represents available cash reserve
+- **Exposure**: Total margin position value (JPY equivalent)
+- **Exposure Ratio**: Exposure / |PAT Balance| - measures leverage relative to cash reserve
+
+This analysis helps understand the risk profile of the trading portfolio over time.
+
+## Dataset
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from pathlib import Path
+from datetime import datetime
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+# Define base path
+base_path = Path.cwd()
+while not (base_path / "data").exists() and base_path.parent != base_path:
+    base_path = base_path.parent
+
+# Load daily balance data
+balance_file = base_path / "data" / "trading_account" / "account_balance" / "daily_balance.parquet"
+
+if balance_file.exists():
+    daily_balance = pd.read_parquet(balance_file)
+    daily_balance['date'] = pd.to_datetime(daily_balance['date'])
+    print(f"Loaded {len(daily_balance)} daily balance records")
+else:
+    print(f"Data not found at {balance_file}")
+    daily_balance = pd.DataFrame()
+
+# Extract month-end data for cleaner visualization
+if not daily_balance.empty:
+    daily_balance['year_month'] = daily_balance['date'].dt.to_period('M').astype(str)
+    
+    # Get month-end data for each broker
+    month_end = daily_balance.groupby(['year_month', 'broker']).apply(
+        lambda x: x.loc[x['date'].idxmax()],
+        include_groups=False
+    ).reset_index()
+    
+    print(f"Month-end records: {len(month_end)}")
+    print(f"Date range: {month_end['year_month'].min()} to {month_end['year_month'].max()}")
+```
+
+```{python}
+#| label: prepare-data
+#| message: false
+
+# Calculate totals across brokers
+total_by_month = month_end.groupby('year_month').agg({
+    'pat_balance': 'sum',
+    'exposure': 'sum'
+}).reset_index()
+
+total_by_month['broker'] = 'Total'
+
+# Calculate exposure ratio (using absolute value of PAT for meaningful ratio)
+total_by_month['exposure_ratio'] = np.where(
+    total_by_month['pat_balance'] != 0,
+    total_by_month['exposure'] / np.abs(total_by_month['pat_balance']) * 100,
+    np.nan
+)
+
+# Add ratio to month_end data
+month_end['exposure_ratio'] = np.where(
+    month_end['pat_balance'] != 0,
+    month_end['exposure'] / np.abs(month_end['pat_balance']) * 100,
+    np.nan
+)
+
+# Combine broker data with total
+all_data = pd.concat([month_end, total_by_month], ignore_index=True)
+
+# Convert year_month to datetime for plotting
+all_data['date'] = pd.to_datetime(all_data['year_month'] + '-01')
+
+print(f"\nData summary:")
+print(f"Brokers: {all_data['broker'].unique().tolist()}")
+print(f"\nLatest Total values:")
+latest = total_by_month[total_by_month['year_month'] == total_by_month['year_month'].max()].iloc[0]
+print(f"  PAT Balance: ¥{latest['pat_balance']:,.0f}")
+print(f"  Exposure: ¥{latest['exposure']:,.0f}")
+print(f"  Exposure Ratio: {latest['exposure_ratio']:.1f}%")
+```
+
+## Chart 1: PAT Balance & Exposure Time Series (Total)
+
+This chart shows the absolute values of Cash Reserve and Margin Exposure over time.
+
+```{python}
+#| label: chart-1-amounts
+#| fig-width: 12
+#| fig-height: 6
+
+# Filter for Total only
+total_data = all_data[all_data['broker'] == 'Total'].copy()
+
+fig1 = make_subplots(specs=[[{"secondary_y": False}]])
+
+# PAT Balance as area
+fig1.add_trace(
+    go.Scatter(
+        x=total_data['date'],
+        y=total_data['pat_balance'],
+        name='PAT Balance (Cash Reserve)',
+        fill='tozeroy',
+        fillcolor='rgba(34, 197, 94, 0.3)',
+        line=dict(color='#22c55e', width=2),
+        hovertemplate='%{x|%Y-%m}<br>PAT Balance: ¥%{y:,.0f}<extra></extra>'
+    )
+)
+
+# Exposure as line
+fig1.add_trace(
+    go.Scatter(
+        x=total_data['date'],
+        y=total_data['exposure'],
+        name='Exposure (Margin Position)',
+        line=dict(color='#ef4444', width=3),
+        hovertemplate='%{x|%Y-%m}<br>Exposure: ¥%{y:,.0f}<extra></extra>'
+    )
+)
+
+# Add zero line
+fig1.add_hline(y=0, line_dash="dash", line_color="gray", opacity=0.5)
+
+fig1.update_layout(
+    title=dict(
+        text='<b>Cash Reserve vs Margin Exposure</b><br><sup>Monthly time series (Total across all brokers)</sup>',
+        x=0.5,
+        xanchor='center'
+    ),
+    xaxis_title='Month',
+    yaxis_title='Amount (JPY)',
+    yaxis=dict(tickformat=',.0f', tickprefix='¥'),
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=1.02,
+        xanchor='center',
+        x=0.5
+    ),
+    template='plotly_white',
+    height=500,
+    hovermode='x unified'
+)
+
+fig1.show()
+```
+
+## Chart 2: Exposure Ratio Time Series
+
+This chart shows how the leverage ratio (Exposure / |PAT Balance|) changes over time.
+
+```{python}
+#| label: chart-2-ratio
+#| fig-width: 12
+#| fig-height: 5
+
+# Create ratio chart
+fig2 = go.Figure()
+
+# Add ratio line
+fig2.add_trace(
+    go.Scatter(
+        x=total_data['date'],
+        y=total_data['exposure_ratio'],
+        name='Exposure Ratio',
+        fill='tozeroy',
+        fillcolor='rgba(239, 68, 68, 0.2)',
+        line=dict(color='#ef4444', width=2),
+        hovertemplate='%{x|%Y-%m}<br>Ratio: %{y:.1f}%<extra></extra>'
+    )
+)
+
+# Add reference lines
+fig2.add_hline(y=100, line_dash="dash", line_color="#f59e0b", 
+               annotation_text="100% (Exposure = |PAT|)", 
+               annotation_position="right")
+fig2.add_hline(y=200, line_dash="dot", line_color="#dc2626",
+               annotation_text="200% (High Risk)",
+               annotation_position="right")
+
+fig2.update_layout(
+    title=dict(
+        text='<b>Exposure Ratio Over Time</b><br><sup>Exposure / |PAT Balance| × 100 (Total)</sup>',
+        x=0.5,
+        xanchor='center'
+    ),
+    xaxis_title='Month',
+    yaxis_title='Exposure Ratio (%)',
+    yaxis=dict(ticksuffix='%'),
+    template='plotly_white',
+    height=400,
+    showlegend=False
+)
+
+fig2.show()
+```
+
+## Chart 3: Broker Breakdown - Stacked Area
+
+This chart shows how each broker contributes to the total exposure and cash reserve.
+
+```{python}
+#| label: chart-3-broker-exposure
+#| fig-width: 12
+#| fig-height: 5
+
+# Filter for brokers only (not Total)
+broker_data = all_data[all_data['broker'] != 'Total'].copy()
+
+# Pivot for stacked area
+exposure_pivot = broker_data.pivot(index='date', columns='broker', values='exposure').fillna(0)
+
+fig3 = go.Figure()
+
+colors = {'Rakuten': '#3b82f6', 'SBI': '#8b5cf6'}
+
+for broker in exposure_pivot.columns:
+    fig3.add_trace(
+        go.Scatter(
+            x=exposure_pivot.index,
+            y=exposure_pivot[broker],
+            name=broker,
+            stackgroup='one',
+            fillcolor=colors.get(broker, '#64748b'),
+            line=dict(width=0.5, color=colors.get(broker, '#64748b')),
+            hovertemplate=f'{broker}<br>' + '%{x|%Y-%m}<br>Exposure: ¥%{y:,.0f}<extra></extra>'
+        )
+    )
+
+fig3.update_layout(
+    title=dict(
+        text='<b>Margin Exposure by Broker</b><br><sup>Stacked area chart showing broker contribution</sup>',
+        x=0.5,
+        xanchor='center'
+    ),
+    xaxis_title='Month',
+    yaxis_title='Exposure (JPY)',
+    yaxis=dict(tickformat=',.0f', tickprefix='¥'),
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=1.02,
+        xanchor='center',
+        x=0.5
+    ),
+    template='plotly_white',
+    height=400,
+    hovermode='x unified'
+)
+
+fig3.show()
+```
+
+```{python}
+#| label: chart-3b-broker-pat
+#| fig-width: 12
+#| fig-height: 5
+
+# PAT Balance by broker
+pat_pivot = broker_data.pivot(index='date', columns='broker', values='pat_balance').fillna(0)
+
+fig3b = go.Figure()
+
+for broker in pat_pivot.columns:
+    fig3b.add_trace(
+        go.Scatter(
+            x=pat_pivot.index,
+            y=pat_pivot[broker],
+            name=broker,
+            stackgroup='one',
+            fillcolor=colors.get(broker, '#64748b'),
+            line=dict(width=0.5, color=colors.get(broker, '#64748b')),
+            hovertemplate=f'{broker}<br>' + '%{x|%Y-%m}<br>PAT Balance: ¥%{y:,.0f}<extra></extra>'
+        )
+    )
+
+fig3b.add_hline(y=0, line_dash="dash", line_color="gray", opacity=0.5)
+
+fig3b.update_layout(
+    title=dict(
+        text='<b>PAT Balance (Cash Reserve) by Broker</b><br><sup>Cumulative post-tax profit by broker</sup>',
+        x=0.5,
+        xanchor='center'
+    ),
+    xaxis_title='Month',
+    yaxis_title='PAT Balance (JPY)',
+    yaxis=dict(tickformat=',.0f', tickprefix='¥'),
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=1.02,
+        xanchor='center',
+        x=0.5
+    ),
+    template='plotly_white',
+    height=400,
+    hovermode='x unified'
+)
+
+fig3b.show()
+```
+
+## Chart 4: Risk-Balance Matrix (Scatter Plot)
+
+This scatter plot shows the relationship between Cash Reserve and Exposure. Each point represents a month, with color indicating time progression.
+
+```{python}
+#| label: chart-4-scatter
+#| fig-width: 10
+#| fig-height: 8
+
+fig4 = go.Figure()
+
+# Add scatter points with color gradient by time
+fig4.add_trace(
+    go.Scatter(
+        x=total_data['pat_balance'],
+        y=total_data['exposure'],
+        mode='markers+text',
+        marker=dict(
+            size=12,
+            color=list(range(len(total_data))),
+            colorscale='Viridis',
+            showscale=True,
+            colorbar=dict(title='Time<br>(older→newer)')
+        ),
+        text=total_data['year_month'].str[2:7],  # Show YY-MM
+        textposition='top center',
+        textfont=dict(size=9),
+        hovertemplate='%{text}<br>PAT: ¥%{x:,.0f}<br>Exposure: ¥%{y:,.0f}<extra></extra>'
+    )
+)
+
+# Add diagonal lines for reference
+max_val = max(total_data['exposure'].max(), abs(total_data['pat_balance']).max())
+min_val = min(total_data['pat_balance'].min(), 0)
+
+# 100% line (Exposure = |PAT|)
+fig4.add_trace(
+    go.Scatter(
+        x=[min_val, max_val],
+        y=[abs(min_val), max_val],
+        mode='lines',
+        line=dict(dash='dash', color='#f59e0b', width=1),
+        name='100% (Exposure = |PAT|)',
+        hoverinfo='skip'
+    )
+)
+
+# Zero PAT line
+fig4.add_vline(x=0, line_dash="dot", line_color="gray", opacity=0.5)
+
+# Add risk zones annotation
+fig4.add_annotation(
+    x=total_data['pat_balance'].max() * 0.8,
+    y=total_data['exposure'].max() * 0.3,
+    text="Lower Risk Zone<br>(High PAT, Low Exposure)",
+    showarrow=False,
+    font=dict(color='#22c55e', size=11),
+    bgcolor='rgba(255,255,255,0.8)'
+)
+
+fig4.add_annotation(
+    x=total_data['pat_balance'].min() * 0.5 if total_data['pat_balance'].min() < 0 else 0,
+    y=total_data['exposure'].max() * 0.8,
+    text="Higher Risk Zone<br>(Low/Negative PAT, High Exposure)",
+    showarrow=False,
+    font=dict(color='#ef4444', size=11),
+    bgcolor='rgba(255,255,255,0.8)'
+)
+
+fig4.update_layout(
+    title=dict(
+        text='<b>Risk-Balance Matrix</b><br><sup>Each point = one month (color: time progression)</sup>',
+        x=0.5,
+        xanchor='center'
+    ),
+    xaxis_title='PAT Balance (Cash Reserve) - JPY',
+    yaxis_title='Margin Exposure - JPY',
+    xaxis=dict(tickformat=',.0f', tickprefix='¥', zeroline=True),
+    yaxis=dict(tickformat=',.0f', tickprefix='¥'),
+    template='plotly_white',
+    height=600,
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=-0.15,
+        xanchor='center',
+        x=0.5
+    )
+)
+
+fig4.show()
+```
+
+## Summary Statistics
+
+```{python}
+#| label: summary-stats
+
+# Calculate summary statistics
+summary = total_by_month.describe()
+
+print("=== Risk Exposure Summary ===\n")
+print(f"Analysis Period: {total_by_month['year_month'].min()} to {total_by_month['year_month'].max()}")
+print(f"Total Months: {len(total_by_month)}")
+print()
+
+print("PAT Balance (Cash Reserve):")
+print(f"  Current: ¥{total_by_month['pat_balance'].iloc[-1]:,.0f}")
+print(f"  Maximum: ¥{total_by_month['pat_balance'].max():,.0f}")
+print(f"  Minimum: ¥{total_by_month['pat_balance'].min():,.0f}")
+print()
+
+print("Exposure (Margin Position):")
+print(f"  Current: ¥{total_by_month['exposure'].iloc[-1]:,.0f}")
+print(f"  Maximum: ¥{total_by_month['exposure'].max():,.0f}")
+print(f"  Minimum: ¥{total_by_month['exposure'].min():,.0f}")
+print()
+
+print("Exposure Ratio:")
+valid_ratios = total_by_month['exposure_ratio'].dropna()
+if len(valid_ratios) > 0:
+    print(f"  Current: {total_by_month['exposure_ratio'].iloc[-1]:.1f}%")
+    print(f"  Maximum: {valid_ratios.max():.1f}%")
+    print(f"  Average: {valid_ratios.mean():.1f}%")
+```
+
+## Key Insights
+
+1. **Leverage Dynamics**: The exposure ratio shows how aggressively margin is used relative to available cash reserve.
+
+2. **Risk Periods**: Months where exposure significantly exceeds PAT balance represent higher risk periods.
+
+3. **Broker Distribution**: The stacked area charts reveal which broker carries more exposure at any given time.
+
+4. **Trajectory**: The scatter plot's color gradient shows the portfolio's risk trajectory over time.
+
+## Design Decisions
+
+1. **Dual Metrics**: Showing both absolute values (JPY) and ratio (%) provides complete picture of risk.
+
+2. **Interactive Plotly**: Hover details allow precise value inspection at any point.
+
+3. **Color Coding**: Green for cash/profit, Red for exposure/risk - intuitive color associations.
+
+4. **Reference Lines**: 100% and 200% ratio lines provide quick risk assessment benchmarks.
+
+5. **Time-Colored Scatter**: Viridis colorscale shows risk evolution trajectory clearly.
+
+---
+
+*This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project.*
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. The figures shown are from personal trading records and should not be considered as investment advice. Margin trading involves significant risk of loss.
+:::
+:::
