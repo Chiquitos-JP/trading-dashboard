@@ -346,6 +346,58 @@ py run_weekly_posts.py --preview
 
 </details>
 
+<details>
+<summary><strong>X (Twitter) 自動投稿</strong></summary>
+
+レンダリングした記事を自動的にX (Twitter) に投稿するワークフローです。
+
+**スケジュール**
+- 月曜日 9:00 JST: MakeoverMonday 投稿
+- 火曜日 9:00 JST: TidyTuesday 投稿
+
+**仕組み**
+1. 記事レンダリング時に `.github/x-post-queue.json` にキュー追加
+2. スケジュールまたは手動でワークフロー実行
+3. キューから最古の未投稿記事を取得してXに投稿
+4. 投稿済みフラグを更新
+
+**GitHub Secrets設定（必須）**
+
+リポジトリの **Settings → Secrets and variables → Actions** で以下を設定:
+
+| Secret名 | 説明 |
+|---------|------|
+| `X_API_KEY` | X API Key |
+| `X_API_SECRET` | X API Key Secret |
+| `X_ACCESS_TOKEN` | X Access Token |
+| `X_ACCESS_TOKEN_SECRET` | X Access Token Secret |
+
+**X API認証情報の取得方法**
+1. [X Developer Portal](https://developer.twitter.com/en/portal/dashboard) にログイン
+2. プロジェクト/アプリを作成
+3. **User authentication settings** で OAuth 1.0a を有効化
+   - App permissions: **Read and write**
+4. **Keys and Tokens** タブで認証情報を取得
+
+**手動実行**
+1. GitHub → **Actions** タブ
+2. **Post to X (Twitter)** を選択
+3. **Run workflow** → Post type と Dry run を選択
+4. Dry run: 実際に投稿せずにテスト
+
+**投稿フォーマット例**
+```
+MakeoverMonday: Risk Exposure Analysis
+
+Cash Reserve vs Margin Exposure time series visualization
+
+https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-27-makeover-monday/
+
+#MakeoverMonday #DataViz #Python
+```
+
+</details>
+
 </details>
 
 <details>

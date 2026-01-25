@@ -1,0 +1,62 @@
+{
+  "makeover-monday": [
+    {
+      "date": "2026-01-06",
+      "title": "MakeoverMonday: Weekly Trading Performance",
+      "description": "Weekly trading performance visualization",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-06-makeover-monday/",
+      "posted": false
+    },
+    {
+      "date": "2026-01-13",
+      "title": "MakeoverMonday: Trading Analysis",
+      "description": "Trading analysis visualization",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-13-makeover-monday/",
+      "posted": false
+    },
+    {
+      "date": "2026-01-20",
+      "title": "MakeoverMonday: Performance Review",
+      "description": "Performance review visualization",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-20-makeover-monday/",
+      "posted": false
+    },
+    {
+      "date": "2026-01-27",
+      "title": "MakeoverMonday: Risk Exposure Analysis",
+      "description": "Cash Reserve vs Margin Exposure time series visualization",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-27-makeover-monday/",
+      "posted": false
+    }
+  ],
+  "tidytuesday": [
+    {
+      "date": "2026-01-07",
+      "title": "TidyTuesday: Weekly Trading Performance",
+      "description": "Weekly trading performance visualization with ggplot2",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-07-tidytuesday/",
+      "posted": false
+    },
+    {
+      "date": "2026-01-13",
+      "title": "TidyTuesday: Trading Analysis",
+      "description": "Trading analysis visualization with ggplot2",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-13-tidytuesday/",
+      "posted": false
+    },
+    {
+      "date": "2026-01-21",
+      "title": "TidyTuesday: Performance Review",
+      "description": "Performance review visualization with ggplot2",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/",
+      "posted": false
+    },
+    {
+      "date": "2026-01-28",
+      "title": "TidyTuesday: Risk Exposure Analysis",
+      "description": "Cash Reserve vs Margin Exposure time series with ggplot2",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-28-tidytuesday/",
+      "posted": false
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+name: Post to X (Twitter)
+
+on:
+  # スケジュール実行
+  schedule:
+    # 月曜日 9:00 JST (0:00 UTC) - MakeoverMonday
+    - cron: '0 0 * * 1'
+    # 火曜日 9:00 JST (0:00 UTC) - TidyTuesday
+    - cron: '0 0 * * 2'
+  
+  # 手動実行
+  workflow_dispatch:
+    inputs:
+      post_type:
+        description: 'Post type to publish'
+        required: true
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - makeover-monday
+          - tidytuesday
+      dry_run:
+        description: 'Dry run (no actual posting)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Install dependencies
+        run: pip install tweepy
+      
+      - name: Determine post type
+        id: determine-type
+        run: |
+          # 手動実行の場合
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ github.event.inputs.post_type }}" = "auto" ]; then
+              # 曜日で自動判定
+              DAY_OF_WEEK=$(date +%u)
+              if [ "$DAY_OF_WEEK" = "1" ]; then
+                echo "post_type=makeover-monday" >> $GITHUB_OUTPUT
+              elif [ "$DAY_OF_WEEK" = "2" ]; then
+                echo "post_type=tidytuesday" >> $GITHUB_OUTPUT
+              else
+                echo "post_type=makeover-monday" >> $GITHUB_OUTPUT
+              fi
+            else
+              echo "post_type=${{ github.event.inputs.post_type }}" >> $GITHUB_OUTPUT
+            fi
+            echo "dry_run=${{ github.event.inputs.dry_run }}" >> $GITHUB_OUTPUT
+          else
+            # スケジュール実行の場合（曜日で判定）
+            DAY_OF_WEEK=$(date +%u)
+            if [ "$DAY_OF_WEEK" = "1" ]; then
+              echo "post_type=makeover-monday" >> $GITHUB_OUTPUT
+            elif [ "$DAY_OF_WEEK" = "2" ]; then
+              echo "post_type=tidytuesday" >> $GITHUB_OUTPUT
+            else
+              echo "Unexpected day of week: $DAY_OF_WEEK"
+              exit 1
+            fi
+            echo "dry_run=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Post to X
+        id: post
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: |
+          POST_TYPE="${{ steps.determine-type.outputs.post_type }}"
+          DRY_RUN="${{ steps.determine-type.outputs.dry_run }}"
+          
+          echo "Post type: $POST_TYPE"
+          echo "Dry run: $DRY_RUN"
+          
+          if [ "$DRY_RUN" = "true" ]; then
+            python .github/scripts/post_to_x.py --type "$POST_TYPE" --dry-run
+          else
+            python .github/scripts/post_to_x.py --type "$POST_TYPE"
+          fi
+      
+      - name: Check for queue changes
+        id: check-changes
+        run: |
+          if [ -n "$(git status --porcelain .github/x-post-queue.json)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Commit queue update
+        if: steps.check-changes.outputs.changes == 'true' && steps.determine-type.outputs.dry_run != 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add .github/x-post-queue.json
+          git commit -m "Update X post queue (${{ steps.determine-type.outputs.post_type }})"
+          git push
+      
+      - name: Summary
+        run: |
+          echo "## X Post Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Post Type**: ${{ steps.determine-type.outputs.post_type }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Dry Run**: ${{ steps.determine-type.outputs.dry_run }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Queue Updated**: ${{ steps.check-changes.outputs.changes }}" >> $GITHUB_STEP_SUMMARY

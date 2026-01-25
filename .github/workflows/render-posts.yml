@@ -142,12 +142,55 @@ jobs:
             fi
           done
 
+      - name: Add rendered posts to X queue
+        run: |
+          POST_TYPE="${{ github.event.inputs.post_type }}"
+          POST_DATE="${{ github.event.inputs.post_date }}"
+          
+          cd ${{ env.QUARTO_PROJECT_DIR }}
+          
+          # TidyTuesday posts
+          if [ "$POST_TYPE" = "tidytuesday" ] || [ "$POST_TYPE" = "all" ]; then
+            for post_dir in posts/*-tidytuesday/; do
+              if [ -d "$post_dir" ]; then
+                # Filter by date if specified
+                if [ -n "$POST_DATE" ]; then
+                  if [[ "$post_dir" == *"$POST_DATE"* ]]; then
+                    echo "📬 Adding to X queue: $post_dir"
+                    python ../../../.github/scripts/add_to_queue.py --post-dir "$post_dir" || echo "⚠️ Queue add failed: $post_dir"
+                  fi
+                else
+                  echo "📬 Adding to X queue: $post_dir"
+                  python ../../../.github/scripts/add_to_queue.py --post-dir "$post_dir" || echo "⚠️ Queue add failed: $post_dir"
+                fi
+              fi
+            done
+          fi
+          
+          # MakeoverMonday posts
+          if [ "$POST_TYPE" = "makeover-monday" ] || [ "$POST_TYPE" = "all" ]; then
+            for post_dir in posts/*-makeover-monday/; do
+              if [ -d "$post_dir" ]; then
+                # Filter by date if specified
+                if [ -n "$POST_DATE" ]; then
+                  if [[ "$post_dir" == *"$POST_DATE"* ]]; then
+                    echo "📬 Adding to X queue: $post_dir"
+                    python ../../../.github/scripts/add_to_queue.py --post-dir "$post_dir" || echo "⚠️ Queue add failed: $post_dir"
+                  fi
+                else
+                  echo "📬 Adding to X queue: $post_dir"
+                  python ../../../.github/scripts/add_to_queue.py --post-dir "$post_dir" || echo "⚠️ Queue add failed: $post_dir"
+                fi
+              fi
+            done
+          fi
+
       - name: Check for changes
         id: check-changes
         run: |
-          if [ -n "$(git status --porcelain docs/)" ]; then
+          if [ -n "$(git status --porcelain docs/ .github/x-post-queue.json)" ]; then
             echo "changes=true" >> $GITHUB_OUTPUT
-            echo "📊 Changes detected in docs/"
+            echo "📊 Changes detected in docs/ or queue"
           else
             echo "changes=false" >> $GITHUB_OUTPUT
             echo "ℹ️ No changes to commit"
@@ -161,6 +204,7 @@ jobs:
           
           git add docs/
           git add ${{ env.QUARTO_PROJECT_DIR }}/_freeze/ || true
+          git add .github/x-post-queue.json || true
           
           COMMIT_MSG="🎨 Render weekly posts (${{ github.event.inputs.post_type }})"
           if [ -n "${{ github.event.inputs.post_date }}" ]; then
