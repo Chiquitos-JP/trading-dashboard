@@ -173,6 +173,117 @@ data/trading_account/
 </details>
 
 <details>
+<summary><strong>TidyTuesday / MakeoverMonday 投稿フロー</strong></summary>
+
+週次データビジュアライゼーション投稿の作成・レンダリング手順です。  
+`run_all.py`とは別管理で、専用スクリプト `render_posts.py` を使用します。
+
+<details>
+<summary><strong>ディレクトリ構造</strong></summary>
+
+```text
+scripts/by_timeSeries/quarto/posts/
+├── 2026-01-06-makeover-monday/    # MakeoverMonday投稿
+│   ├── index.qmd                  # Quartoソース（Python）
+│   └── thumbnail.svg              # サムネイル画像
+├── 2026-01-07-tidytuesday/        # TidyTuesday投稿
+│   ├── index.qmd                  # Quartoソース（R）
+│   ├── thumbnail.svg              # サムネイル画像
+│   └── data/                      # （オプション）ローカルデータ
+└── ...
+```
+
+**命名規則**: `YYYY-MM-DD-{makeover-monday|tidytuesday}/`
+
+</details>
+
+<details>
+<summary><strong>新規投稿の作成手順</strong></summary>
+
+1. **ディレクトリ作成**
+   ```powershell
+   # 例: 2026-01-27のTidyTuesday投稿
+   mkdir scripts/by_timeSeries/quarto/posts/2026-01-27-tidytuesday
+   ```
+
+2. **必須ファイル作成**
+   - `index.qmd`: Quartoマークダウン（以下テンプレート参照）
+   - `thumbnail.svg`: サムネイル画像（800x450px推奨）
+
+3. **index.qmd テンプレート**
+   ```yaml
+   ---
+   title: "TidyTuesday: [タイトル]"
+   description: "[説明]"
+   date: "2026-01-27"
+   author: "chokotto"
+   categories: [TidyTuesday, Data Viz, R, Finance]
+   image: "thumbnail.svg"
+   freeze: false
+   execute:
+     warning: false
+     message: false
+   code-fold: true
+   code-tools: true
+   ---
+   ```
+
+</details>
+
+<details>
+<summary><strong>レンダリング手順</strong></summary>
+
+**MakeoverMonday（Python）**: ローカルでレンダリング
+```powershell
+# レンダリング実行
+py scripts/by_timeSeries/runners/render_posts.py
+
+# プレビュー起動
+py scripts/by_timeSeries/runners/render_posts.py --preview
+
+# 一覧表示のみ
+py scripts/by_timeSeries/runners/render_posts.py --list
+```
+
+**TidyTuesday（R）**: GitHub Actionsでレンダリング
+1. GitHub リポジトリの **Actions** タブに移動
+2. **Render Weekly Posts (TidyTuesday/MakeoverMonday)** を選択
+3. **Run workflow** をクリック
+4. Post type: `tidytuesday` を選択
+
+> **なぜGitHub Actionsを使うのか？**  
+> ARM64 Windows（Surface Laptop 7等）ではx64版Rとの互換性問題により、ローカルでのQuarto + Rレンダリングが失敗します。GitHub Actionsはx64 Linux環境で実行されるため、この問題を回避できます。
+
+</details>
+
+<details>
+<summary><strong>ワークフロー全体図</strong></summary>
+
+```text
+[ローカル - Cursor]                    [GitHub Actions]
+    │                                       │
+    │ 1. MakeoverMonday (Python)            │
+    │    py render_posts.py                 │
+    │    → docs/ にHTML生成                 │
+    │                                       │
+    │ 2. git push                           │
+    └───────────────────────────────────────►
+                                            │
+                                            │ 3. TidyTuesday (R)
+                                            │    Actions → Run workflow
+                                            │    → docs/ にHTML生成
+                                            │    → 自動コミット&プッシュ
+                                            │
+    ◄───────────────────────────────────────┘
+    │
+    │ 4. git pull（必要に応じて）
+```
+
+</details>
+
+</details>
+
+<details>
 <summary><strong>tips</strong></summary>
 
 <details>
