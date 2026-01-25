@@ -122,9 +122,10 @@ jobs:
           cd ${{ env.QUARTO_PROJECT_DIR }}
           
           for post_dir in posts/*-tidytuesday/; do
-            if [ -d "$post_dir" ]; then
-              echo "📝 Rendering: $post_dir"
-              quarto render "$post_dir" || echo "⚠️ Failed: $post_dir"
+            if [ -d "$post_dir" ] && [ -f "${post_dir}index.qmd" ]; then
+              echo "📝 Rendering: ${post_dir}index.qmd"
+              # Render from project root to maintain navigation context
+              quarto render "${post_dir}index.qmd" || echo "⚠️ Failed: $post_dir"
             fi
           done
 
@@ -134,9 +135,10 @@ jobs:
           cd ${{ env.QUARTO_PROJECT_DIR }}
           
           for post_dir in posts/*-makeover-monday/; do
-            if [ -d "$post_dir" ]; then
-              echo "📝 Rendering: $post_dir"
-              quarto render "$post_dir" || echo "⚠️ Failed: $post_dir"
+            if [ -d "$post_dir" ] && [ -f "${post_dir}index.qmd" ]; then
+              echo "📝 Rendering: ${post_dir}index.qmd"
+              # Render from project root to maintain navigation context
+              quarto render "${post_dir}index.qmd" || echo "⚠️ Failed: $post_dir"
             fi
           done
 
