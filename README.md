@@ -176,83 +176,90 @@ data/trading_account/
 <summary><strong>TidyTuesday / MakeoverMonday 投稿フロー</strong></summary>
 
 週次データビジュアライゼーション投稿の作成・レンダリング手順です。  
-`run_all.py`とは別管理で、専用スクリプト `render_posts.py` を使用します。
+`run_all.py`や週間レビュー（`run_weekly_review.py`）とは別管理で、専用スクリプト `run_weekly_posts.py` を使用します。
 
 <details>
 <summary><strong>ディレクトリ構造</strong></summary>
 
 ```text
 scripts/by_timeSeries/quarto/posts/
-├── 2026-01-06-makeover-monday/    # MakeoverMonday投稿
-│   ├── index.qmd                  # Quartoソース（Python）
+├── 2026-01-27-makeover-monday/    # MakeoverMonday投稿（Python）
+│   ├── index.qmd                  # Quartoソース
 │   └── thumbnail.svg              # サムネイル画像
-├── 2026-01-07-tidytuesday/        # TidyTuesday投稿
-│   ├── index.qmd                  # Quartoソース（R）
+├── 2026-01-28-tidytuesday/        # TidyTuesday投稿（R）
+│   ├── index.qmd                  # Quartoソース
 │   ├── thumbnail.svg              # サムネイル画像
-│   └── data/                      # （オプション）ローカルデータ
+│   ├── prepare_data.py            # データ準備スクリプト（必要に応じて）
+│   └── data/                      # ローカルデータ（.gitignore対象）
+│       └── monthly_balance.parquet
 └── ...
 ```
 
-**命名規則**: `YYYY-MM-DD-{makeover-monday|tidytuesday}/`
+**命名規則**: `YYYY-MM-DD-{makeover-monday|tidytuesday}/`  
+**日付**: 月曜日=MakeoverMonday、火曜日=TidyTuesday
 
 </details>
 
 <details>
-<summary><strong>新規投稿の作成手順</strong></summary>
+<summary><strong>完全ワークフロー（アイデアから公開まで）</strong></summary>
 
-1. **ディレクトリ作成**
+### Phase 1: アイデア・企画
+1. **題材を決定**: 可視化したいデータや分析テーマを決める
+2. **チャート設計**: どのような可視化が効果的か検討
+   - 時系列チャート、散布図、積み上げグラフ等
+
+### Phase 2: ファイル作成
+3. **ディレクトリ作成**
    ```powershell
-   # 例: 2026-01-27のTidyTuesday投稿
-   mkdir scripts/by_timeSeries/quarto/posts/2026-01-27-tidytuesday
+   mkdir scripts/by_timeSeries/quarto/posts/2026-01-27-makeover-monday
+   mkdir scripts/by_timeSeries/quarto/posts/2026-01-28-tidytuesday
+   mkdir scripts/by_timeSeries/quarto/posts/2026-01-28-tidytuesday/data
    ```
 
-2. **必須ファイル作成**
-   - `index.qmd`: Quartoマークダウン（以下テンプレート参照）
-   - `thumbnail.svg`: サムネイル画像（800x450px推奨）
+4. **index.qmd 作成**（各フォルダに）
+   - MakeoverMonday: Python + Plotly/Matplotlib
+   - TidyTuesday: R + ggplot2
 
-3. **index.qmd テンプレート**
-   ```yaml
-   ---
-   title: "TidyTuesday: [タイトル]"
-   description: "[説明]"
-   date: "2026-01-27"
-   author: "chokotto"
-   categories: [TidyTuesday, Data Viz, R, Finance]
-   image: "thumbnail.svg"
-   freeze: false
-   execute:
-     warning: false
-     message: false
-   code-fold: true
-   code-tools: true
-   ---
-   ```
+5. **thumbnail.svg 作成**（400x300px推奨）
 
-</details>
+6. **prepare_data.py 作成**（TidyTuesday用、データ準備が必要な場合）
 
-<details>
-<summary><strong>レンダリング手順</strong></summary>
+### Phase 3: レンダリング＆公開
 
-**MakeoverMonday（Python）**: ローカルでレンダリング
+**Step 1: TidyTuesday用データ準備**
 ```powershell
-# レンダリング実行
-py scripts/by_timeSeries/runners/render_posts.py
-
-# プレビュー起動
-py scripts/by_timeSeries/runners/render_posts.py --preview
-
-# 一覧表示のみ
-py scripts/by_timeSeries/runners/render_posts.py --list
+cd scripts/by_timeSeries/quarto/posts/2026-01-28-tidytuesday
+py prepare_data.py
 ```
 
-**TidyTuesday（R）**: GitHub Actionsでレンダリング
-1. GitHub リポジトリの **Actions** タブに移動
-2. **Render Weekly Posts (TidyTuesday/MakeoverMonday)** を選択
-3. **Run workflow** をクリック
-4. Post type: `tidytuesday` を選択
+**Step 2: MakeoverMonday（Python）レンダリング**
+```powershell
+cd scripts/by_timeSeries/runners
+py run_weekly_posts.py --date 2026-01-27
+```
+または直接Quartoでレンダリング:
+```powershell
+cd scripts/by_timeSeries/quarto
+quarto render "posts\2026-01-27-makeover-monday\index.qmd"
+```
 
-> **なぜGitHub Actionsを使うのか？**  
-> ARM64 Windows（Surface Laptop 7等）ではx64版Rとの互換性問題により、ローカルでのQuarto + Rレンダリングが失敗します。GitHub Actionsはx64 Linux環境で実行されるため、この問題を回避できます。
+**Step 3: Git同期**
+```powershell
+git add .
+git commit -m "Add MakeoverMonday/TidyTuesday posts"
+git push
+```
+
+**Step 4: TidyTuesday（R）GitHub Actionsでレンダリング**
+1. GitHub → **Actions** タブ
+2. **Render Weekly Posts (TidyTuesday/MakeoverMonday)** を選択
+3. **Run workflow** → Post type: `tidytuesday` を選択
+4. 自動でレンダリング→コミット→プッシュ
+
+**Step 5: ローカル同期（必要に応じて）**
+```powershell
+git pull
+```
 
 </details>
 
@@ -260,24 +267,82 @@ py scripts/by_timeSeries/runners/render_posts.py --list
 <summary><strong>ワークフロー全体図</strong></summary>
 
 ```text
-[ローカル - Cursor]                    [GitHub Actions]
-    │                                       │
-    │ 1. MakeoverMonday (Python)            │
-    │    py render_posts.py                 │
-    │    → docs/ にHTML生成                 │
-    │                                       │
-    │ 2. git push                           │
-    └───────────────────────────────────────►
-                                            │
-                                            │ 3. TidyTuesday (R)
-                                            │    Actions → Run workflow
-                                            │    → docs/ にHTML生成
-                                            │    → 自動コミット&プッシュ
-                                            │
-    ◄───────────────────────────────────────┘
+[ローカル - Cursor]                          [GitHub Actions]
+    │                                             │
+    │ 1. アイデア決定・ファイル作成               │
+    │    ├── index.qmd (Python/R)                 │
+    │    ├── thumbnail.svg                        │
+    │    └── prepare_data.py (TidyTuesday用)      │
+    │                                             │
+    │ 2. TidyTuesday用データ準備                  │
+    │    py prepare_data.py                       │
+    │    → data/monthly_balance.parquet生成       │
+    │                                             │
+    │ 3. MakeoverMonday (Python) レンダリング     │
+    │    py run_weekly_posts.py                   │
+    │    → docs/quarto/latest/ にHTML生成         │
+    │                                             │
+    │ 4. git push                                 │
+    └─────────────────────────────────────────────►
+                                                  │
+                                                  │ 5. TidyTuesday (R) レンダリング
+                                                  │    Actions → Run workflow
+                                                  │    ├── prepare_data.py 実行
+                                                  │    ├── quarto render 実行
+                                                  │    └── 自動コミット&プッシュ
+                                                  │
+    ◄─────────────────────────────────────────────┘
     │
-    │ 4. git pull（必要に応じて）
+    │ 6. git pull（GitHub Actions完了後）
+    │
+    ▼
+  [公開完了] https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/analysis.html
 ```
+
+</details>
+
+<details>
+<summary><strong>コマンドリファレンス</strong></summary>
+
+**run_weekly_posts.py オプション**
+```powershell
+# MakeoverMondayのみレンダリング（デフォルト）
+py run_weekly_posts.py
+
+# 特定日付のポストをレンダリング
+py run_weekly_posts.py --date 2026-01-27
+
+# 全ポスト（TidyTuesday含む）をレンダリング
+py run_weekly_posts.py --type all
+
+# 一覧表示のみ（レンダリングしない）
+py run_weekly_posts.py --list
+
+# プレビュー起動
+py run_weekly_posts.py --preview
+```
+
+**GitHub Actions ワークフロー**
+- ワークフロー名: `Render Weekly Posts (TidyTuesday/MakeoverMonday)`
+- ファイル: `.github/workflows/render-posts.yml`
+- Post type選択肢: `all` / `tidytuesday` / `makeover-monday`
+
+</details>
+
+<details>
+<summary><strong>注意事項</strong></summary>
+
+**TidyTuesdayの`data/`フォルダ**
+- `.gitignore`で除外されているため、GitHub Actionsでは`prepare_data.py`で生成
+- ローカルで実行する場合は先に`py prepare_data.py`を実行
+
+**ARM64 Windows環境（Surface Laptop 7等）**
+- x64版Rとの互換性問題により、ローカルでのQuarto + Rレンダリングが失敗する
+- TidyTuesdayはGitHub Actions（x64 Linux環境）でレンダリング推奨
+
+**ランディングページ（analysis.html）**
+- Quartoの`listing`機能により、`posts/`フォルダ内の全投稿が自動リストアップ
+- 投稿フォルダとindex.qmdが存在すれば、レンダリング前でもサムネイルと概要が表示される
 
 </details>
 
