@@ -51,6 +51,7 @@ jobs:
             any::arrow
             any::knitr
             any::rmarkdown
+            any::patchwork
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -102,6 +103,18 @@ jobs:
           
           echo "Found posts: $POSTS"
           echo "posts=$POSTS" >> $GITHUB_OUTPUT
+
+      - name: Prepare TidyTuesday data
+        if: contains(github.event.inputs.post_type, 'tidytuesday') || github.event.inputs.post_type == 'all'
+        run: |
+          cd ${{ env.QUARTO_PROJECT_DIR }}
+          
+          for post_dir in posts/*-tidytuesday/; do
+            if [ -d "$post_dir" ] && [ -f "${post_dir}prepare_data.py" ]; then
+              echo "📊 Preparing data for: $post_dir"
+              python "${post_dir}prepare_data.py" || echo "⚠️ Data prep failed: $post_dir"
+            fi
+          done
 
       - name: Render TidyTuesday posts (R)
         if: contains(github.event.inputs.post_type, 'tidytuesday') || github.event.inputs.post_type == 'all'
