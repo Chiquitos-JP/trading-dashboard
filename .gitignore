@@ -29,6 +29,9 @@ scripts/by_timeSeries/quarto/posts/*
 # TidyTuesday/MakeoverMondayのみ追跡
 !scripts/by_timeSeries/quarto/posts/*-tidytuesday/
 !scripts/by_timeSeries/quarto/posts/*-makeover-monday/
+# TidyTuesday/MakeoverMonday内のdataフォルダも追跡
+!scripts/by_timeSeries/quarto/posts/*-tidytuesday/data/
+!scripts/by_timeSeries/quarto/posts/*-makeover-monday/data/
 
 # ----- 環境・機密情報 -----
 .env
