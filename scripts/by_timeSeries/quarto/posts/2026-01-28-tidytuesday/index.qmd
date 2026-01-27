@@ -26,9 +26,9 @@ This week's TidyTuesday visualizes the relationship between **Cash Reserve** (cu
 
 Key metrics:
 
-- **PAT Balance**: Cumulative Profit After Tax - represents available cash reserve
-- **Exposure**: Total margin position value (JPY equivalent)
-- **Exposure Ratio**: Exposure / |PAT Balance| - measures leverage relative to cash reserve
+-   **PAT Balance**: Cumulative Profit After Tax - represents available cash reserve
+-   **Exposure**: Total margin position value (JPY equivalent)
+-   **Exposure Ratio**: Exposure / \|PAT Balance\| - measures leverage relative to cash reserve
 
 ## Dataset
 
@@ -457,6 +457,7 @@ if (length(valid_ratios) > 0) {
 
 ::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
 This analysis is for educational and practice purposes only.
-The figures shown are from personal trading records and should not be considered as investment advice. Margin trading involves significant risk of loss.
+The figures shown are from personal trading records and should not be considered as investment advice.
+Margin trading involves significant risk of loss.
 :::
 ::::
