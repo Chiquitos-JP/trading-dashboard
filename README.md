@@ -179,6 +179,35 @@ data/trading_account/
 `run_all.py`や週間レビュー（`run_weekly_review.py`）とは別管理で、専用スクリプト `run_weekly_posts.py` を使用します。
 
 <details>
+<summary><strong>基本的な考え方</strong></summary>
+
+**TidyTuesday（R）→ MakeoverMonday（Python）** の順でワークフローを回します。
+
+| 投稿 | 言語 | 役割 | 投稿日 |
+|------|------|------|--------|
+| **TidyTuesday** | R (ggplot2) | アイデア探索・プロトタイピング | 火曜 |
+| **MakeoverMonday** | Python (Plotly) | 仕組化・再現性の確保 | 月曜 |
+
+**フロー:**
+```
+TidyTuesday (R)              MakeoverMonday (Python)
+    │                              │
+    │ 1. アイデア探索              │ 3. 同じ題材をPythonで実装
+    │ 2. ggplot2でプロトタイプ     │ 4. 仕組化・自動化可能な形に
+    │                              │
+    ▼                              ▼
+  火曜投稿 ──────────────────▶ 翌週月曜投稿
+          （同じ内容を別言語で）
+```
+
+**ポイント:**
+- 両者は**基本的に同じ題材・同じ可視化**を扱う
+- TidyTuesdayで試行錯誤し、MakeoverMondayで整理・仕組化
+- R → Python の移植練習にもなる
+
+</details>
+
+<details>
 <summary><strong>ディレクトリ構造</strong></summary>
 
 ```text
