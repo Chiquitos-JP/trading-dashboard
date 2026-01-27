@@ -55,11 +55,11 @@ def format_tweet(item: dict, post_type: str) -> str:
     description = item.get("description", "")
     url = item.get("url", "")
     
-    # ハッシュタグの決定
+    # ハッシュタグの決定（#My~ で公式版ではないことを示す）
     if post_type == "makeover-monday":
-        hashtags = "#MakeoverMonday #DataViz #Python"
+        hashtags = "#MakeoverMonday #MyMakeoverMonday #DataViz #Python"
     else:
-        hashtags = "#TidyTuesday #DataViz #RStats"
+        hashtags = "#TidyTuesday #MyTidyTuesday #DataViz #RStats"
     
     # ツイート構成（280文字制限を考慮）
     tweet = f"{title}\n\n{description}\n\n{url}\n\n{hashtags}"

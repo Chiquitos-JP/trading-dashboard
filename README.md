@@ -425,8 +425,10 @@ Cash Reserve vs Margin Exposure time series visualization
 
 https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-27-makeover-monday/
 
-#MakeoverMonday #DataViz #Python
+#MakeoverMonday #MyMakeoverMonday #DataViz #Python
 ```
+
+※ `#MyMakeoverMonday` / `#MyTidyTuesday` は公式版ではないことを示すタグ
 
 **トラブルシューティング**
 
