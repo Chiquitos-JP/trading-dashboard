@@ -181,6 +181,9 @@ fig1.update_layout(
 )
 
 fig1.show()
+
+# Save first chart as static image for X post
+fig1.write_image("chart-1.png", width=1200, height=600, scale=2)
 ```
 
 ## Chart 2: Exposure Ratio Time Series

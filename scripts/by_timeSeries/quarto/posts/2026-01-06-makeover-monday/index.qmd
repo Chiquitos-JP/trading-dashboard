@@ -75,6 +75,9 @@ fig.update_layout(
 )
 
 fig.show()
+
+# Save first chart as static image for X post
+fig.write_image("chart-1.png", width=1200, height=600, scale=2)
 ```
 
 ## Key Takeaways

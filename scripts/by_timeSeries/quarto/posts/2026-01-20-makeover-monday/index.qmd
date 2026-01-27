@@ -213,6 +213,9 @@ def create_calendar_heatmap(daily_data: pd.DataFrame, year: int, figsize=(16, 12
 #| fig-height: 12
 
 fig_2025 = create_calendar_heatmap(daily_pl, 2025)
+
+# Save first chart as static image for X post
+fig_2025.savefig("chart-1.png", dpi=150, bbox_inches='tight', facecolor='white')
 plt.show()
 ```
 
