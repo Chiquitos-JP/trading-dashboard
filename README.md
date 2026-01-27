@@ -414,10 +414,24 @@ py run_weekly_posts.py --preview
 
 | 投稿タイプ | 画像ソース |
 |-----------|-----------|
-| TidyTuesday (R) | `index_files/figure-html/*.png`（ggplot2出力） |
-| MakeoverMonday (Python) | `chart-1.png`（Plotly静的出力） |
+| TidyTuesday (R) | `index_files/figure-html/*.png`（ggplot2出力、自動生成） |
+| MakeoverMonday (Python) | `chart-1.png`（Plotly/Matplotlib静的出力） |
 
 ※ 画像がない場合はテキストのみで投稿
+
+**MakeoverMonday 画像出力の留意事項**
+
+MakeoverMondayでは、最初のチャートのコードブロックに画像出力処理を追加する必要があります：
+
+```python
+# Plotly の場合（fig.show() の後に追加）
+fig.write_image("chart-1.png", width=1200, height=600, scale=2)
+
+# Matplotlib の場合（plt.show() の前に追加）
+fig.savefig("chart-1.png", dpi=150, bbox_inches='tight', facecolor='white')
+```
+
+※ TidyTuesdayはggplot2が自動的にPNG出力するため追加不要
 
 **X API 料金体系（Pay-per-use）**
 
