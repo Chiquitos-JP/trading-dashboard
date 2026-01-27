@@ -351,15 +351,44 @@ py run_weekly_posts.py --preview
 
 レンダリングした記事を自動的にX (Twitter) に投稿するワークフローです。
 
-**スケジュール**
-- 月曜日 9:00 JST: MakeoverMonday 投稿
-- 火曜日 9:00 JST: TidyTuesday 投稿
+**自動投稿スケジュール**
+
+| 曜日 | 時刻 | 投稿タイプ |
+|------|------|-----------|
+| 月曜 | 9:00 JST | MakeoverMonday（キューの最古記事） |
+| 火曜 | 9:00 JST | TidyTuesday（キューの最古記事） |
+
+※ スケジュール実行はGitHub Actionsが自動的に行います（手動操作不要）
 
 **仕組み**
-1. 記事レンダリング時に `.github/x-post-queue.json` にキュー追加
-2. スケジュールまたは手動でワークフロー実行
-3. キューから最古の未投稿記事を取得してXに投稿
-4. 投稿済みフラグを更新
+1. 週末に記事をレンダリング＆git push
+2. レンダリング時に `.github/x-post-queue.json` にキュー自動追加
+3. 月曜・火曜の9:00 JSTにスケジュール実行
+4. キューから最古の未投稿記事を取得してXに投稿
+5. 投稿済みフラグを更新（自動コミット）
+
+**週末ワークフロー（これだけでOK）**
+```
+週末（手動）                     月曜 9:00 JST      火曜 9:00 JST
+    │                           （自動）           （自動）
+    ▼                               ▼                  ▼
+┌─────────────────────┐        ┌─────────┐       ┌─────────┐
+│ 1. 記事作成          │        │ X投稿   │       │ X投稿   │
+│ 2. レンダリング       │───────▶│ (自動)  │       │ (自動)  │
+│ 3. git push         │ キュー  └─────────┘       └─────────┘
+└─────────────────────┘
+```
+
+**X API 料金体系（Pay-per-use）**
+
+| 操作 | 料金 |
+|------|------|
+| Content (Create) | $0.01/投稿 |
+| Post (Read) | $0.005/読取 |
+
+月8回投稿の場合: **約$0.08/月**（$5で約500投稿 = 約5年分）
+
+※ [X Developer Portal](https://developer.x.com/en/portal/dashboard) でクレジット購入が必要
 
 **GitHub Secrets設定（必須）**
 
@@ -373,17 +402,20 @@ py run_weekly_posts.py --preview
 | `X_ACCESS_TOKEN_SECRET` | X Access Token Secret |
 
 **X API認証情報の取得方法**
-1. [X Developer Portal](https://developer.twitter.com/en/portal/dashboard) にログイン
+1. [X Developer Portal](https://developer.x.com/en/portal/dashboard) にログイン
 2. プロジェクト/アプリを作成
 3. **User authentication settings** で OAuth 1.0a を有効化
    - App permissions: **Read and write**
 4. **Keys and Tokens** タブで認証情報を取得
+5. **Billing** でPay-per-useクレジットを購入（$5推奨）
 
-**手動実行**
+**手動実行（スケジュール外で投稿したい場合）**
 1. GitHub → **Actions** タブ
 2. **Post to X (Twitter)** を選択
 3. **Run workflow** → Post type と Dry run を選択
-4. Dry run: 実際に投稿せずにテスト
+   - `auto`: 曜日で自動判定（月曜=MakeoverMonday、火曜=TidyTuesday）
+   - Dry run: チェックで実際に投稿せずテスト
+4. 手動実行の場合、実行した時刻に投稿される（スケジュール実行は9:00 JST）
 
 **投稿フォーマット例**
 ```
@@ -395,6 +427,14 @@ https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-27-
 
 #MakeoverMonday #DataViz #Python
 ```
+
+**トラブルシューティング**
+
+| エラー | 原因 | 解決方法 |
+|--------|------|---------|
+| 402 Payment Required | APIクレジット不足 | X Developer Portalでクレジット購入 |
+| 401 Unauthorized | 認証情報エラー | GitHub Secretsを再確認 |
+| キューが空 | 未投稿記事なし | 記事をレンダリング＆push |
 
 </details>
 
