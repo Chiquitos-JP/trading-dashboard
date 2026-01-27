@@ -408,11 +408,23 @@ py run_weekly_posts.py --preview
 └─────────────────────┘
 ```
 
+**画像添付機能**
+
+投稿時にチャート画像を1枚添付します（画像がある場合のみ）。
+
+| 投稿タイプ | 画像ソース |
+|-----------|-----------|
+| TidyTuesday (R) | `index_files/figure-html/*.png`（ggplot2出力） |
+| MakeoverMonday (Python) | `chart-1.png`（Plotly静的出力） |
+
+※ 画像がない場合はテキストのみで投稿
+
 **X API 料金体系（Pay-per-use）**
 
 | 操作 | 料金 |
 |------|------|
 | Content (Create) | $0.01/投稿 |
+| Media Upload | 投稿に含まれる |
 | Post (Read) | $0.005/読取 |
 
 月8回投稿の場合: **約$0.08/月**（$5で約500投稿 = 約5年分）

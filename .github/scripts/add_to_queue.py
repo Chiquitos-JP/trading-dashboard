@@ -87,6 +87,34 @@ def build_url(post_dir: str) -> str:
     return f"{base_url}/{dir_name}/"
 
 
+def find_chart_image(post_dir: str, project_root: Path) -> str | None:
+    """レンダリング後のチャート画像を検索する（相対パスを返す）
+    
+    検索順序:
+    1. docs/quarto/latest/posts/{post-dir}/index_files/figure-html/*.png（TidyTuesday）
+    2. docs/quarto/latest/posts/{post-dir}/chart-1.png（MakeoverMonday）
+    """
+    dir_name = Path(post_dir).name
+    docs_post_dir = project_root / "docs" / "quarto" / "latest" / "posts" / dir_name
+    
+    # 1. figure-html ディレクトリから最初のPNG（TidyTuesday/R）
+    figure_html_dir = docs_post_dir / "index_files" / "figure-html"
+    if figure_html_dir.exists():
+        png_files = sorted(figure_html_dir.glob("*.png"))
+        if png_files:
+            # 相対パスを返す（docs/からの相対パス）
+            rel_path = png_files[0].relative_to(project_root / "docs" / "quarto" / "latest")
+            return str(rel_path)
+    
+    # 2. chart-1.png（MakeoverMonday/Python）
+    chart_file = docs_post_dir / "chart-1.png"
+    if chart_file.exists():
+        rel_path = chart_file.relative_to(project_root / "docs" / "quarto" / "latest")
+        return str(rel_path)
+    
+    return None
+
+
 def main():
     parser = argparse.ArgumentParser(description="Add post to X queue")
     parser.add_argument(
@@ -159,6 +187,13 @@ def main():
         print("Use --force to add anyway")
         return 0
     
+    # チャート画像を検索
+    image_path = find_chart_image(args.post_dir, project_root)
+    if image_path:
+        print(f"Found chart image: {image_path}")
+    else:
+        print("No chart image found")
+    
     # 新しいエントリを作成
     new_entry = {
         "date": date,
@@ -167,6 +202,10 @@ def main():
         "url": url,
         "posted": False
     }
+    
+    # 画像パスがある場合は追加
+    if image_path:
+        new_entry["image"] = image_path
     
     # キューに追加
     if post_type not in queue:

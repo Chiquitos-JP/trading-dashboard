@@ -56,6 +56,7 @@
       "title": "TidyTuesday: Risk Exposure Analysis",
       "description": "Cash Reserve vs Margin Exposure time series with ggplot2",
       "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-28-tidytuesday/",
+      "image": "posts/2026-01-28-tidytuesday/index_files/figure-html/chart-1-amounts-1.png",
       "posted": false
     }
   ]
