@@ -35,7 +35,7 @@
       "title": "TidyTuesday: Weekly Trading Performance",
       "description": "Weekly trading performance visualization with ggplot2",
       "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-07-tidytuesday/",
-      "posted": false
+      "posted": true
     },
     {
       "date": "2026-01-13",
