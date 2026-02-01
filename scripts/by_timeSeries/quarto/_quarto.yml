@@ -44,9 +44,9 @@ website:
     foreground: "#636667"
     logo: assets/chokotto_ver01.png
     left:
-      - href: /index.html
+      - href: index.qmd
         text: Concept
-      - href: /analysis.html
+      - href: analysis.qmd
         text: Analysis
       - text: Dashboard
         icon: speedometer2
@@ -54,28 +54,28 @@ website:
           # --- セクション1: 概要 ---
           - text: "Overview"
             icon: grid-fill
-            href: /dashboard.html
+            href: dashboard.qmd
           - text: "---"
 
           # --- セクション2: リアルタイム監視 ---
           - text: "Market Monitor (Panel)"
             icon: graph-up-arrow
-            href: /dashboard_panel_info.html
+            href: dashboard_panel_info.qmd
           - text: "---"
 
           # --- セクション3: 定型レポート ---
           - text: "Monthly Performance"
             icon: calendar-check
-            href: /dashboard_static.html
+            href: dashboard_static.qmd
           - text: "Asset Timeseries"
             icon: graph-up
-            href: /dashboard_financials_timeseries.html
+            href: dashboard_financials_timeseries.qmd
           - text: "2025 KPI Dashboard"
             icon: bar-chart-line-fill
-            href: /dashboard_2025.html
+            href: dashboard_2025.qmd
           - text: "2026 KPI Dashboard"
             icon: file-earmark-text
-            href: /dashboard_2026.html
+            href: dashboard_2026.qmd
           - text: "---"
 
           # --- セクション4: 実験室 ---
