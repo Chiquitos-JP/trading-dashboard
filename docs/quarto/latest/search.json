@@ -2294,5 +2294,61 @@
     "title": "MakeoverMonday: S&P 500 Sector Performance",
     "section": "Design Decisions",
     "text": "Design Decisions\n\nGrouped Bars: Side-by-side comparison makes it easy to compare daily vs YTD for each sector.\nColor Scheme: Blue for daily (short-term), Gold/Orange for YTD (cumulative) - consistent with financial data visualization conventions.\nData Labels: Percentage values shown above/below bars for quick reading without hover.\nZero Line: Clear reference line to distinguish positive from negative returns.\nSector Order: Arranged to group similar sectors and highlight the benchmark (S&P 500) position.\n\n\nData source: Yahoo Finance (yfinance). This post is part of the MakeoverMonday weekly data visualization project.\n\n\n\n\n\n\nCautionDisclaimer\n\n\n\n\n\n\nThis analysis is for educational and practice purposes only. Past performance is no guarantee of future results. Indexes are unmanaged, do not incur management fees, costs and expenses and cannot be invested in directly."
+  },
+  {
+    "objectID": "posts/2026-02-04-tidytuesday/index.html",
+    "href": "posts/2026-02-04-tidytuesday/index.html",
+    "title": "TidyTuesday: SP500 Sector Performance",
+    "section": "",
+    "text": "This TidyTuesday project visualizes S&P 500 sector performance, comparing daily returns with year-to-date (YTD) performance for each sector ETF using R and ggplot2.\nKey metrics:\n\nDaily Return: Single day price change (%)\nYTD Return: Year-to-date cumulative return from January 1st (%)\nSectors: 11 S&P 500 sector ETFs + S&P 500 benchmark"
+  },
+  {
+    "objectID": "posts/2026-02-04-tidytuesday/index.html#overview",
+    "href": "posts/2026-02-04-tidytuesday/index.html#overview",
+    "title": "TidyTuesday: SP500 Sector Performance",
+    "section": "",
+    "text": "This TidyTuesday project visualizes S&P 500 sector performance, comparing daily returns with year-to-date (YTD) performance for each sector ETF using R and ggplot2.\nKey metrics:\n\nDaily Return: Single day price change (%)\nYTD Return: Year-to-date cumulative return from January 1st (%)\nSectors: 11 S&P 500 sector ETFs + S&P 500 benchmark"
+  },
+  {
+    "objectID": "posts/2026-02-04-tidytuesday/index.html#dataset",
+    "href": "posts/2026-02-04-tidytuesday/index.html#dataset",
+    "title": "TidyTuesday: SP500 Sector Performance",
+    "section": "Dataset",
+    "text": "Dataset\n\nlibrary(tidyverse)\nlibrary(arrow)\nlibrary(scales)\nlibrary(glue)\n\n\n# Load pre-processed data (relative path from qmd file location)\ndata_file &lt;- \"data/sector_performance.parquet\"\n\nif (file.exists(data_file)) {\n  sector_data &lt;- read_parquet(data_file)\n  cat(\"Data loaded successfully!\\n\")\n  cat(glue(\"Records: {nrow(sector_data)}\\n\"))\n  cat(glue(\"Data date: {unique(sector_data$data_date)}\\n\"))\n} else {\n  stop(\"Data file not found. Run prepare_data.py first.\")\n}\n\nData loaded successfully!\nRecords: 12Data date: 2026-01-30\n\n\n\n# Convert to long format for ggplot\nsector_long &lt;- sector_data |&gt;\n  select(sector, daily_return, ytd_return, sort_order) |&gt;\n  pivot_longer(\n    cols = c(daily_return, ytd_return),\n    names_to = \"metric\",\n    values_to = \"value\"\n  ) |&gt;\n  mutate(\n    metric = factor(\n      metric,\n      levels = c(\"daily_return\", \"ytd_return\"),\n      labels = c(\"Daily\", \"Year-to-date\")\n    ),\n    sector = factor(sector, levels = sector_data$sector[order(sector_data$sort_order)])\n  )\n\n# Get data date for title\ndata_date &lt;- unique(sector_data$data_date)\ndata_date_formatted &lt;- format(as.Date(data_date), \"%m/%d/%Y\")\n\n# Preview data\nglimpse(sector_long)\n\nRows: 24\nColumns: 4\n$ sector     &lt;fct&gt; Energy, Energy, Health Care, Health Care, Utilities, Utilit…\n$ sort_order &lt;int&gt; 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,…\n$ metric     &lt;fct&gt; Daily, Year-to-date, Daily, Year-to-date, Daily, Year-to-da…\n$ value      &lt;dbl&gt; 1.06909708, 11.82912931, 0.59810046, -0.49513796, -0.184633…"
+  },
+  {
+    "objectID": "posts/2026-02-04-tidytuesday/index.html#chart-sp-500-sector-performance",
+    "href": "posts/2026-02-04-tidytuesday/index.html#chart-sp-500-sector-performance",
+    "title": "TidyTuesday: SP500 Sector Performance",
+    "section": "Chart: S&P 500 Sector Performance",
+    "text": "Chart: S&P 500 Sector Performance\n\n# Define colors matching the reference\ncolors &lt;- c(\"Daily\" = \"#1e5aa8\", \"Year-to-date\" = \"#d4a012\")\n\n# Create the grouped bar chart\np &lt;- ggplot(sector_long, aes(x = sector, y = value, fill = metric)) +\n  geom_col(position = position_dodge(width = 0.7), width = 0.6) +\n  geom_hline(yintercept = 0, color = \"black\", linewidth = 0.5) +\n  geom_text(\n    aes(\n      label = sprintf(\"%.1f%%\", value),\n      vjust = ifelse(value &gt;= 0, -0.5, 1.5),\n      color = metric\n    ),\n    position = position_dodge(width = 0.7),\n    size = 3,\n    show.legend = FALSE\n  ) +\n  scale_fill_manual(values = colors) +\n  scale_color_manual(values = colors) +\n  scale_y_continuous(\n    labels = label_percent(scale = 1, accuracy = 1),\n    expand = expansion(mult = c(0.15, 0.15))\n  ) +\n  labs(\n    title = glue(\"S&P 500 sector performance\"),\n    subtitle = glue(\"Date: {data_date_formatted} | Year-to-date\"),\n    x = NULL,\n    y = NULL,\n    fill = NULL\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 16, hjust = 0),\n    plot.subtitle = element_text(size = 12, color = \"gray40\", hjust = 0),\n    axis.text.x = element_text(size = 10, angle = 0, hjust = 0.5),\n    axis.text.y = element_text(size = 10),\n    legend.position = \"top\",\n    legend.justification = \"left\",\n    panel.grid.major.x = element_blank(),\n    panel.grid.minor = element_blank(),\n    plot.margin = margin(20, 20, 20, 20)\n  )\n\nprint(p)\n\n\n\n\n\n\n\n# Save for social media\nggsave(\n  \"chart-1.png\",\n  plot = p,\n  width = 14,\n  height = 7,\n  dpi = 150,\n  bg = \"white\"\n)"
+  },
+  {
+    "objectID": "posts/2026-02-04-tidytuesday/index.html#data-table",
+    "href": "posts/2026-02-04-tidytuesday/index.html#data-table",
+    "title": "TidyTuesday: SP500 Sector Performance",
+    "section": "Data Table",
+    "text": "Data Table\n\n# Display formatted table\nsector_data |&gt;\n  select(Sector = sector, \n         `Daily Return` = daily_return, \n         `YTD Return` = ytd_return) |&gt;\n  mutate(\n    `Daily Return` = sprintf(\"%+.2f%%\", `Daily Return`),\n    `YTD Return` = sprintf(\"%+.2f%%\", `YTD Return`)\n  ) |&gt;\n  knitr::kable(align = c(\"l\", \"r\", \"r\"))\n\n\n\n\nSector\nDaily Return\nYTD Return\n\n\n\n\nEnergy\n+1.07%\n+11.83%\n\n\nHealth Care\n+0.60%\n-0.50%\n\n\nUtilities\n-0.18%\n+0.16%\n\n\nMaterials\n-1.46%\n+6.83%\n\n\nReal Estate\n+0.15%\n+2.60%\n\n\nFinancials\n-0.21%\n-2.71%\n\n\nCons. Staples\n+1.68%\n+7.49%\n\n\nIndustrials\n-0.25%\n+4.72%\n\n\nS&P 500\n-0.30%\n+1.29%\n\n\nComm. Serv.\n+0.24%\n+2.72%\n\n\nInfo. Tech.\n-2.04%\n-0.29%\n\n\nCons. Discr.\n-0.02%\n+2.38%"
+  },
+  {
+    "objectID": "posts/2026-02-04-tidytuesday/index.html#alternative-view-lollipop-chart",
+    "href": "posts/2026-02-04-tidytuesday/index.html#alternative-view-lollipop-chart",
+    "title": "TidyTuesday: SP500 Sector Performance",
+    "section": "Alternative View: Lollipop Chart",
+    "text": "Alternative View: Lollipop Chart\n\n# Create lollipop chart for YTD performance\nytd_data &lt;- sector_data |&gt;\n  mutate(\n    sector = factor(sector, levels = sector[order(ytd_return)]),\n    color = ifelse(ytd_return &gt;= 0, \"#22c55e\", \"#ef4444\")\n  )\n\np_lollipop &lt;- ggplot(ytd_data, aes(x = sector, y = ytd_return)) +\n  geom_segment(\n    aes(x = sector, xend = sector, y = 0, yend = ytd_return, color = color),\n    linewidth = 1.5,\n    show.legend = FALSE\n  ) +\n  geom_point(aes(color = color), size = 4, show.legend = FALSE) +\n  geom_hline(yintercept = 0, color = \"gray50\", linewidth = 0.5) +\n  geom_text(\n    aes(label = sprintf(\"%+.1f%%\", ytd_return)),\n    hjust = ifelse(ytd_data$ytd_return &gt;= 0, -0.3, 1.3),\n    size = 3.5\n  ) +\n  scale_color_identity() +\n  scale_y_continuous(\n    labels = label_percent(scale = 1, accuracy = 1),\n    expand = expansion(mult = c(0.1, 0.1))\n  ) +\n  coord_flip() +\n  labs(\n    title = \"S&P 500 Sector YTD Performance\",\n    subtitle = glue(\"As of {data_date_formatted}\"),\n    x = NULL,\n    y = \"Year-to-Date Return (%)\"\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 16),\n    plot.subtitle = element_text(color = \"gray40\"),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor = element_blank()\n  )\n\nprint(p_lollipop)"
+  },
+  {
+    "objectID": "posts/2026-02-04-tidytuesday/index.html#key-insights",
+    "href": "posts/2026-02-04-tidytuesday/index.html#key-insights",
+    "title": "TidyTuesday: SP500 Sector Performance",
+    "section": "Key Insights",
+    "text": "Key Insights\n\nSector Rotation: The chart reveals which sectors are leading market performance in the current year.\nDaily vs YTD Divergence: Sectors with strong YTD but weak daily returns may be experiencing profit-taking.\nDefensive vs Cyclical: Utilities and Consumer Staples are typically defensive, while Technology and Consumer Discretionary are more cyclical.\nBenchmark Reference: S&P 500 (SPY) provides context for relative sector performance."
+  },
+  {
+    "objectID": "posts/2026-02-04-tidytuesday/index.html#design-decisions",
+    "href": "posts/2026-02-04-tidytuesday/index.html#design-decisions",
+    "title": "TidyTuesday: SP500 Sector Performance",
+    "section": "Design Decisions",
+    "text": "Design Decisions\n\nGrouped Bars: Side-by-side comparison makes it easy to compare daily vs YTD for each sector.\nColor Scheme: Blue for daily (short-term), Gold for YTD (cumulative) - intuitive and consistent.\nData Labels: Percentage values shown above/below bars for quick reading.\nAlternative View: Lollipop chart provides a different perspective focusing on YTD rankings.\n\n\nData source: Yahoo Finance. This post is part of the TidyTuesday weekly data visualization project.\n\n\n\n\n\n\nCautionDisclaimer\n\n\n\n\n\n\nThis analysis is for educational and practice purposes only. Past performance is no guarantee of future results. Indexes are unmanaged, do not incur management fees, costs and expenses and cannot be invested in directly."
   }
 ]
