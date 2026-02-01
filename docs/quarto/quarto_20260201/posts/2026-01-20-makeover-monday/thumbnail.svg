@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250">
+  <defs>
+    <linearGradient id="profitGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="lossGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="250" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="200" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">Trading P/L Calendar</text>
+  <text x="200" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748b">Daily Profit/Loss Heatmap</text>
+  
+  <!-- Calendar Grid Header -->
+  <g font-family="Arial, sans-serif" font-size="8" fill="#64748b" text-anchor="middle">
+    <text x="60" y="55">Mon</text>
+    <text x="105" y="55">Tue</text>
+    <text x="150" y="55">Wed</text>
+    <text x="195" y="55">Thu</text>
+    <text x="240" y="55">Fri</text>
+    <text x="285" y="55">Sat</text>
+    <text x="330" y="55">Sun</text>
+  </g>
+  
+  <!-- Calendar Cells Row 1 -->
+  <rect x="40" y="60" width="40" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <rect x="85" y="60" width="40" height="32" rx="4" fill="url(#profitGrad)"/>
+  <rect x="130" y="60" width="40" height="32" rx="4" fill="url(#lossGrad)"/>
+  <rect x="175" y="60" width="40" height="32" rx="4" fill="url(#profitGrad)"/>
+  <rect x="220" y="60" width="40" height="32" rx="4" fill="url(#profitGrad)"/>
+  <rect x="265" y="60" width="40" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <rect x="310" y="60" width="40" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0"/>
+  
+  <!-- Day numbers Row 1 -->
+  <g font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#334155" text-anchor="middle">
+    <text x="60" y="73">1</text>
+    <text x="105" y="73" fill="#fff">2</text>
+    <text x="150" y="73" fill="#fff">3</text>
+    <text x="195" y="73" fill="#fff">4</text>
+    <text x="240" y="73" fill="#fff">5</text>
+    <text x="285" y="73">6</text>
+    <text x="330" y="73">7</text>
+  </g>
+  
+  <!-- P/L values Row 1 -->
+  <g font-family="Arial, sans-serif" font-size="7" text-anchor="middle">
+    <text x="105" y="86" fill="#fff">+120K</text>
+    <text x="150" y="86" fill="#fff">-85K</text>
+    <text x="195" y="86" fill="#fff">+45K</text>
+    <text x="240" y="86" fill="#fff">+210K</text>
+  </g>
+  
+  <!-- Calendar Cells Row 2 -->
+  <rect x="40" y="97" width="40" height="32" rx="4" fill="url(#lossGrad)"/>
+  <rect x="85" y="97" width="40" height="32" rx="4" fill="url(#profitGrad)"/>
+  <rect x="130" y="97" width="40" height="32" rx="4" fill="url(#profitGrad)"/>
+  <rect x="175" y="97" width="40" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <rect x="220" y="97" width="40" height="32" rx="4" fill="url(#lossGrad)"/>
+  <rect x="265" y="97" width="40" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <rect x="310" y="97" width="40" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0"/>
+  
+  <!-- Day numbers Row 2 -->
+  <g font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">
+    <text x="60" y="110" fill="#fff">8</text>
+    <text x="105" y="110" fill="#fff">9</text>
+    <text x="150" y="110" fill="#fff">10</text>
+    <text x="195" y="110" fill="#334155">11</text>
+    <text x="240" y="110" fill="#fff">12</text>
+    <text x="285" y="110" fill="#334155">13</text>
+    <text x="330" y="110" fill="#334155">14</text>
+  </g>
+  
+  <!-- P/L values Row 2 -->
+  <g font-family="Arial, sans-serif" font-size="7" text-anchor="middle">
+    <text x="60" y="123" fill="#fff">-150K</text>
+    <text x="105" y="123" fill="#fff">+380K</text>
+    <text x="150" y="123" fill="#fff">+95K</text>
+    <text x="240" y="123" fill="#fff">-62K</text>
+  </g>
+  
+  <!-- Calendar Cells Row 3 -->
+  <rect x="40" y="134" width="40" height="32" rx="4" fill="url(#profitGrad)"/>
+  <rect x="85" y="134" width="40" height="32" rx="4" fill="url(#profitGrad)"/>
+  <rect x="130" y="134" width="40" height="32" rx="4" fill="url(#lossGrad)"/>
+  <rect x="175" y="134" width="40" height="32" rx="4" fill="url(#profitGrad)"/>
+  <rect x="220" y="134" width="40" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <rect x="265" y="134" width="40" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <rect x="310" y="134" width="40" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0"/>
+  
+  <!-- Day numbers Row 3 -->
+  <g font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">
+    <text x="60" y="147" fill="#fff">15</text>
+    <text x="105" y="147" fill="#fff">16</text>
+    <text x="150" y="147" fill="#fff">17</text>
+    <text x="195" y="147" fill="#fff">18</text>
+    <text x="240" y="147" fill="#334155">19</text>
+    <text x="285" y="147" fill="#334155">20</text>
+    <text x="330" y="147" fill="#334155">21</text>
+  </g>
+  
+  <!-- P/L values Row 3 -->
+  <g font-family="Arial, sans-serif" font-size="7" text-anchor="middle">
+    <text x="60" y="160" fill="#fff">+1.2M</text>
+    <text x="105" y="160" fill="#fff">+55K</text>
+    <text x="150" y="160" fill="#fff">-320K</text>
+    <text x="195" y="160" fill="#fff">+175K</text>
+  </g>
+  
+  <!-- Legend -->
+  <rect x="60" y="185" width="16" height="16" rx="3" fill="url(#profitGrad)"/>
+  <text x="82" y="196" font-family="Arial, sans-serif" font-size="10" fill="#334155">Profit</text>
+  
+  <rect x="130" y="185" width="16" height="16" rx="3" fill="url(#lossGrad)"/>
+  <text x="152" y="196" font-family="Arial, sans-serif" font-size="10" fill="#334155">Loss</text>
+  
+  <rect x="200" y="185" width="16" height="16" rx="3" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="222" y="196" font-family="Arial, sans-serif" font-size="10" fill="#334155">No Trade</text>
+  
+  <!-- Python badge -->
+  <rect x="330" y="185" width="40" height="20" rx="4" fill="#3776AB"/>
+  <text x="350" y="199" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFD43B">Py</text>
+  
+  <!-- Month label -->
+  <text x="200" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">January 2026</text>
+</svg>
