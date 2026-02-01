@@ -238,7 +238,7 @@ print(p_lollipop)
 4. **Alternative View**: Lollipop chart provides a different perspective focusing on YTD rankings.
 
 ---
-*Data source: Yahoo Finance. This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project.*
+_Data source: Yahoo Finance. This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project._
 
 :::{.callout-caution collapse="false" appearance="minimal" icon="false"}
 ## Disclaimer

@@ -255,7 +255,7 @@ print(display_df.to_string(index=False))
 
 ---
 
-*Data source: Yahoo Finance (yfinance). This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project.*
+_Data source: Yahoo Finance (yfinance). This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
 
 :::{.callout-caution collapse="false" appearance="minimal" icon="false"}
 ## Disclaimer
