@@ -5,7 +5,7 @@ date: "2026-01-07"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R"]
 image: "thumbnail.svg"
-
+engine: knitr
 twitter-card:
   card-type: summary_large_image
   image: "thumbnail.svg"

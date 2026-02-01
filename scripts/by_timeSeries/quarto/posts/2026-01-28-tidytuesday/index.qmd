@@ -5,6 +5,7 @@ date: "2026-01-28"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance", "Trading", "Risk"]
 image: "thumbnail.svg"
+engine: knitr
 freeze: false
 execute:
   warning: false

@@ -5,6 +5,7 @@ date: "2026-02-04"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance", "S&P500", "Sectors"]
 image: "thumbnail.svg"
+engine: knitr
 code-fold: true
 code-tools: true
 code-summary: "Show code"
