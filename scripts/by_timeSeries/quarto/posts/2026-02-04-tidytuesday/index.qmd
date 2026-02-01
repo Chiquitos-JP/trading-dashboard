@@ -10,8 +10,6 @@ categories:
 image: "thumbnail.svg"
 engine: knitr
 code-fold: true
-code-tools: true
-code-summary: "Show code"
 ---
 
 ## Overview
