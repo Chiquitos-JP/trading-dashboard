@@ -1,19 +1,14 @@
 ---
-title: "TidyTuesday: S&P 500 Sector Performance"
-description: "Visualizing S&P 500 sector ETF performance - Daily vs Year-to-Date returns using ggplot2"
+title: "TidyTuesday: SP500 Sector Performance"
+description: "Visualizing SP500 sector ETF performance"
 date: "2026-02-04"
 author: "chokotto"
-categories: ["TidyTuesday", "Data Viz", "R", "Finance", "S&P500", "Sectors"]
+categories:
+  - TidyTuesday
+  - R
+  - Finance
 image: "thumbnail.svg"
 engine: knitr
-code-fold: true
-code-tools: true
-code-summary: "Show code"
-twitter-card:
-  card-type: summary_large_image
-  image: "thumbnail.svg"
-  title: "TidyTuesday: S&P 500 Sector Performance"
-  description: "Daily vs YTD sector performance comparison with ggplot2"
 ---
 
 ## Overview
