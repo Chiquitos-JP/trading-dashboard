@@ -228,6 +228,80 @@ def generate_fallback_events() -> list[dict]:
     return events
 
 
+def load_json_calendar(project_root: str) -> tuple[list[dict], list[tuple[str, str]]]:
+    """
+    JSONファイルから経済指標カレンダーと休場日を読み込む
+    
+    GitHub Actionsで使用される主要なデータソース。
+    .github/data/upcoming_calendar.json から読み込む。
+    
+    Args:
+        project_root: プロジェクトルートパス
+        
+    Returns:
+        (イベントのリスト, 休場日のリスト)
+    """
+    import json
+    
+    json_path = os.path.join(
+        project_root, ".github", "data", "upcoming_calendar.json"
+    )
+    
+    if not os.path.exists(json_path):
+        print(f"JSON calendar file not found: {json_path}")
+        return [], []
+    
+    print(f"Loading calendar from JSON: {json_path}")
+    
+    try:
+        with open(json_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        
+        events = []
+        for item in data.get("events", []):
+            date_str = item.get("date", "")
+            time_str = item.get("time", "終日")
+            
+            try:
+                event_date = datetime.strptime(date_str, "%Y-%m-%d").date()
+            except ValueError:
+                continue
+            
+            # datetimeを構築（時刻がある場合）
+            if time_str and time_str != "終日":
+                try:
+                    hour, minute = map(int, time_str.split(":"))
+                    dt = datetime(event_date.year, event_date.month, event_date.day,
+                                 hour, minute, tzinfo=JST)
+                except (ValueError, AttributeError):
+                    dt = datetime.combine(event_date, datetime.min.time()).replace(tzinfo=JST)
+            else:
+                dt = datetime.combine(event_date, datetime.min.time()).replace(tzinfo=JST)
+            
+            events.append({
+                "date": event_date,
+                "datetime": dt,
+                "time": time_str,
+                "summary": item.get("summary", ""),
+                "importance": item.get("importance", "medium"),
+            })
+        
+        # 休場日を読み込み
+        holidays = []
+        for item in data.get("holidays", []):
+            date_str = item.get("date", "")
+            name = item.get("name", "")
+            if date_str and name:
+                holidays.append((date_str, name))
+        
+        print(f"Loaded {len(events)} events and {len(holidays)} holidays from JSON")
+        return events, holidays
+        
+    except Exception as e:
+        print(f"WARNING: Failed to read JSON calendar: {e}")
+        return [], []
+
+
 def load_local_calendar(project_root: str) -> list[dict]:
     """
     ローカルのparquetファイルから経済指標データを読み込む
@@ -539,7 +613,7 @@ def main():
     parser.add_argument(
         "--use-local",
         action="store_true",
-        help="Try to load from local parquet file first"
+        help="Try to load from local parquet file (for local testing)"
     )
     
     args = parser.parse_args()
@@ -560,12 +634,19 @@ def main():
     week_start, week_end = get_week_range(base_date)
     print(f"Target week: {week_start.strftime('%Y-%m-%d')} to {week_end.strftime('%Y-%m-%d')}")
     
-    # 経済指標カレンダーを取得（優先順位: ローカル → Monex → フォールバック）
+    # 経済指標カレンダーを取得
+    # 優先順位: JSON（GitHub Actions用） → ローカルparquet → Monex → フォールバック
     events = []
+    json_holidays = []
     
-    if args.use_local:
+    # 1. まずJSONファイルを試行（GitHub Actions環境のメインソース）
+    events, json_holidays = load_json_calendar(project_root)
+    
+    # 2. JSONがない/空の場合、ローカルparquetを試行（--use-local指定時のみ）
+    if not events and args.use_local:
         events = load_local_calendar(project_root)
     
+    # 3. それでもない場合、Monex/フォールバックを試行
     if not events:
         events = fetch_monex_calendar()
     
@@ -576,8 +657,16 @@ def main():
     ]
     print(f"Events in target week: {len(week_events)}")
     
-    # 休場日を取得
-    holidays = get_holidays_in_range(week_start, week_end)
+    # 休場日を取得（JSONから取得した休場日を優先、なければハードコード版を使用）
+    if json_holidays:
+        # JSONから取得した休場日を期間でフィルタ
+        holidays = [
+            (date_str, name) for date_str, name in json_holidays
+            if week_start.strftime("%Y-%m-%d") <= date_str <= week_end.strftime("%Y-%m-%d")
+        ]
+    else:
+        holidays = get_holidays_in_range(week_start, week_end)
+    
     if holidays:
         print(f"Holidays in target week: {[h[1] for h in holidays]}")
     else:
