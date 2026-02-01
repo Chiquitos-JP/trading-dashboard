@@ -3,7 +3,7 @@ title: "TidyTuesday: Trading P/L Calendar Heatmap"
 description: "A traditional calendar visualization showing daily realized profit/loss from stock trading using ggplot2"
 date: "2026-01-21"
 author: "chokotto"
-categories: [TidyTuesday, Data Viz, R, Finance, Trading]
+categories: ["TidyTuesday", "Data Viz", "R", "Finance", "Trading"]
 image: "thumbnail.svg"
 freeze: false
 execute:

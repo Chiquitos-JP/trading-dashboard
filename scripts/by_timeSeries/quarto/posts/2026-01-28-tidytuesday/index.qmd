@@ -3,7 +3,7 @@ title: "TidyTuesday: Risk Exposure Analysis"
 description: "Visualizing the relationship between Cash Reserve (PAT Balance) and Margin Exposure over time using ggplot2"
 date: "2026-01-28"
 author: "chokotto"
-categories: [TidyTuesday, Data Viz, R, Finance, Trading, Risk]
+categories: ["TidyTuesday", "Data Viz", "R", "Finance", "Trading", "Risk"]
 image: "thumbnail.svg"
 freeze: false
 execute:

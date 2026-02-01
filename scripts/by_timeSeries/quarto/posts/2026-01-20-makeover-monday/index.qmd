@@ -3,7 +3,7 @@ title: "MakeoverMonday: Trading P/L Calendar Heatmap"
 description: "A traditional calendar visualization showing daily realized profit/loss from stock trading"
 date: "2026-01-20"
 author: "chokotto"
-categories: [MakeoverMonday, Data Viz, Python, Finance, Trading]
+categories: ["MakeoverMonday", "Data Viz", "Python", "Finance", "Trading"]
 image: "thumbnail.svg"
 code-fold: true
 code-tools: true
