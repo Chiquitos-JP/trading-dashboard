@@ -1,0 +1,263 @@
+---
+title: "MakeoverMonday: S&P 500 Sector Performance"
+description: "Visualizing S&P 500 sector ETF performance - Daily vs Year-to-Date returns"
+date: "2026-02-03"
+author: "chokotto"
+categories: [MakeoverMonday, Data Viz, Python, Finance, S&P500, Sectors]
+image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.svg"
+  title: "MakeoverMonday: S&P 500 Sector Performance"
+  description: "Daily vs YTD sector performance comparison"
+---
+
+## Overview
+
+This MakeoverMonday project visualizes **S&P 500 sector performance**, comparing daily returns with year-to-date (YTD) performance for each sector ETF.
+
+Key metrics:
+
+- **Daily Return**: Single day price change (%)
+- **YTD Return**: Year-to-date cumulative return from January 1st (%)
+- **Sectors**: 11 S&P 500 sector ETFs + S&P 500 benchmark
+
+This analysis helps identify which sectors are leading or lagging in both short-term and year-to-date performance.
+
+## Dataset
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import plotly.graph_objects as go
+from datetime import datetime, timedelta
+```
+
+```{python}
+#| label: define-sectors
+#| message: false
+
+# S&P 500 Sector ETFs mapping
+SECTOR_ETFS = {
+    "XLE": "Energy",
+    "XLV": "Health Care",
+    "XLU": "Utilities",
+    "XLB": "Materials",
+    "XLRE": "Real Estate",
+    "XLF": "Financials",
+    "XLP": "Cons. Staples",
+    "XLI": "Industrials",
+    "SPY": "S&P 500",
+    "XLC": "Comm. Serv.",
+    "XLK": "Info. Tech.",
+    "XLY": "Cons. Discr.",
+}
+
+# Order for display (matching reference chart)
+SECTOR_ORDER = [
+    "Energy", "Health Care", "Utilities", "Materials", "Real Estate",
+    "Financials", "Cons. Staples", "Industrials", "S&P 500",
+    "Comm. Serv.", "Info. Tech.", "Cons. Discr."
+]
+```
+
+```{python}
+#| label: fetch-data
+#| message: false
+
+# Fetch data for all sector ETFs
+tickers = list(SECTOR_ETFS.keys())
+
+# Get current year for YTD calculation
+current_year = datetime.now().year
+ytd_start = f"{current_year}-01-01"
+
+print(f"Fetching data from {ytd_start} to today...")
+
+# Download data
+data = yf.download(
+    tickers,
+    start=ytd_start,
+    auto_adjust=True,
+    progress=False
+)
+
+# Extract close prices
+if isinstance(data.columns, pd.MultiIndex):
+    prices = data["Close"]
+else:
+    prices = data
+
+print(f"Fetched {len(prices)} trading days of data")
+print(f"Latest date: {prices.index[-1].strftime('%Y-%m-%d')}")
+```
+
+```{python}
+#| label: calculate-returns
+#| message: false
+
+# Calculate daily returns (latest day)
+daily_returns = prices.pct_change().iloc[-1] * 100
+
+# Calculate YTD returns (from first day of year to latest)
+ytd_returns = ((prices.iloc[-1] / prices.iloc[0]) - 1) * 100
+
+# Create DataFrame for plotting
+performance_data = pd.DataFrame({
+    "ticker": tickers,
+    "sector": [SECTOR_ETFS[t] for t in tickers],
+    "daily": [daily_returns[t] for t in tickers],
+    "ytd": [ytd_returns[t] for t in tickers]
+})
+
+# Sort by sector order
+performance_data["sort_order"] = performance_data["sector"].map(
+    {s: i for i, s in enumerate(SECTOR_ORDER)}
+)
+performance_data = performance_data.sort_values("sort_order").reset_index(drop=True)
+
+# Display latest date for reference
+latest_date = prices.index[-1].strftime("%m/%d/%Y")
+print(f"\nPerformance as of {latest_date}:")
+print(performance_data[["sector", "daily", "ytd"]].to_string(index=False))
+```
+
+## Chart: S&P 500 Sector Performance
+
+```{python}
+#| label: chart-sector-performance
+#| fig-width: 14
+#| fig-height: 7
+
+# Create grouped bar chart
+fig = go.Figure()
+
+# Daily returns (blue)
+fig.add_trace(go.Bar(
+    name=f'{latest_date}',
+    x=performance_data['sector'],
+    y=performance_data['daily'],
+    marker_color='#1e5aa8',
+    text=[f"{v:.1f}%" for v in performance_data['daily']],
+    textposition='outside',
+    textfont=dict(size=10, color='#1e5aa8'),
+    hovertemplate='%{x}<br>Daily: %{y:.2f}%<extra></extra>'
+))
+
+# YTD returns (gold/orange)
+fig.add_trace(go.Bar(
+    name='Year-to-date',
+    x=performance_data['sector'],
+    y=performance_data['ytd'],
+    marker_color='#d4a012',
+    text=[f"{v:.1f}%" for v in performance_data['ytd']],
+    textposition='outside',
+    textfont=dict(size=10, color='#d4a012'),
+    hovertemplate='%{x}<br>YTD: %{y:.2f}%<extra></extra>'
+))
+
+# Add zero line
+fig.add_hline(y=0, line_color="black", line_width=1)
+
+# Update layout
+fig.update_layout(
+    title=dict(
+        text=f'<b>S&P 500 sector performance:</b> <span style="color:#1e5aa8">■</span> {latest_date}  <span style="color:#d4a012">■</span> Year-to-date',
+        x=0.0,
+        xanchor='left',
+        font=dict(size=16)
+    ),
+    barmode='group',
+    bargap=0.3,
+    bargroupgap=0.1,
+    xaxis=dict(
+        title='',
+        tickangle=0,
+        tickfont=dict(size=11)
+    ),
+    yaxis=dict(
+        title='',
+        ticksuffix='%',
+        gridcolor='rgba(0,0,0,0.1)',
+        zeroline=True,
+        zerolinecolor='black',
+        zerolinewidth=1
+    ),
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=1.02,
+        xanchor='left',
+        x=0
+    ),
+    template='plotly_white',
+    height=550,
+    margin=dict(t=80, b=60, l=60, r=30),
+    font=dict(family="Arial, sans-serif")
+)
+
+fig.show()
+
+# Save chart as static image for X post
+fig.write_image("chart-1.png", width=1400, height=700, scale=2)
+print("\nChart saved as chart-1.png")
+```
+
+## Data Table
+
+```{python}
+#| label: data-table
+
+# Display formatted table
+display_df = performance_data[["sector", "daily", "ytd"]].copy()
+display_df.columns = ["Sector", f"Daily ({latest_date})", "YTD"]
+display_df[f"Daily ({latest_date})"] = display_df[f"Daily ({latest_date})"].apply(lambda x: f"{x:+.2f}%")
+display_df["YTD"] = display_df["YTD"].apply(lambda x: f"{x:+.2f}%")
+
+print("\n" + "="*50)
+print("S&P 500 Sector Performance Summary")
+print("="*50)
+print(display_df.to_string(index=False))
+```
+
+## Key Insights
+
+1. **Sector Divergence**: The spread between best and worst performing sectors reveals market rotation trends.
+
+2. **Daily vs YTD**: Sectors with strong YTD but weak daily returns may be experiencing profit-taking, while the opposite suggests momentum building.
+
+3. **Benchmark Comparison**: Comparing individual sectors against S&P 500 (SPY) shows relative strength/weakness.
+
+4. **Defensive vs Cyclical**: Utilities, Consumer Staples, and Health Care are typically defensive, while Technology, Consumer Discretionary, and Financials are more cyclical.
+
+## Design Decisions
+
+1. **Grouped Bars**: Side-by-side comparison makes it easy to compare daily vs YTD for each sector.
+
+2. **Color Scheme**: Blue for daily (short-term), Gold/Orange for YTD (cumulative) - consistent with financial data visualization conventions.
+
+3. **Data Labels**: Percentage values shown above/below bars for quick reading without hover.
+
+4. **Zero Line**: Clear reference line to distinguish positive from negative returns.
+
+5. **Sector Order**: Arranged to group similar sectors and highlight the benchmark (S&P 500) position.
+
+---
+
+*Data source: Yahoo Finance (yfinance). This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project.*
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Past performance is no guarantee of future results. Indexes are unmanaged, do not incur management fees, costs and expenses and cannot be invested in directly.
+:::
+:::

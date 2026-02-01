@@ -1,0 +1,249 @@
+---
+title: "TidyTuesday: S&P 500 Sector Performance"
+description: "Visualizing S&P 500 sector ETF performance - Daily vs Year-to-Date returns using ggplot2"
+date: "2026-02-04"
+author: "chokotto"
+categories: [TidyTuesday, Data Viz, R, Finance, S&P500, Sectors]
+image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.svg"
+  title: "TidyTuesday: S&P 500 Sector Performance"
+  description: "Daily vs YTD sector performance comparison with ggplot2"
+---
+
+## Overview
+
+This TidyTuesday project visualizes **S&P 500 sector performance**, comparing daily returns with year-to-date (YTD) performance for each sector ETF using R and ggplot2.
+
+Key metrics:
+
+- **Daily Return**: Single day price change (%)
+- **YTD Return**: Year-to-date cumulative return from January 1st (%)
+- **Sectors**: 11 S&P 500 sector ETFs + S&P 500 benchmark
+
+## Dataset
+
+```{r}
+#| label: load-packages
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(arrow)
+library(scales)
+library(glue)
+```
+
+```{r}
+#| label: load-data
+#| message: false
+
+# Load pre-processed data
+data_file <- here::here("scripts/by_timeSeries/quarto/posts/2026-02-04-tidytuesday/data/sector_performance.parquet")
+
+if (file.exists(data_file)) {
+  sector_data <- read_parquet(data_file)
+  cat("Data loaded successfully!\n")
+  cat(glue("Records: {nrow(sector_data)}\n"))
+  cat(glue("Data date: {unique(sector_data$data_date)}\n"))
+} else {
+  stop("Data file not found. Run prepare_data.py first.")
+}
+```
+
+```{r}
+#| label: prepare-data
+#| message: false
+
+# Convert to long format for ggplot
+sector_long <- sector_data |>
+  select(sector, daily_return, ytd_return, sort_order) |>
+  pivot_longer(
+    cols = c(daily_return, ytd_return),
+    names_to = "metric",
+    values_to = "value"
+  ) |>
+  mutate(
+    metric = factor(
+      metric,
+      levels = c("daily_return", "ytd_return"),
+      labels = c("Daily", "Year-to-date")
+    ),
+    sector = factor(sector, levels = sector_data$sector[order(sector_data$sort_order)])
+  )
+
+# Get data date for title
+data_date <- unique(sector_data$data_date)
+data_date_formatted <- format(as.Date(data_date), "%m/%d/%Y")
+
+# Preview data
+glimpse(sector_long)
+```
+
+## Chart: S&P 500 Sector Performance
+
+```{r}
+#| label: main-chart
+#| fig-width: 14
+#| fig-height: 7
+#| warning: false
+
+# Define colors matching the reference
+colors <- c("Daily" = "#1e5aa8", "Year-to-date" = "#d4a012")
+
+# Create the grouped bar chart
+p <- ggplot(sector_long, aes(x = sector, y = value, fill = metric)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.5) +
+  geom_text(
+    aes(
+      label = sprintf("%.1f%%", value),
+      vjust = ifelse(value >= 0, -0.5, 1.5),
+      color = metric
+    ),
+    position = position_dodge(width = 0.7),
+    size = 3,
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(values = colors) +
+  scale_color_manual(values = colors) +
+  scale_y_continuous(
+    labels = label_percent(scale = 1, accuracy = 1),
+    expand = expansion(mult = c(0.15, 0.15))
+  ) +
+  labs(
+    title = glue("S&P 500 sector performance"),
+    subtitle = glue("■ {data_date_formatted}     ■ Year-to-date"),
+    x = NULL,
+    y = NULL,
+    fill = NULL
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0),
+    plot.subtitle = element_text(size = 12, color = "gray40", hjust = 0),
+    axis.text.x = element_text(size = 10, angle = 0, hjust = 0.5),
+    axis.text.y = element_text(size = 10),
+    legend.position = "top",
+    legend.justification = "left",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(20, 20, 20, 20)
+  )
+
+print(p)
+
+# Save for social media
+ggsave(
+  "chart-1.png",
+  plot = p,
+  width = 14,
+  height = 7,
+  dpi = 150,
+  bg = "white"
+)
+```
+
+## Data Table
+
+```{r}
+#| label: data-table
+
+# Display formatted table
+sector_data |>
+  select(Sector = sector, 
+         `Daily Return` = daily_return, 
+         `YTD Return` = ytd_return) |>
+  mutate(
+    `Daily Return` = sprintf("%+.2f%%", `Daily Return`),
+    `YTD Return` = sprintf("%+.2f%%", `YTD Return`)
+  ) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+## Alternative View: Lollipop Chart
+
+```{r}
+#| label: lollipop-chart
+#| fig-width: 12
+#| fig-height: 8
+#| warning: false
+
+# Create lollipop chart for YTD performance
+ytd_data <- sector_data |>
+  mutate(
+    sector = factor(sector, levels = sector[order(ytd_return)]),
+    color = ifelse(ytd_return >= 0, "#22c55e", "#ef4444")
+  )
+
+p_lollipop <- ggplot(ytd_data, aes(x = sector, y = ytd_return)) +
+  geom_segment(
+    aes(x = sector, xend = sector, y = 0, yend = ytd_return, color = color),
+    linewidth = 1.5,
+    show.legend = FALSE
+  ) +
+  geom_point(aes(color = color), size = 4, show.legend = FALSE) +
+  geom_hline(yintercept = 0, color = "gray50", linewidth = 0.5) +
+  geom_text(
+    aes(label = sprintf("%+.1f%%", ytd_return)),
+    hjust = ifelse(ytd_data$ytd_return >= 0, -0.3, 1.3),
+    size = 3.5
+  ) +
+  scale_color_identity() +
+  scale_y_continuous(
+    labels = label_percent(scale = 1, accuracy = 1),
+    expand = expansion(mult = c(0.1, 0.1))
+  ) +
+  coord_flip() +
+  labs(
+    title = "S&P 500 Sector YTD Performance",
+    subtitle = glue("As of {data_date_formatted}"),
+    x = NULL,
+    y = "Year-to-Date Return (%)"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(color = "gray40"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+
+print(p_lollipop)
+```
+
+## Key Insights
+
+1. **Sector Rotation**: The chart reveals which sectors are leading market performance in the current year.
+
+2. **Daily vs YTD Divergence**: Sectors with strong YTD but weak daily returns may be experiencing profit-taking.
+
+3. **Defensive vs Cyclical**: Utilities and Consumer Staples are typically defensive, while Technology and Consumer Discretionary are more cyclical.
+
+4. **Benchmark Reference**: S&P 500 (SPY) provides context for relative sector performance.
+
+## Design Decisions
+
+1. **Grouped Bars**: Side-by-side comparison makes it easy to compare daily vs YTD for each sector.
+
+2. **Color Scheme**: Blue for daily (short-term), Gold for YTD (cumulative) - intuitive and consistent.
+
+3. **Data Labels**: Percentage values shown above/below bars for quick reading.
+
+4. **Alternative View**: Lollipop chart provides a different perspective focusing on YTD rankings.
+
+---
+*Data source: Yahoo Finance. This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project.*
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Past performance is no guarantee of future results. Indexes are unmanaged, do not incur management fees, costs and expenses and cannot be invested in directly.
+:::
+:::
