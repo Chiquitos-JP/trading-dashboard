@@ -43,8 +43,8 @@ library(glue)
 #| label: load-data
 #| message: false
 
-# Load pre-processed data
-data_file <- here::here("scripts/by_timeSeries/quarto/posts/2026-02-04-tidytuesday/data/sector_performance.parquet")
+# Load pre-processed data (relative path from qmd file location)
+data_file <- "data/sector_performance.parquet"
 
 if (file.exists(data_file)) {
   sector_data <- read_parquet(data_file)
