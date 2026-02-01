@@ -1,0 +1,75 @@
+name: Post Weekly Economic Calendar
+
+on:
+  # スケジュール実行: 毎週日曜日 22:00 JST (13:00 UTC)
+  schedule:
+    - cron: '0 13 * * 0'
+  
+  # 手動実行
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no actual posting)'
+        required: false
+        default: false
+        type: boolean
+      base_date:
+        description: 'Base date (YYYY-MM-DD format, optional)'
+        required: false
+        type: string
+
+jobs:
+  post-calendar:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Install dependencies
+        run: |
+          pip install tweepy requests icalendar
+      
+      - name: Post weekly calendar to X
+        id: post
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: |
+          # Build command arguments
+          ARGS=""
+          
+          # Check if dry run
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+              ARGS="$ARGS --dry-run"
+            fi
+            if [ -n "${{ github.event.inputs.base_date }}" ]; then
+              ARGS="$ARGS --date ${{ github.event.inputs.base_date }}"
+            fi
+          fi
+          
+          echo "Running: python .github/scripts/post_weekly_calendar.py $ARGS"
+          python .github/scripts/post_weekly_calendar.py $ARGS
+      
+      - name: Summary
+        run: |
+          echo "## Weekly Calendar Post Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Triggered by**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "- **Dry Run**: ${{ github.event.inputs.dry_run }}" >> $GITHUB_STEP_SUMMARY
+            if [ -n "${{ github.event.inputs.base_date }}" ]; then
+              echo "- **Base Date**: ${{ github.event.inputs.base_date }}" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
+          echo "- **Status**: Completed" >> $GITHUB_STEP_SUMMARY
