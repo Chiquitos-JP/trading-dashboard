@@ -47,6 +47,7 @@ jobs:
             any::lubridate
             any::scales
             any::ggplot2
+            any::glue
             any::here
             any::arrow
             any::knitr
