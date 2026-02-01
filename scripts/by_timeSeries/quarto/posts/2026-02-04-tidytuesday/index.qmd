@@ -118,7 +118,7 @@ p <- ggplot(sector_long, aes(x = sector, y = value, fill = metric)) +
   ) +
   labs(
     title = glue("S&P 500 sector performance"),
-    subtitle = glue("■ {data_date_formatted}     ■ Year-to-date"),
+    subtitle = glue("Date: {data_date_formatted} | Year-to-date"),
     x = NULL,
     y = NULL,
     fill = NULL
