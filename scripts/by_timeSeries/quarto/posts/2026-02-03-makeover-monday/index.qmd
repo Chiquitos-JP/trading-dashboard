@@ -8,7 +8,6 @@ image: "thumbnail.svg"
 code-fold: true
 code-tools: true
 code-summary: "Show code"
-
 twitter-card:
   card-type: summary_large_image
   image: "thumbnail.svg"
