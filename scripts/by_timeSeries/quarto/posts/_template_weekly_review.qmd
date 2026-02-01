@@ -1,0 +1,230 @@
+---
+title: "Week {{week_num}} - {{month_abbr}} {{year}}"
+subtitle: "Weekly Review"
+description: "{{description}}"
+date: "{{today_str}}"
+author: "chokotto"
+categories: [Weekly Review, Monthly Review]
+image: "{{thumbnail_filename}}"
+
+twitter-card:
+  card-type: summary_large_image
+  image: "{{thumbnail_filename}}"
+  title: "Week {{week_num}} - {{month_abbr}} {{year}}"
+  description: "{{description}}"
+---
+
+## {{month_name_jp}}のサマリー
+
+{{ai_summary}}
+
+## パフォーマンスハイライト
+
+### Key Metrics - This Month
+
+{{month_gt_table}}
+
+### Key Metrics - Year to Date
+
+{{ytd_gt_table}}
+
+### Life Time Value Progress
+
+{{ltv_visualization}}
+
+### 損益推移
+
+{{monthly_cumulative_chart}}
+
+## 注目ポイント
+
+### 良かった点
+
+{{ai_highlights}}
+
+### 改善・注意点
+
+:::{.callout-warning}
+## 注意すべき点
+{{ai_improvements}}
+:::
+
+## 銘柄分析
+
+### 月別取扱い銘柄数
+
+{{holding_monthly_chart}}
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: 2025年と2026年の月別データを比較。棒グラフは銘柄数、折れ線グラフは取引回数を示す。*
+:::
+
+### 銘柄別パラメーター分析
+
+{{holding_ticker_chart}}
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: 取引回数Top12銘柄のパラメーター。ドロップダウンでソート軸、期間ボタンで対象年を切替可能。*
+:::
+
+### 保有期間分布
+
+{{holding_distribution_chart}}
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: 信用取引のみを対象。左図は日数ヒストグラム、右図はカテゴリ別分布。期間ボタンで統計を切替可能。*
+:::
+
+### 銘柄別損益分析
+
+{{holding_profit_chart}}
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: 税前損益の上位80%を占める銘柄を表示。左が利益、右が損失。*
+:::
+
+## リスク分析
+
+### 現在のポジション
+
+{{risk_position_chart}}
+
+:::{.callout-important}
+## ポジションサマリー
+- **保有銘柄数**: {{risk_total_positions}}銘柄（総額 {{risk_total_value}}円）
+- **信用取引**: {{risk_margin_positions}}銘柄 / {{risk_margin_value}}円
+- **現物取引**: {{risk_spot_positions}}銘柄 / {{risk_spot_value}}円
+- **信用倍率**: {{risk_leverage_ratio}}倍 _(信用取引金額 ÷ 現物取引金額)_
+- **為替レート**: {{risk_fx_rate}}円/USD
+:::
+
+### 信用取引 保有期間
+
+{{risk_margin_timeline}}
+
+:::{.callout-warning collapse="true"}
+## 保有期間の目安（※自分の投資スタイルに対する目安です）
+
+**前提**: 信用取引のリスク分析は、2025年1月1日以降に建てたポジションのみを対象としています（過去データが不完全な可能性があるため）。
+
+- 🟢 **30日未満**: 短期回転（安全圏）
+- 🟠 **30-60日**: 中期保有（要注意）
+- 🔴 **60日超**: 長期滞留（リスク高）
+
+信用取引平均保有: **{{risk_margin_avg_holding}}日** / 最長: **{{risk_margin_max_holding}}日**
+:::
+
+## マーケットデータ
+
+### S&P500 Advance-Decline Line
+
+```{=html}
+{{ad_line_chart}}
+```
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: A/D Lineは上昇銘柄数 - 下落銘柄数の累積。市場の内部強度を測定。*
+:::
+
+
+:::{.callout-note collapse="true"}
+## データソース
+
+- **S&P500指数**: S&P 500 Index (^GSPC)
+- **A/D Line**: S&P500構成銘柄の日次騰落率から計算（上昇銘柄数 - 下落銘柄数の累積）
+- **Sector Rotation**: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する日次超過リターン
+
+*データソース: Yahoo Finance (yfinance)*
+:::
+
+## 経済指標カレンダー
+
+```{=html}
+{{calendar_monthly}}
+```
+
+### 今後の重要指標
+
+```{=html}
+{{calendar_event_list}}
+```
+
+:::{.callout-note collapse="true"}
+## 経済指標サマリー
+- **総イベント**: {{calendar_total_events}}件
+- **今後45日間**: {{calendar_upcoming}}件
+- **重要指標**: {{calendar_high}}件
+
+*データソース: Monex経済指標カレンダー*
+:::
+
+## マクロデータ
+
+### 金利・社債スプ・Nasdaq & SP500
+
+```{=html}
+{{macro_spread_chart}}
+```
+
+:::{.callout-tip collapse="true"}
+## 読み方のポイント
+
+### 全体の見方
+- **BAA10Y spread**と**FFrate**が同時に上昇する場合は危険信号（財政緊縮＋資金調達難）
+- BAA10Y spreadが下降傾向ならソフトランディングの可能性
+
+### 各グラフの見方
+
+**上段：SP500 (log scale) & 10Y Treasury Yield**
+- SP500の対数スケールで長期トレンドを把握
+- 10Y金利（10年国債利回り）とSP500の関係を観察
+- 金利上昇時は株式市場に圧力がかかる傾向
+
+**中段：BAA-10Y Spread & Rates (10Y, FF)**
+- BAA-10Yスプレッド（社債と国債の利回り差）で信用リスクを評価
+- スプレッド拡大は市場のリスク回避を示す
+- 10Y金利とFFrate（政策金利）の動きを同時に確認
+
+**下段：Rolling Correlation (60d window)**
+- スプレッド変化と各種指標の相関を60日移動平均で表示
+- 相関が高い期間は市場の連動性が強いことを示す
+- 負の相関（-1に近い）は逆相関、正の相関（+1に近い）は同方向の動き
+:::
+
+### 推移チャート
+
+```{=html}
+{{macro_dashboard}}
+```
+
+:::{.callout-note collapse="true"}
+## データソース
+- **VIX**: CBOE Volatility Index - 市場の恐怖度・ボラティリティを示す
+- **FFR**: Federal Funds Effective Rate - FRBの政策金利
+- **失業率**: US Unemployment Rate - 労働市場の健全性指標
+- **CPI**: Consumer Price Index - インフレ動向の指標
+- **BAA10Y**: Moody's Baa Corporate Bond Spread - 社債スプレッド
+- **Nasdaq/SP500**: 主要株価指数
+- **金価格**: Gold Fixing Price (London) - ロンドン金価格（USD/オンス）
+- **ドル円**: USD/JPY Exchange Rate - ドル円為替レート
+
+*データソース: [FRED (Federal Reserve Economic Data)](https://fred.stlouisfed.org/)*
+:::
+
+## まとめ
+
+{{ai_conclusion}}
+
+---
+
+*このレビューは run_all.py + AI分析 により自動生成されました。*
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## ⚠️ 免責事項 / Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。
+
+*Disclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility.*
+:::
+:::

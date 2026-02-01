@@ -32,6 +32,8 @@ scripts/by_timeSeries/quarto/posts/*
 # TidyTuesday/MakeoverMonday内のdataフォルダも追跡
 !scripts/by_timeSeries/quarto/posts/*-tidytuesday/data/
 !scripts/by_timeSeries/quarto/posts/*-makeover-monday/data/
+# テンプレートファイルも追跡
+!scripts/by_timeSeries/quarto/posts/_template_*.qmd
 
 # ----- 環境・機密情報 -----
 .env

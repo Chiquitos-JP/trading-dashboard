@@ -1,0 +1,71 @@
+---
+title: "MakeoverMonday: {{week_title}}"
+description: "{{description}}"
+date: "{{date}}"
+author: "chokotto"
+categories:
+  - MakeoverMonday
+  - Python
+  - Finance
+image: "thumbnail.svg"
+code-fold: true
+---
+
+## Overview
+
+{{overview}}
+
+## Original Visualization
+
+**Source**: [MakeoverMonday](https://www.makeovermonday.co.uk/)
+
+{{original_viz_description}}
+
+## Dataset
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+# Load this week's data
+# df = pd.read_csv("data.csv")
+```
+
+## My Makeover
+
+### What I Changed
+
+{{makeover_notes}}
+
+### Visualization
+
+```{python}
+#| label: main-viz
+
+# Main visualization code here
+```
+
+## Key Takeaways
+
+{{takeaways}}
+
+---
+_This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information.
+:::
+:::

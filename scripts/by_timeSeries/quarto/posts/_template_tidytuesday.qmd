@@ -1,0 +1,68 @@
+---
+title: "TidyTuesday: {{week_title}}"
+description: "{{description}}"
+date: "{{date}}"
+author: "chokotto"
+categories:
+  - TidyTuesday
+  - R
+  - Finance
+image: "thumbnail.svg"
+engine: knitr
+code-fold: true
+---
+
+## Overview
+
+{{overview}}
+
+## Dataset
+
+```{r}
+#| label: load-packages
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(ggplot2)
+library(scales)
+library(glue)
+```
+
+```{r}
+#| label: load-data
+#| message: false
+
+# Load this week's data
+# tuesdata <- tidytuesdayR::tt_load('{{date}}')
+```
+
+## Exploratory Analysis
+
+{{analysis}}
+
+## Visualization
+
+```{r}
+#| label: main-viz
+#| fig-width: 12
+#| fig-height: 7
+#| warning: false
+
+# Main visualization code here
+```
+
+## Key Findings
+
+{{findings}}
+
+---
+_This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information.
+:::
+:::
