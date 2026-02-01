@@ -61,7 +61,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas numpy plotly pyarrow jupyter kaleido
+          pip install pandas numpy plotly pyarrow jupyter kaleido yfinance
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
