@@ -58,6 +58,13 @@
       "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-28-tidytuesday/",
       "image": "posts/2026-01-28-tidytuesday/index_files/figure-html/chart-1-amounts-1.png",
       "posted": false
+    },
+    {
+      "date": "2026-02-04",
+      "title": "TidyTuesday: S&P 500 Sector Performance",
+      "description": "Daily vs YTD sector performance comparison with ggplot2",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-02-04-tidytuesday/",
+      "posted": false
     }
   ]
 }
