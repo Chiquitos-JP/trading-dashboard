@@ -42,7 +42,7 @@
       "title": "TidyTuesday: Trading Analysis",
       "description": "Trading analysis visualization with ggplot2",
       "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-13-tidytuesday/",
-      "posted": false
+      "posted": true
     },
     {
       "date": "2026-01-21",
