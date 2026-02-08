@@ -223,7 +223,14 @@ jobs:
           fi
           
           git commit -m "$COMMIT_MSG"
-          git push
+          
+          # リモートに新しいコミットがある場合に備えて rebase してから push
+          # （ローカル push と CI が競合した場合のリトライ）
+          for i in 1 2 3; do
+            git push && break
+            echo "⚠️ Push failed (attempt $i/3), pulling with rebase..."
+            git pull --rebase origin main
+          done
 
       - name: Summary
         run: |
