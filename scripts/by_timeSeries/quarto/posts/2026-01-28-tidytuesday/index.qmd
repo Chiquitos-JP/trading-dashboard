@@ -4,7 +4,7 @@ description: "Visualizing the relationship between Cash Reserve (PAT Balance) an
 date: "2026-01-28"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance", "Trading", "Risk"]
-image: "thumbnail.svg"
+image: "thumbnail.png"
 engine: knitr
 freeze: false
 execute:
@@ -16,7 +16,7 @@ code-summary: "Show code"
 
 twitter-card:
   card-type: summary_large_image
-  image: "thumbnail.svg"
+  image: "thumbnail.png"
   title: "TidyTuesday: Risk Exposure Analysis"
   description: "Cash Reserve vs Margin Exposure time series with ggplot2"
 ---

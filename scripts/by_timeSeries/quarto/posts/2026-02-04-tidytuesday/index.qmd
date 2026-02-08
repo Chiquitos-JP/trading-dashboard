@@ -7,7 +7,7 @@ categories:
   - TidyTuesday
   - R
   - Finance
-image: "thumbnail.svg"
+image: "thumbnail.png"
 engine: knitr
 code-fold: true
 ---

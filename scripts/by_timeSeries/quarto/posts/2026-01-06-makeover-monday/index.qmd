@@ -4,11 +4,11 @@ description: "A sample MakeoverMonday post demonstrating the template structure"
 date: "2026-01-06"
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python"]
-image: "thumbnail.svg"
+image: "thumbnail.png"
 
 twitter-card:
   card-type: summary_large_image
-  image: "thumbnail.svg"
+  image: "thumbnail.png"
   title: "MakeoverMonday: Sample Visualization"
   description: "A sample MakeoverMonday post demonstrating the template structure"
 ---

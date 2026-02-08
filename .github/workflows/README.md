@@ -34,6 +34,27 @@ py scripts/by_timeSeries/runners/render_posts.py --preview
 py scripts/by_timeSeries/runners/render_posts.py --list
 ```
 
+### SNS（X）カード画像について
+
+X（旧Twitter）のリンクプレビューでは **SVG 画像は使えません**（対応形式は JPG/PNG/WEBP/GIF のみ）。
+そのため、TidyTuesday / MakeoverMonday のサムネイルは次のようにしています。
+
+- 記事フォルダには `thumbnail.svg` を置く（編集しやすいため）
+- ワークフロー内で `thumbnail.svg` を **PNG に変換**し、`image` / `twitter-card.image` では **`thumbnail.png`** を参照する
+- これにより X の投稿時にプレビュー画像が正しく表示される
+
+ローカルで Quarto レンダーする場合は、先に PNG を生成してください（CI では自動で実行されます）:
+
+```powershell
+cd scripts/by_timeSeries/quarto/posts
+Get-ChildItem -Directory | Where-Object { $_.Name -match 'makeover-monday|tidytuesday' } | ForEach-Object {
+  $svg = Join-Path $_.FullName "thumbnail.svg"
+  if (Test-Path $svg) { python -m cairosvg $svg -o (Join-Path $_.FullName "thumbnail.png") }
+}
+```
+
+（`cairosvg` は `pip install cairosvg` でインストール）
+
 ### ワークフローの流れ
 
 ```

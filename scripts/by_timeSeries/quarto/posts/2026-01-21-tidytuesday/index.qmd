@@ -4,7 +4,7 @@ description: "A traditional calendar visualization showing daily realized profit
 date: "2026-01-21"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance", "Trading"]
-image: "thumbnail.svg"
+image: "thumbnail.png"
 engine: knitr
 freeze: false
 execute:
@@ -16,7 +16,7 @@ code-summary: "Show code"
 
 twitter-card:
   card-type: summary_large_image
-  image: "thumbnail.svg"
+  image: "thumbnail.png"
   title: "TidyTuesday: Trading P/L Calendar"
   description: "Daily profit/loss calendar heatmap with ggplot2"
 ---

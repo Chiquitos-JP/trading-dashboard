@@ -4,14 +4,14 @@ description: "Visualizing the relationship between Cash Reserve (PAT Balance) an
 date: "2026-01-27"
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python", "Finance", "Trading", "Risk"]
-image: "thumbnail.svg"
+image: "thumbnail.png"
 code-fold: true
 code-tools: true
 code-summary: "Show code"
 
 twitter-card:
   card-type: summary_large_image
-  image: "thumbnail.svg"
+  image: "thumbnail.png"
   title: "MakeoverMonday: Risk Exposure Analysis"
   description: "Cash Reserve vs Margin Exposure time series visualization"
 ---

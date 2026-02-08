@@ -4,14 +4,14 @@ description: "A traditional calendar visualization showing daily realized profit
 date: "2026-01-20"
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python", "Finance", "Trading"]
-image: "thumbnail.svg"
+image: "thumbnail.png"
 code-fold: true
 code-tools: true
 code-summary: "Show code"
 
 twitter-card:
   card-type: summary_large_image
-  image: "thumbnail.svg"
+  image: "thumbnail.png"
   title: "MakeoverMonday: Trading P/L Calendar"
   description: "Daily profit/loss calendar heatmap with Python"
 ---

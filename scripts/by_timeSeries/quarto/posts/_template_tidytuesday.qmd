@@ -7,7 +7,8 @@ categories:
   - TidyTuesday
   - R
   - Finance
-image: "thumbnail.svg"
+# SNS (X) のカード画像は SVG 非対応のため PNG を使用（ビルド時に thumbnail.svg から生成）
+image: "thumbnail.png"
 engine: knitr
 code-fold: true
 ---

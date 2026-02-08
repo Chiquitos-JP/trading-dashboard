@@ -4,7 +4,7 @@ description: "Visualizing major market events and trends in 2025 with shaded tre
 date: "2026-01-13"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance"]
-image: "thumbnail.svg"
+image: "thumbnail.png"
 engine: knitr
 freeze: true
 execute:
@@ -13,7 +13,7 @@ execute:
 
 twitter-card:
   card-type: summary_large_image
-  image: "thumbnail.svg"
+  image: "thumbnail.png"
   title: "TidyTuesday: 2025 Market Events"
   description: "S&P500 vs Nikkei 225 with trend shading and event markers"
 ---

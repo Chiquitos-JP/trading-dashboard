@@ -4,13 +4,13 @@ description: "Visualizing S&P 500 sector ETF performance - Daily vs Year-to-Date
 date: "2026-02-03"
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python", "Finance", "S&P500", "Sectors"]
-image: "thumbnail.svg"
+image: "thumbnail.png"
 code-fold: true
 code-tools: true
 code-summary: "Show code"
 twitter-card:
   card-type: summary_large_image
-  image: "thumbnail.svg"
+  image: "thumbnail.png"
   title: "MakeoverMonday: S&P 500 Sector Performance"
   description: "Daily vs YTD sector performance comparison"
 ---
