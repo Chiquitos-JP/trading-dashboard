@@ -1,0 +1,220 @@
+---
+title: "MakeoverMonday: Risk Valuation Matrices"
+description: "Six risk matrices — R-multiple vs winrate, drawdown vs recovery, expectancy, losing streaks, exponential growth, consecutive losses — with your trading data"
+date: "2026-02-10"
+author: "chokotto"
+categories: ["MakeoverMonday", "Data Viz", "Python", "Finance", "Risk"]
+image: "thumbnail.png"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "MakeoverMonday: Risk Valuation Matrices"
+  description: "R-multiple, drawdown, expectancy, streaks, growth, consecutive losses"
+---
+
+## Overview
+
+This MakeoverMonday builds **six risk valuation matrices** used in trading: R-multiple vs required winrate, drawdown vs recovery rate, expectancy, losing streaks and capital loss, exponential growth, and consecutive-loss probability. Where possible, metrics are computed from your own data (`realized_pl` and `daily_balance`).
+
+- **1. R-Multiple & Required Winrate**: Break-even winrate = 1 / (1 + R).
+- **2. Drawdown & Recovery Rate**: Recovery % = 100 × DD / (1 − DD).
+- **3. Expectancy**: (Winrate × Size × R) − ((1 − Winrate) × Size).
+- **4. Losing Streaks**: Capital loss % after n consecutive losses at given risk %.
+- **5. Exponential Growth**: Gain per trade over time with fixed winrate, size, R.
+- **6. Consecutive Losses**: Probability of k consecutive losses by winrate.
+
+## Data and risk metrics
+
+```{python}
+#| label: load-risk-metrics
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+from pathlib import Path
+
+# Resolve project root and risk_metrics path (from TidyTuesday prepare_data)
+base_path = Path.cwd()
+while not (base_path / "data").exists() and base_path.parent != base_path:
+    base_path = base_path.parent
+
+# Same repo: risk_metrics written by 2026-02-11-tidytuesday/prepare_data.py
+risk_metrics_path = base_path / "scripts" / "by_timeSeries" / "quarto" / "posts" / "2026-02-11-tidytuesday" / "data" / "risk_metrics.parquet"
+if risk_metrics_path.exists():
+    m = pd.read_parquet(risk_metrics_path).iloc[0]
+    win_rate = float(m["win_rate_pct"])
+    r_multiple = float(m["r_multiple"])
+    max_dd = float(m["max_drawdown_pct"])
+    max_streak = int(m["max_consecutive_losing_days"])
+    account_jpy = float(m["account_size_jpy"])
+    pos_pct = float(m["position_size_pct"])
+else:
+    win_rate, r_multiple, max_dd, max_streak = 55.0, 1.5, 10.0, 3
+    account_jpy, pos_pct = 10_000_000.0, 2.0
+
+print(f"Win rate: {win_rate:.1f}% | R: {r_multiple:.2f} | Max DD: {max_dd:.1f}% | Max streak: {max_streak} | Account: ¥{account_jpy:,.0f}")
+```
+
+## 1. R-Multiple and Required Winrate
+
+```{python}
+#| label: viz-r-winrate
+
+R_values = np.arange(0.5, 4.0, 0.5)
+required_wr = 100 / (1 + R_values)
+fig1 = go.Figure()
+fig1.add_trace(go.Bar(x=[f"{r:.1f}" for r in R_values], y=required_wr, name="Required Winrate %", marker_color="#3b82f6"))
+fig1.add_vline(x=r_multiple, line_dash="dash", line_color="red", annotation_text=f"Your R ≈ {r_multiple:.2f}")
+fig1.update_layout(
+    title="R-Multiple vs Required Winrate",
+    xaxis_title="R-Multiple",
+    yaxis_title="Required Winrate (%)",
+    template="plotly_white",
+    height=400,
+    showlegend=False,
+)
+fig1.add_annotation(text="Formula: Required Winrate = 1 / (1 + R)", xref="paper", yref="paper", x=0.5, y=1.06, showarrow=False, font=dict(size=11))
+fig1.show()
+```
+
+## 2. Drawdown and Recovery Rate
+
+```{python}
+#| label: viz-drawdown-recovery
+
+dd_pcts = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+recovery = [100 * dd / (100 - dd) for dd in dd_pcts]
+fig2 = go.Figure()
+fig2.add_trace(go.Bar(x=[f"{d}%" for d in dd_pcts], y=recovery, marker_color="#10b981"))
+# Mark your max DD if in range
+idx = min(range(len(dd_pcts)), key=lambda i: abs(dd_pcts[i] - max_dd))
+fig2.add_vline(x=idx, line_dash="dash", line_color="red", annotation_text=f"Your max DD ≈ {max_dd:.0f}%")
+fig2.update_layout(
+    title="Drawdown % vs Recovery Rate %",
+    xaxis_title="Drawdown (%)",
+    yaxis_title="Recovery needed (%)",
+    template="plotly_white",
+    height=400,
+    showlegend=False,
+)
+fig2.add_annotation(text="Recovery % = 100 × DD / (1 − DD)", xref="paper", yref="paper", x=0.5, y=1.06, showarrow=False, font=dict(size=11))
+fig2.show()
+```
+
+## 3. Expectancy
+
+```{python}
+#| label: viz-expectancy
+
+# Expectancy = (WR * pos * R) - ((1-WR) * pos)  in % terms
+wr_dec = win_rate / 100
+exp_pct = (wr_dec * pos_pct * r_multiple) - ((1 - wr_dec) * pos_pct)
+fig3 = go.Figure()
+fig3.add_annotation(
+    text=f"<b>Expectancy</b> = (Winrate × Pos.Size × R) − ((1 − Winrate) × Pos.Size)<br>"
+         f"With your data: Winrate={win_rate:.0f}%, Pos={pos_pct}%, R={r_multiple:.2f} → <b>Expectancy = {exp_pct:.2f}%</b> per trade",
+    xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False, font=dict(size=13), align="center",
+)
+fig3.update_layout(
+    title="Trade Expectancy (your parameters)",
+    template="plotly_white",
+    height=220,
+    xaxis=dict(visible=False),
+    yaxis=dict(visible=False),
+)
+fig3.show()
+```
+
+## 4. Losing Streaks and Loss of Capital
+
+```{python}
+#| label: viz-streaks
+
+n_losses = list(range(1, 11))
+risks = [0.01, 0.03, 0.05]
+loss_pct = [[100 * (1 - (1 - r) ** n) for n in n_losses] for r in risks]
+fig4 = go.Figure()
+for r, row in zip(risks, loss_pct):
+    fig4.add_trace(go.Scatter(x=n_losses, y=row, mode="lines+markers", name=f"{int(r*100)}% risk"))
+fig4.add_vline(x=max_streak, line_dash="dot", line_color="gray", annotation_text=f"Your max streak: {max_streak}")
+fig4.update_layout(
+    title="Losing Streaks: Capital Loss % after n Consecutive Losses",
+    xaxis_title="Consecutive losses (n)",
+    yaxis_title="Loss %",
+    template="plotly_white",
+    height=400,
+)
+fig4.add_annotation(text="Loss % = 1 − (1 − risk)^n", xref="paper", yref="paper", x=0.5, y=1.06, showarrow=False, font=dict(size=11))
+fig4.show()
+```
+
+## 5. Exponential Growth (Gain per Trade)
+
+```{python}
+#| label: viz-growth
+
+# Compound: after n trades, account grows; gain per trade at step n = (account_n - account_0) / n (simplified)
+# Standard formula: account after n = A0 * (1 + E)^n where E = expectancy per trade in decimal
+E = exp_pct / 100
+n_trades = [1, 10, 50, 100, 200, 500]
+account_0 = account_jpy if account_jpy > 0 else 10_000_000
+gain_per_trade = [account_0 * ((1 + E) ** n - 1) / n for n in n_trades]
+fig5 = go.Figure()
+fig5.add_trace(go.Bar(x=[str(n) for n in n_trades], y=[g / 1e6 for g in gain_per_trade], marker_color="#8b5cf6"))
+fig5.update_layout(
+    title=f"Gain per Trade (JPY, millions) — Account ¥{account_0/1e6:.1f}M, Expectancy {exp_pct:.2f}%",
+    xaxis_title="Number of trades",
+    yaxis_title="Gain per trade (million JPY)",
+    template="plotly_white",
+    height=400,
+    showlegend=False,
+)
+fig5.show()
+```
+
+## 6. Consecutive Losses (Probability Heatmap)
+
+```{python}
+#| label: viz-consecutive
+
+winrates = np.arange(30, 75, 5)
+k_streaks = [1, 2, 3, 4, 5]
+z = [[100 * (1 - wr/100)**k for k in k_streaks] for wr in winrates]
+fig6 = go.Figure(data=go.Heatmap(
+    z=z, x=[f"{k}" for k in k_streaks], y=[f"{int(wr)}%" for wr in winrates],
+    colorscale="RdYlGn_r", text=[[f"{v:.1f}%" for v in row] for row in z], texttemplate="%{text}", textfont=dict(size=10),
+))
+fig6.add_hline(y=np.argmin(np.abs(winrates - win_rate)), line_dash="dash", line_color="blue")
+fig6.update_layout(
+    title="P(k consecutive losses) by Winrate — your winrate highlighted",
+    xaxis_title="Consecutive losses (k)",
+    yaxis_title="Winrate (%)",
+    template="plotly_white",
+    height=450,
+)
+fig6.show()
+```
+
+## Key Takeaways
+
+1. **R and winrate**: Higher R lowers the winrate needed to break even.
+2. **Drawdown**: Recovery needed grows non-linearly (e.g. 50% DD → 100% gain to recover).
+3. **Expectancy**: Combines winrate, position size, and R into one per-trade edge.
+4. **Streaks**: A few consecutive losses at 3–5% risk can erase a large share of capital.
+5. **Growth**: Positive expectancy compounds; gain per trade rises with trade count.
+6. **Consecutive losses**: Even at 60% winrate, 3+ consecutive losses are non-negligible.
+
+---
+_This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Risk metrics and interpretations are based on the provided dataset and do not constitute investment advice.
+:::
+:::
