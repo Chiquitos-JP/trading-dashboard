@@ -4,7 +4,7 @@ description: "Visualizing major market events and trends in 2025 with shaded tre
 date: "2026-01-13"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance"]
-image: "thumbnail.png"
+image: "thumbnail.svg"
 engine: knitr
 freeze: true
 execute:

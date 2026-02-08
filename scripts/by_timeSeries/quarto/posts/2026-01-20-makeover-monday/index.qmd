@@ -4,7 +4,7 @@ description: "A traditional calendar visualization showing daily realized profit
 date: "2026-01-20"
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python", "Finance", "Trading"]
-image: "thumbnail.png"
+image: "thumbnail.svg"
 code-fold: true
 code-tools: true
 code-summary: "Show code"

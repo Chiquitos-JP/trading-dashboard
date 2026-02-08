@@ -4,7 +4,7 @@ description: "A traditional calendar visualization showing daily realized profit
 date: "2026-01-21"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance", "Trading"]
-image: "thumbnail.png"
+image: "thumbnail.svg"
 engine: knitr
 freeze: false
 execute:

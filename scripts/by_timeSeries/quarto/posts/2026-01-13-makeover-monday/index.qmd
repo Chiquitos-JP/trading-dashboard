@@ -4,7 +4,7 @@ description: "An interactive visualization of S&P500 and Nikkei 225 with trend s
 date: "2026-01-13"
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python", "Finance"]
-image: "thumbnail.png"
+image: "thumbnail.svg"
 
 twitter-card:
   card-type: summary_large_image

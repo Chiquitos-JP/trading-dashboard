@@ -4,7 +4,7 @@ description: "Six risk matrices — R-multiple vs winrate, drawdown vs recovery,
 date: "2026-02-11"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance", "Risk"]
-image: "thumbnail.png"
+image: "thumbnail.svg"
 engine: knitr
 code-fold: true
 code-tools: true

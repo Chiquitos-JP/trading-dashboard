@@ -7,9 +7,14 @@ categories:
   - TidyTuesday
   - R
   - Finance
-image: "thumbnail.png"
+image: "thumbnail.svg"
 engine: knitr
 code-fold: true
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "TidyTuesday: SP500 Sector Performance"
+  description: "Visualizing SP500 sector ETF performance"
 ---
 
 ## Overview

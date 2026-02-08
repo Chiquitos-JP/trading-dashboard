@@ -34,14 +34,21 @@ py scripts/by_timeSeries/runners/render_posts.py --preview
 py scripts/by_timeSeries/runners/render_posts.py --list
 ```
 
-### SNS（X）カード画像について
+### サムネイル画像の運用ルール
 
-X（旧Twitter）のリンクプレビューでは **SVG 画像は使えません**（対応形式は JPG/PNG/WEBP/GIF のみ）。
-そのため、TidyTuesday / MakeoverMonday のサムネイルは次のようにしています。
+各記事フォルダには `thumbnail.svg` のみを配置する（編集しやすいため）。
 
-- 記事フォルダには `thumbnail.svg` を置く（編集しやすいため）
-- ワークフロー内で `thumbnail.svg` を **PNG に変換**し、`image` / `twitter-card.image` では **`thumbnail.png`** を参照する
+**YAML frontmatter の設定:**
+
+| キー | 値 | 用途 |
+|------|------|------|
+| `image:` | `"thumbnail.svg"` | Web サイト上の記事一覧サムネイル（ブラウザは SVG 表示可能） |
+| `twitter-card.image:` | `"thumbnail.png"` | X (Twitter) カード画像（SVG 非対応のため PNG 必須） |
+
+**PNG 変換の流れ:**
+- CI（`render-posts.yml`）の「Convert thumbnail SVG to PNG」ステップで `cairosvg` により `thumbnail.svg` → `thumbnail.png` に変換
 - これにより X の投稿時にプレビュー画像が正しく表示される
+- **`thumbnail.png` はリポジトリにコミットしない**（CI で毎回生成）
 
 ローカルで Quarto レンダーする場合は、先に PNG を生成してください（CI では自動で実行されます）:
 
