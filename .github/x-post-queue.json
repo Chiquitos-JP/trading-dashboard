@@ -65,6 +65,14 @@
       "description": "Daily vs YTD sector performance comparison with ggplot2",
       "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-02-04-tidytuesday/",
       "posted": false
+    },
+    {
+      "date": "2026-02-11",
+      "title": "TidyTuesday: Risk Valuation Matrices",
+      "description": "R-multiple, drawdown, expectancy, streaks, growth, consecutive losses",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-02-11-tidytuesday/",
+      "posted": false,
+      "image": "posts/2026-02-11-tidytuesday/index_files/figure-html/viz-consecutive-1.png"
     }
   ]
 }
