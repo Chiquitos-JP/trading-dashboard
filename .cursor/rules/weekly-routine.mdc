@@ -1,0 +1,49 @@
+---
+description: 週次定期作業（Weekly Review / MakeoverMonday / TidyTuesday）の手順と前提
+alwaysApply: true
+---
+
+# 週次ルーティンワーク
+
+## 1. Weekly Review（投資レビュー）
+
+- ローカルで `run_all.py` + AI 分析により生成
+- 投稿は **手動**（自動投稿なし）
+- テンプレート: `scripts/by_timeSeries/quarto/posts/_template_weekly_review.qmd`
+
+## 2. MakeoverMonday（Python / Plotly）
+
+- ローカルで `index.qmd` + `thumbnail.svg` を作成
+- GitHub Actions でレンダリング＆自動投稿
+- テンプレート: `posts/_template_makeover_monday.qmd`
+
+## 3. TidyTuesday（R / ggplot2）
+
+- ローカルで `index.qmd` + `thumbnail.svg` + `prepare_data.py` を作成
+- **ローカルレンダリング不可**（Windows ARM64 + Quarto の互換性制約）
+- GitHub Actions（R knitr）でレンダリング → 自動投稿
+- テンプレート: `posts/_template_tidytuesday.qmd`
+
+## CI 操作コマンド（gh CLI）
+
+```bash
+# ワークフロー実行（post_type: all / tidytuesday / makeover-monday）
+gh workflow run "render-posts.yml" -f post_type=tidytuesday -f post_date=2026-02-11 --repo Chiquitos-JP/trading-dashboard
+
+# 実行状況確認
+gh run list --workflow=render-posts.yml --limit 3 --repo Chiquitos-JP/trading-dashboard
+
+# ログ確認
+gh run view <run_id> --log --repo Chiquitos-JP/trading-dashboard
+```
+
+## 投稿フォルダ命名規則
+
+- `posts/YYYY-MM-DD-makeover-monday/`
+- `posts/YYYY-MM-DD-tidytuesday/`
+- `posts/YYYY-MM-DD-weekly-review/`
+
+## 出力先
+
+- Quarto 出力: `docs/quarto/latest/`（`_quarto.yml` の `output-dir`）
+- CI がレンダリング結果を `docs/` に commit & push する
