@@ -208,7 +208,8 @@ fig6.show()
 5. **Growth**: Positive expectancy compounds; gain per trade rises with trade count.
 6. **Consecutive losses**: Even at 60% winrate, 3+ consecutive losses are non-negligible.
 
----
+***
+
 _This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
 
 :::{.callout-caution collapse="false" appearance="minimal" icon="false"}

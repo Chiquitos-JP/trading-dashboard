@@ -1,6 +1,6 @@
 ---
 title: "TidyTuesday: Risk Valuation Matrices"
-description: "Six risk matrices — R-multiple vs winrate, drawdown vs recovery, expectancy, losing streaks, exponential growth, consecutive losses — with ggplot2"
+description: "Six risk matrices - R-multiple vs winrate, drawdown vs recovery, expectancy, losing streaks, exponential growth, consecutive losses - with ggplot2"
 date: "2026-02-11"
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance", "Risk"]
@@ -201,7 +201,8 @@ p6
 5. **Growth**: Positive expectancy compounds; gain per trade rises with trade count.
 6. **Consecutive losses**: Even at 60% winrate, 3+ consecutive losses are non-negligible.
 
----
+***
+
 _This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project._
 
 :::{.callout-caution collapse="false" appearance="minimal" icon="false"}
