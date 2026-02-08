@@ -27,6 +27,13 @@
       "description": "Cash Reserve vs Margin Exposure time series visualization",
       "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-27-makeover-monday/",
       "posted": false
+    },
+    {
+      "date": "2026-02-10",
+      "title": "MakeoverMonday: Risk Valuation Matrices",
+      "description": "R-multiple, drawdown, expectancy, streaks, growth, consecutive losses",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-02-10-makeover-monday/",
+      "posted": false
     }
   ],
   "tidytuesday": [
