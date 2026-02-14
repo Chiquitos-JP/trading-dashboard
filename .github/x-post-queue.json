@@ -56,7 +56,7 @@
       "title": "TidyTuesday: Performance Review",
       "description": "Performance review visualization with ggplot2",
       "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-21-tidytuesday/",
-      "posted": false
+      "posted": true
     },
     {
       "date": "2026-01-28",
