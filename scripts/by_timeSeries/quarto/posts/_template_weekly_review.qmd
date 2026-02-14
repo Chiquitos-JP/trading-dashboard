@@ -116,6 +116,16 @@ twitter-card:
 
 ## マーケットデータ
 
+### S&P500 セクターパフォーマンス
+
+```{=html}
+{{sector_performance_chart}}
+```
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: S&P500セクターETFの週次リターンとYTDリターン。YTDリターン降順で表示。*
+:::
+
 ### S&P500 Advance-Decline Line
 
 ```{=html}
