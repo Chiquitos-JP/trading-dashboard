@@ -2566,14 +2566,14 @@
     "href": "posts/2026-02-14-weekly-review/index.html",
     "title": "Week 2 - Feb 2026",
     "section": "",
-    "text": "2月は取引なしで、税前利益は0円、勝率は0%でした。"
+    "text": "2月は取引なしで、税前利益は0円、取引数も0件でした。全体として安定したパフォーマンスを維持していますが、取引がなかったため、今月の成績は特に目立ったものはありません。"
   },
   {
     "objectID": "posts/2026-02-14-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-02-14-weekly-review/index.html#月のサマリー",
     "title": "Week 2 - Feb 2026",
     "section": "",
-    "text": "2月は取引なしで、税前利益は0円、勝率は0%でした。"
+    "text": "2月は取引なしで、税前利益は0円、取引数も0件でした。全体として安定したパフォーマンスを維持していますが、取引がなかったため、今月の成績は特に目立ったものはありません。"
   },
   {
     "objectID": "posts/2026-02-14-weekly-review/index.html#パフォーマンスハイライト",
@@ -2587,7 +2587,7 @@
     "href": "posts/2026-02-14-weekly-review/index.html#注目ポイント",
     "title": "Week 2 - Feb 2026",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n年初来の税前利益は838,476円で、6取引全勝を達成しています。\n年初来のROIは4.31%で、安定したパフォーマンスを維持しています。\n勝率が100%であることから、取引戦略の有効性が示されています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引が全く行われなかったため、今後の取引機会を見逃さないようにする必要があります。\n取引を行わない場合の戦略や市場分析を強化することが重要です。\nリスク管理を考慮し、次回の取引に向けた準備を進めましょう。"
+    "text": "注目ポイント\n\n良かった点\n\n今年の累計税前利益は838,476円で、良好なスタートを切っています。\n年初からの取引数は6件で、全勝（勝率100%）を達成しています。\n年間ROIは4.31%で、安定したリターンを示しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引を再開するための戦略を見直し、実行に移す必要があります。\n市場動向を注視し、適切なタイミングでエントリーする準備を整えましょう。\nリスク管理の観点から、過去の成功した取引を分析し、再現性のある戦略を構築することが重要です。"
   },
   {
     "objectID": "posts/2026-02-14-weekly-review/index.html#銘柄分析",
@@ -2608,7 +2608,7 @@
     "href": "posts/2026-02-14-weekly-review/index.html#マーケットデータ",
     "title": "Week 2 - Feb 2026",
     "section": "マーケットデータ",
-    "text": "マーケットデータ\n\nS&P500 セクターパフォーマンス\n                        \n                                            \n\nNote: S&P500セクターETFの週次リターンとYTDリターン。YTDリターン降順で表示。\n\n\n\nS&P500 Advance-Decline Line\n                        \n                                            \n    \n    \n\nNote: A/D Lineは上昇銘柄数 - 下落銘柄数の累積。市場の内部強度を測定。\n\n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nS&P500指数: S&P 500 Index (^GSPC)\nA/D Line: S&P500構成銘柄の日次騰落率から計算（上昇銘柄数 - 下落銘柄数の累積）\nSector Rotation: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する日次超過リターン\n\nデータソース: Yahoo Finance (yfinance)"
+    "text": "マーケットデータ\n\nS&P500 セクターパフォーマンス\n                        \n                                            \n\nNote: S&P500セクターETFの週次リターンとYTDリターン。YTDリターン降順で表示。\n\n\n\nセクター RSI（相対強度指数）\n                        \n                                            \n\nNote: 各セクターETFのSPYに対する相対強度のRSI(14)。50超で相対的に強気、50未満で相対的に弱気。\n\n\n\n市場全体の動向\n                        \n                                            \n\nNote: A/D Lineは上昇銘柄数 - 下落銘柄数の累積。市場の内部強度を測定。\n\n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nS&P500指数: S&P 500 Index (^GSPC)\n出来高: S&P 500の日次出来高\nA/D Line: S&P500構成銘柄の日次騰落率から計算（上昇銘柄数 - 下落銘柄数の累積）\nSector RSI: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する相対強度のRSI(14)\n\nデータソース: Yahoo Finance (yfinance)"
   },
   {
     "objectID": "posts/2026-02-14-weekly-review/index.html#経済指標カレンダー",
@@ -2629,6 +2629,6 @@
     "href": "posts/2026-02-14-weekly-review/index.html#まとめ",
     "title": "Week 2 - Feb 2026",
     "section": "まとめ",
-    "text": "まとめ\n今後は取引機会を逃さず、積極的に市場に参加する方針で臨みます。引き続き、効果的な戦略を実行し、安定した成果を目指します。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n2月は取引がなかったため、次月には積極的に市場に参加し、さらなる利益を追求していきます。新しい戦略を試すことで、パフォーマンスの向上を目指します。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]

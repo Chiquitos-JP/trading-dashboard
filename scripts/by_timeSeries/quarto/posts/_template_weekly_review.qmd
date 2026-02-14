@@ -126,10 +126,20 @@ twitter-card:
 *Note: S&P500セクターETFの週次リターンとYTDリターン。YTDリターン降順で表示。*
 :::
 
-### S&P500 Advance-Decline Line
+### セクター RSI（相対強度指数）
 
 ```{=html}
-{{ad_line_chart}}
+{{sector_rsi_chart}}
+```
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: 各セクターETFのSPYに対する相対強度のRSI(14)。50超で相対的に強気、50未満で相対的に弱気。*
+:::
+
+### 市場全体の動向
+
+```{=html}
+{{market_breadth_chart}}
 ```
 
 ::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
@@ -141,8 +151,9 @@ twitter-card:
 ## データソース
 
 - **S&P500指数**: S&P 500 Index (^GSPC)
+- **出来高**: S&P 500の日次出来高
 - **A/D Line**: S&P500構成銘柄の日次騰落率から計算（上昇銘柄数 - 下落銘柄数の累積）
-- **Sector Rotation**: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する日次超過リターン
+- **Sector RSI**: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する相対強度のRSI(14)
 
 *データソース: Yahoo Finance (yfinance)*
 :::
