@@ -1,0 +1,13 @@
+---
+description: ローカル実行環境の制約と設定（Windows ARM64）
+alwaysApply: true
+---
+
+# 実行環境
+
+- OS: Windows 11 ARM64
+- Python: `py` コマンドで起動（`python` は PATH にない）
+- Shell: PowerShell（bash コマンドは使えない）
+- 仮想環境: `.venv/`（pip install 時は `.venv/Scripts/pip`）
+- Quarto: ローカルインストール済み（R knitr エンジンはローカル不可）
+- 長時間コマンド: block_until_ms を十分大きく設定（フルパイプライン: 600000）
