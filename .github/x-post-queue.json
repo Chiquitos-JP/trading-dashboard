@@ -80,6 +80,13 @@
       "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-02-11-tidytuesday/",
       "posted": false,
       "image": "posts/2026-02-11-tidytuesday/index_files/figure-html/viz-consecutive-1.png"
+    },
+    {
+      "date": "2026-02-18",
+      "title": "TidyTuesday: Reddit Comment Counts - SOFI vs IONQ",
+      "description": "Daily Reddit discussion volume comparison for SOFI and IONQ",
+      "url": "https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-02-18-tidytuesday/",
+      "posted": false
     }
   ]
 }
