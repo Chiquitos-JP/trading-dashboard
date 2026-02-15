@@ -396,36 +396,21 @@
     "href": "dashboard_static.html",
     "title": "Static Reports Hub",
     "section": "",
-    "text": "Static Reports Archive\n  \n    GitHub Pages上でホストされている静的レポートの一覧です。\n    サーバー不要でいつでも閲覧可能な過去のパフォーマンスデータを確認できます。\n  \n\n\n\n\n  \n    Updated\n    \n      \n    \n    Financial Analytics\n    \n      時系列での財務データ推移、損益計算、および主要KPI（勝率・ROIなど）の包括的な分析レポート。\n    \n    \n      View Report \n    \n  \n\n  \n    \n      \n    \n    Coming Soon\n    Portfolio Composition\n    \n      アセットアロケーションや保有銘柄の内訳分析レポート。\n      現在準備中です。\n    \n  \n\n  \n    \n      \n    \n    Coming Soon\n    Trading Journal\n    \n      個別の取引履歴やエントリー/イグジットの記録詳細。\n      現在準備中です。",
-    "crumbs": [
-      "Concept",
-      "Dashboard",
-      "Performance Reports"
-    ]
+    "text": "Static Reports Archive\n  \n    GitHub Pages上でホストされている静的レポートの一覧です。\n    サーバー不要でいつでも閲覧可能な過去のパフォーマンスデータを確認できます。\n  \n\n\n\n\n  \n    Updated\n    \n      \n    \n    Financial Analytics\n    \n      時系列での財務データ推移、損益計算、および主要KPI（勝率・ROIなど）の包括的な分析レポート。\n    \n    \n      View Report \n    \n  \n\n  \n    \n      \n    \n    Coming Soon\n    Portfolio Composition\n    \n      アセットアロケーションや保有銘柄の内訳分析レポート。\n      現在準備中です。\n    \n  \n\n  \n    \n      \n    \n    Coming Soon\n    Trading Journal\n    \n      個別の取引履歴やエントリー/イグジットの記録詳細。\n      現在準備中です。"
   },
   {
     "objectID": "dashboard_financials_timeseries.html",
     "href": "dashboard_financials_timeseries.html",
     "title": "Timeseries Reports",
     "section": "",
-    "text": "Annual Performance\n  \n    年度ごとの取引履歴、KPI推移、損益分析のアーカイブです。\n  \n\n\n\n\n  \n    \n      \n         Completed\n      \n      2025\n      \n        2025年度の取引履歴と損益分析のアーカイブです。\n      \n    \n    \n      View Archive \n    \n  \n\n  \n    \n      \n         Live Updating\n      \n      2026\n      \n        現在進行中の年度データ。YTD損益および月次詳細分析を閲覧できます。\n      \n    \n    \n      View Report \n    \n  \n\n  \n    \n      \n         Future\n      \n      2027\n      \n        2027年1月より記録開始予定。",
-    "crumbs": [
-      "Concept",
-      "Dashboard",
-      "Performance Reports",
-      "Financials"
-    ]
+    "text": "Annual Performance\n  \n    年度ごとの取引履歴、KPI推移、損益分析のアーカイブです。\n  \n\n\n\n\n  \n    \n      \n         Completed\n      \n      2025\n      \n        2025年度の取引履歴と損益分析のアーカイブです。\n      \n    \n    \n      View Archive \n    \n  \n\n  \n    \n      \n         Live Updating\n      \n      2026\n      \n        現在進行中の年度データ。YTD損益および月次詳細分析を閲覧できます。\n      \n    \n    \n      View Report \n    \n  \n\n  \n    \n      \n         Future\n      \n      2027\n      \n        2027年1月より記録開始予定。"
   },
   {
     "objectID": "dashboard.html",
     "href": "dashboard.html",
     "title": "Dashboard Overview",
     "section": "",
-    "text": "Select Dashboard Type\n  \n    目的に応じて2種類のレポート形式を用意しています。\n    詳細な分析にはInteractive版を、サマリー確認にはStatic版をご利用ください。\n  \n\n\n\n\n  \n    \n    \n       Requires Local Server\n    \n    \n    \n      \n    \n    \n    Interactive Dashboard\n    \n      Python Panelを使用した高機能分析環境です。リアルタイムフィルタリングやチャートのドリルダウンなど、自由度の高いデータ探索が可能です。\n    \n    \n    \n       動的なデータフィルタリング\n       詳細なドリルダウン分析\n       リアルタイム描画\n    \n    \n    \n      セットアップ方法を見る \n    \n  \n\n  \n    \n    \n       Always Available\n    \n    \n    \n      \n    \n    \n    Static Report\n    \n      GitHub Pages上で常時閲覧可能な静的レポートです。年度ごとのKPIや月次サマリーを表形式で素早く確認できます。\n    \n    \n    \n       ブラウザから即座にアクセス\n       年度別KPIサマリー表\n       サーバー起動不要\n    \n    \n    \n      レポートを開く",
-    "crumbs": [
-      "Concept",
-      "Dashboard"
-    ]
+    "text": "Select Dashboard Type\n  \n    目的に応じて2種類のレポート形式を用意しています。\n    詳細な分析にはInteractive版を、サマリー確認にはStatic版をご利用ください。\n  \n\n\n\n\n  \n    \n    \n       Requires Local Server\n    \n    \n    \n      \n    \n    \n    Interactive Dashboard\n    \n      Python Panelを使用した高機能分析環境です。リアルタイムフィルタリングやチャートのドリルダウンなど、自由度の高いデータ探索が可能です。\n    \n    \n    \n       動的なデータフィルタリング\n       詳細なドリルダウン分析\n       リアルタイム描画\n    \n    \n    \n      セットアップ方法を見る \n    \n  \n\n  \n    \n    \n       Always Available\n    \n    \n    \n      \n    \n    \n    Static Report\n    \n      GitHub Pages上で常時閲覧可能な静的レポートです。年度ごとのKPIや月次サマリーを表形式で素早く確認できます。\n    \n    \n    \n       ブラウザから即座にアクセス\n       年度別KPIサマリー表\n       サーバー起動不要\n    \n    \n    \n      レポートを開く"
   },
   {
     "objectID": "analysis.html",
@@ -446,27 +431,14 @@
     "href": "dashboard_2025.html",
     "title": "2025 Trading Dashboard",
     "section": "",
-    "text": "YTD & Monthly KPI Summary\n    \n      Live Report\n      2025年の取引パフォーマンス詳細分析\n    \n  \n\n\n\n  \n    📊 統合レポート: \n    このダッシュボードはPythonスクリプトにより自動生成され、定期的に更新されます。\n    スタイルの独立性を保つためiframe形式で統合しています。\n  \n\n\n\n  \n    \n      \n      \n      \n    \n    \n       kpi_dashboard_2025 — Isolated View\n    \n    \n      \n        \n      \n    \n  \n  \n  \n    \n    \n  \n\n\n\n  \n  データは run_all.py により自動更新されます。最終更新日時はダッシュボード内のヘッダーをご確認ください。",
-    "crumbs": [
-      "Concept",
-      "Dashboard",
-      "Performance Reports",
-      "Financials",
-      "2025年"
-    ]
+    "text": "YTD & Monthly KPI Summary\n    \n      Live Report\n      2025年の取引パフォーマンス詳細分析\n    \n  \n\n\n\n  \n    📊 統合レポート: \n    このダッシュボードはPythonスクリプトにより自動生成され、定期的に更新されます。\n    スタイルの独立性を保つためiframe形式で統合しています。\n  \n\n\n\n  \n    \n      \n      \n      \n    \n    \n       kpi_dashboard_2025 — Isolated View\n    \n    \n      \n        \n      \n    \n  \n  \n  \n    \n    \n  \n\n\n\n  \n  データは run_all.py により自動更新されます。最終更新日時はダッシュボード内のヘッダーをご確認ください。"
   },
   {
     "objectID": "dashboard_panel_info.html",
     "href": "dashboard_panel_info.html",
     "title": "Interactive Dashboard",
     "section": "",
-    "text": "Requires Local Server\n  \n  Interactive Trading Dashboard\n  \n    Python Panelフレームワークを使用した高度なデータ分析環境。\n    GitHub Pages上では動作しないため、ローカルサーバー経由でアクセスしてください。\n  \n\n\n\n\n  \n    Step 01\n    Start Server\n    ターミナルを開き、以下のコマンドを実行してローカルサーバーを立ち上げます。\n    \n    \n      \n        \n        \n        \n      \n      \n        ➜cd scripts/by_timeSeries/quarto\n        ➜python -m panel serve dashboard_panel.py --show --port 5007\n      \n    \n  \n\n  \n    Step 02\n    Launch Dashboard\n    サーバー起動後、ブラウザが自動的に開かない場合は以下のボタンをクリックしてください。\n    \n    \n      \n      Ready to analyze\n    \n    \n    \n       Open Localhost:5007\n    \n  \n\n\n\n\n  \n    \n      \n        \n        \n          Real-time Analytics\n          データの即時反映とインタラクティブなフィルタリングにより、多角的な分析が可能です。\n        \n      \n    \n    \n      \n        \n        \n          Deep Visualization\n          動的なチャート生成とドリルダウン機能で、細部のトレンドまで可視化します。\n        \n      \n    \n  \n  \n  \n    Powered by Panel - High-level app and dashboarding solution for Python",
-    "crumbs": [
-      "Concept",
-      "Dashboard",
-      "Market Monitor",
-      "起動方法"
-    ]
+    "text": "Requires Local Server\n  \n  Interactive Trading Dashboard\n  \n    Python Panelフレームワークを使用した高度なデータ分析環境。\n    GitHub Pages上では動作しないため、ローカルサーバー経由でアクセスしてください。\n  \n\n\n\n\n  \n    Step 01\n    Start Server\n    ターミナルを開き、以下のコマンドを実行してローカルサーバーを立ち上げます。\n    \n    \n      \n        \n        \n        \n      \n      \n        ➜cd scripts/by_timeSeries/quarto\n        ➜python -m panel serve dashboard_panel.py --show --port 5007\n      \n    \n  \n\n  \n    Step 02\n    Launch Dashboard\n    サーバー起動後、ブラウザが自動的に開かない場合は以下のボタンをクリックしてください。\n    \n    \n      \n      Ready to analyze\n    \n    \n    \n       Open Localhost:5007\n    \n  \n\n\n\n\n  \n    \n      \n        \n        \n          Real-time Analytics\n          データの即時反映とインタラクティブなフィルタリングにより、多角的な分析が可能です。\n        \n      \n    \n    \n      \n        \n        \n          Deep Visualization\n          動的なチャート生成とドリルダウン機能で、細部のトレンドまで可視化します。\n        \n      \n    \n  \n  \n  \n    Powered by Panel - High-level app and dashboarding solution for Python"
   },
   {
     "objectID": "index.html",
@@ -1250,14 +1222,7 @@
     "href": "dashboard_2026.html",
     "title": "2026 Trading Dashboard",
     "section": "",
-    "text": "Financial Statements — FY2026\n  Year-to-Date Performance & Financial Position\n  \n    Investment Performance Dashboard • \n    Updated: \n  \n\n\n\n  Abstract\n  \n    本ダッシュボードは2026年度の取引パフォーマンスを財務諸表形式で表示したものである。\n    月次KPI（Table 1）に加え、損益計算書 (P/L: Table 2)、貸借対照表 (BS: Table 3)、\n    キャッシュフロー計算書 (CF: Table 4)、口座別リスク分析 (Table 5) を通じて、\n    投資活動の財務的影響を定量的に把握する。\n    なお、本年度においては取引活動以外の収益・投資は存在しない。\n  \n\n\n\n  Contents\n  \n    Table 1. Monthly KPI Summary (業績指標)\n    Table 2. Income Statement (損益計算書 / P/L)\n    Table 3. Balance Sheet (貸借対照表 / BS)\n    Table 4. Cash Flow Statement (CF計算書)\n    Table 5. Cash Reserve Ratio (口座別リスク分析)\n  \n\n\n⁂\n\n\n  \n    \n      \n      \n    \n  \n\n\n\n  \n    \n      [1]\n      楽天証券およびSBI証券のデータでは諸経費は差し引かれているが、税金は含まれていない。\n    \n    \n      [2]\n      適用為替レートはFRED (Federal Reserve Economic Data) の日次データを使用。\n      DEXJPUS Series\n    \n    \n      [3]\n      BS・CFは取引損益の累積のみを反映。期首の元本・借入等は含まない。\n    \n    \n      [4]\n      本レポートは run_all.py により自動生成される。",
-    "crumbs": [
-      "Concept",
-      "Dashboard",
-      "Performance Reports",
-      "Financials",
-      "2026年 ✓"
-    ]
+    "text": "Financial Statements — FY2026\n  Year-to-Date Performance & Financial Position\n  \n    Investment Performance Dashboard • \n    Updated: \n  \n\n\n\n  Abstract\n  \n    本ダッシュボードは2026年度の取引パフォーマンスを財務諸表形式で表示したものである。\n    月次KPI（Table 1）に加え、損益計算書 (P/L: Table 2)、貸借対照表 (BS: Table 3)、\n    キャッシュフロー計算書 (CF: Table 4)、口座別リスク分析 (Table 5) を通じて、\n    投資活動の財務的影響を定量的に把握する。\n    なお、本年度においては取引活動以外の収益・投資は存在しない。\n  \n\n\n\n  Contents\n  \n    Table 1. Monthly KPI Summary (業績指標)\n    Table 2. Income Statement (損益計算書 / P/L)\n    Table 3. Balance Sheet (貸借対照表 / BS)\n    Table 4. Cash Flow Statement (CF計算書)\n    Table 5. Cash Reserve Ratio (口座別リスク分析)\n  \n\n\n⁂\n\n\n  \n    \n      \n      \n    \n  \n\n\n\n  \n    \n      [1]\n      楽天証券およびSBI証券のデータでは諸経費は差し引かれているが、税金は含まれていない。\n    \n    \n      [2]\n      適用為替レートはFRED (Federal Reserve Economic Data) の日次データを使用。\n      DEXJPUS Series\n    \n    \n      [3]\n      BS・CFは取引損益の累積のみを反映。期首の元本・借入等は含まない。\n    \n    \n      [4]\n      本レポートは run_all.py により自動生成される。"
   },
   {
     "objectID": "posts/2026-01-07-weekly-review/index.html",
