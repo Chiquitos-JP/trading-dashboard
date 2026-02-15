@@ -146,6 +146,14 @@ twitter-card:
 *Note: Row 1 — 出来高の色は上昇日（緑）/下落日（赤）。Row 2 — S&P 500とA/D Lineを同起点=100に指数化し乖離を可視化。Row 3 — McClellan Oscillator（19日/39日EMA差分）で市場ブレスのモメンタムを表示。*
 :::
 
+```{=html}
+{{breadth_summary_chart}}
+```
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: 上昇率 = 上昇銘柄数 / (上昇 + 下落)。50%超で市場全体が強気方向。破線は前年同期の上昇率。*
+:::
+
 
 :::{.callout-note collapse="true"}
 ## データソース

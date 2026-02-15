@@ -2636,14 +2636,14 @@
     "href": "posts/2026-02-15-weekly-review/index.html",
     "title": "Week 3 - Feb 2026",
     "section": "",
-    "text": "2月は取引なしで、税前利益は0円、取引数は0件、勝率は0%でした。"
+    "text": "2月は取引なしで、税前利益は0円、取引数も0件でした。これにより、勝率は0%となりました。"
   },
   {
     "objectID": "posts/2026-02-15-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-02-15-weekly-review/index.html#月のサマリー",
     "title": "Week 3 - Feb 2026",
     "section": "",
-    "text": "2月は取引なしで、税前利益は0円、取引数は0件、勝率は0%でした。"
+    "text": "2月は取引なしで、税前利益は0円、取引数も0件でした。これにより、勝率は0%となりました。"
   },
   {
     "objectID": "posts/2026-02-15-weekly-review/index.html#パフォーマンスハイライト",
@@ -2657,7 +2657,7 @@
     "href": "posts/2026-02-15-weekly-review/index.html#注目ポイント",
     "title": "Week 3 - Feb 2026",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n年初来の税前利益は838,476円で、順調なスタートを切っています。\n年初来の取引数は6件で、全勝を達成しています。\n年初来のROIは4.31%で、良好なパフォーマンスを維持しています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引機会を増やすために市場の動向に注目し、適切なエントリーポイントを見極める必要があります。\n取引戦略を見直し、より多くのポジションを持つことで、パフォーマンスの向上を図るべきです。\nリスク管理の観点から、ポートフォリオの多様化を図ることを検討しましょう。"
+    "text": "注目ポイント\n\n良かった点\n\n年初来の税前利益は838,476円で、現在のパフォーマンスは良好です。\n年初来での取引数は6件で、全勝の成績を維持しています。\n年初来のROIは4.31%で、安定した収益が見込まれます。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n取引が全くないため、次回は市場の動きに注目し、機会を逃さないようにしましょう。\n勝率を維持するために、リスク管理を徹底し、計画的な取引を心掛ける必要があります。\n期待値を評価し、次の取引に向けた準備を進めることが重要です。"
   },
   {
     "objectID": "posts/2026-02-15-weekly-review/index.html#銘柄分析",
@@ -2678,7 +2678,7 @@
     "href": "posts/2026-02-15-weekly-review/index.html#マーケットデータ",
     "title": "Week 3 - Feb 2026",
     "section": "マーケットデータ",
-    "text": "マーケットデータ\n\nS&P500 セクターパフォーマンス\n                        \n                                            \n\nNote: S&P500セクターETFの週次リターンとYTDリターン。YTDリターン降順で表示。\n\n\n\nセクター RSI（相対強度指数）\n                        \n                                            \n\nNote: 各セクターETFのSPYに対する相対強度のRSI(14)。50超で相対的に強気、50未満で相対的に弱気。\n\n\n\n市場全体の動向\n                        \n                                            \n\nNote: Row 1 — 出来高の色は上昇日（緑）/下落日（赤）。Row 2 — S&P 500とA/D Lineを同起点=100に指数化し乖離を可視化。Row 3 — McClellan Oscillator（19日/39日EMA差分）で市場ブレスのモメンタムを表示。\n\n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nS&P500指数: S&P 500 Index (^GSPC)\n出来高: S&P 500の日次出来高\nA/D Line: S&P500構成銘柄の日次騰落率から計算（上昇銘柄数 - 下落銘柄数の累積）\nSector RSI: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する相対強度のRSI(14)\n\nデータソース: Yahoo Finance (yfinance)"
+    "text": "マーケットデータ\n\nS&P500 セクターパフォーマンス\n                        \n                                            \n\nNote: S&P500セクターETFの週次リターンとYTDリターン。YTDリターン降順で表示。\n\n\n\nセクター RSI（相対強度指数）\n                        \n                                            \n\nNote: 各セクターETFのSPYに対する相対強度のRSI(14)。50超で相対的に強気、50未満で相対的に弱気。\n\n\n\n市場全体の動向\n                        \n                                            \n\nNote: Row 1 — 出来高の色は上昇日（緑）/下落日（赤）。Row 2 — S&P 500とA/D Lineを同起点=100に指数化し乖離を可視化。Row 3 — McClellan Oscillator（19日/39日EMA差分）で市場ブレスのモメンタムを表示。\n\n                        \n                                            \n\nNote: 上昇率 = 上昇銘柄数 / (上昇 + 下落)。50%超で市場全体が強気方向。破線は前年同期の上昇率。\n\n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nS&P500指数: S&P 500 Index (^GSPC)\n出来高: S&P 500の日次出来高\nA/D Line: S&P500構成銘柄の日次騰落率から計算（上昇銘柄数 - 下落銘柄数の累積）\nSector RSI: S&P500セクターETF（XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU）のSPYに対する相対強度のRSI(14)\n\nデータソース: Yahoo Finance (yfinance)"
   },
   {
     "objectID": "posts/2026-02-15-weekly-review/index.html#経済指標カレンダー",
@@ -2699,6 +2699,6 @@
     "href": "posts/2026-02-15-weekly-review/index.html#まとめ",
     "title": "Week 3 - Feb 2026",
     "section": "まとめ",
-    "text": "まとめ\n今後は市場の動きに応じた積極的な取引を目指し、さらなる利益を追求していきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後は市場の状況をしっかりと把握し、取引機会を見逃さないように努めます。引き続き、リスク管理を徹底し、安定した成績を目指します。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]
