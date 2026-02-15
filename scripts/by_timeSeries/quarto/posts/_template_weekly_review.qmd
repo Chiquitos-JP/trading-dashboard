@@ -5,13 +5,13 @@ description: "{{description}}"
 date: "{{today_str}}"
 author: "chokotto"
 categories: [Weekly Review, Monthly Review]
-# PNG で Web 一覧・SNS カードを統一（SVG はバージョン管理用に別途生成）
-image: "thumbnail.png"
+# サムネイル: Picsum写真+テキストオーバーレイ(JPG) / フォールバック時はPNG
+image: "{{thumbnail_filename}}"
 twitter-card:
   card-type: summary_large_image
-  image: "thumbnail.png"
+  image: "{{thumbnail_filename}}"
 open-graph:
-  image: "thumbnail.png"
+  image: "{{thumbnail_filename}}"
 ---
 
 ## {{month_name_jp}}のサマリー
