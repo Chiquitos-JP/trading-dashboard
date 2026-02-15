@@ -64,7 +64,8 @@ import plotly.graph_objects as go
 
 {{takeaways}}
 
----
+***
+
 _This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
 
 :::{.callout-caution collapse="false" appearance="minimal" icon="false"}

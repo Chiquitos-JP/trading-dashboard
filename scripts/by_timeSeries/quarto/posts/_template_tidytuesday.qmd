@@ -61,7 +61,8 @@ library(glue)
 
 {{findings}}
 
----
+***
+
 _This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project._
 
 :::{.callout-caution collapse="false" appearance="minimal" icon="false"}

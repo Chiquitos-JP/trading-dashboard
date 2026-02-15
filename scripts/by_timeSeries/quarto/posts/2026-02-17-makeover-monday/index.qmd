@@ -291,7 +291,8 @@ fig5.show()
 3. **Engagement ratio** (comments per post) can reveal when a topic is "hot" vs just noise -- high engagement with few posts often signals concentrated interest.
 4. **Subreddit distribution** shows that ticker-specific subreddits (r/SOFIstock, r/sofi, r/IonQ) dominate discussion, while broader subs like r/wallstreetbets contribute fewer but higher-engagement posts.
 
----
+***
+
 _This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
 
 :::{.callout-caution collapse="false" appearance="minimal" icon="false"}

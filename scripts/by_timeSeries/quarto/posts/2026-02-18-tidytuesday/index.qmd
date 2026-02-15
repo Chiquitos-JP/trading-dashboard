@@ -231,7 +231,8 @@ p4
 3. **Engagement ratio** (comments per post) reveals "heat" -- when a few posts attract many comments, it signals concentrated attention that may precede price moves.
 4. **Subreddit distribution** shows ticker-specific subs dominate volume, while r/wallstreetbets contributes fewer but higher-engagement threads.
 
----
+***
+
 _This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project._
 
 :::{.callout-caution collapse="false" appearance="minimal" icon="false"}
