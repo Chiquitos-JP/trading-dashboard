@@ -1,0 +1,42 @@
+# Weekly Report サムネイル設定
+# フォントサイズ・レイアウト・影の調整はこのファイルだけで完結する
+
+image:
+  width: 1200
+  height: 630
+  format: jpeg
+  quality: 85
+
+overlay:
+  alpha_top: 102       # 上端: 黒 40%
+  alpha_bottom: 140    # 下端: 黒 55%
+
+fonts:
+  main:
+    size: 95           # メインタイトル（日本語 Bold）
+    candidates:
+      - "C:/Windows/Fonts/YuGothB.ttc"    # 游ゴシック Bold
+      - "C:/Windows/Fonts/meiryob.ttc"    # メイリオ Bold
+      - "C:/Windows/Fonts/meiryo.ttc"     # メイリオ Regular
+      - "C:/Windows/Fonts/msgothic.ttc"
+  header:
+    size: 40           # WEEK行（英数字 Bold）
+    candidates:
+      - "C:/Windows/Fonts/calibrib.ttf"   # Calibri Bold
+      - "C:/Windows/Fonts/arialbd.ttf"    # Arial Bold
+      - "C:/Windows/Fonts/calibri.ttf"
+      - "C:/Windows/Fonts/arial.ttf"
+  mtd:
+    size: 72           # MTD行（英数字 Bold）
+
+text_color: [255, 255, 255]
+
+shadow:
+  color: [0, 0, 0, 200]           # alpha 78% — 濃い浮き出し影
+  offsets_dx: [-2, -1, 0, 1, 2]   # ストローク風に5段階
+  offsets_dy: [-1, 0, 1, 2, 3]    # 上方向にも追加
+
+layout:
+  header_y: 100        # WEEK行 Y座標
+  main_y: 240          # メインタイトル Y座標
+  mtd_y: 460           # MTD行 Y座標

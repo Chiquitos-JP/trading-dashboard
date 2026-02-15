@@ -20,6 +20,10 @@ scripts/*
 !scripts/by_timeSeries/
 scripts/by_timeSeries/*
 !scripts/by_timeSeries/quarto/
+# runners/ 内のサムネイル設定ファイルのみ追跡
+!scripts/by_timeSeries/runners/
+scripts/by_timeSeries/runners/*
+!scripts/by_timeSeries/runners/thumbnail_config.yaml
 scripts/by_timeSeries/quarto/*
 !scripts/by_timeSeries/quarto/_quarto.yml
 !scripts/by_timeSeries/quarto/styles.scss
