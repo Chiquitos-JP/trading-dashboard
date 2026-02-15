@@ -1,0 +1,303 @@
+---
+title: "MakeoverMonday: Reddit Comment Counts - SOFI vs IONQ"
+description: "Comparing daily Reddit discussion volume for SOFI and IONQ across investment subreddits over the past 14 days"
+date: "2026-02-17"
+author: "chokotto"
+categories:
+  - MakeoverMonday
+  - Python
+  - Finance
+  - Social Sentiment
+image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "MakeoverMonday: Reddit Comment Counts - SOFI vs IONQ"
+  description: "Daily Reddit discussion volume comparison for SOFI and IONQ"
+---
+
+## Overview
+
+This week's MakeoverMonday explores **social media attention as a market signal** by comparing Reddit discussion volume for two popular US stocks: **SOFI** (SoFi Technologies) and **IONQ** (IonQ Inc.). Comment counts from investment-focused subreddits (r/wallstreetbets, r/stocks, r/investing, etc.) serve as a proxy for retail investor attention.
+
+- **Data Source**: Reddit public JSON API (investment subreddits)
+- **Period**: Past 14 days
+- **Metrics**: Daily comment count, post count, score (upvotes)
+
+## Data
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from pathlib import Path
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+# TidyTuesday の prepare_data.py が生成した CSV を読み込み
+base_path = Path.cwd()
+while not (base_path / "data").exists() and base_path.parent != base_path:
+    base_path = base_path.parent
+
+# 同リポジトリ: TidyTuesday 側のデータフォルダ
+tt_data = base_path / "scripts" / "by_timeSeries" / "quarto" / "posts" / "2026-02-18-tidytuesday" / "data"
+# ローカル data/ もフォールバック
+local_data = Path("data")
+
+for data_dir in [local_data, tt_data]:
+    daily_path = data_dir / "reddit_daily_counts.csv"
+    posts_path = data_dir / "reddit_posts.csv"
+    sub_path = data_dir / "reddit_by_subreddit.csv"
+    if daily_path.exists():
+        break
+
+daily = pd.read_csv(daily_path, parse_dates=["date"])
+posts = pd.read_csv(posts_path)
+by_sub = pd.read_csv(sub_path)
+
+# 投資関連サブレディットのみフィルタ
+INVEST_SUBS = [
+    "wallstreetbets", "stocks", "investing", "StockMarket", "options",
+    "SOFIstock", "sofi", "IonQ", "Superstonk", "Pennystock",
+    "premarketStockTraders", "TeamRKT", "Webull",
+]
+
+posts_filtered = posts[posts["subreddit"].isin(INVEST_SUBS)].copy()
+
+# フィルタ済み日次集計を再計算
+posts_filtered["date"] = pd.to_datetime(posts_filtered["date"] if "date" in posts_filtered.columns else posts_filtered["created_utc"].apply(lambda x: pd.Timestamp(x, unit="s").strftime("%Y-%m-%d")))
+daily_filtered = posts_filtered.groupby(["date", "symbol"]).agg(
+    post_count=("num_comments", "count"),
+    total_comments=("num_comments", "sum"),
+    total_score=("score", "sum"),
+).reset_index().sort_values(["date", "symbol"])
+
+print(f"Investment subs only: {len(posts_filtered)} posts (from {len(posts)} total)")
+print(f"Date range: {daily_filtered['date'].min().date()} ~ {daily_filtered['date'].max().date()}")
+```
+
+## My Makeover
+
+### What I Changed
+
+The original concept visualizes "message board comment counts" as a simple bar chart. I've enhanced it with:
+
+1. **Grouped bar chart** comparing SOFI vs IONQ side-by-side by date
+2. **Subreddit breakdown** showing where the discussion happens
+3. **Engagement ratio** (comments per post) to normalize for posting frequency
+
+### 1. Daily Comment Count Comparison
+
+```{python}
+#| label: viz-daily-comments
+
+fig1 = px.bar(
+    daily_filtered,
+    x="date",
+    y="total_comments",
+    color="symbol",
+    barmode="group",
+    color_discrete_map={"SOFI": "#6366f1", "IONQ": "#f59e0b"},
+    labels={
+        "date": "Date",
+        "total_comments": "Comments",
+        "symbol": "Ticker",
+    },
+    title="Daily Reddit Comment Count: SOFI vs IONQ",
+)
+
+fig1.update_layout(
+    template="plotly_white",
+    height=450,
+    xaxis_tickformat="%m/%d",
+    xaxis_title="",
+    yaxis_title="Total Comments",
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+    bargap=0.15,
+    bargroupgap=0.05,
+)
+
+fig1.add_annotation(
+    text="Source: Reddit public API (investment subreddits only)",
+    xref="paper", yref="paper", x=0, y=-0.12,
+    showarrow=False, font=dict(size=10, color="#94a3b8"),
+)
+
+fig1.show()
+```
+
+### 2. Post Count (Threads Created)
+
+```{python}
+#| label: viz-daily-posts
+
+fig2 = px.bar(
+    daily_filtered,
+    x="date",
+    y="post_count",
+    color="symbol",
+    barmode="group",
+    color_discrete_map={"SOFI": "#6366f1", "IONQ": "#f59e0b"},
+    labels={
+        "date": "Date",
+        "post_count": "Posts (Threads)",
+        "symbol": "Ticker",
+    },
+    title="Daily Reddit Post Count: SOFI vs IONQ",
+)
+
+fig2.update_layout(
+    template="plotly_white",
+    height=400,
+    xaxis_tickformat="%m/%d",
+    xaxis_title="",
+    yaxis_title="Number of Posts",
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+    bargap=0.15,
+    bargroupgap=0.05,
+)
+
+fig2.show()
+```
+
+### 3. Engagement Ratio (Comments per Post)
+
+```{python}
+#| label: viz-engagement
+
+daily_filtered["comments_per_post"] = (
+    daily_filtered["total_comments"] / daily_filtered["post_count"].clip(lower=1)
+).round(1)
+
+fig3 = px.line(
+    daily_filtered,
+    x="date",
+    y="comments_per_post",
+    color="symbol",
+    markers=True,
+    color_discrete_map={"SOFI": "#6366f1", "IONQ": "#f59e0b"},
+    labels={
+        "date": "Date",
+        "comments_per_post": "Comments / Post",
+        "symbol": "Ticker",
+    },
+    title="Engagement Ratio: Comments per Post",
+)
+
+fig3.update_layout(
+    template="plotly_white",
+    height=400,
+    xaxis_tickformat="%m/%d",
+    xaxis_title="",
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+)
+
+fig3.show()
+```
+
+### 4. Subreddit Breakdown
+
+```{python}
+#| label: viz-subreddit
+
+by_sub_filtered = by_sub[by_sub["subreddit"].isin(INVEST_SUBS)].copy()
+by_sub_filtered = by_sub_filtered.sort_values("total_comments", ascending=True)
+
+fig4 = px.bar(
+    by_sub_filtered,
+    x="total_comments",
+    y="subreddit",
+    color="symbol",
+    orientation="h",
+    barmode="group",
+    color_discrete_map={"SOFI": "#6366f1", "IONQ": "#f59e0b"},
+    labels={
+        "total_comments": "Total Comments (14 days)",
+        "subreddit": "Subreddit",
+        "symbol": "Ticker",
+    },
+    title="Comment Volume by Subreddit",
+)
+
+fig4.update_layout(
+    template="plotly_white",
+    height=450,
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+    yaxis_categoryorder="total ascending",
+)
+
+fig4.show()
+```
+
+### 5. Summary Statistics
+
+```{python}
+#| label: summary-table
+
+summary = daily_filtered.groupby("symbol").agg(
+    days=("date", "nunique"),
+    total_posts=("post_count", "sum"),
+    total_comments=("total_comments", "sum"),
+    avg_daily_comments=("total_comments", "mean"),
+    peak_comments=("total_comments", "max"),
+    avg_score=("total_score", "mean"),
+).reset_index()
+
+summary["avg_daily_comments"] = summary["avg_daily_comments"].round(0).astype(int)
+summary["avg_score"] = summary["avg_score"].round(0).astype(int)
+summary.columns = ["Ticker", "Days", "Total Posts", "Total Comments",
+                    "Avg Daily Comments", "Peak Day Comments", "Avg Daily Score"]
+
+fig5 = go.Figure(data=[go.Table(
+    header=dict(
+        values=list(summary.columns),
+        fill_color="#1e293b",
+        font=dict(color="white", size=12),
+        align="center",
+    ),
+    cells=dict(
+        values=[summary[c] for c in summary.columns],
+        fill_color=[["#f8fafc", "#f1f5f9"] * len(summary)],
+        font=dict(size=11),
+        align="center",
+        format=["", "d", "d", ",d", ",d", ",d", ",d"],
+    ),
+)])
+
+fig5.update_layout(
+    title="14-Day Reddit Discussion Summary",
+    height=200,
+    margin=dict(t=40, b=10, l=10, r=10),
+)
+
+fig5.show()
+```
+
+## Key Takeaways
+
+1. **SOFI dominates Reddit discussion volume** -- both in total comments and daily post count, reflecting its broader retail investor base and active community (r/SOFIstock, r/sofi).
+2. **IONQ** has lower volume but meaningful spikes on specific catalyst days (earnings, news events).
+3. **Engagement ratio** (comments per post) can reveal when a topic is "hot" vs just noise -- high engagement with few posts often signals concentrated interest.
+4. **Subreddit distribution** shows that ticker-specific subreddits (r/SOFIstock, r/sofi, r/IonQ) dominate discussion, while broader subs like r/wallstreetbets contribute fewer but higher-engagement posts.
+
+---
+_This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Reddit comment counts and discussion metrics are based on publicly available data and may not represent complete or current information. This does not constitute investment advice.
+:::
+:::

@@ -1,0 +1,243 @@
+---
+title: "TidyTuesday: Reddit Comment Counts - SOFI vs IONQ"
+description: "Comparing daily Reddit discussion volume for SOFI and IONQ across investment subreddits with ggplot2"
+date: "2026-02-18"
+author: "chokotto"
+categories:
+  - TidyTuesday
+  - R
+  - Finance
+  - Social Sentiment
+image: "thumbnail.svg"
+engine: knitr
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "TidyTuesday: Reddit Comment Counts - SOFI vs IONQ"
+  description: "Daily Reddit discussion volume comparison for SOFI and IONQ"
+---
+
+## Overview
+
+This week's TidyTuesday explores **social media attention as a market signal** by comparing Reddit discussion volume for two US stocks: **SOFI** (SoFi Technologies) and **IONQ** (IonQ Inc.). Using the same dataset as the companion MakeoverMonday post, we visualize comment counts from investment-focused subreddits using ggplot2.
+
+## Data
+
+```{r}
+#| label: load-packages
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(scales)
+library(glue)
+library(patchwork)
+```
+
+```{r}
+#| label: load-data
+#| message: false
+
+data_dir <- file.path(getwd(), "data")
+
+daily <- read_csv(file.path(data_dir, "reddit_daily_counts.csv"),
+                  show_col_types = FALSE) |>
+  mutate(date = as.Date(date))
+
+posts <- read_csv(file.path(data_dir, "reddit_posts.csv"),
+                  show_col_types = FALSE) |>
+  mutate(date = as.Date(date))
+
+by_sub <- read_csv(file.path(data_dir, "reddit_by_subreddit.csv"),
+                   show_col_types = FALSE)
+
+# 投資関連サブレディットのみフィルタ
+invest_subs <- c(
+  "wallstreetbets", "stocks", "investing", "StockMarket", "options",
+  "SOFIstock", "sofi", "IonQ", "Superstonk", "Pennystock",
+  "premarketStockTraders", "TeamRKT", "Webull"
+)
+
+posts_f <- posts |> filter(subreddit %in% invest_subs)
+
+daily_f <- posts_f |>
+  group_by(date, symbol) |>
+  summarise(
+    post_count = n(),
+    total_comments = sum(num_comments, na.rm = TRUE),
+    total_score = sum(score, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(date, symbol)
+
+cat(glue("Investment subs: {nrow(posts_f)} posts | ",
+         "Range: {min(daily_f$date)} ~ {max(daily_f$date)}"))
+```
+
+## Visualizations
+
+### 1. Daily Comment Count Comparison
+
+```{r}
+#| label: viz-daily-comments
+#| fig-width: 11
+#| fig-height: 5
+#| warning: false
+
+colors <- c("SOFI" = "#6366f1", "IONQ" = "#f59e0b")
+
+p1 <- ggplot(daily_f, aes(x = date, y = total_comments, fill = symbol)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  scale_fill_manual(values = colors) +
+  scale_x_date(date_labels = "%m/%d", date_breaks = "2 days") +
+  scale_y_continuous(labels = comma) +
+  labs(
+    title = "Daily Reddit Comment Count: SOFI vs IONQ",
+    subtitle = "Investment subreddits only (r/wallstreetbets, r/stocks, r/investing, etc.)",
+    x = NULL,
+    y = "Total Comments",
+    fill = "Ticker",
+    caption = "Source: Reddit public JSON API"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "top",
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+
+p1
+```
+
+### 2. Post Count (Threads Created)
+
+```{r}
+#| label: viz-daily-posts
+#| fig-width: 11
+#| fig-height: 4.5
+#| warning: false
+
+p2 <- ggplot(daily_f, aes(x = date, y = post_count, fill = symbol)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  scale_fill_manual(values = colors) +
+  scale_x_date(date_labels = "%m/%d", date_breaks = "2 days") +
+  labs(
+    title = "Daily Reddit Post Count: SOFI vs IONQ",
+    x = NULL,
+    y = "Number of Posts",
+    fill = "Ticker"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "top",
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+
+p2
+```
+
+### 3. Engagement Ratio (Comments per Post)
+
+```{r}
+#| label: viz-engagement
+#| fig-width: 11
+#| fig-height: 4.5
+#| warning: false
+
+daily_f <- daily_f |>
+  mutate(comments_per_post = round(total_comments / pmax(post_count, 1), 1))
+
+p3 <- ggplot(daily_f, aes(x = date, y = comments_per_post, color = symbol)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2.5) +
+  scale_color_manual(values = colors) +
+  scale_x_date(date_labels = "%m/%d", date_breaks = "2 days") +
+  labs(
+    title = "Engagement Ratio: Comments per Post",
+    subtitle = "Higher ratio = more concentrated discussion per thread",
+    x = NULL,
+    y = "Comments / Post",
+    color = "Ticker"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "top",
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+
+p3
+```
+
+### 4. Subreddit Breakdown
+
+```{r}
+#| label: viz-subreddit
+#| fig-width: 10
+#| fig-height: 5
+#| warning: false
+
+by_sub_f <- by_sub |>
+  filter(subreddit %in% invest_subs) |>
+  mutate(subreddit = fct_reorder(subreddit, total_comments, .fun = sum))
+
+p4 <- ggplot(by_sub_f, aes(x = total_comments, y = subreddit, fill = symbol)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.6) +
+  scale_fill_manual(values = colors) +
+  scale_x_continuous(labels = comma) +
+  labs(
+    title = "Comment Volume by Subreddit (14 days)",
+    x = "Total Comments",
+    y = NULL,
+    fill = "Ticker"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position = "top",
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+
+p4
+```
+
+### 5. Combined Panel
+
+```{r}
+#| label: viz-combined
+#| fig-width: 12
+#| fig-height: 10
+#| warning: false
+
+(p1 / p3) +
+  plot_annotation(
+    title = "Reddit Discussion Activity: SOFI vs IONQ",
+    subtitle = "Feb 2026 | Investment subreddits only",
+    theme = theme(
+      plot.title = element_text(size = 16, face = "bold"),
+      plot.subtitle = element_text(size = 12, color = "gray50")
+    )
+  )
+```
+
+## Key Findings
+
+1. **SOFI dominates Reddit discussion volume** -- both in total comments and daily post count, reflecting its broader retail investor base and active dedicated communities (r/SOFIstock, r/sofi).
+2. **IONQ** has lower volume but engagement spikes align with news catalysts and earnings events.
+3. **Engagement ratio** (comments per post) reveals "heat" -- when a few posts attract many comments, it signals concentrated attention that may precede price moves.
+4. **Subreddit distribution** shows ticker-specific subs dominate volume, while r/wallstreetbets contributes fewer but higher-engagement threads.
+
+---
+_This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Reddit comment counts and discussion metrics are based on publicly available data and may not represent complete or current information. This does not constitute investment advice.
+:::
+:::
