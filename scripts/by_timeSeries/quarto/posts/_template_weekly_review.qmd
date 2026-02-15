@@ -36,6 +36,14 @@ twitter-card:
 
 {{monthly_cumulative_chart}}
 
+### リスクポジション
+
+{{cash_reserve_chart}}
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: PAT Balance = 累積税引後利益、Exposure = 信用ポジション合計（JPY換算）。Exposure/PAT比率が高いほどリスク大。*
+:::
+
 ## 注目ポイント
 
 ### 良かった点
