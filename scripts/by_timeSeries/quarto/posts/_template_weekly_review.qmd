@@ -5,8 +5,8 @@ description: "{{description}}"
 date: "{{today_str}}"
 author: "chokotto"
 categories: [Weekly Review, Monthly Review]
-image: "{{thumbnail_filename}}"
-# SNS (X) カード画像は SVG 非対応のため PNG を指定（ローカルで cairosvg 変換）
+# PNG で Web 一覧・SNS カードを統一（SVG はバージョン管理用に別途生成）
+image: "thumbnail.png"
 twitter-card:
   card-type: summary_large_image
   image: "thumbnail.png"
