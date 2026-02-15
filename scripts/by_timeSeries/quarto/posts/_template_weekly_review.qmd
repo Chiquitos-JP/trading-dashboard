@@ -5,13 +5,14 @@ description: "{{description}}"
 date: "{{today_str}}"
 author: "chokotto"
 categories: [Weekly Review, Monthly Review]
-image: "{{thumbnail_filename}}"
-
+# Web 一覧には SVG を使用（ブラウザで表示可能）
+image: "thumbnail.svg"
+# SNS (X) カード画像は SVG 非対応のため PNG を指定（ローカルで cairosvg 変換）
 twitter-card:
   card-type: summary_large_image
-  image: "{{thumbnail_filename}}"
-  title: "Week {{week_num}} - {{month_abbr}} {{year}}"
-  description: "{{description}}"
+  image: "thumbnail.png"
+open-graph:
+  image: "thumbnail.png"
 ---
 
 ## {{month_name_jp}}のサマリー
