@@ -13,32 +13,6 @@ website:
   site-url: https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/
   repo-url: https://github.com/Chiquitos-JP/trading-dashboard
   repo-actions: [issue]
-  sidebar:
-    style: "floating"
-    search: true
-    contents:
-      - section: "Dashboard"
-        href: dashboard.qmd
-        contents:
-          - text: "Overview"
-            href: dashboard.qmd
-          - text: "---"
-          - section: "Market Monitor"
-            contents:
-              - text: "起動方法"
-                href: dashboard_panel_info.qmd
-          - text: "---"
-          - section: "Performance Reports"
-            href: dashboard_static.qmd
-            contents:
-              - section: "Financials"
-                href: dashboard_financials_timeseries.qmd
-                contents:
-                  - text: "2025年"
-                    href: dashboard_2025.qmd
-                  - text: "2026年 ✓"
-                    href: dashboard_2026.qmd
-              - text: "Experimental Labs"
   navbar:
     background: "#f7f9fb"
     foreground: "#636667"
