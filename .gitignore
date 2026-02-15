@@ -58,6 +58,7 @@ renv/library/
 renv/staging/
 
 # ----- IDE・エディタ -----
+.cursor/
 .vscode/
 .idea/
 *.swp
