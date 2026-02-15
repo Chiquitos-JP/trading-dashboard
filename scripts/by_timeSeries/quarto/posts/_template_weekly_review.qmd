@@ -143,7 +143,7 @@ twitter-card:
 ```
 
 ::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
-*Note: A/D Lineは上昇銘柄数 - 下落銘柄数の累積。市場の内部強度を測定。*
+*Note: Row 1 — 出来高の色は上昇日（緑）/下落日（赤）。Row 2 — S&P 500とA/D Lineを同起点=100に指数化し乖離を可視化。Row 3 — McClellan Oscillator（19日/39日EMA差分）で市場ブレスのモメンタムを表示。*
 :::
 
 
