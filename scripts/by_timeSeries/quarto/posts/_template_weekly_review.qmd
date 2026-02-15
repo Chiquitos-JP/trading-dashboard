@@ -18,6 +18,17 @@ twitter-card:
 
 {{ai_summary}}
 
+### 良かった点
+
+{{ai_highlights}}
+
+### 改善・注意点
+
+:::{.callout-warning}
+## 注意すべき点
+{{ai_improvements}}
+:::
+
 ## パフォーマンスハイライト
 
 ### Key Metrics - This Month
@@ -27,10 +38,6 @@ twitter-card:
 ### Key Metrics - Year to Date
 
 {{ytd_gt_table}}
-
-### Life Time Value Progress
-
-{{ltv_visualization}}
 
 ### 損益推移
 
@@ -44,18 +51,9 @@ twitter-card:
 *Note: PAT Balance = 累積税引後利益、Exposure = 信用ポジション合計（JPY換算）。Exposure/PAT比率が高いほどリスク大。*
 :::
 
-## 注目ポイント
+### Life Time Value Progress
 
-### 良かった点
-
-{{ai_highlights}}
-
-### 改善・注意点
-
-:::{.callout-warning}
-## 注意すべき点
-{{ai_improvements}}
-:::
+{{ltv_visualization}}
 
 ## 銘柄分析
 
@@ -134,16 +132,6 @@ twitter-card:
 *Note: S&P500セクターETFの週次リターンとYTDリターン。YTDリターン降順で表示。*
 :::
 
-### 資金フロー
-
-```{=html}
-{{capital_flow_chart}}
-```
-
-::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
-*Note: XLY/XLP（一般消費/生活必需）が上昇=リスク選好。VEA・EEM/SPYが上昇=海外に資金シフト。全て起点=100でリベース。*
-:::
-
 ### セクター RSI（相対強度指数）
 
 ```{=html}
@@ -207,6 +195,51 @@ twitter-card:
 
 ## マクロデータ
 
+### 資金フロー
+
+```{=html}
+{{capital_flow_chart}}
+```
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: XLY/XLP（一般消費/生活必需）が上昇=リスク選好。VEA・EEM/SPYが上昇=海外に資金シフト。全て起点=100でリベース。*
+:::
+
+### 通貨供給量と株価
+
+```{=html}
+{{money_supply_chart}}
+```
+
+:::{.callout-note collapse="true"}
+## 読み方のポイント
+- **上段**: S&P 500 と M2（マネーサプライ）を同起点でリベースし成長率を比較。M2の増加ペースに対してS&P 500がどの程度上回っている/下回っているかを把握
+- **下段**: S&P 500 / M2 比率。上昇 = 株式が通貨膨張を上回る実質リターン、下降 = 実質的に弱い市場
+- M2が急増した期間（量的緩和）に株価が追随しているかが重要なシグナル
+
+*データソース: [FRED M2SL](https://fred.stlouisfed.org/series/M2SL)*
+:::
+
+### 推移チャート
+
+```{=html}
+{{macro_dashboard}}
+```
+
+:::{.callout-note collapse="true"}
+## データソース
+- **VIX**: CBOE Volatility Index - 市場の恐怖度・ボラティリティを示す
+- **FFR**: Federal Funds Effective Rate - FRBの政策金利
+- **失業率**: US Unemployment Rate - 労働市場の健全性指標
+- **CPI**: Consumer Price Index - インフレ動向の指標
+- **BAA10Y**: Moody's Baa Corporate Bond Spread - 社債スプレッド
+- **Nasdaq/SP500**: 主要株価指数
+- **金価格**: Gold Fixing Price (London) - ロンドン金価格（USD/オンス）
+- **ドル円**: USD/JPY Exchange Rate - ドル円為替レート
+
+*データソース: [FRED (Federal Reserve Economic Data)](https://fred.stlouisfed.org/)*
+:::
+
 ### 金利・社債スプ・Nasdaq & SP500
 
 ```{=html}
@@ -236,41 +269,6 @@ twitter-card:
 - スプレッド変化と各種指標の相関を60日移動平均で表示
 - 相関が高い期間は市場の連動性が強いことを示す
 - 負の相関（-1に近い）は逆相関、正の相関（+1に近い）は同方向の動き
-:::
-
-### 推移チャート
-
-```{=html}
-{{macro_dashboard}}
-```
-
-:::{.callout-note collapse="true"}
-## データソース
-- **VIX**: CBOE Volatility Index - 市場の恐怖度・ボラティリティを示す
-- **FFR**: Federal Funds Effective Rate - FRBの政策金利
-- **失業率**: US Unemployment Rate - 労働市場の健全性指標
-- **CPI**: Consumer Price Index - インフレ動向の指標
-- **BAA10Y**: Moody's Baa Corporate Bond Spread - 社債スプレッド
-- **Nasdaq/SP500**: 主要株価指数
-- **金価格**: Gold Fixing Price (London) - ロンドン金価格（USD/オンス）
-- **ドル円**: USD/JPY Exchange Rate - ドル円為替レート
-
-*データソース: [FRED (Federal Reserve Economic Data)](https://fred.stlouisfed.org/)*
-:::
-
-### 通貨供給量と株価
-
-```{=html}
-{{money_supply_chart}}
-```
-
-:::{.callout-note collapse="true"}
-## 読み方のポイント
-- **上段**: S&P 500 と M2（マネーサプライ）を同起点でリベースし成長率を比較。M2の増加ペースに対してS&P 500がどの程度上回っている/下回っているかを把握
-- **下段**: S&P 500 / M2 比率。上昇 = 株式が通貨膨張を上回る実質リターン、下降 = 実質的に弱い市場
-- M2が急増した期間（量的緩和）に株価が追随しているかが重要なシグナル
-
-*データソース: [FRED M2SL](https://fred.stlouisfed.org/series/M2SL)*
 :::
 
 ## まとめ
