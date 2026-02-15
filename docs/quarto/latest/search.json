@@ -2636,14 +2636,14 @@
     "href": "posts/2026-02-15-weekly-review/index.html",
     "title": "Week 3 - Feb 2026",
     "section": "",
-    "text": "2月は取引なしで、税前利益も0円でした。勝率は0%で、取引数は0件です。"
+    "text": "2月は取引なしで、税前利益は0円、取引数も0件でした。全体としての勝率は100%を維持していますが、今月はアクティブな取引がありませんでした。"
   },
   {
     "objectID": "posts/2026-02-15-weekly-review/index.html#月のサマリー",
     "href": "posts/2026-02-15-weekly-review/index.html#月のサマリー",
     "title": "Week 3 - Feb 2026",
     "section": "",
-    "text": "2月は取引なしで、税前利益も0円でした。勝率は0%で、取引数は0件です。"
+    "text": "2月は取引なしで、税前利益は0円、取引数も0件でした。全体としての勝率は100%を維持していますが、今月はアクティブな取引がありませんでした。"
   },
   {
     "objectID": "posts/2026-02-15-weekly-review/index.html#パフォーマンスハイライト",
@@ -2657,7 +2657,7 @@
     "href": "posts/2026-02-15-weekly-review/index.html#注目ポイント",
     "title": "Week 3 - Feb 2026",
     "section": "注目ポイント",
-    "text": "注目ポイント\n\n良かった点\n\n今年の累計税前利益は838,476円で、好調なスタートを切っています。\n今年の取引数は6件で、全て勝利を収めており、勝率は100%です。\nROIは4.31%と、効率的な投資ができています。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n2月は取引がなかったため、今後はエントリーチャンスを見逃さないよう注意が必要です。\n市場の動向を常にチェックし、適切なタイミングで取引を行うことが重要です。\nリスク管理を強化し、損失を最小限に抑える戦略を考える必要があります。"
+    "text": "注目ポイント\n\n良かった点\n\n今年の累計税前利益は838,476円で、順調なスタートを切っています。\nYTDの取引数は6件で、全勝を達成しています。\nYTDのROIは4.31%で、投資効率も良好です。\n\n\n\n改善・注意点\n\n\n\n\n\n\nWarning注意すべき点\n\n\n\n\n今後は取引機会を増やし、月ごとのアクティビティを活性化する必要があります。\nリスク管理を強化し、より多くの取引機会に対して準備を整えることが重要です。\n市場環境の変化に応じた柔軟な戦略の見直しが求められます。"
   },
   {
     "objectID": "posts/2026-02-15-weekly-review/index.html#銘柄分析",
@@ -2692,13 +2692,13 @@
     "href": "posts/2026-02-15-weekly-review/index.html#マクロデータ",
     "title": "Week 3 - Feb 2026",
     "section": "マクロデータ",
-    "text": "マクロデータ\n\n金利・社債スプ・Nasdaq & SP500\n                        \n                                            \n\n\n\n\n\n\nTip読み方のポイント\n\n\n\n\n\n\n全体の見方\n\nBAA10Y spreadとFFrateが同時に上昇する場合は危険信号（財政緊縮＋資金調達難）\nBAA10Y spreadが下降傾向ならソフトランディングの可能性\n\n\n\n各グラフの見方\n上段：SP500 (log scale) & 10Y Treasury Yield - SP500の対数スケールで長期トレンドを把握 - 10Y金利（10年国債利回り）とSP500の関係を観察 - 金利上昇時は株式市場に圧力がかかる傾向\n中段：BAA-10Y Spread & Rates (10Y, FF) - BAA-10Yスプレッド（社債と国債の利回り差）で信用リスクを評価 - スプレッド拡大は市場のリスク回避を示す - 10Y金利とFFrate（政策金利）の動きを同時に確認\n下段：Rolling Correlation (60d window) - スプレッド変化と各種指標の相関を60日移動平均で表示 - 相関が高い期間は市場の連動性が強いことを示す - 負の相関（-1に近い）は逆相関、正の相関（+1に近い）は同方向の動き\n\n\n\n\n\n\n推移チャート\n                        \n                                            \n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nVIX: CBOE Volatility Index - 市場の恐怖度・ボラティリティを示す\nFFR: Federal Funds Effective Rate - FRBの政策金利\n失業率: US Unemployment Rate - 労働市場の健全性指標\nCPI: Consumer Price Index - インフレ動向の指標\nBAA10Y: Moody’s Baa Corporate Bond Spread - 社債スプレッド\nNasdaq/SP500: 主要株価指数\n金価格: Gold Fixing Price (London) - ロンドン金価格（USD/オンス）\nドル円: USD/JPY Exchange Rate - ドル円為替レート\n\nデータソース: FRED (Federal Reserve Economic Data)"
+    "text": "マクロデータ\n\n金利・社債スプ・Nasdaq & SP500\n                        \n                                            \n\n\n\n\n\n\nTip読み方のポイント\n\n\n\n\n\n\n全体の見方\n\nBAA10Y spreadとFFrateが同時に上昇する場合は危険信号（財政緊縮＋資金調達難）\nBAA10Y spreadが下降傾向ならソフトランディングの可能性\n\n\n\n各グラフの見方\n上段：SP500 (log scale) & 10Y Treasury Yield - SP500の対数スケールで長期トレンドを把握 - 10Y金利（10年国債利回り）とSP500の関係を観察 - 金利上昇時は株式市場に圧力がかかる傾向\n中段：BAA-10Y Spread & Rates (10Y, FF) - BAA-10Yスプレッド（社債と国債の利回り差）で信用リスクを評価 - スプレッド拡大は市場のリスク回避を示す - 10Y金利とFFrate（政策金利）の動きを同時に確認\n下段：Rolling Correlation (60d window) - スプレッド変化と各種指標の相関を60日移動平均で表示 - 相関が高い期間は市場の連動性が強いことを示す - 負の相関（-1に近い）は逆相関、正の相関（+1に近い）は同方向の動き\n\n\n\n\n\n\n推移チャート\n                        \n                                            \n\n\n\n\n\n\nNoteデータソース\n\n\n\n\n\n\nVIX: CBOE Volatility Index - 市場の恐怖度・ボラティリティを示す\nFFR: Federal Funds Effective Rate - FRBの政策金利\n失業率: US Unemployment Rate - 労働市場の健全性指標\nCPI: Consumer Price Index - インフレ動向の指標\nBAA10Y: Moody’s Baa Corporate Bond Spread - 社債スプレッド\nNasdaq/SP500: 主要株価指数\n金価格: Gold Fixing Price (London) - ロンドン金価格（USD/オンス）\nドル円: USD/JPY Exchange Rate - ドル円為替レート\n\nデータソース: FRED (Federal Reserve Economic Data)\n\n\n\n\n\n通貨供給量と株価\n                        \n                                            \n\n\n\n\n\n\nNote読み方のポイント\n\n\n\n\n\n\n上段: S&P 500 と M2（マネーサプライ）を同起点でリベースし成長率を比較。M2の増加ペースに対してS&P 500がどの程度上回っている/下回っているかを把握\n下段: S&P 500 / M2 比率。上昇 = 株式が通貨膨張を上回る実質リターン、下降 = 実質的に弱い市場\nM2が急増した期間（量的緩和）に株価が追随しているかが重要なシグナル\n\nデータソース: FRED M2SL"
   },
   {
     "objectID": "posts/2026-02-15-weekly-review/index.html#まとめ",
     "href": "posts/2026-02-15-weekly-review/index.html#まとめ",
     "title": "Week 3 - Feb 2026",
     "section": "まとめ",
-    "text": "まとめ\n今後は取引機会を積極的に捉え、継続的な成長を目指していきます。引き続き高勝率を維持しつつ、リスク管理にも留意していきます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+    "text": "まとめ\n今後は取引機会を増やし、より積極的に市場に参加する方針で進めていきます。継続的なパフォーマンス向上を目指します。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
   }
 ]

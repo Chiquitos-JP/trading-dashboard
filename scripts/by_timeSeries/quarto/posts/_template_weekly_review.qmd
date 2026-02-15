@@ -250,6 +250,21 @@ twitter-card:
 *データソース: [FRED (Federal Reserve Economic Data)](https://fred.stlouisfed.org/)*
 :::
 
+### 通貨供給量と株価
+
+```{=html}
+{{money_supply_chart}}
+```
+
+:::{.callout-note collapse="true"}
+## 読み方のポイント
+- **上段**: S&P 500 と M2（マネーサプライ）を同起点でリベースし成長率を比較。M2の増加ペースに対してS&P 500がどの程度上回っている/下回っているかを把握
+- **下段**: S&P 500 / M2 比率。上昇 = 株式が通貨膨張を上回る実質リターン、下降 = 実質的に弱い市場
+- M2が急増した期間（量的緩和）に株価が追随しているかが重要なシグナル
+
+*データソース: [FRED M2SL](https://fred.stlouisfed.org/series/M2SL)*
+:::
+
 ## まとめ
 
 {{ai_conclusion}}
