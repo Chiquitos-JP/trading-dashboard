@@ -44,12 +44,6 @@ website:
           - text: "Asset Timeseries"
             icon: graph-up
             href: dashboard_financials_timeseries.html
-          - text: "2025 KPI Dashboard"
-            icon: bar-chart-line-fill
-            href: dashboard_2025.html
-          - text: "2026 KPI Dashboard"
-            icon: file-earmark-text
-            href: dashboard_2026.html
           - text: "---"
 
           # --- セクション4: 実験室 ---
