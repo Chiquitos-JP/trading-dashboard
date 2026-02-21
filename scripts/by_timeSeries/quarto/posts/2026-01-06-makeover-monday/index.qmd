@@ -2,6 +2,7 @@
 title: "MakeoverMonday: Sample Visualization"
 description: "A sample MakeoverMonday post demonstrating the template structure"
 date: "2026-01-06"
+x-posted: true
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python"]
 image: "thumbnail.svg"

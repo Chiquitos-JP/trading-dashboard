@@ -2,6 +2,7 @@
 title: "MakeoverMonday: Risk Valuation Matrices"
 description: "Six risk matrices — R-multiple vs winrate, drawdown vs recovery, expectancy, losing streaks, exponential growth, consecutive losses — with your trading data"
 date: "2026-02-10"
+x-posted: false
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python", "Finance", "Risk"]
 image: "thumbnail.svg"

@@ -2,6 +2,7 @@
 title: "TidyTuesday: {{week_title}}"
 description: "{{description}}"
 date: "{{date}}"
+x-posted: false
 author: "chokotto"
 categories:
   - TidyTuesday

@@ -2,6 +2,7 @@
 title: "MakeoverMonday: 2025 Market Events - Interactive Dashboard"
 description: "An interactive visualization of S&P500 and Nikkei 225 with trend shading and event markers using Plotly"
 date: "2026-01-13"
+x-posted: true
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python", "Finance"]
 image: "thumbnail.svg"

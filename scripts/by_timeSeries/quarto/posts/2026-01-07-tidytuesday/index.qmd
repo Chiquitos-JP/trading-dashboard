@@ -2,6 +2,7 @@
 title: "TidyTuesday: Sample Analysis"
 description: "A sample TidyTuesday post demonstrating the template structure"
 date: "2026-01-07"
+x-posted: true
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R"]
 image: "thumbnail.svg"

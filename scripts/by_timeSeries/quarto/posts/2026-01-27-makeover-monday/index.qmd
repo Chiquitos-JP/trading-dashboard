@@ -2,6 +2,7 @@
 title: "MakeoverMonday: Risk Exposure Analysis"
 description: "Visualizing the relationship between Cash Reserve (PAT Balance) and Margin Exposure over time"
 date: "2026-01-27"
+x-posted: false
 author: "chokotto"
 categories: ["MakeoverMonday", "Data Viz", "Python", "Finance", "Trading", "Risk"]
 image: "thumbnail.svg"

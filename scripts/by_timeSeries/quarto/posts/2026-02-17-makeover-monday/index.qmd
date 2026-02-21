@@ -2,6 +2,7 @@
 title: "MakeoverMonday: Reddit Comment Counts - SOFI vs IONQ"
 description: "Comparing daily Reddit discussion volume for SOFI and IONQ across investment subreddits over the past 14 days"
 date: "2026-02-17"
+x-posted: false
 author: "chokotto"
 categories:
   - MakeoverMonday

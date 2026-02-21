@@ -2,6 +2,7 @@
 title: "TidyTuesday: 2025 Market Events - S&P500 vs Nikkei 225"
 description: "Visualizing major market events and trends in 2025 with shaded trend periods and event markers"
 date: "2026-01-13"
+x-posted: true
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance"]
 image: "thumbnail.svg"

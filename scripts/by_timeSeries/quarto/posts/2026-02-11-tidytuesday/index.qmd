@@ -2,6 +2,7 @@
 title: "TidyTuesday: Risk Valuation Matrices"
 description: "Six risk matrices - R-multiple vs winrate, drawdown vs recovery, expectancy, losing streaks, exponential growth, consecutive losses - with ggplot2"
 date: "2026-02-11"
+x-posted: false
 author: "chokotto"
 categories: ["TidyTuesday", "Data Viz", "R", "Finance", "Risk"]
 image: "thumbnail.svg"

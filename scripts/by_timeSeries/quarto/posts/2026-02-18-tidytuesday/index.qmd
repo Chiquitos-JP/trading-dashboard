@@ -2,6 +2,7 @@
 title: "TidyTuesday: Reddit Comment Counts - SOFI vs IONQ"
 description: "Comparing daily Reddit discussion volume for SOFI and IONQ across investment subreddits with ggplot2"
 date: "2026-02-18"
+x-posted: false
 author: "chokotto"
 categories:
   - TidyTuesday

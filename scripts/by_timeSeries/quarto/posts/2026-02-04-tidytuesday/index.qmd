@@ -2,6 +2,7 @@
 title: "TidyTuesday: SP500 Sector Performance"
 description: "Visualizing SP500 sector ETF performance"
 date: "2026-02-04"
+x-posted: false
 author: "chokotto"
 categories:
   - TidyTuesday
