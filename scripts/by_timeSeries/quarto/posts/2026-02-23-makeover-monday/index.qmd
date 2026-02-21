@@ -1,0 +1,266 @@
+---
+title: "MakeoverMonday: Attention Dashboard - SOFI vs IONQ"
+description: "Reddit attention metrics (Raw Count, Share, z-score) overlaid with price data to identify bottom candidates"
+date: "2026-02-23"
+x-posted: false
+author: "chokotto"
+categories:
+  - MakeoverMonday
+  - Python
+  - Finance
+  - Social Sentiment
+image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "MakeoverMonday: Attention Dashboard - SOFI vs IONQ"
+  description: "Reddit attention metrics with price overlay and bottom candidate detection"
+---
+
+## Overview
+
+Last week we measured **raw Reddit discussion volume** for SOFI and IONQ. This week we level up with a **three-metric attention framework**:
+
+1. **Raw Count** -- daily comment volume
+2. **Share of Attention** -- what fraction of total discussion belongs to a single ticker
+3. **Abnormal Attention (z-score)** -- how far today's count deviates from the rolling 20-day average
+
+When the z-score drops below **-1.5** (attention is "dried up") and the stock has fallen over the past 20 trading days, we flag it as a **bottom candidate**.
+
+- **Data Source**: Reddit public API + yfinance
+- **Period**: Past 60 days
+- **Methodology**: [Section 3 & 4 of the attention analysis framework](https://chiquitos-jp.github.io/trading-dashboard/)
+
+## Data
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from pathlib import Path
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+tt_data = Path("../2026-02-24-tidytuesday/data")
+local_data = Path("data")
+
+data_dir = local_data if local_data.exists() and (local_data / "attention_metrics.csv").exists() else tt_data
+
+metrics = pd.read_csv(data_dir / "attention_metrics.csv", parse_dates=["date"])
+price = pd.read_csv(data_dir / "price_data.csv", parse_dates=["date"])
+
+symbols = metrics["symbol"].unique().tolist()
+print(f"Symbols: {symbols}")
+print(f"Date range: {metrics['date'].min().date()} ~ {metrics['date'].max().date()}")
+print(f"Bottom candidates: {metrics['bottom_candidate'].sum()}")
+```
+
+## My Makeover
+
+### What I Changed
+
+The original "comment count bar chart" has been replaced with a **multi-panel dashboard** following the methodology's Section 6 format:
+
+1. **Price + Bottom Candidates** -- closing price with flagged dates
+2. **Volume** -- daily trading volume
+3. **Attention Metrics** -- all three indicators on synchronized axes
+4. **KPI Table** -- summary statistics for bottom candidate signals
+
+### Interactive Dashboard
+
+```{python}
+#| label: dashboard
+#| fig-height: 10
+
+COLORS = {"SOFI": "#6366f1", "IONQ": "#f59e0b"}
+
+for sym in symbols:
+    df = metrics[metrics["symbol"] == sym].copy()
+    df = df.dropna(subset=["close"])
+    bc = df[df["bottom_candidate"]]
+
+    fig = make_subplots(
+        rows=4, cols=1,
+        shared_xaxes=True,
+        vertical_spacing=0.06,
+        row_heights=[0.30, 0.20, 0.30, 0.20],
+        subplot_titles=(
+            f"{sym} - Close Price",
+            "Trading Volume",
+            "Attention Metrics (z-score & Share)",
+            "Raw Comment Count",
+        ),
+    )
+
+    # Panel 1: Price
+    fig.add_trace(
+        go.Scatter(
+            x=df["date"], y=df["close"],
+            mode="lines", name="Close",
+            line=dict(color=COLORS.get(sym, "#6366f1"), width=2),
+        ),
+        row=1, col=1,
+    )
+    if not bc.empty:
+        fig.add_trace(
+            go.Scatter(
+                x=bc["date"], y=bc["close"],
+                mode="markers", name="Bottom Candidate",
+                marker=dict(color="#ef4444", size=10, symbol="triangle-up", line=dict(width=1, color="white")),
+            ),
+            row=1, col=1,
+        )
+
+    # Panel 2: Volume
+    fig.add_trace(
+        go.Bar(
+            x=df["date"], y=df["volume"],
+            name="Volume",
+            marker_color="#94a3b8", opacity=0.6,
+            showlegend=False,
+        ),
+        row=2, col=1,
+    )
+
+    # Panel 3: z-score + Share
+    fig.add_trace(
+        go.Scatter(
+            x=df["date"], y=df["z_score"],
+            mode="lines+markers", name="z-score",
+            line=dict(color="#8b5cf6", width=1.5),
+            marker=dict(size=3),
+        ),
+        row=3, col=1,
+    )
+    fig.add_hline(y=-1.5, line_dash="dot", line_color="#ef4444", annotation_text="z = -1.5",
+                  annotation_position="bottom right", row=3, col=1)
+    fig.add_hline(y=0, line_dash="dash", line_color="#94a3b8", row=3, col=1)
+
+    fig.add_trace(
+        go.Scatter(
+            x=df["date"], y=df["share"],
+            mode="lines", name="Share of Attention",
+            line=dict(color="#10b981", width=1.5, dash="dot"),
+            yaxis="y7",
+        ),
+        row=3, col=1,
+    )
+
+    # Panel 4: Raw Count
+    fig.add_trace(
+        go.Bar(
+            x=df["date"], y=df["raw_count"],
+            name="Raw Count",
+            marker_color=COLORS.get(sym, "#6366f1"), opacity=0.7,
+        ),
+        row=4, col=1,
+    )
+
+    fig.update_layout(
+        height=800,
+        template="plotly_white",
+        title=dict(text=f"{sym} Attention Dashboard (60 days)", font=dict(size=18)),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        margin=dict(t=80, b=40),
+    )
+    fig.update_xaxes(tickformat="%m/%d", row=4, col=1)
+    fig.update_yaxes(title_text="Price ($)", row=1, col=1)
+    fig.update_yaxes(title_text="Volume", row=2, col=1)
+    fig.update_yaxes(title_text="z-score / Share", row=3, col=1)
+    fig.update_yaxes(title_text="Comments", row=4, col=1)
+
+    fig.show()
+```
+
+### KPI Summary
+
+```{python}
+#| label: kpi-table
+
+rows = []
+for sym in symbols:
+    df = metrics[metrics["symbol"] == sym].copy()
+    df = df.dropna(subset=["close"])
+    n_days = len(df)
+    n_bc = int(df["bottom_candidate"].sum())
+
+    # Forward returns after bottom candidates
+    df = df.sort_values("date").reset_index(drop=True)
+    ret_5 = []
+    ret_20 = []
+    for idx in df.index[df["bottom_candidate"]]:
+        if idx + 5 < len(df):
+            r5 = (df.loc[idx + 5, "close"] - df.loc[idx, "close"]) / df.loc[idx, "close"]
+            ret_5.append(r5)
+        if idx + 20 < len(df):
+            r20 = (df.loc[idx + 20, "close"] - df.loc[idx, "close"]) / df.loc[idx, "close"]
+            ret_20.append(r20)
+
+    avg_r5 = f"{np.mean(ret_5)*100:.1f}%" if ret_5 else "N/A"
+    avg_r20 = f"{np.mean(ret_20)*100:.1f}%" if ret_20 else "N/A"
+    win_5 = f"{sum(1 for r in ret_5 if r > 0)/len(ret_5)*100:.0f}%" if ret_5 else "N/A"
+    win_20 = f"{sum(1 for r in ret_20 if r > 0)/len(ret_20)*100:.0f}%" if ret_20 else "N/A"
+
+    rows.append({
+        "Ticker": sym,
+        "Days": n_days,
+        "Bottom Signals": n_bc,
+        "Avg 5d Return": avg_r5,
+        "Win Rate 5d": win_5,
+        "Avg 20d Return": avg_r20,
+        "Win Rate 20d": win_20,
+    })
+
+kpi = pd.DataFrame(rows)
+
+fig_kpi = go.Figure(data=[go.Table(
+    header=dict(
+        values=list(kpi.columns),
+        fill_color="#1e293b",
+        font=dict(color="white", size=12),
+        align="center",
+    ),
+    cells=dict(
+        values=[kpi[c] for c in kpi.columns],
+        fill_color=[["#f8fafc", "#f1f5f9"] * len(kpi)],
+        font=dict(size=11),
+        align="center",
+    ),
+)])
+
+fig_kpi.update_layout(
+    title="Bottom Candidate KPI Summary",
+    height=200,
+    margin=dict(t=40, b=10, l=10, r=10),
+)
+fig_kpi.show()
+```
+
+## Key Takeaways
+
+1. **Three-metric framework** provides much richer signal than raw count alone -- Share of Attention adjusts for market-wide cooling, while z-score normalizes for each ticker's baseline.
+2. **Bottom candidates** (z < -1.5 with negative 20-day return) highlight periods where attention has "dried up" after a price decline -- classic setup for contrarian analysis.
+3. The **KPI table** quantifies whether these signals have historically led to positive forward returns over 5-day and 20-day horizons.
+4. This dashboard can be extended to additional tickers or alternative data sources following the same methodology.
+
+***
+
+_This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Reddit comment counts and attention metrics are based on publicly available data and may not represent complete or current information. Bottom candidate signals are experimental and do not constitute investment advice.
+:::
+:::
