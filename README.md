@@ -6,7 +6,7 @@
 
 ## 概要
 
-本プロジェクトは、「情報を持ち運び可能なシグナルに加工する」ことを可能にするための学習プロジェクトです。残念ながら無料で程良いデータは保有していないため、身銭を切って株式売買を行う事でデータを取得します。
+本プロジェクトは、「情報を持ち運び可能なシグナルに加工する」ことを可能にするための個人的な学習プロジェクトです。残念ながら無料で程良いデータは保有していないため、身銭を切って株式売買を行う事でデータを取得します。
 データ取得から特徴量生成、KPI 計算、レポート・ダッシュボード生成、成果物公開まで一連のフローを管理します。
 
 <details>
@@ -88,7 +88,7 @@ data/trading_account/
 2. **データ取得・格納**
    - `data/trading_account/realized_pl/raw/` 配下に楽天・SBIの生CSVを格納
    - `data/trading_account/transaction/raw/` 配下に取引履歴CSVを格納
-   
+
    **生データの取得方法:**
    | 証券会社 | データ種別 | 取得条件 | 出力形式 |
    |---------|-----------|---------|---------|
@@ -98,9 +98,11 @@ data/trading_account/
    | SBI | 約定履歴 | すべて、期間指定なし（過去2年間のみ）、行数上限1,000行 | CSV |
 
 3. **パイプライン実行（一括）**
+
    ```bash
    python scripts/by_timeSeries/runners/run_all.py
    ```
+
    これにより以下が自動実行されます:
    - マスターデータの差分更新
    - 月次サマリー・KPI生成
@@ -157,12 +159,14 @@ data/trading_account/
 <summary><strong>主要スクリプト</strong></summary>
 
 **実行系（scripts/by_timeSeries/runners/）**
+
 - `run_all.py`：一括実行スクリプト（推奨）
 - `run_visualization_only.py`：可視化のみ実行
 - `run_render_only.py`：レンダリングのみ実行
 - `run_quarto_only.py`：Quartoのみ実行
 
 **分析系（scripts/by_timeSeries/）**
+
 - `common/optimized_data_pipeline.py`：データパイプライン（マスター更新・集計生成）
 - `holdingPeriod/risk_analysis.py`：リスク分析・ポジション計算
 - `holdingPeriod/holding_period_visualization.py`：保有期間可視化
@@ -183,12 +187,13 @@ data/trading_account/
 
 **TidyTuesday（R）→ MakeoverMonday（Python）** の順でワークフローを回します。
 
-| 投稿 | 言語 | 役割 | 投稿日 |
-|------|------|------|--------|
-| **TidyTuesday** | R (ggplot2) | アイデア探索・プロトタイピング | 火曜 |
-| **MakeoverMonday** | Python (Plotly) | 仕組化・再現性の確保 | 月曜 |
+| 投稿               | 言語            | 役割                           | 投稿日 |
+| ------------------ | --------------- | ------------------------------ | ------ |
+| **TidyTuesday**    | R (ggplot2)     | アイデア探索・プロトタイピング | 火曜   |
+| **MakeoverMonday** | Python (Plotly) | 仕組化・再現性の確保           | 月曜   |
 
 **フロー:**
+
 ```
 TidyTuesday (R)              MakeoverMonday (Python)
     │                              │
@@ -201,6 +206,7 @@ TidyTuesday (R)              MakeoverMonday (Python)
 ```
 
 **ポイント:**
+
 - 両者は**基本的に同じ題材・同じ可視化**を扱う
 - TidyTuesdayで試行錯誤し、MakeoverMondayで整理・仕組化
 - R → Python の移植練習にもなる
@@ -233,12 +239,15 @@ scripts/by_timeSeries/quarto/posts/
 <summary><strong>完全ワークフロー（アイデアから公開まで）</strong></summary>
 
 ### Phase 1: アイデア・企画
+
 1. **題材を決定**: 可視化したいデータや分析テーマを決める
 2. **チャート設計**: どのような可視化が効果的か検討
    - 時系列チャート、散布図、積み上げグラフ等
 
 ### Phase 2: ファイル作成
+
 3. **ディレクトリ作成**
+
    ```powershell
    mkdir scripts/by_timeSeries/quarto/posts/2026-01-27-makeover-monday
    mkdir scripts/by_timeSeries/quarto/posts/2026-01-28-tidytuesday
@@ -256,23 +265,28 @@ scripts/by_timeSeries/quarto/posts/
 ### Phase 3: レンダリング＆公開
 
 **Step 1: TidyTuesday用データ準備**
+
 ```powershell
 cd scripts/by_timeSeries/quarto/posts/2026-01-28-tidytuesday
 py prepare_data.py
 ```
 
 **Step 2: MakeoverMonday（Python）レンダリング**
+
 ```powershell
 cd scripts/by_timeSeries/runners
 py run_weekly_posts.py --date 2026-01-27
 ```
+
 または直接Quartoでレンダリング:
+
 ```powershell
 cd scripts/by_timeSeries/quarto
 quarto render "posts\2026-01-27-makeover-monday\index.qmd"
 ```
 
 **Step 3: Git同期**
+
 ```powershell
 git add .
 git commit -m "Add MakeoverMonday/TidyTuesday posts"
@@ -280,12 +294,14 @@ git push
 ```
 
 **Step 4: TidyTuesday（R）GitHub Actionsでレンダリング**
+
 1. GitHub → **Actions** タブ
 2. **Render Weekly Posts (TidyTuesday/MakeoverMonday)** を選択
 3. **Run workflow** → Post type: `tidytuesday` を選択
 4. 自動でレンダリング→コミット→プッシュ
 
 **Step 5: ローカル同期（必要に応じて）**
+
 ```powershell
 git pull
 ```
@@ -334,6 +350,7 @@ git pull
 <summary><strong>コマンドリファレンス</strong></summary>
 
 **run_weekly_posts.py オプション**
+
 ```powershell
 # MakeoverMondayのみレンダリング（デフォルト）
 py run_weekly_posts.py
@@ -352,6 +369,7 @@ py run_weekly_posts.py --preview
 ```
 
 **GitHub Actions ワークフロー**
+
 - ワークフロー名: `Render Weekly Posts (TidyTuesday/MakeoverMonday)`
 - ファイル: `.github/workflows/render-posts.yml`
 - Post type選択肢: `all` / `tidytuesday` / `makeover-monday`
@@ -362,14 +380,17 @@ py run_weekly_posts.py --preview
 <summary><strong>注意事項</strong></summary>
 
 **TidyTuesdayの`data/`フォルダ**
+
 - `.gitignore`で除外されているため、GitHub Actionsでは`prepare_data.py`で生成
 - ローカルで実行する場合は先に`py prepare_data.py`を実行
 
 **ARM64 Windows環境（Surface Laptop 7等）**
+
 - x64版Rとの互換性問題により、ローカルでのQuarto + Rレンダリングが失敗する
 - TidyTuesdayはGitHub Actions（x64 Linux環境）でレンダリング推奨
 
 **ランディングページ（analysis.html）**
+
 - Quartoの`listing`機能により、`posts/`フォルダ内の全投稿が自動リストアップ
 - 投稿フォルダとindex.qmdが存在すれば、レンダリング前でもサムネイルと概要が表示される
 
@@ -382,14 +403,15 @@ py run_weekly_posts.py --preview
 
 **自動投稿スケジュール**
 
-| 曜日 | 時刻 | 投稿タイプ |
-|------|------|-----------|
+| 曜日 | 時刻     | 投稿タイプ                         |
+| ---- | -------- | ---------------------------------- |
 | 月曜 | 9:00 JST | MakeoverMonday（キューの最古記事） |
-| 火曜 | 9:00 JST | TidyTuesday（キューの最古記事） |
+| 火曜 | 9:00 JST | TidyTuesday（キューの最古記事）    |
 
 ※ スケジュール実行はGitHub Actionsが自動的に行います（手動操作不要）
 
 **仕組み**
+
 1. 週末に記事をレンダリング＆git push
 2. レンダリング時に `.github/x-post-queue.json` にキュー自動追加
 3. 月曜・火曜の9:00 JSTにスケジュール実行
@@ -397,6 +419,7 @@ py run_weekly_posts.py --preview
 5. 投稿済みフラグを更新（自動コミット）
 
 **週末ワークフロー（これだけでOK）**
+
 ```
 週末（手動）                     月曜 9:00 JST      火曜 9:00 JST
     │                           （自動）           （自動）
@@ -412,10 +435,10 @@ py run_weekly_posts.py --preview
 
 投稿時にチャート画像を1枚添付します（画像がある場合のみ）。
 
-| 投稿タイプ | 画像ソース |
-|-----------|-----------|
-| TidyTuesday (R) | `index_files/figure-html/*.png`（ggplot2出力、自動生成） |
-| MakeoverMonday (Python) | `chart-1.png`（Plotly/Matplotlib静的出力） |
+| 投稿タイプ              | 画像ソース                                               |
+| ----------------------- | -------------------------------------------------------- |
+| TidyTuesday (R)         | `index_files/figure-html/*.png`（ggplot2出力、自動生成） |
+| MakeoverMonday (Python) | `chart-1.png`（Plotly/Matplotlib静的出力）               |
 
 ※ 画像がない場合はテキストのみで投稿
 
@@ -435,11 +458,11 @@ fig.savefig("chart-1.png", dpi=150, bbox_inches='tight', facecolor='white')
 
 **X API 料金体系（Pay-per-use）**
 
-| 操作 | 料金 |
-|------|------|
-| Content (Create) | $0.01/投稿 |
-| Media Upload | 投稿に含まれる |
-| Post (Read) | $0.005/読取 |
+| 操作             | 料金           |
+| ---------------- | -------------- |
+| Content (Create) | $0.01/投稿     |
+| Media Upload     | 投稿に含まれる |
+| Post (Read)      | $0.005/読取    |
 
 月8回投稿の場合: **約$0.08/月**（$5で約500投稿 = 約5年分）
 
@@ -449,14 +472,15 @@ fig.savefig("chart-1.png", dpi=150, bbox_inches='tight', facecolor='white')
 
 リポジトリの **Settings → Secrets and variables → Actions** で以下を設定:
 
-| Secret名 | 説明 |
-|---------|------|
-| `X_API_KEY` | X API Key |
-| `X_API_SECRET` | X API Key Secret |
-| `X_ACCESS_TOKEN` | X Access Token |
+| Secret名                | 説明                  |
+| ----------------------- | --------------------- |
+| `X_API_KEY`             | X API Key             |
+| `X_API_SECRET`          | X API Key Secret      |
+| `X_ACCESS_TOKEN`        | X Access Token        |
 | `X_ACCESS_TOKEN_SECRET` | X Access Token Secret |
 
 **X API認証情報の取得方法**
+
 1. [X Developer Portal](https://developer.x.com/en/portal/dashboard) にログイン
 2. プロジェクト/アプリを作成
 3. **User authentication settings** で OAuth 1.0a を有効化
@@ -465,6 +489,7 @@ fig.savefig("chart-1.png", dpi=150, bbox_inches='tight', facecolor='white')
 5. **Billing** でPay-per-useクレジットを購入（$5推奨）
 
 **手動実行（スケジュール外で投稿したい場合）**
+
 1. GitHub → **Actions** タブ
 2. **Post to X (Twitter)** を選択
 3. **Run workflow** → Post type と Dry run を選択
@@ -473,6 +498,7 @@ fig.savefig("chart-1.png", dpi=150, bbox_inches='tight', facecolor='white')
 4. 手動実行の場合、実行した時刻に投稿される（スケジュール実行は9:00 JST）
 
 **投稿フォーマット例**
+
 ```
 MakeoverMonday: Risk Exposure Analysis
 
@@ -487,11 +513,11 @@ https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-27-
 
 **トラブルシューティング**
 
-| エラー | 原因 | 解決方法 |
-|--------|------|---------|
+| エラー               | 原因              | 解決方法                           |
+| -------------------- | ----------------- | ---------------------------------- |
 | 402 Payment Required | APIクレジット不足 | X Developer Portalでクレジット購入 |
-| 401 Unauthorized | 認証情報エラー | GitHub Secretsを再確認 |
-| キューが空 | 未投稿記事なし | 記事をレンダリング＆push |
+| 401 Unauthorized     | 認証情報エラー    | GitHub Secretsを再確認             |
+| キューが空           | 未投稿記事なし    | 記事をレンダリング＆push           |
 
 </details>
 
