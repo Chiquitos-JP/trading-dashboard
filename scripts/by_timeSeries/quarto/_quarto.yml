@@ -21,32 +21,30 @@ website:
       - href: index.html
         text: Concept
       - href: analysis.html
-        text: Analysis
-      - text: Dashboard
-        icon: speedometer2
+        text: Blog
+      - text: Performance
+        icon: graph-up
         menu:
-          # --- セクション1: 概要 ---
-          - text: "Overview"
-            icon: grid-fill
-            href: dashboard.html
-          - text: "---"
-
-          # --- セクション2: リアルタイム監視 ---
-          - text: "Market Monitor (Panel)"
+          - text: "FINANCIALS"
+          - text: "2025 Annual Report"
+            icon: bar-chart-line-fill
+            href: dashboard_2025.html
+          - text: "2026 Annual Report"
+            icon: file-earmark-text
+            href: dashboard_2026.html
+      - text: Explore
+        icon: compass
+        menu:
+          - text: "Market Monitor"
             icon: graph-up-arrow
             href: dashboard_panel_info.html
-          - text: "---"
-
-          # --- セクション3: 定型レポート ---
-          - text: "Monthly Performance"
+          - text: "Monthly Reports"
             icon: calendar-check
             href: dashboard_static.html
-          - text: "Asset Timeseries"
-            icon: graph-up
-            href: dashboard_financials_timeseries.html
+          - text: "Archive"
+            icon: archive
+            href: archive.html
           - text: "---"
-
-          # --- セクション4: 実験室 ---
           - text: "Experimental Labs"
             icon: cone-striped
     right: []
