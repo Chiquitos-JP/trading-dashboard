@@ -1,0 +1,86 @@
+name: Post Sunday Markets
+
+on:
+  # スケジュール実行: 毎週日曜日 12:00 JST (03:00 UTC)
+  schedule:
+    - cron: '0 3 * * 0'
+
+  # 手動実行
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no actual posting)'
+        required: false
+        default: false
+        type: boolean
+      chart_timeout:
+        description: 'Chart rendering wait time in ms (default: 8000)'
+        required: false
+        default: '8000'
+        type: string
+
+jobs:
+  post-sunday-markets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install playwright tweepy
+          playwright install --with-deps chromium
+
+      - name: Capture and post Sunday markets
+        id: post
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: |
+          ARGS=""
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+              ARGS="$ARGS --dry-run"
+            fi
+            if [ -n "${{ github.event.inputs.chart_timeout }}" ]; then
+              ARGS="$ARGS --chart-timeout ${{ github.event.inputs.chart_timeout }}"
+            fi
+          fi
+
+          echo "Running: python .github/scripts/capture_sunday_markets.py $ARGS"
+          python .github/scripts/capture_sunday_markets.py $ARGS
+
+      - name: Upload screenshots as artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sunday-market-screenshots
+          path: tmp/sunday_markets/
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Sunday Markets Post Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Triggered by**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "- **Dry Run**: ${{ github.event.inputs.dry_run }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "- **Status**: Completed" >> $GITHUB_STEP_SUMMARY
+          if [ -d "tmp/sunday_markets" ]; then
+            echo "- **Screenshots**: $(ls tmp/sunday_markets/*.png 2>/dev/null | wc -l) captured" >> $GITHUB_STEP_SUMMARY
+          fi
