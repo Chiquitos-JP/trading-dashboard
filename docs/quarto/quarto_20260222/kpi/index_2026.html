@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Statements 2026 — LaTeX Style</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Source+Code+Pro:wght@400;500&display=swap');
+
+:root {
+    --bg: #fffef9;
+    --text: #1a1a1a;
+    --text-muted: #4a4a4a;
+    --accent: #800000;
+    --border: #2c2c2c;
+    --border-light: #c0c0c0;
+    --header-bg: #f0ede6;
+    --section-bg: #f8f7f2;
+    --negative: #b22222;
+    --ytd-bg: #faf8f0;
+    --subtotal-bg: #f5f3ed;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.5;
+}
+
+.report-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    background: #fff;
+    border: 2px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.report-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 2px solid var(--border);
+    text-align: center;
+}
+
+.report-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    letter-spacing: 0.03em;
+}
+
+.report-subtitle {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.report-meta {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Table Section */
+.table-section {
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+.table-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.75rem 0;
+    padding-left: 0.5rem;
+    border-left: 4px solid var(--accent);
+}
+
+.table-title .title-jp {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    max-height: 80vh;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+thead tr {
+    border-top: 2px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+thead th {
+    background: var(--header-bg);
+    color: var(--text);
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: right;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+thead th:first-child {
+    text-align: left;
+    min-width: 280px;
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background: var(--header-bg);
+}
+
+.section-header th {
+    background: var(--section-bg);
+    color: var(--text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    border-top: 1.5px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.data-row th.metric-name {
+    text-align: left;
+    font-weight: 500;
+    color: var(--text);
+    padding: 0.6rem 1rem;
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 5;
+    border-right: 1px solid var(--border-light);
+}
+
+.data-row th.metric-name.subtotal {
+    font-weight: 700;
+    background: var(--subtotal-bg);
+}
+
+.data-row td {
+    text-align: right;
+    padding: 0.6rem 1rem;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.85rem;
+    font-feature-settings: "tnum";
+    border-bottom: 1px dotted #e0e0e0;
+}
+
+.data-row td.subtotal {
+    font-weight: 700;
+    background: var(--subtotal-bg);
+    border-top: 1px solid var(--border-light);
+}
+
+.data-row:hover td,
+.data-row:hover th {
+    background: #fdfcf5;
+}
+
+.ytd-cell {
+    background: var(--ytd-bg);
+    font-weight: 600;
+    border-left: 1.5px solid var(--border-light);
+    border-right: 1.5px solid var(--border-light);
+}
+
+.negative {
+    color: var(--negative);
+}
+
+tbody tr:last-child td,
+tbody tr:last-child th {
+    border-bottom: 2px solid var(--border);
+}
+
+.report-footer {
+    padding: 1rem 2rem;
+    background: var(--section-bg);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-item {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.footer-label {
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* Divider */
+.section-divider {
+    border: none;
+    border-top: 1px dashed var(--border-light);
+    margin: 2rem 1rem;
+}
+</style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header">
+            <h1 class="report-title">Financial Statements — FY2026</h1>
+            <p class="report-subtitle">Year-to-Date Performance & Financial Position</p>
+            <div class="report-meta">
+                <span>Period: 2026-01-01 — 2026-02-15</span>
+                <span style="margin-left: 2rem;">Generated: 2026-02-15 16:59</span>
+            </div>
+        </div>
+        
+        <!-- Table 1: KPI Summary -->
+        <div class="table-section">
+            <h3 class="table-title">Table 1. Monthly KPI Summary <span class="title-jp">(業績指標)</span></h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>Metric</th><th>YTD 2026</th><th>2026-01</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="section-header"><th colspan="3">ASSUMPTIONS</th></tr><tr class="data-row"><th class="metric-name">Trading Days</th><td class="ytd-cell ">5</td><td class="data-cell ">5</td></tr><tr class="data-row"><th class="metric-name">Market Open Days</th><td class="ytd-cell ">20</td><td class="data-cell ">20</td></tr><tr class="data-row"><th class="metric-name">Avg. FX Rate</th><td class="ytd-cell ">—</td><td class="data-cell ">—</td></tr><tr class="section-header"><th colspan="3">LAGGING INDICATORS</th></tr><tr class="data-row"><th class="metric-name">Expectancy</th><td class="ytd-cell ">4.31%</td><td class="data-cell ">4.31%</td></tr><tr class="data-row"><th class="metric-name">Win Rate</th><td class="ytd-cell ">100.00%</td><td class="data-cell ">100.00%</td></tr><tr class="data-row"><th class="metric-name">Loss Rate</th><td class="ytd-cell ">0.00%</td><td class="data-cell ">0.00%</td></tr><tr class="data-row"><th class="metric-name">Mean Profit Rate</th><td class="ytd-cell ">4.31%</td><td class="data-cell ">4.31%</td></tr><tr class="data-row"><th class="metric-name">Mean Loss Rate</th><td class="ytd-cell ">0.00%</td><td class="data-cell ">0.00%</td></tr><tr class="data-row"><th class="metric-name">Mean Gain (JPY)</th><td class="ytd-cell ">¥139,746</td><td class="data-cell ">¥139,746</td></tr><tr class="data-row"><th class="metric-name">Mean Loss (JPY)</th><td class="ytd-cell ">¥0</td><td class="data-cell ">¥0</td></tr><tr class="data-row"><th class="metric-name">Mean Position Size</th><td class="ytd-cell ">¥3,239,250</td><td class="data-cell ">¥3,239,250</td></tr><tr class="data-row"><th class="metric-name">Risk/Reward Ratio</th><td class="ytd-cell ">—</td><td class="data-cell ">—</td></tr><tr class="data-row"><th class="metric-name">ROI</th><td class="ytd-cell ">4.31%</td><td class="data-cell ">4.31%</td></tr><tr class="section-header"><th colspan="3">INTERIM INDICATORS</th></tr><tr class="data-row"><th class="metric-name">Total Trades</th><td class="ytd-cell ">6</td><td class="data-cell ">6</td></tr><tr class="data-row"><th class="metric-name">Win Trades</th><td class="ytd-cell ">6</td><td class="data-cell ">6</td></tr><tr class="data-row"><th class="metric-name">Loss Trades</th><td class="ytd-cell ">0</td><td class="data-cell ">0</td></tr><tr class="section-header"><th colspan="3">SUMMARY</th></tr><tr class="data-row"><th class="metric-name">Total P/L (JPY)</th><td class="ytd-cell ">¥838,476</td><td class="data-cell ">¥838,476</td></tr><tr class="data-row"><th class="metric-name">Total Gain (JPY)</th><td class="ytd-cell ">¥838,476</td><td class="data-cell ">¥838,476</td></tr><tr class="data-row"><th class="metric-name">Total Loss (JPY)</th><td class="ytd-cell ">¥0</td><td class="data-cell ">¥0</td></tr><tr class="data-row"><th class="metric-name">Total Investment</th><td class="ytd-cell ">¥19,435,505</td><td class="data-cell ">¥19,435,505</td></tr><tr class="section-header"><th colspan="3">TAX CALCULATION</th></tr><tr class="data-row"><th class="metric-name">Income Tax</th><td class="ytd-cell ">¥125,771</td><td class="data-cell ">¥125,771</td></tr><tr class="data-row"><th class="metric-name">Resident Tax</th><td class="ytd-cell ">¥41,924</td><td class="data-cell ">¥41,924</td></tr><tr class="data-row"><th class="metric-name">Reconstruction Tax</th><td class="ytd-cell ">¥2,641</td><td class="data-cell ">¥2,641</td></tr><tr class="data-row"><th class="metric-name">Total Tax</th><td class="ytd-cell ">¥170,336</td><td class="data-cell ">¥170,336</td></tr><tr class="data-row"><th class="metric-name">PAT</th><td class="ytd-cell ">¥668,140</td><td class="data-cell ">¥668,140</td></tr><tr class="data-row"><th class="metric-name">ROI After Tax</th><td class="ytd-cell ">3.44%</td><td class="data-cell ">3.44%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <hr class="section-divider">
+        
+        <!-- Table 2: P/L -->
+        
+    <div class="table-section">
+        <h3 class="table-title">Table 2. Income Statement <span class="title-jp">(損益計算書)</span></h3>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Item</th><th>2026-01</th><th>YTD 2026</th></tr></thead>
+                <tbody><tr class="data-row"><th class="metric-name ">売上高 (Trading Revenue)</th><td class="data-cell ">¥838,476</td><td class="ytd-cell ">¥838,476</td></tr><tr class="data-row"><th class="metric-name ">売上原価 (Trading Costs)</th><td class="data-cell ">¥-0</td><td class="ytd-cell ">¥-0</td></tr><tr class="data-row"><th class="metric-name subtotal">売上総利益 (Gross Profit)</th><td class="data-cell subtotal ">¥838,476</td><td class="ytd-cell subtotal ">¥838,476</td></tr><tr class="data-row"><th class="metric-name ">営業費用 (Operating Expenses)</th><td class="data-cell ">¥0</td><td class="ytd-cell ">¥0</td></tr><tr class="data-row"><th class="metric-name subtotal">営業利益 (Operating Income)</th><td class="data-cell subtotal ">¥838,476</td><td class="ytd-cell subtotal ">¥838,476</td></tr><tr class="data-row"><th class="metric-name subtotal">税引前利益 (Income Before Tax)</th><td class="data-cell subtotal ">¥838,476</td><td class="ytd-cell subtotal ">¥838,476</td></tr><tr class="data-row"><th class="metric-name ">法人税等 (Income Tax)</th><td class="data-cell negative">(¥170,336)</td><td class="ytd-cell negative">(¥170,336)</td></tr><tr class="data-row"><th class="metric-name subtotal">当期純利益 (Net Income)</th><td class="data-cell subtotal ">¥668,140</td><td class="ytd-cell subtotal ">¥668,140</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+    
+        
+        <hr class="section-divider">
+        
+        <!-- Table 3: BS -->
+        
+    <div class="table-section">
+        <h3 class="table-title">Table 3. Balance Sheet <span class="title-jp">(貸借対照表)</span></h3>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Item</th><th>2026-01</th></tr></thead>
+                <tbody><tr class="data-row"><th class="metric-name ">前期繰越 (Carried Forward)</th><td class="data-cell ">¥11,833,866</td></tr><tr class="data-row"><th class="metric-name ">当期損益 (Current Year P/L)</th><td class="data-cell ">¥668,140</td></tr><tr class="data-row"><th class="metric-name subtotal">現金及び預金 (Cash & Equivalents)</th><td class="data-cell subtotal ">¥12,502,006</td></tr><tr class="data-row"><th class="metric-name subtotal">資産合計 (Total Assets)</th><td class="data-cell subtotal ">¥12,502,006</td></tr><tr class="data-row"><th class="metric-name subtotal">負債合計 (Total Liabilities)</th><td class="data-cell subtotal ">¥0</td></tr><tr class="data-row"><th class="metric-name ">繰越利益剰余金 (B/F)</th><td class="data-cell ">¥11,833,866</td></tr><tr class="data-row"><th class="metric-name ">当期純利益 (Current Year)</th><td class="data-cell ">¥668,140</td></tr><tr class="data-row"><th class="metric-name subtotal">純資産合計 (Total Equity)</th><td class="data-cell subtotal ">¥12,502,006</td></tr><tr class="data-row"><th class="metric-name subtotal">負債純資産合計 (Total L&E)</th><td class="data-cell subtotal ">¥12,502,006</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+    
+        
+        <hr class="section-divider">
+        
+        <!-- Table 4: CF -->
+        
+    <div class="table-section">
+        <h3 class="table-title">Table 4. Cash Flow Statement <span class="title-jp">(キャッシュフロー計算書)</span></h3>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Item</th><th>2026-01</th><th>YTD 2026</th></tr></thead>
+                <tbody><tr class="data-row"><th class="metric-name subtotal">当期純利益 (Net Income)</th><td class="data-cell subtotal ">¥668,140</td><td class="ytd-cell subtotal ">¥668,140</td></tr><tr class="data-row"><th class="metric-name subtotal">営業CF (Operating CF)</th><td class="data-cell subtotal ">¥668,140</td><td class="ytd-cell subtotal ">¥668,140</td></tr><tr class="data-row"><th class="metric-name ">投資CF (Investing CF)</th><td class="data-cell ">¥0</td><td class="ytd-cell ">¥0</td></tr><tr class="data-row"><th class="metric-name ">財務CF (Financing CF)</th><td class="data-cell ">¥0</td><td class="ytd-cell ">¥0</td></tr><tr class="data-row"><th class="metric-name subtotal">現金増減 (Net Change)</th><td class="data-cell subtotal ">¥668,140</td><td class="ytd-cell subtotal ">¥668,140</td></tr><tr class="data-row"><th class="metric-name ">期首現金 (Beginning Cash)</th><td class="data-cell ">¥11,833,866</td><td class="ytd-cell ">¥11,833,866</td></tr><tr class="data-row"><th class="metric-name subtotal">期末現金 (Ending Cash)</th><td class="data-cell subtotal ">¥12,502,006</td><td class="ytd-cell subtotal ">¥12,502,006</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+    
+        
+        <hr class="section-divider">
+        
+        <!-- Table 5: Cash Reserve Ratio -->
+        
+    <div class="table-section">
+        <h3 class="table-title">Table 5. Account Balance <span class="title-jp">(口座別残高推移)</span></h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>2025-01</th><th>2025-02</th><th>2025-03</th><th>2025-04</th><th>2025-05</th><th>2025-06</th><th>2025-07</th><th>2025-08</th><th>2025-09</th><th>2025-10</th><th>2025-11</th><th>2025-12</th><th>2026-01</th><th>2026-02</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="section-header"><th colspan="15">RAKUTEN</th></tr><tr class="data-row"><th class="metric-name ">PAT Balance</th><td class="data-cell ">¥0</td><td class="data-cell ">¥97,165</td><td class="data-cell ">¥-2,939,817</td><td class="data-cell ">¥-2,939,817</td><td class="data-cell ">¥-2,750,577</td><td class="data-cell ">¥-1,914,508</td><td class="data-cell ">¥-1,489,317</td><td class="data-cell ">¥934,506</td><td class="data-cell ">¥1,938,491</td><td class="data-cell ">¥3,679,248</td><td class="data-cell ">¥5,895,030</td><td class="data-cell ">¥6,781,518</td><td class="data-cell ">¥7,449,657</td><td class="data-cell ">¥7,449,657</td></tr><tr class="data-row"><th class="metric-name ">Exposure (信用)</th><td class="data-cell ">¥9,092,398</td><td class="data-cell ">¥9,172,284</td><td class="data-cell ">¥5,874,912</td><td class="data-cell ">¥7,386,308</td><td class="data-cell ">¥0</td><td class="data-cell ">¥10,997,000</td><td class="data-cell ">¥16,888,250</td><td class="data-cell ">¥0</td><td class="data-cell ">¥16,919,670</td><td class="data-cell ">¥18,537,800</td><td class="data-cell ">¥18,820,580</td><td class="data-cell ">¥19,547,168</td><td class="data-cell ">¥20,784,330</td><td class="data-cell ">¥20,784,330</td></tr><tr class="data-row"><th class="metric-name ">Exposure/PAT</th><td class="data-cell ">—</td><td class="data-cell ">9439.9%</td><td class="data-cell ">—</td><td class="data-cell ">—</td><td class="data-cell ">—</td><td class="data-cell ">—</td><td class="data-cell ">—</td><td class="data-cell ">—</td><td class="data-cell ">872.8%</td><td class="data-cell ">503.8%</td><td class="data-cell ">319.3%</td><td class="data-cell ">288.2%</td><td class="data-cell ">279.0%</td><td class="data-cell ">279.0%</td></tr><tr class="section-header"><th colspan="15">SBI</th></tr><tr class="data-row"><th class="metric-name ">PAT Balance</th><td class="data-cell ">¥11,500</td><td class="data-cell ">¥-156,800</td><td class="data-cell ">¥-402,779</td><td class="data-cell ">¥-402,779</td><td class="data-cell ">¥851,173</td><td class="data-cell ">¥1,468,196</td><td class="data-cell ">¥1,468,196</td><td class="data-cell ">¥1,636,827</td><td class="data-cell ">¥2,739,577</td><td class="data-cell ">¥5,027,577</td><td class="data-cell ">¥5,027,577</td><td class="data-cell ">¥5,027,577</td><td class="data-cell ">¥5,027,577</td><td class="data-cell ">¥5,027,577</td></tr><tr class="data-row"><th class="metric-name ">Exposure (信用)</th><td class="data-cell ">¥4,335,960</td><td class="data-cell ">¥4,510,497</td><td class="data-cell ">¥3,672,998</td><td class="data-cell ">¥3,672,998</td><td class="data-cell ">¥0</td><td class="data-cell ">¥6,864,013</td><td class="data-cell ">¥6,864,013</td><td class="data-cell ">¥10,839,900</td><td class="data-cell ">¥14,817,672</td><td class="data-cell ">¥0</td><td class="data-cell ">¥14,699,847</td><td class="data-cell ">¥14,699,847</td><td class="data-cell ">¥14,699,847</td><td class="data-cell ">¥14,699,847</td></tr><tr class="data-row"><th class="metric-name ">Exposure/PAT</th><td class="data-cell ">37703.5%</td><td class="data-cell ">—</td><td class="data-cell ">—</td><td class="data-cell ">—</td><td class="data-cell ">—</td><td class="data-cell ">467.5%</td><td class="data-cell ">467.5%</td><td class="data-cell ">662.3%</td><td class="data-cell ">540.9%</td><td class="data-cell ">—</td><td class="data-cell ">292.4%</td><td class="data-cell ">292.4%</td><td class="data-cell ">292.4%</td><td class="data-cell ">292.4%</td></tr><tr class="section-header"><th colspan="15">TOTAL</th></tr><tr class="data-row"><th class="metric-name subtotal">PAT Balance</th><td class="data-cell subtotal">¥11,500</td><td class="data-cell subtotal">¥-59,634</td><td class="data-cell subtotal">¥-3,342,595</td><td class="data-cell subtotal">¥-3,342,595</td><td class="data-cell subtotal">¥-1,899,404</td><td class="data-cell subtotal">¥-446,312</td><td class="data-cell subtotal">¥-21,121</td><td class="data-cell subtotal">¥2,571,334</td><td class="data-cell subtotal">¥4,678,068</td><td class="data-cell subtotal">¥8,706,825</td><td class="data-cell subtotal">¥10,922,607</td><td class="data-cell subtotal">¥11,809,095</td><td class="data-cell subtotal">¥12,477,234</td><td class="data-cell subtotal">¥12,477,234</td></tr><tr class="data-row"><th class="metric-name subtotal">Exposure (信用)</th><td class="data-cell subtotal">¥13,428,358</td><td class="data-cell subtotal">¥13,682,780</td><td class="data-cell subtotal">¥9,547,910</td><td class="data-cell subtotal">¥11,059,306</td><td class="data-cell subtotal">¥0</td><td class="data-cell subtotal">¥17,861,013</td><td class="data-cell subtotal">¥23,752,263</td><td class="data-cell subtotal">¥10,839,900</td><td class="data-cell subtotal">¥31,737,342</td><td class="data-cell subtotal">¥18,537,800</td><td class="data-cell subtotal">¥33,520,427</td><td class="data-cell subtotal">¥34,247,014</td><td class="data-cell subtotal">¥35,484,177</td><td class="data-cell subtotal">¥35,484,177</td></tr><tr class="data-row"><th class="metric-name subtotal">Exposure/PAT</th><td class="data-cell subtotal">116766.9%</td><td class="data-cell subtotal">—</td><td class="data-cell subtotal">—</td><td class="data-cell subtotal">—</td><td class="data-cell subtotal">—</td><td class="data-cell subtotal">—</td><td class="data-cell subtotal">—</td><td class="data-cell subtotal">421.6%</td><td class="data-cell subtotal">678.4%</td><td class="data-cell subtotal">212.9%</td><td class="data-cell subtotal">306.9%</td><td class="data-cell subtotal">290.0%</td><td class="data-cell subtotal">284.4%</td><td class="data-cell subtotal">284.4%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="font-size: 0.8rem; color: #666; margin-top: 0.5rem; padding-left: 0.5rem;">
+            <span>※ PAT Balance = 累積税引後利益（月別税計算を反映）</span><br>
+            <span>※ Exposure = 月末時点の信用ポジション合計（JPY換算）</span><br>
+            <span>※ Updated: 2026-02-15 16:59</span>
+        </div>
+    </div>
+    
+        
+        <div class="report-footer">
+            <div class="footer-item">
+                <span class="footer-label">Source:</span>
+                <span>monthly_pl.parquet</span>
+            </div>
+            <div class="footer-item">
+                <span class="footer-label">Note:</span>
+                <span>Trading activity only. No other revenue/investments.</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
