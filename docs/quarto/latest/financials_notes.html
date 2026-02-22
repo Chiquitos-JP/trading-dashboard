@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2025 Trading Dashboard – ちょこっと</title>
+<title>Financials - Design Notes – ちょこっと</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,23 +133,31 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-each-year-looks-different" id="toc-why-each-year-looks-different" class="nav-link active" data-scroll-target="#why-each-year-looks-different">Why Each Year Looks Different</a></li>
+  <li><a href="#design-comparison" id="toc-design-comparison" class="nav-link" data-scroll-target="#design-comparison">Design Comparison</a></li>
+  <li><a href="#change-log" id="toc-change-log" class="nav-link" data-scroll-target="#change-log">Change Log</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Chiquitos-JP/trading-dashboard/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">2025 Trading Dashboard</h1>
+<h1 class="title">Financials - Design Notes</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
   
@@ -161,218 +169,77 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<style>
-  :root {
-    --bg-base: #f8fafc;
-    --text-main: #1e293b;
-    --text-sub: #64748b;
-    --primary-blue: #2563eb;
-    --window-border: #e2e8f0;
-    --window-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  }
-
-  body {
-    background-color: var(--bg-base);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-
-  /* Header Section */
-  .dash-header {
-    max-width: 1200px;
-    margin: 2rem auto 2rem;
-    padding: 0 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .dash-title h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--text-main);
-    letter-spacing: -0.025em;
-    margin: 0 0 0.5rem 0;
-  }
-  
-  .dash-subtitle {
-    color: var(--text-sub);
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .status-pill {
-    background: #dbeafe;
-    color: #1e40af;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 9999px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  /* Mac-style Window Frame */
-  .app-window {
-    max-width: 1400px;
-    margin: 0 auto 3rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: var(--window-shadow);
-    border: 1px solid var(--window-border);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Window Title Bar */
-  .window-bar {
-    background: #f1f5f9;
-    border-bottom: 1px solid var(--window-border);
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .window-controls {
-    display: flex;
-    gap: 8px;
-  }
-  .control-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-  .dot-red { background: #ef4444; border: 1px solid #dc2626; }
-  .dot-yellow { background: #f59e0b; border: 1px solid #d97706; }
-  .dot-green { background: #22c55e; border: 1px solid #16a34a; }
-
-  .window-title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #64748b;
-    letter-spacing: 0.02em;
-  }
-  
-  .window-actions {
-    font-size: 0.85rem;
-    color: #94a3b8;
-  }
-
-  /* Iframe Container - Seamless Integration */
-  .iframe-wrapper {
-    position: relative;
-    width: 100%;
-    background: #ffffff;
-  }
-  
-  .kpi-iframe {
-    width: 100%;
-    min-height: 1200px;
-    border: none;
-    display: block;
-    overflow: hidden;
-  }
-
-  /* Footer Note */
-  .dash-footer {
-    text-align: center;
-    color: var(--text-sub);
-    font-size: 0.85rem;
-    padding-bottom: 3rem;
-  }
-  
-  /* Info Callout */
-  .integration-note {
-    max-width: 1200px;
-    margin: 0 auto 1.5rem;
-    padding: 0 1rem;
-  }
-  .integration-note .callout {
-    background: #eff6ff;
-    border-left: 4px solid var(--primary-blue);
-    padding: 1rem 1.5rem;
-    border-radius: 0 8px 8px 0;
-    font-size: 0.9rem;
-    color: var(--text-sub);
-  }
-  .integration-note .callout strong {
-    color: var(--text-main);
-  }
-</style>
-
-<div class="dash-header">
-  <div class="dash-title">
-    <h1>YTD &amp; Monthly KPI Summary</h1>
-    <div class="dash-subtitle">
-      <span class="status-pill">Live Report</span>
-      <span>2025年の取引パフォーマンス詳細分析</span>
-    </div>
-  </div>
-</div>
-
-<div class="integration-note">
-  <div class="callout">
-    <strong>📊 統合レポート:</strong> 
-    このダッシュボードはPythonスクリプトにより自動生成され、定期的に更新されます。
-    スタイルの独立性を保つためiframe形式で統合しています。
-  </div>
-</div>
-
-<div class="app-window">
-  <div class="window-bar">
-    <div class="window-controls">
-      <div class="control-dot dot-red"></div>
-      <div class="control-dot dot-yellow"></div>
-      <div class="control-dot dot-green"></div>
-    </div>
-    <div class="window-title">
-      <i class="bi bi-shield-check" style="font-size:0.8em; margin-right:4px;"></i> kpi_dashboard_2025 — Isolated View
-    </div>
-    <div class="window-actions">
-      <a href="kpi/index.html" target="_blank" title="Open in new tab" style="color:#64748b; text-decoration:none;">
-        <i class="bi bi-box-arrow-up-right"></i>
-      </a>
-    </div>
-  </div>
-  
-  <div class="iframe-wrapper">
-    <iframe id="kpiFrame" class="kpi-iframe" src="kpi/index.html" title="Investment Dashboard" scrolling="auto" onload="resizeIframe(this)">
-    </iframe>
-  </div>
-</div>
-
-<div class="dash-footer">
-  <i class="bi bi-info-circle me-1"></i>
-  データは <code>run_all.py</code> により自動更新されます。最終更新日時はダッシュボード内のヘッダーをご確認ください。
-</div>
-
-<script>
-  // iframeの高さを内容に合わせて動的に調整
-  function resizeIframe(iframe) {
-    try {
-      // 同一オリジンの場合のみ動的調整
-      const doc = iframe.contentDocument || iframe.contentWindow.document;
-      const height = doc.body.scrollHeight + 50;
-      iframe.style.height = Math.max(height, 1200) + 'px';
-    } catch (e) {
-      // クロスオリジンの場合はデフォルト高さを維持
-      iframe.style.height = '1400px';
-    }
-  }
-  
-  // ウィンドウリサイズ時にも調整
-  window.addEventListener('resize', function() {
-    const iframe = document.getElementById('kpiFrame');
-    if (iframe) resizeIframe(iframe);
-  });
-</script>
+<section id="why-each-year-looks-different" class="level2">
+<h2 class="anchored" data-anchor-id="why-each-year-looks-different">Why Each Year Looks Different</h2>
+<p>本サイトの Annual Report は、<strong>年度ごとに意図的に異なるデザインスタイルを採用しています</strong>。</p>
+<p>これは統一感の欠如ではなく、デザインと実装の学習を兼ねた意図的な選択です。毎年新しいスタイルに挑戦することで、Web デザインの表現力を広げ、異なる見せ方が読み手に与える印象の違いを実験的に検証しています。今後も年度が変わるたびに新しいアプローチを試していく方針です。</p>
+<p>以下の比較表は、各年度のデザイン決定を記録し、次のスタイル検討時の出発点として活用するためのものです。</p>
+<hr>
+</section>
+<section id="design-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="design-comparison">Design Comparison</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>2025</th>
+<th>2026</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Design Reference</strong></td>
+<td>macOS App Window</td>
+<td>Academic Paper (LaTeX)</td>
+</tr>
+<tr class="even">
+<td><strong>Typography</strong></td>
+<td>System sans-serif (-apple-system, Segoe UI, Roboto)</td>
+<td>Crimson Pro (serif) + Lato (UI) + Source Code Pro (code)</td>
+</tr>
+<tr class="odd">
+<td><strong>Color Accent</strong></td>
+<td>Blue <code>#2563eb</code></td>
+<td>Maroon <code>#800000</code></td>
+</tr>
+<tr class="even">
+<td><strong>Layout Frame</strong></td>
+<td>Mac-style window chrome (red/yellow/green dots, shadow)</td>
+<td>Double-border academic frame with footnotes</td>
+</tr>
+<tr class="odd">
+<td><strong>Content Structure</strong></td>
+<td>Header → Callout → iframe</td>
+<td>Abstract → Table of Contents → iframe → Footnotes</td>
+</tr>
+<tr class="even">
+<td><strong>Data Scope</strong></td>
+<td>KPI Summary (1 table)</td>
+<td>5 tables (KPI, P/L, BS, CF, Risk)</td>
+</tr>
+<tr class="odd">
+<td><strong>Mood</strong></td>
+<td>Clean / SaaS Dashboard</td>
+<td>Formal / Academic</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="change-log" class="level2">
+<h2 class="anchored" data-anchor-id="change-log">Change Log</h2>
+<ul>
+<li><strong>2025-12</strong>: 初版ダッシュボード作成。macOS 風の App Window スタイルを採用。iframe による KPI 表示。</li>
+<li><strong>2026-01</strong>: 2026 年度版を Academic Paper スタイルで新設。財務諸表形式（P/L, BS, CF）を追加。</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -783,7 +650,7 @@ ul.task-list li input[type="checkbox"] {
     </div>   
     <div class="nav-footer-center">
 <p>© 2026 chokotto All Rights Reserved.</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/Chiquitos-JP/trading-dashboard/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Chiquitos-JP/trading-dashboard/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

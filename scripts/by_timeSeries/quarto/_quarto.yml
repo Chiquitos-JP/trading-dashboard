@@ -29,6 +29,9 @@ website:
             href: dashboard_2025.html
           - text: "2026 Annual Report"
             href: dashboard_2026.html
+          - text: "---"
+          - text: "Design Notes"
+            href: financials_notes.html
     right: []
     tools:
       - icon: github

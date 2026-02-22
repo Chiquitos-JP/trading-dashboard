@@ -2931,5 +2931,33 @@
     "title": "Week 4 - Feb 2026",
     "section": "まとめ",
     "text": "まとめ\n今後は取引機会を増やし、安定したパフォーマンスを維持しながら利益を追求していく方針です。引き続き市場を注視し、柔軟な戦略で臨みます。\n\nこのレビューは run_all.py + AI分析 により自動生成されました。\n\n\n\n\n\n\nCaution⚠️ 免責事項 / Disclaimer\n\n\n\n\n\n\n投資判断は自己責任でお願いします。本記事は過去データに基づく分析であり、将来の成果や再現性を保証するものではありません。\nDisclaimer: All investment decisions are made at your own risk. This article is based on historical data and past analysis and does not guarantee future performance or reproducibility."
+  },
+  {
+    "objectID": "financials_notes.html",
+    "href": "financials_notes.html",
+    "title": "Financials - Design Notes",
+    "section": "",
+    "text": "本サイトの Annual Report は、年度ごとに意図的に異なるデザインスタイルを採用しています。\nこれは統一感の欠如ではなく、デザインと実装の学習を兼ねた意図的な選択です。毎年新しいスタイルに挑戦することで、Web デザインの表現力を広げ、異なる見せ方が読み手に与える印象の違いを実験的に検証しています。今後も年度が変わるたびに新しいアプローチを試していく方針です。\n以下の比較表は、各年度のデザイン決定を記録し、次のスタイル検討時の出発点として活用するためのものです。"
+  },
+  {
+    "objectID": "financials_notes.html#why-each-year-looks-different",
+    "href": "financials_notes.html#why-each-year-looks-different",
+    "title": "Financials - Design Notes",
+    "section": "",
+    "text": "本サイトの Annual Report は、年度ごとに意図的に異なるデザインスタイルを採用しています。\nこれは統一感の欠如ではなく、デザインと実装の学習を兼ねた意図的な選択です。毎年新しいスタイルに挑戦することで、Web デザインの表現力を広げ、異なる見せ方が読み手に与える印象の違いを実験的に検証しています。今後も年度が変わるたびに新しいアプローチを試していく方針です。\n以下の比較表は、各年度のデザイン決定を記録し、次のスタイル検討時の出発点として活用するためのものです。"
+  },
+  {
+    "objectID": "financials_notes.html#design-comparison",
+    "href": "financials_notes.html#design-comparison",
+    "title": "Financials - Design Notes",
+    "section": "Design Comparison",
+    "text": "Design Comparison\n\n\n\n\n\n\n\n\nAspect\n2025\n2026\n\n\n\n\nDesign Reference\nmacOS App Window\nAcademic Paper (LaTeX)\n\n\nTypography\nSystem sans-serif (-apple-system, Segoe UI, Roboto)\nCrimson Pro (serif) + Lato (UI) + Source Code Pro (code)\n\n\nColor Accent\nBlue #2563eb\nMaroon #800000\n\n\nLayout Frame\nMac-style window chrome (red/yellow/green dots, shadow)\nDouble-border academic frame with footnotes\n\n\nContent Structure\nHeader → Callout → iframe\nAbstract → Table of Contents → iframe → Footnotes\n\n\nData Scope\nKPI Summary (1 table)\n5 tables (KPI, P/L, BS, CF, Risk)\n\n\nMood\nClean / SaaS Dashboard\nFormal / Academic"
+  },
+  {
+    "objectID": "financials_notes.html#change-log",
+    "href": "financials_notes.html#change-log",
+    "title": "Financials - Design Notes",
+    "section": "Change Log",
+    "text": "Change Log\n\n2025-12: 初版ダッシュボード作成。macOS 風の App Window スタイルを採用。iframe による KPI 表示。\n2026-01: 2026 年度版を Academic Paper スタイルで新設。財務諸表形式（P/L, BS, CF）を追加。"
   }
 ]
