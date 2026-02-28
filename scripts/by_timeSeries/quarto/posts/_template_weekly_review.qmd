@@ -266,7 +266,8 @@ open-graph:
 - **破線**: 5年移動平均。現在値との乖離で構造変化を読む
 - **アノテーション**: 最新値 (パーセンタイル, 前年比変化率)
 - **VIX**: CBOE Volatility Index - 市場の恐怖度・ボラティリティを示す
-- **FFR**: Federal Funds Effective Rate - FRBの政策金利
+- **FFR**: Federal Funds Effective Rate - FRBの政策金利（金利チャネル）
+- **FRB資産残高**: WALCL - FRBバランスシート総資産。QE=膨張、QT=縮小（量的チャネル）
 - **失業率**: US Unemployment Rate - 労働市場の健全性指標
 - **CPI**: Consumer Price Index - インフレ動向の指標
 - **BAA10Y**: Moody's Baa Corporate Bond Spread - 社債スプレッド
