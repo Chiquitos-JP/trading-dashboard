@@ -104,6 +104,30 @@ open-graph:
 - **為替レート**: {{risk_fx_rate}}円/USD
 :::
 
+### 含み損益
+
+{{unrealized_snapshot_chart}}
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: yfinance終値ベース。銘柄名は匿名化。含み損益 = (現在価格 - 平均取得単価) x 保有数量 x 為替レート。*
+:::
+
+### 含み損益推移
+
+{{unrealized_timeseries_chart}}
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: 各ポジション建玉日からの日次含み損益推移。上段は銘柄別、下段はUS/JP市場別の合計。*
+:::
+
+### 損失ポジション x イベント
+
+{{unrealized_events_chart}}
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: 含み損失ポジションの推移に重要経済イベント（FOMC、雇用統計、CPI等）をオーバーレイ。🇺🇸=米国 🇯🇵=日本。*
+:::
+
 ### 信用取引 保有期間
 
 {{risk_margin_timeline}}
