@@ -244,14 +244,27 @@ open-graph:
 *データソース: [FRED M2SL](https://fred.stlouisfed.org/series/M2SL)*
 :::
 
-### 推移チャート
+### 経済環境スコアカード
+
+```{=html}
+{{macro_scorecard}}
+```
+
+::: {style="font-size: 0.75em; color: #94a3b8; margin-top: 0.5em;"}
+*Note: 各指標の10年パーセンタイル位置。青帯=P25-P75（通常レンジ）。破線=P50（中央値）。YoYは前年同時期比。*
+:::
+
+### マクロ指標推移
 
 ```{=html}
 {{macro_dashboard}}
 ```
 
 :::{.callout-note collapse="true"}
-## データソース
+## データソース・読み方
+- **シェーディング**: 薄いグレー帯は10年のP25-P75（通常レンジ）。帯の外=歴史的に異常な水準
+- **破線**: 5年移動平均。現在値との乖離で構造変化を読む
+- **アノテーション**: 最新値 (パーセンタイル, 前年比変化率)
 - **VIX**: CBOE Volatility Index - 市場の恐怖度・ボラティリティを示す
 - **FFR**: Federal Funds Effective Rate - FRBの政策金利
 - **失業率**: US Unemployment Rate - 労働市場の健全性指標
