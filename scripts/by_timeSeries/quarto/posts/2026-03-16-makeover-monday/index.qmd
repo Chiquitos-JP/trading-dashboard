@@ -47,6 +47,7 @@ from plotly.subplots import make_subplots
 
 url = "https://raw.githubusercontent.com/cajjster/data_files/main/vgsales.csv"
 vgsales = pd.read_csv(url)
+vgsales.columns = vgsales.columns.str.replace(" ", "_")
 
 mario = vgsales[
     vgsales["Name"].str.contains("Mario", case=False, na=False)
