@@ -272,7 +272,7 @@ open-graph:
 - **CPI**: Consumer Price Index - インフレ動向の指標
 - **BAA10Y**: Moody's Baa Corporate Bond Spread - 社債スプレッド
 - **Nasdaq/SP500**: 主要株価指数
-- **金価格**: Gold Fixing Price (London) - ロンドン金価格（USD/オンス）
+- **金価格**: Gold Futures (COMEX GC=F) - 金先物価格（USD/オンス）
 - **ドル円**: USD/JPY Exchange Rate - ドル円為替レート
 
 *データソース: [FRED (Federal Reserve Economic Data)](https://fred.stlouisfed.org/)*
