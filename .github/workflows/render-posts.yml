@@ -53,6 +53,17 @@ jobs:
             any::knitr
             any::rmarkdown
             any::patchwork
+            any::ggtext
+            any::ggrepel
+            any::ggridges
+            any::treemapify
+            any::gt
+            any::reactable
+            any::showtext
+            any::colorspace
+            any::janitor
+            any::tidytuesdayR
+            any::forcats
 
       - name: Setup Python
         uses: actions/setup-python@v5
