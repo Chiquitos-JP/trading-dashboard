@@ -1,50 +1,58 @@
 <img src="docs/quarto/latest/assets/chokotto_ver01.png" alt="プロジェクトロゴ" width="200">
 
-# Noise-to-Value README
+# Noise-to-Value
 
-**Portable information → signal, not noise → actionable value.**
+> **Portable information → signal, not noise → actionable value.**
 
-## 概要
+「多様な情報からシグナルを発見する」ための個人学習プロジェクトです。
+身銭を切って株式売買を行いデータを取得し、特徴量生成・KPI 計算・レポート生成・成果物公開までの一連のフローを管理しながら、AI 活用や分析手法を学習しています。
 
-本プロジェクトは、「情報を持ち運び可能なシグナルに加工する」ことを可能にするための個人的な学習プロジェクトです。残念ながら無料で程良いデータは保有していないため、身銭を切って株式売買を行う事でデータを取得します。
-データ取得から特徴量生成、KPI 計算、レポート・ダッシュボード生成、成果物公開まで一連のフローを管理します。
+| | |
+|---|---|
+| **公開サイト** | [trading-dashboard](https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/analysis.html) |
+| **技術スタック** | Python (pandas, Plotly) · R (ggplot2) · Quarto · GitHub Actions · GitHub Pages |
+| **実行環境** | Windows 11 ARM64 · PowerShell · `py` コマンド |
+
+---
+
+## データパイプライン
 
 <details>
-<summary><strong>全体フロー</strong></summary>
-
-<details>
-<summary><strong>データ処理フロー</strong></summary>
+<summary><strong>処理フロー（メダリオンアーキテクチャ）</strong></summary>
 
 ```text
 1. データ取得（Raw CSV）
-   外部ソース（楽天証券、SBI証券）
+   楽天証券 / SBI証券から手動ダウンロード
        ↓
-   data/trading_account/{data_type}/raw/{broker}/  # 生データ（ソース）
+   data/trading_account/{data_type}/raw/{broker}/
 
-2. マスターデータ更新（Optimized Pipeline）
-   data/.../raw/
+2. 正規化（Bronze）
        ↓ [optimized_data_pipeline.py]
-   data/trading_account/{data_type}/master/        # 統合マスター（Parquet）
-       ├── realized_pl_merged.parquet              # 実現損益マスター（全ブローカー統合）
-       ├── realized_pl_rakuten.parquet             # 楽天個別マスター
-       └── realized_pl_sbi.parquet                 # SBI個別マスター
+   data/trading_account/{data_type}/bronze/
+       ├── rakuten.parquet          # 楽天（正規化済み）
+       └── rakuten_jp.parquet       # 楽天（国内銘柄）
 
-3. 集計データ生成
-   data/.../master/
-       ↓ [自動生成]
-   data/trading_account/{data_type}/aggregated/    # 集計データ
-       ├── monthly_summary.parquet                 # 月次サマリー
-       └── kpi_metrics.parquet                     # KPI指標
+3. 統合（Silver）
+       ↓ [optimized_data_pipeline.py]
+   data/trading_account/{data_type}/silver/
+       └── realized_pl.parquet      # 全ブローカー統合
 
-4. 可視化・分析
-   data/.../master/ + data/.../aggregated/
-       ↓ [分析スクリプト]
-   outputs/interim/{category}/                     # 中間可視化（HTML）
+4. 集計・KPI（Gold）
+       ↓ [kpi_analysis.py]
+   data/trading_account/realized_pl/gold/
+       ├── monthly_pl.parquet       # 月次損益
+       ├── monthly_pl_jp.parquet    # 国内月次
+       ├── monthly_pl_us.parquet    # 米国月次
+       ├── monthly_pl_ytd.parquet   # 年初来
+       └── kpi_metrics.parquet      # KPI指標
 
-5. レポート生成
-   outputs/interim/
-       ↓ [Quartoレンダリング]
-   docs/quarto/latest/                             # 公開用ドキュメント
+5. 可視化・分析
+       ↓ [各種可視化スクリプト + AI分析]
+   outputs/interim/{category}/      # 中間可視化（HTML）
+
+6. レポート生成
+       ↓ [Quarto レンダリング]
+   docs/quarto/latest/              # 公開用ドキュメント
 ```
 
 </details>
@@ -54,526 +62,333 @@
 
 ```text
 data/trading_account/
-├── realized_pl/                    # 実現損益データ
-│   ├── raw/                        # 生CSV（ソース of truth）
-│   │   ├── rakuten/               # 楽天証券
-│   │   └── sbi/                   # SBI証券
-│   ├── master/                     # マスターParquet（統合・正規化済み）
-│   │   ├── realized_pl_merged.parquet
-│   │   ├── realized_pl_rakuten.parquet
-│   │   ├── realized_pl_sbi.parquet
-│   │   └── show_tbl.R             # マスター確認用Rスクリプト
-│   └── aggregated/                 # 集計データ
-│       ├── monthly_summary.parquet
+├── realized_pl/                     # 実現損益データ
+│   ├── raw/                         # 生 CSV（Source of Truth）
+│   │   ├── rakuten/
+│   │   └── sbi/
+│   ├── bronze/                      # 正規化 Parquet（ブローカー別）
+│   ├── silver/                      # 統合 Parquet
+│   │   └── realized_pl.parquet
+│   └── gold/                        # 集計・KPI
+│       ├── monthly_pl.parquet
 │       └── kpi_metrics.parquet
-└── transaction/                    # 取引履歴データ
-    ├── raw/
-    │   ├── rakuten/
-    │   └── sbi/
-    └── master/
-        ├── transaction_merged.parquet
-        ├── transaction_rakuten.parquet
-        └── transaction_sbi.parquet
+├── transaction/                     # 取引履歴データ
+│   ├── raw/
+│   │   ├── rakuten/
+│   │   └── sbi/
+│   ├── bronze/
+│   └── silver/
+│       └── transaction.parquet
+└── account_balance/
+    └── daily_balance.parquet        # 日次口座残高
 ```
 
 </details>
 
-<details>
-<summary><strong>実行手順</strong></summary>
+---
 
-1. **初期設定・環境構築**
-   - Python 仮想環境のセットアップ（`scripts/setup_python_env.ps1` または VSCode タスク「Py: setup venv」）
-   - R 環境の初期化（`config/R/init.R`）
-
-2. **データ取得・格納**
-   - `data/trading_account/realized_pl/raw/` 配下に楽天・SBIの生CSVを格納
-   - `data/trading_account/transaction/raw/` 配下に取引履歴CSVを格納
-
-   **生データの取得方法:**
-   | 証券会社 | データ種別 | 取得条件 | 出力形式 |
-   |---------|-----------|---------|---------|
-   | 楽天 | 実現損益 | すべて、期間指定なし | CSV |
-   | 楽天 | 取引履歴 | すべて、期間指定なし | CSV |
-   | SBI | 信用決済明細 | すべて、期間指定なし、行数上限5,000行 | CSV |
-   | SBI | 約定履歴 | すべて、期間指定なし（過去2年間のみ）、行数上限1,000行 | CSV |
-
-3. **パイプライン実行（一括）**
-
-   ```bash
-   python scripts/by_timeSeries/runners/run_all.py
-   ```
-
-   これにより以下が自動実行されます:
-   - マスターデータの差分更新
-   - 月次サマリー・KPI生成
-   - 週間レビュー生成
-   - Quartoレンダリング
-   - ダッシュボードHTML出力
-
-4. **成果物公開**
-   - VSCode タスク「Publish: build & push」でGitコミット＆プッシュ
-
-</details>
-
-</details>
+## セットアップ & 実行
 
 <details>
-<summary><strong>各種ファイル・ディレクトリの説明</strong></summary>
-
-<details>
-<summary><strong>Git 関連</strong></summary>
-
-- `.github/`：GitHub 上でコードを自動実行（テストやデプロイ）したり、バグ報告・機能要望のテンプレートを管理するための設定フォルダ。通常は触る必要はありません。
-- `.gitignore`：Git 管理対象外ファイル・ディレクトリのリスト
-- `.env`：環境変数ファイル（API キーやパスワード等、機密情報はここに記載し.gitignore 推奨）
-
-</details>
-
-<details>
-<summary><strong>VSCode 関連</strong></summary>
-
-- `.vscode/`：VSCode 用の設定（タスク、拡張機能、デバッグ構成など）
-
-</details>
-
-<details>
-<summary><strong>R 関連</strong></summary>
-
-- `stockTrading.Rproj`：RStudio プロジェクトファイル（RStudio での作業用）
-- `.Rprofile`：R 起動時に実行される設定ファイル（カスタム設定やパッケージ自動読込等）
-- `.Renviron`：R の環境変数設定ファイル（API キー等の管理に利用）
-- `.Rhistory`：R のコマンド履歴ファイル（自動生成、共有不要）
-- `.Rproj.user/`：RStudio プロジェクトのユーザー設定（自動生成、共有不要）
-
-</details>
-
-<details>
-<summary><strong>Python 関連</strong></summary>
-
-- `.venv/`：Python 仮想環境ディレクトリ（依存パッケージ管理、共有不要、環境そのもの）
-- `requirements_backup.txt`：Python パッケージのバックアップリスト（`pip freeze`等で生成、依存パッケージのメモ書き）
-
-</details>
-
-<details>
-<summary><strong>主要スクリプト</strong></summary>
-
-**実行系（scripts/by_timeSeries/runners/）**
-
-- `run_all.py`：一括実行スクリプト（推奨）
-- `run_visualization_only.py`：可視化のみ実行
-- `run_render_only.py`：レンダリングのみ実行
-- `run_quarto_only.py`：Quartoのみ実行
-
-**分析系（scripts/by_timeSeries/）**
-
-- `common/optimized_data_pipeline.py`：データパイプライン（マスター更新・集計生成）
-- `holdingPeriod/risk_analysis.py`：リスク分析・ポジション計算
-- `holdingPeriod/holding_period_visualization.py`：保有期間可視化
-- `cleanup_old_files.py`：古い出力ファイルのクリーンアップ
-
-</details>
-
-</details>
-
-<details>
-<summary><strong>TidyTuesday / MakeoverMonday 投稿フロー</strong></summary>
-
-週次データビジュアライゼーション投稿の作成・レンダリング手順です。  
-`run_all.py`や週間レビュー（`run_weekly_review.py`）とは別管理で、専用スクリプト `run_weekly_posts.py` を使用します。
-
-<details>
-<summary><strong>基本的な考え方</strong></summary>
-
-**TidyTuesday（R）→ MakeoverMonday（Python）** の順でワークフローを回します。
-
-| 投稿               | 言語            | 役割                           | 投稿日 |
-| ------------------ | --------------- | ------------------------------ | ------ |
-| **TidyTuesday**    | R (ggplot2)     | アイデア探索・プロトタイピング | 火曜   |
-| **MakeoverMonday** | Python (Plotly) | 仕組化・再現性の確保           | 月曜   |
-
-**フロー:**
-
-```
-TidyTuesday (R)              MakeoverMonday (Python)
-    │                              │
-    │ 1. アイデア探索              │ 3. 同じ題材をPythonで実装
-    │ 2. ggplot2でプロトタイプ     │ 4. 仕組化・自動化可能な形に
-    │                              │
-    ▼                              ▼
-  火曜投稿 ──────────────────▶ 翌週月曜投稿
-          （同じ内容を別言語で）
-```
-
-**ポイント:**
-
-- 両者は**基本的に同じ題材・同じ可視化**を扱う
-- TidyTuesdayで試行錯誤し、MakeoverMondayで整理・仕組化
-- R → Python の移植練習にもなる
-
-</details>
-
-<details>
-<summary><strong>ディレクトリ構造</strong></summary>
-
-```text
-scripts/by_timeSeries/quarto/posts/
-├── 2026-01-27-makeover-monday/    # MakeoverMonday投稿（Python）
-│   ├── index.qmd                  # Quartoソース
-│   └── thumbnail.svg              # サムネイル画像
-├── 2026-01-28-tidytuesday/        # TidyTuesday投稿（R）
-│   ├── index.qmd                  # Quartoソース
-│   ├── thumbnail.svg              # サムネイル画像
-│   ├── prepare_data.py            # データ準備スクリプト（必要に応じて）
-│   └── data/                      # ローカルデータ（.gitignore対象）
-│       └── monthly_balance.parquet
-└── ...
-```
-
-**命名規則**: `YYYY-MM-DD-{makeover-monday|tidytuesday}/`  
-**日付**: 月曜日=MakeoverMonday、火曜日=TidyTuesday
-
-</details>
-
-<details>
-<summary><strong>完全ワークフロー（アイデアから公開まで）</strong></summary>
-
-### Phase 1: アイデア・企画
-
-1. **題材を決定**: 可視化したいデータや分析テーマを決める
-2. **チャート設計**: どのような可視化が効果的か検討
-   - 時系列チャート、散布図、積み上げグラフ等
-
-### Phase 2: ファイル作成
-
-3. **ディレクトリ作成**
-
-   ```powershell
-   mkdir scripts/by_timeSeries/quarto/posts/2026-01-27-makeover-monday
-   mkdir scripts/by_timeSeries/quarto/posts/2026-01-28-tidytuesday
-   mkdir scripts/by_timeSeries/quarto/posts/2026-01-28-tidytuesday/data
-   ```
-
-4. **index.qmd 作成**（各フォルダに）
-   - MakeoverMonday: Python + Plotly/Matplotlib
-   - TidyTuesday: R + ggplot2
-
-5. **thumbnail.svg 作成**（400x300px推奨）
-
-6. **prepare_data.py 作成**（TidyTuesday用、データ準備が必要な場合）
-
-### Phase 3: レンダリング＆公開
-
-**Step 1: TidyTuesday用データ準備**
+<summary><strong>環境構築</strong></summary>
 
 ```powershell
-cd scripts/by_timeSeries/quarto/posts/2026-01-28-tidytuesday
-py prepare_data.py
+# Python 仮想環境のセットアップ
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 ```
 
-**Step 2: MakeoverMonday（Python）レンダリング**
+**前提条件:**
+
+- Python 3.12+（`py` コマンドで起動）
+- Quarto CLI（ローカルインストール済み。R knitr エンジンはローカル不可）
+- `.env` に `OPENAI_API_KEY` を設定（なくてもフォールバック動作する）
+- インターネット接続（FRED 為替データ取得に必要）
+
+</details>
+
+<details>
+<summary><strong>データ取得 & 格納</strong></summary>
+
+以下の CSV を手動ダウンロードし、対応するフォルダに格納します。
+
+| 証券会社 | データ種別 | 取得条件 | 格納先 |
+|---|---|---|---|
+| 楽天 | 実現損益 | すべて、期間指定なし | `data/.../realized_pl/raw/rakuten/` |
+| 楽天 | 取引履歴 | すべて、期間指定なし | `data/.../transaction/raw/rakuten/` |
+| SBI | 信用決済明細 | すべて、上限 5,000行 | `data/.../realized_pl/raw/sbi/` |
+| SBI | 約定履歴 | すべて、過去2年間、上限 1,000行 | `data/.../transaction/raw/sbi/` |
+
+</details>
+
+<details>
+<summary><strong>パイプライン実行</strong></summary>
 
 ```powershell
-cd scripts/by_timeSeries/runners
-py run_weekly_posts.py --date 2026-01-27
+# 一括実行（推奨 — チェックポイント機能で処理済みステップは自動スキップ）
+py scripts/by_timeSeries/runners/run_all.py
 ```
 
-または直接Quartoでレンダリング:
+**実行ステップ:**
+
+| # | ステップ | 内容 |
+|---|---|---|
+| 1 | データ処理 | マスターデータの差分更新・統合 |
+| 2 | 為替取得 | FRED 為替レート更新 |
+| 3 | KPI 分析 | KPI 指標の算出 |
+| 4 | 可視化 | グラフ作成（保有期間、リスク、経済指標、マクロ、マーケット） |
+| 5 | AI 分析 | KPI データに基づくコメント生成 |
+| 6 | レビュー生成 | 週間レビュー記事（Weekly Review）の自動作成 |
+| 7 | レンダリング | Quarto でレポートサイトを生成 |
+| 8 | ダッシュボード | Panel 静的 HTML 出力 |
+
+**オプション:**
 
 ```powershell
-cd scripts/by_timeSeries/quarto
-quarto render "posts\2026-01-27-makeover-monday\index.qmd"
+py scripts/by_timeSeries/runners/run_all.py --force               # 強制再実行（チェックポイント無視）
+py scripts/by_timeSeries/runners/run_all.py --render-only          # Quarto レンダリングのみ
+py scripts/by_timeSeries/runners/run_all.py --visualization-only   # 可視化のみ
+py scripts/by_timeSeries/runners/run_all.py --data-only            # データ処理のみ
+py scripts/by_timeSeries/runners/run_all.py --steps "楽天証券データ処理" "SBI証券データ処理"  # 特定ステップのみ
 ```
 
-**Step 3: Git同期**
+**部分実行用スクリプト:**
+
+| スクリプト | 用途 |
+|---|---|
+| `run_weekly_review.py` | Weekly Review + Quarto + Dashboard |
+| `run_weekly_posts.py` | TidyTuesday / MakeoverMonday |
+| `run_visualization.py` | 可視化のみ |
+| `run_quarto_rebuild.py` | 既存 .qmd の Quarto 再ビルド |
+
+> これらは `scripts/by_timeSeries/runners/` に配置。
+> 迷ったら `run_all.py` を実行すれば OK（チェックポイントで冪等）。
+
+</details>
+
+<details>
+<summary><strong>成果物公開</strong></summary>
 
 ```powershell
 git add .
-git commit -m "Add MakeoverMonday/TidyTuesday posts"
+git commit -m "Weekly review YYYY-MM-DD"
 git push
 ```
 
-**Step 4: TidyTuesday（R）GitHub Actionsでレンダリング**
-
-1. GitHub → **Actions** タブ
-2. **Render Weekly Posts (TidyTuesday/MakeoverMonday)** を選択
-3. **Run workflow** → Post type: `tidytuesday` を選択
-4. 自動でレンダリング→コミット→プッシュ
-
-**Step 5: ローカル同期（必要に応じて）**
-
-```powershell
-git pull
-```
+Quarto 出力は `docs/quarto/latest/` に生成され、GitHub Pages で公開されます。
 
 </details>
 
+---
+
+## 週次投稿（TidyTuesday / MakeoverMonday）
+
 <details>
-<summary><strong>ワークフロー全体図</strong></summary>
+<summary><strong>投稿フローの概要</strong></summary>
+
+**TidyTuesday（R）→ MakeoverMonday（Python）** の順でワークフローを回します。
+
+| 投稿 | 言語 | 役割 | 投稿日 |
+|---|---|---|---|
+| **TidyTuesday** | R (ggplot2) | アイデア探索・プロトタイピング | 火曜 |
+| **MakeoverMonday** | Python (Plotly) | 仕組化・再現性の確保 | 月曜 |
 
 ```text
-[ローカル - Cursor]                          [GitHub Actions]
-    │                                             │
-    │ 1. アイデア決定・ファイル作成               │
-    │    ├── index.qmd (Python/R)                 │
-    │    ├── thumbnail.svg                        │
-    │    └── prepare_data.py (TidyTuesday用)      │
-    │                                             │
-    │ 2. TidyTuesday用データ準備                  │
-    │    py prepare_data.py                       │
-    │    → data/monthly_balance.parquet生成       │
-    │                                             │
-    │ 3. MakeoverMonday (Python) レンダリング     │
-    │    py run_weekly_posts.py                   │
-    │    → docs/quarto/latest/ にHTML生成         │
-    │                                             │
-    │ 4. git push                                 │
-    └─────────────────────────────────────────────►
-                                                  │
-                                                  │ 5. TidyTuesday (R) レンダリング
-                                                  │    Actions → Run workflow
-                                                  │    ├── prepare_data.py 実行
-                                                  │    ├── quarto render 実行
-                                                  │    └── 自動コミット&プッシュ
-                                                  │
-    ◄─────────────────────────────────────────────┘
-    │
-    │ 6. git pull（GitHub Actions完了後）
-    │
-    ▼
-  [公開完了] https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/analysis.html
+TidyTuesday (R)               MakeoverMonday (Python)
+    │                               │
+    │ 1. アイデア探索               │ 3. 同じ題材を Python で実装
+    │ 2. ggplot2 でプロトタイプ     │ 4. 仕組化・自動化可能な形に
+    ▼                               ▼
+  火曜投稿 ─────────────────────▶ 翌週月曜投稿
 ```
+
+- 両者は **同じ題材・同じ可視化** を扱う
+- TidyTuesday で試行錯誤し、MakeoverMonday で整理・仕組化
+- R → Python の移植練習にもなる
+
+**投稿フォルダ:**
+
+```text
+scripts/by_timeSeries/quarto/posts/
+├── 2026-03-16-makeover-monday/   # MakeoverMonday（Python）
+│   ├── index.qmd                 # Quarto ソース
+│   └── thumbnail.svg             # サムネイル画像
+├── 2026-03-17-tidytuesday/       # TidyTuesday（R）
+│   ├── index.qmd
+│   ├── thumbnail.svg
+│   ├── prepare_data.py           # データ準備（必要に応じて）
+│   └── data/                     # ローカルデータ
+└── _template_*.qmd               # テンプレート
+```
+
+**命名規則**: `YYYY-MM-DD-{makeover-monday|tidytuesday}/`
 
 </details>
 
 <details>
-<summary><strong>コマンドリファレンス</strong></summary>
+<summary><strong>作成〜公開ワークフロー</strong></summary>
 
-**run_weekly_posts.py オプション**
+### Phase 1: ファイル作成（ローカル）
+
+1. ディレクトリ・`index.qmd`・`thumbnail.svg` を作成
+2. TidyTuesday の場合は `prepare_data.py` も作成
+
+### Phase 2: レンダリング & 公開
+
+```text
+[ローカル]                              [GitHub Actions]
+    │                                        │
+    │ 1. MakeoverMonday (Python) をローカルレンダリング
+    │    py scripts/by_timeSeries/runners/run_weekly_posts.py
+    │                                        │
+    │ 2. git push ──────────────────────────►│
+    │                                        │
+    │                                        │ 3. TidyTuesday (R) を Actions でレンダリング
+    │                                        │    → render-posts.yml (post_type=tidytuesday)
+    │                                        │    → prepare_data.py 実行 → quarto render
+    │                                        │    → 自動 commit & push
+    │◄───────────────────────────────────────│
+    │ 4. git pull                            │
+```
+
+**CI コマンド（gh CLI）:**
 
 ```powershell
-# MakeoverMondayのみレンダリング（デフォルト）
-py run_weekly_posts.py
+# レンダリング実行
+gh workflow run "render-posts.yml" -f post_type=tidytuesday --repo Chiquitos-JP/trading-dashboard
+gh workflow run "render-posts.yml" -f post_type=makeover-monday -f post_date=2026-03-16 --repo Chiquitos-JP/trading-dashboard
 
-# 特定日付のポストをレンダリング
-py run_weekly_posts.py --date 2026-01-27
-
-# 全ポスト（TidyTuesday含む）をレンダリング
-py run_weekly_posts.py --type all
-
-# 一覧表示のみ（レンダリングしない）
-py run_weekly_posts.py --list
-
-# プレビュー起動
-py run_weekly_posts.py --preview
+# 状況確認
+gh run list --workflow=render-posts.yml --limit 3 --repo Chiquitos-JP/trading-dashboard
 ```
 
-**GitHub Actions ワークフロー**
-
-- ワークフロー名: `Render Weekly Posts (TidyTuesday/MakeoverMonday)`
-- ファイル: `.github/workflows/render-posts.yml`
-- Post type選択肢: `all` / `tidytuesday` / `makeover-monday`
-
-</details>
-
-<details>
-<summary><strong>注意事項</strong></summary>
-
-**TidyTuesdayの`data/`フォルダ**
-
-- `.gitignore`で除外されているため、GitHub Actionsでは`prepare_data.py`で生成
-- ローカルで実行する場合は先に`py prepare_data.py`を実行
-
-**ARM64 Windows環境（Surface Laptop 7等）**
-
-- x64版Rとの互換性問題により、ローカルでのQuarto + Rレンダリングが失敗する
-- TidyTuesdayはGitHub Actions（x64 Linux環境）でレンダリング推奨
-
-**ランディングページ（analysis.html）**
-
-- Quartoの`listing`機能により、`posts/`フォルダ内の全投稿が自動リストアップ
-- 投稿フォルダとindex.qmdが存在すれば、レンダリング前でもサムネイルと概要が表示される
+**ARM64 Windows の制約**: x64 版 R との互換性問題により、ローカルでの Quarto + R レンダリングは不可。TidyTuesday は GitHub Actions（x64 Linux）でレンダリングします。
 
 </details>
 
 <details>
 <summary><strong>X (Twitter) 自動投稿</strong></summary>
 
-レンダリングした記事を自動的にX (Twitter) に投稿するワークフローです。
+### 仕組み（per-post frontmatter 方式）
 
-**自動投稿スケジュール**
+各 `index.qmd` の YAML frontmatter にある `x-posted: true/false` で投稿状態を管理します。
 
-| 曜日 | 時刻     | 投稿タイプ                         |
-| ---- | -------- | ---------------------------------- |
-| 月曜 | 9:00 JST | MakeoverMonday（キューの最古記事） |
-| 火曜 | 9:00 JST | TidyTuesday（キューの最古記事）    |
+1. 新規記事作成時に `x-posted: false` を設定
+2. `post-to-x.yml` が `x-posted: false` の最古の記事を自動投稿
+3. 投稿後に `x-posted: true` に更新し、自動 commit & push
 
-※ スケジュール実行はGitHub Actionsが自動的に行います（手動操作不要）
+### 自動投稿スケジュール
 
-**仕組み**
+| 曜日 | 時刻 | 投稿タイプ |
+|---|---|---|
+| 月曜 | 9:00 JST | MakeoverMonday（最古の未投稿記事） |
+| 火曜 | 9:00 JST | TidyTuesday（最古の未投稿記事） |
 
-1. 週末に記事をレンダリング＆git push
-2. レンダリング時に `.github/x-post-queue.json` にキュー自動追加
-3. 月曜・火曜の9:00 JSTにスケジュール実行
-4. キューから最古の未投稿記事を取得してXに投稿
-5. 投稿済みフラグを更新（自動コミット）
+### 画像添付
 
-**週末ワークフロー（これだけでOK）**
+| 投稿タイプ | 画像ソース |
+|---|---|
+| TidyTuesday (R) | `index_files/figure-html/*.png`（ggplot2 自動出力） |
+| MakeoverMonday (Python) | `chart-1.png`（Plotly/Matplotlib 静的出力） |
 
-```
-週末（手動）                     月曜 9:00 JST      火曜 9:00 JST
-    │                           （自動）           （自動）
-    ▼                               ▼                  ▼
-┌─────────────────────┐        ┌─────────┐       ┌─────────┐
-│ 1. 記事作成          │        │ X投稿   │       │ X投稿   │
-│ 2. レンダリング       │───────▶│ (自動)  │       │ (自動)  │
-│ 3. git push         │ キュー  └─────────┘       └─────────┘
-└─────────────────────┘
-```
-
-**画像添付機能**
-
-投稿時にチャート画像を1枚添付します（画像がある場合のみ）。
-
-| 投稿タイプ              | 画像ソース                                               |
-| ----------------------- | -------------------------------------------------------- |
-| TidyTuesday (R)         | `index_files/figure-html/*.png`（ggplot2出力、自動生成） |
-| MakeoverMonday (Python) | `chart-1.png`（Plotly/Matplotlib静的出力）               |
-
-※ 画像がない場合はテキストのみで投稿
-
-**MakeoverMonday 画像出力の留意事項**
-
-MakeoverMondayでは、最初のチャートのコードブロックに画像出力処理を追加する必要があります：
+MakeoverMonday では最初のチャートに画像出力処理を追加する必要があります。
 
 ```python
-# Plotly の場合（fig.show() の後に追加）
+# Plotly の場合
 fig.write_image("chart-1.png", width=1200, height=600, scale=2)
 
-# Matplotlib の場合（plt.show() の前に追加）
+# Matplotlib の場合
 fig.savefig("chart-1.png", dpi=150, bbox_inches='tight', facecolor='white')
 ```
 
-※ TidyTuesdayはggplot2が自動的にPNG出力するため追加不要
+### 手動実行
 
-**X API 料金体系（Pay-per-use）**
+```powershell
+gh workflow run "post-to-x.yml" -f post_type=makeover-monday --repo Chiquitos-JP/trading-dashboard
+gh workflow run "post-to-x.yml" -f post_type=tidytuesday --repo Chiquitos-JP/trading-dashboard
+```
 
-| 操作             | 料金           |
-| ---------------- | -------------- |
-| Content (Create) | $0.01/投稿     |
-| Media Upload     | 投稿に含まれる |
-| Post (Read)      | $0.005/読取    |
+### X API 設定
 
-月8回投稿の場合: **約$0.08/月**（$5で約500投稿 = 約5年分）
+**GitHub Secrets（必須）:**
 
-※ [X Developer Portal](https://developer.x.com/en/portal/dashboard) でクレジット購入が必要
-
-**GitHub Secrets設定（必須）**
-
-リポジトリの **Settings → Secrets and variables → Actions** で以下を設定:
-
-| Secret名                | 説明                  |
-| ----------------------- | --------------------- |
-| `X_API_KEY`             | X API Key             |
-| `X_API_SECRET`          | X API Key Secret      |
-| `X_ACCESS_TOKEN`        | X Access Token        |
+| Secret 名 | 説明 |
+|---|---|
+| `X_API_KEY` | X API Key |
+| `X_API_SECRET` | X API Key Secret |
+| `X_ACCESS_TOKEN` | X Access Token |
 | `X_ACCESS_TOKEN_SECRET` | X Access Token Secret |
 
-**X API認証情報の取得方法**
-
-1. [X Developer Portal](https://developer.x.com/en/portal/dashboard) にログイン
-2. プロジェクト/アプリを作成
-3. **User authentication settings** で OAuth 1.0a を有効化
-   - App permissions: **Read and write**
-4. **Keys and Tokens** タブで認証情報を取得
-5. **Billing** でPay-per-useクレジットを購入（$5推奨）
-
-**手動実行（スケジュール外で投稿したい場合）**
-
-1. GitHub → **Actions** タブ
-2. **Post to X (Twitter)** を選択
-3. **Run workflow** → Post type と Dry run を選択
-   - `auto`: 曜日で自動判定（月曜=MakeoverMonday、火曜=TidyTuesday）
-   - Dry run: チェックで実際に投稿せずテスト
-4. 手動実行の場合、実行した時刻に投稿される（スケジュール実行は9:00 JST）
-
-**投稿フォーマット例**
-
-```
-MakeoverMonday: Risk Exposure Analysis
-
-Cash Reserve vs Margin Exposure time series visualization
-
-https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-01-27-makeover-monday/
-
-#MakeoverMonday #MyMakeoverMonday #DataViz #Python
-```
-
-※ `#MyMakeoverMonday` / `#MyTidyTuesday` は公式版ではないことを示すタグ
-
-**トラブルシューティング**
-
-| エラー               | 原因              | 解決方法                           |
-| -------------------- | ----------------- | ---------------------------------- |
-| 402 Payment Required | APIクレジット不足 | X Developer Portalでクレジット購入 |
-| 401 Unauthorized     | 認証情報エラー    | GitHub Secretsを再確認             |
-| キューが空           | 未投稿記事なし    | 記事をレンダリング＆push           |
+**料金**: Pay-per-use — $0.01/投稿。月 8 回投稿で約 $0.08/月。
 
 </details>
+
+---
+
+## リファレンス
+
+<details>
+<summary><strong>GitHub Actions ワークフロー一覧</strong></summary>
+
+| ワークフロー | ファイル | 用途 |
+|---|---|---|
+| Render Weekly Posts | `render-posts.yml` | TidyTuesday / MakeoverMonday のレンダリング |
+| Post to X (Twitter) | `post-to-x.yml` | X 自動投稿（月曜 MM / 火曜 TT） |
+| Post Sunday Markets | `post-sunday-markets.yml` | 日曜マーケット情報投稿 |
+| Post Weekly Calendar | `post-weekly-calendar.yml` | 週間経済カレンダー投稿 |
 
 </details>
 
 <details>
-<summary><strong>tips</strong></summary>
+<summary><strong>ファイル・ディレクトリの説明</strong></summary>
 
-<details>
-<summary><strong>特定のファイルだけ再レンダリング（キャッシュクリアあり）</strong></summary>
+**プロジェクトルート:**
 
-```bash
-cd scripts/by_timeSeries/quarto
-quarto render index.qmd --no-cache
-```
+| ファイル / ディレクトリ | 説明 |
+|---|---|
+| `scripts/` | 分析・可視化スクリプト（非公開） |
+| `data/` | 取引・マクロデータ（非公開） |
+| `outputs/` | 中間出力（非公開） |
+| `docs/` | GitHub Pages 公開用（Quarto 出力先） |
+| `config/` | 設定ファイル（非公開） |
+| `.github/` | GitHub Actions ワークフロー・テンプレート |
+| `.venv/` | Python 仮想環境 |
+| `requirements.txt` | Python パッケージ一覧（バージョン固定） |
+| `.env` | 環境変数（API キー等、.gitignore 対象） |
+| `.gitignore` | Git 管理対象外ファイルのリスト |
 
-</details>
+**R 関連（Positron で使用）:**
 
-<details>
-<summary><strong>オプション実行</strong></summary>
+| ファイル | 説明 |
+|---|---|
+| `stockTrading.Rproj` | RStudio / Positron プロジェクトファイル |
+| `.Rprofile` | R 起動時の設定ファイル |
+| `.Renviron` | R 環境変数設定（API キー管理） |
 
-### run_all.py のオプション
+**主要スクリプト（`scripts/by_timeSeries/`）:**
 
-**実行前の準備:**
-
-- プロジェクトルート（`stockTrading/`）に移動
-- Python 仮想環境を有効化（`.venv\Scripts\Activate.ps1`）
-
-```bash
-# 全実行
-python scripts/by_timeSeries/runners/run_all.py
-
-# レンダリングのみ（データ処理をスキップ）
-python scripts/by_timeSeries/runners/run_all.py --render-only
-
-# 可視化のみ（データ処理をスキップ）
-python scripts/by_timeSeries/runners/run_visualization_only.py
-
-# 強制再実行（キャッシュ無視）
-python scripts/by_timeSeries/runners/run_all.py --force
-```
-
-### マスターデータの確認（R）
-
-```r
-# Rで実行
-source("data/trading_account/realized_pl/master/show_tbl.R")
-```
-
-### データパイプラインの単独実行
-
-```bash
-python scripts/by_timeSeries/common/optimized_data_pipeline.py
-```
+| パス | 役割 |
+|---|---|
+| `runners/run_all.py` | 一括実行パイプライン（推奨エントリポイント） |
+| `common/optimized_data_pipeline.py` | データパイプライン（Raw → Bronze → Silver） |
+| `realizedPl/ai_analyzer.py` | AI によるコメント生成 |
+| `macroData/macro_data.py` | マクロデータ取得 |
+| `cleanup_old_files.py` | 古い出力ファイルのクリーンアップ |
 
 </details>
+
+<details>
+<summary><strong>トラブルシューティング</strong></summary>
+
+| エラー | 原因 | 対処 |
+|---|---|---|
+| exit code 9009 | `python` コマンドが見つからない | `py` を使用 |
+| `WinError 32` | Dropbox がファイルロック中 | 無視可（バックアップ失敗のみ） |
+| NaTType エラー | マクロデータの欠損 | 無視可（該当チャートのみスキップ） |
+| 402 Payment Required | X API クレジット不足 | [Developer Portal](https://developer.x.com/en/portal/dashboard) でクレジット購入 |
+| 401 Unauthorized | X API 認証情報エラー | GitHub Secrets を再確認 |
+| ARM64 + R knitr 失敗 | Windows ARM64 互換性問題 | TidyTuesday は GitHub Actions でレンダリング |
 
 </details>
 
@@ -581,4 +396,4 @@ python scripts/by_timeSeries/common/optimized_data_pipeline.py
 
 # English Summary
 
-This project is a learning initiative that enables the transformation of information into portable signals. Unfortunately, we do not have access to free, high-quality data, so we acquire data by actually trading stocks at our own expense. This project manages the entire workflow from data acquisition to feature generation, KPI calculation, report and dashboard creation, and publication of deliverables.
+This project is a personal learning initiative that transforms raw market information into actionable signals. Trading data is acquired through actual stock trading, then processed through a full pipeline — from data ingestion and feature engineering to KPI calculation, AI-powered analysis, report generation, and publication via GitHub Pages.
