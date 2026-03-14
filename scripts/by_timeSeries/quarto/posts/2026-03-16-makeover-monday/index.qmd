@@ -1,0 +1,235 @@
+---
+title: "MakeoverMonday: Mario Game Sales - Nintendo's Compounding Franchise Engine"
+description: "Franchise lifecycle, platform transitions, and hit concentration across 40 years of Mario titles"
+date: "2026-03-16"
+x-posted: false
+author: "chokotto"
+categories:
+  - MakeoverMonday
+  - Python
+  - Gaming
+  - Business
+image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "MakeoverMonday: Mario Game Sales"
+  description: "Franchise lifecycle, platform transitions, and hit concentration across 40 years of Mario"
+---
+
+## Overview
+
+This week's MakeoverMonday explores **Mario game sales** across four decades of Nintendo history. Rather than a simple ranking, we treat the franchise like an asset portfolio: examining **hit concentration**, **platform lifecycle**, and **regional market share** to understand how Nintendo's flagship IP compounds value over time.
+
+- **Data Source**: [VGChartz / vgsales dataset](https://raw.githubusercontent.com/cajjster/data_files/main/vgsales.csv)
+- **Scope**: All Mario-branded titles in the dataset
+- **Angle**: franchise durability, platform transitions, regional decomposition
+
+## Data
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+url = "https://raw.githubusercontent.com/cajjster/data_files/main/vgsales.csv"
+vgsales = pd.read_csv(url)
+
+mario = vgsales[
+    vgsales["Name"].str.contains("Mario", case=False, na=False)
+    & (vgsales["Publisher"] == "Nintendo")
+].copy()
+
+mario["Year"] = pd.to_numeric(mario["Year"], errors="coerce")
+mario = mario.dropna(subset=["Year"])
+mario["Year"] = mario["Year"].astype(int)
+
+print(f"Mario titles: {mario['Name'].nunique()}")
+print(f"Total records: {len(mario)}")
+print(f"Year range: {mario['Year'].min()} - {mario['Year'].max()}")
+print(f"Global sales: {mario['Global_Sales'].sum():.1f}M units")
+```
+
+## My Makeover
+
+### What I Changed
+
+The original bar chart of game sales has been rebuilt into a **multi-panel franchise analysis dashboard**:
+
+1. **Top 15 Titles** - horizontal bar chart with regional sales decomposition
+2. **Platform Era Timeline** - cumulative sales by platform over time
+3. **Genre Mix** - how Mario spans racing, platforming, sports, RPG, and party games
+4. **Regional Market Share** - treemap showing NA vs JP vs EU vs Other
+
+### Top 15 Mario Titles by Global Sales
+
+```{python}
+#| label: top-titles
+#| fig-width: 10
+#| fig-height: 7
+
+top15 = (
+    mario.groupby("Name", as_index=False)
+    .agg(
+        NA_Sales=("NA_Sales", "sum"),
+        EU_Sales=("EU_Sales", "sum"),
+        JP_Sales=("JP_Sales", "sum"),
+        Other_Sales=("Other_Sales", "sum"),
+        Global_Sales=("Global_Sales", "sum"),
+    )
+    .nlargest(15, "Global_Sales")
+    .sort_values("Global_Sales")
+)
+
+fig = go.Figure()
+for region, color in [
+    ("NA_Sales", "#3b82f6"),
+    ("EU_Sales", "#10b981"),
+    ("JP_Sales", "#f59e0b"),
+    ("Other_Sales", "#8b5cf6"),
+]:
+    label = region.replace("_Sales", "")
+    fig.add_trace(
+        go.Bar(
+            y=top15["Name"],
+            x=top15[region],
+            name=label,
+            orientation="h",
+            marker_color=color,
+        )
+    )
+
+fig.update_layout(
+    barmode="stack",
+    template="plotly_dark",
+    title="Top 15 Mario Titles by Global Sales (M units)",
+    xaxis_title="Sales (M)",
+    yaxis_title="",
+    legend=dict(orientation="h", yanchor="bottom", y=1.02),
+    height=500,
+    margin=dict(l=200),
+)
+fig.show()
+```
+
+### Cumulative Sales by Platform Era
+
+```{python}
+#| label: platform-era
+#| fig-width: 10
+#| fig-height: 5
+
+platform_year = (
+    mario.groupby(["Year", "Platform"], as_index=False)["Global_Sales"]
+    .sum()
+)
+
+top_platforms = (
+    mario.groupby("Platform")["Global_Sales"]
+    .sum()
+    .nlargest(8)
+    .index.tolist()
+)
+platform_year = platform_year[platform_year["Platform"].isin(top_platforms)]
+
+fig = px.area(
+    platform_year.sort_values("Year"),
+    x="Year",
+    y="Global_Sales",
+    color="Platform",
+    template="plotly_dark",
+    title="Mario Sales by Platform Over Time",
+    labels={"Global_Sales": "Sales (M)", "Year": ""},
+)
+fig.update_layout(height=400, legend=dict(orientation="h", yanchor="bottom", y=1.02))
+fig.show()
+```
+
+### Genre Breakdown
+
+```{python}
+#| label: genre-mix
+#| fig-width: 8
+#| fig-height: 5
+
+genre_sales = (
+    mario.groupby("Genre", as_index=False)["Global_Sales"]
+    .sum()
+    .sort_values("Global_Sales", ascending=False)
+)
+
+fig = px.bar(
+    genre_sales,
+    x="Genre",
+    y="Global_Sales",
+    template="plotly_dark",
+    title="Mario Franchise: Sales by Genre",
+    labels={"Global_Sales": "Sales (M)"},
+    color="Genre",
+    color_discrete_sequence=px.colors.qualitative.Set2,
+)
+fig.update_layout(height=400, showlegend=False)
+fig.show()
+```
+
+### Regional Market Share
+
+```{python}
+#| label: regional-treemap
+#| fig-width: 8
+#| fig-height: 5
+
+regions = pd.DataFrame({
+    "Region": ["North America", "Europe", "Japan", "Other"],
+    "Sales": [
+        mario["NA_Sales"].sum(),
+        mario["EU_Sales"].sum(),
+        mario["JP_Sales"].sum(),
+        mario["Other_Sales"].sum(),
+    ],
+})
+
+fig = px.treemap(
+    regions,
+    path=["Region"],
+    values="Sales",
+    template="plotly_dark",
+    title="Mario: Regional Sales Distribution",
+    color="Sales",
+    color_continuous_scale="Blues",
+)
+fig.update_layout(height=400)
+fig.show()
+```
+
+## Key Takeaways
+
+1. **Hit concentration is extreme**: The top 5 titles account for a disproportionate share of total franchise revenue, mirroring power-law distributions seen in financial assets
+2. **Platform transitions drive growth**: Each new console generation resets the sales cycle, with Mario titles consistently serving as system sellers
+3. **Genre diversification reduces risk**: Mario Kart, Mario Party, and sports spin-offs create a portfolio effect across the franchise
+4. **Regional balance**: Unlike many franchises skewed toward a single market, Mario maintains strong sales across NA, JP, and EU
+
+***
+
+_This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information. Sales figures are historical and sourced from VGChartz estimates.
+:::
+:::

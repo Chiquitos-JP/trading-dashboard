@@ -1,0 +1,257 @@
+---
+title: "TidyTuesday: How Likely is 'Likely'? - The Risk Hidden in Probability Words"
+description: "Visualizing how 5,000+ people interpret common probability phrases and why verbal uncertainty creates decision risk"
+date: "2026-03-17"
+x-posted: false
+author: "chokotto"
+categories:
+  - TidyTuesday
+  - R
+  - Risk
+  - Communication
+image: "thumbnail.svg"
+engine: knitr
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "TidyTuesday: How Likely is 'Likely'?"
+  description: "5,000+ people interpret probability words differently - and that gap matters for risk"
+---
+
+## Overview
+
+When someone says a risk is "likely" or "probable," what probability do they actually mean? This week's TidyTuesday uses the [CAPphrase dataset](https://adamkucharski.github.io/CAPphrase/) -- over 98,000 probability judgements from 5,000+ participants -- to show that **verbal probability is not a stable interface**.
+
+The same word can mean 60% to one person and 90% to another. In risk communication, finance, and forecasting, this ambiguity creates hidden decision risk.
+
+- **Data Source**: [CAPphrase](https://github.com/adamkucharski/CAPphrase/) via [TidyTuesday 2026-03-10](https://github.com/rfordatascience/tidytuesday/blob/main/data/2026/2026-03-10/readme.md)
+- **Participants**: 5,174 respondents
+- **Phrases**: 19 common probability expressions
+- **Visualization**: ggplot2 + patchwork (static panels)
+
+## Data
+
+```{r}
+#| label: load-packages
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(scales)
+library(glue)
+library(patchwork)
+```
+
+```{r}
+#| label: load-data
+#| message: false
+
+data_dir <- file.path(getwd(), "data")
+
+judgements <- read_csv(file.path(data_dir, "absolute_judgements.csv"),
+                       show_col_types = FALSE)
+pairwise <- read_csv(file.path(data_dir, "pairwise_comparisons.csv"),
+                     show_col_types = FALSE)
+metadata <- read_csv(file.path(data_dir, "respondent_metadata.csv"),
+                     show_col_types = FALSE)
+
+cat(glue(
+  "Judgements: {nrow(judgements)} rows ({n_distinct(judgements$response_id)} respondents)\n",
+  "Pairwise: {nrow(pairwise)} comparisons\n",
+  "Phrases: {n_distinct(judgements$term)}"
+))
+```
+
+```{r}
+#| label: setup-theme
+#| message: false
+
+theme_cap <- theme_minimal(base_size = 12) +
+  theme(
+    plot.background = element_rect(fill = "#0f172a", color = NA),
+    panel.background = element_rect(fill = "#0f172a", color = NA),
+    panel.grid.major = element_line(color = "#1e293b", linewidth = 0.3),
+    panel.grid.minor = element_blank(),
+    text = element_text(color = "#e2e8f0"),
+    axis.text = element_text(color = "#94a3b8"),
+    plot.title = element_text(color = "#f8fafc", face = "bold", size = 14),
+    plot.subtitle = element_text(color = "#94a3b8", size = 10),
+    strip.text = element_text(color = "#e2e8f0", face = "bold"),
+    legend.background = element_rect(fill = "#0f172a", color = NA),
+    legend.text = element_text(color = "#cbd5e1"),
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+## Visualizations
+
+### 1. Phrase Ranking: Median Probability with Spread
+
+How do people map words to numbers? Each dot shows the **median** estimate; the bar shows the **interquartile range** (25th-75th percentile).
+
+```{r}
+#| label: phrase-ranking
+#| fig-width: 10
+#| fig-height: 8
+#| warning: false
+
+phrase_stats <- judgements |>
+  group_by(term) |>
+  summarise(
+    median_prob = median(probability, na.rm = TRUE),
+    mean_prob = mean(probability, na.rm = TRUE),
+    sd_prob = sd(probability, na.rm = TRUE),
+    q25 = quantile(probability, 0.25, na.rm = TRUE),
+    q75 = quantile(probability, 0.75, na.rm = TRUE),
+    q10 = quantile(probability, 0.10, na.rm = TRUE),
+    q90 = quantile(probability, 0.90, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  mutate(iqr = q75 - q25) |>
+  arrange(median_prob)
+
+phrase_stats$term <- factor(phrase_stats$term, levels = phrase_stats$term)
+
+p1 <- ggplot(phrase_stats, aes(y = term)) +
+  geom_segment(aes(x = q10, xend = q90, yend = term),
+               color = "#334155", linewidth = 1.5) +
+  geom_segment(aes(x = q25, xend = q75, yend = term),
+               color = "#3b82f6", linewidth = 3, alpha = 0.8) +
+  geom_point(aes(x = median_prob), color = "#f8fafc", size = 3) +
+  geom_vline(xintercept = 50, linetype = "dashed", color = "#64748b", linewidth = 0.5) +
+  scale_x_continuous(
+    breaks = seq(0, 100, 25),
+    labels = \(x) paste0(x, "%"),
+    limits = c(0, 100)
+  ) +
+  labs(
+    title = "How People Interpret Probability Phrases",
+    subtitle = "Dot = median | Thick bar = IQR (25-75%) | Thin line = 10-90%",
+    x = "Probability (%)",
+    y = NULL
+  ) +
+  theme_cap
+
+p1
+```
+
+### 2. Disagreement Heatmap: Which Phrases Cause the Most Confusion?
+
+Standard deviation as a proxy for **interpretation risk** -- higher SD means the phrase is more ambiguous.
+
+```{r}
+#| label: disagreement
+#| fig-width: 10
+#| fig-height: 5
+#| warning: false
+
+phrase_ordered <- phrase_stats |> arrange(desc(sd_prob))
+phrase_ordered$term <- factor(phrase_ordered$term, levels = phrase_ordered$term)
+
+p2 <- ggplot(phrase_ordered, aes(x = term, y = sd_prob, fill = sd_prob)) +
+  geom_col(width = 0.7) +
+  scale_fill_gradient2(
+    low = "#10b981", mid = "#f59e0b", high = "#ef4444",
+    midpoint = median(phrase_ordered$sd_prob),
+    guide = "none"
+  ) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
+  labs(
+    title = "Interpretation Risk by Phrase",
+    subtitle = "Standard deviation of probability estimates (higher = more ambiguous)",
+    x = NULL,
+    y = "Std Dev"
+  ) +
+  theme_cap +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 9))
+
+p2
+```
+
+### 3. Round-Number Bias: Do People Think in 5s and 10s?
+
+```{r}
+#| label: rounding-bias
+#| fig-width: 10
+#| fig-height: 4
+#| warning: false
+
+rounding <- judgements |>
+  mutate(
+    ends_0 = probability %% 10 == 0,
+    ends_5 = probability %% 5 == 0 & !ends_0,
+    round_type = case_when(
+      ends_0 ~ "Multiple of 10",
+      ends_5 ~ "Multiple of 5",
+      TRUE ~ "Other"
+    )
+  ) |>
+  count(round_type) |>
+  mutate(pct = n / sum(n))
+
+round_colors <- c("Multiple of 10" = "#3b82f6", "Multiple of 5" = "#f59e0b", "Other" = "#475569")
+
+p3 <- ggplot(rounding, aes(x = round_type, y = pct, fill = round_type)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = percent(pct, accuracy = 0.1)),
+            vjust = -0.5, color = "#e2e8f0", size = 4) +
+  scale_y_continuous(labels = percent, limits = c(0, max(rounding$pct) * 1.15)) +
+  scale_fill_manual(values = round_colors, guide = "none") +
+  labs(
+    title = "Round-Number Bias",
+    subtitle = "People overwhelmingly estimate in multiples of 5 or 10",
+    x = NULL,
+    y = "Share of Responses"
+  ) +
+  theme_cap
+
+p3
+```
+
+### 4. Combined Panel
+
+```{r}
+#| label: combined-panel
+#| fig-width: 12
+#| fig-height: 14
+#| warning: false
+
+combined <- p1 / (p2 | p3) +
+  plot_layout(heights = c(2, 1)) +
+  plot_annotation(
+    title = "How Likely is 'Likely'?",
+    subtitle = "98,000+ judgements from 5,000+ participants reveal that probability words are unreliable interfaces",
+    caption = "Data: CAPphrase (Kucharski, 2024) | TidyTuesday 2026-03-10 | chokotto",
+    theme = theme(
+      plot.background = element_rect(fill = "#0f172a", color = NA),
+      plot.title = element_text(color = "#f8fafc", face = "bold", size = 18),
+      plot.subtitle = element_text(color = "#94a3b8", size = 12),
+      plot.caption = element_text(color = "#64748b", size = 9)
+    )
+  )
+
+combined
+```
+
+## Key Findings
+
+1. **"Likely" means anywhere from 60% to 90%** depending on who you ask -- its IQR spans ~20 percentage points
+2. **Mid-range phrases are the most dangerous**: terms near 50% (e.g., "possible," "realistic possibility") show the highest interpretation variance
+3. **Round-number bias is extreme**: the majority of estimates fall on multiples of 5 or 10, suggesting people approximate rather than calibrate
+4. **Implication for risk communication**: using verbal probability in reports, forecasts, or trading calls introduces hidden noise that numerical expressions would eliminate
+
+***
+
+_This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the CAPphrase dataset and may not represent all populations or contexts.
+:::
+:::
