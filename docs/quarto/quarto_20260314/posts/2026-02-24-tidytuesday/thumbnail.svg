@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bgTt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fafaf9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e7e5e4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect fill="url(#bgTt)" width="800" height="400"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1c1917">Attention Analysis</text>
+  <text x="400" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#78716c">SOFI vs IONQ &#xB7; z-score &#xB7; Share &#xB7; ggplot2</text>
+
+  <!-- Panel dividers -->
+  <line x1="400" y1="80" x2="400" y2="350" stroke="#d6d3d1" stroke-width="1"/>
+  <text x="200" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#6366f1">SOFI</text>
+  <text x="600" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f59e0b">IONQ</text>
+
+  <!-- SOFI Price line -->
+  <polyline points="50,140 100,138 150,150 200,132 250,145 300,128 350,148"
+            fill="none" stroke="#6366f1" stroke-width="2" stroke-linejoin="round"/>
+  <polygon points="200,129 195,120 205,120" fill="#ef4444"/>
+
+  <!-- SOFI z-score -->
+  <polyline points="50,210 100,220 150,235 200,250 250,225 300,215 350,230"
+            fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="50" y1="245" x2="370" y2="245" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- SOFI Share area -->
+  <polygon points="50,310 100,300 150,295 200,305 250,290 300,298 350,302 350,330 50,330"
+           fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="1"/>
+
+  <!-- IONQ Price line -->
+  <polyline points="430,145 480,155 530,140 580,160 630,135 680,150 730,130"
+            fill="none" stroke="#f59e0b" stroke-width="2" stroke-linejoin="round"/>
+  <polygon points="580,157 575,148 585,148" fill="#ef4444"/>
+
+  <!-- IONQ z-score -->
+  <polyline points="430,225 480,215 530,240 580,252 630,220 680,212 730,228"
+            fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="430" y1="245" x2="750" y2="245" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- IONQ Share area -->
+  <polygon points="430,310 480,305 530,300 580,308 630,295 680,302 730,298 730,330 430,330"
+           fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-width="1"/>
+
+  <!-- Panel labels -->
+  <text x="30" y="145" font-family="Arial, sans-serif" font-size="9" fill="#78716c" transform="rotate(-90 30,145)">Price</text>
+  <text x="30" y="230" font-family="Arial, sans-serif" font-size="9" fill="#78716c" transform="rotate(-90 30,230)">z-score</text>
+  <text x="30" y="310" font-family="Arial, sans-serif" font-size="9" fill="#78716c" transform="rotate(-90 30,310)">Share</text>
+
+  <!-- Legend -->
+  <line x1="200" y1="360" x2="225" y2="360" stroke="#6366f1" stroke-width="2"/>
+  <text x="230" y="364" font-family="Arial, sans-serif" font-size="10" fill="#57534e">Price</text>
+  <line x1="300" y1="360" x2="325" y2="360" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="330" y="364" font-family="Arial, sans-serif" font-size="10" fill="#57534e">z-score</text>
+  <polygon points="425,360 420,354 430,354" fill="#ef4444"/>
+  <text x="435" y="364" font-family="Arial, sans-serif" font-size="10" fill="#57534e">Bottom Candidate</text>
+
+  <!-- Footer -->
+  <text x="400" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#a8a29e">TidyTuesday &#xB7; R &#xB7; ggplot2 &#xB7; patchwork</text>
+</svg>
