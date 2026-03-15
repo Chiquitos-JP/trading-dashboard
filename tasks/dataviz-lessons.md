@@ -84,6 +84,57 @@ MakeoverMonday / TidyTuesday 投稿のビジュアルデザイン教訓を蓄積
 
 ---
 
+## Quarto / レンダリング
+
+### 2026-03-16 MM: Plotly annotation の `<i>` タグはイタリックにならない
+
+- **問題**: `text="<i>Source: ...</i>"` と書いても Plotly の HTML レンダラーではイタリックが適用されない
+- **修正**: `font=dict(size=10, color="#94a3b8", style="italic")` でアノテーション全体をイタリックにする
+- **ルール**: Plotly でイタリックを使う場合は `<i>` タグではなく `font=dict(style="italic")` を使う
+
+### 2026-03-16 MM: Quarto は stdout と stderr 両方をセル出力としてキャプチャする
+
+- **問題**: `print()` も `warnings.warn()` もページ本文に表示されてしまう
+- **修正**: デバッグ出力は一切書かず、ヘルパー関数はサイレントに処理だけ行う
+- **ルール**: Quarto セルの中でページに出力したくないメッセージは `print()` も `warnings.warn()` も使わない。処理だけ行う関数にする
+
+### 2026-03-16 MM: Plotly タイトルと annotation の margin 衝突は自動補正関数で対処
+
+- **問題**: `title` や `annotation(y=1.06)` が `margin_t` 不足でプロット領域と重なる
+- **修正**: `assert_no_title_overlap(fig)` ヘルパーを `fig.show()` 直前に呼び出し、重なりを検出したら `margin_t` を自動補正する
+  ```python
+  def assert_no_title_overlap(fig):
+      height = fig.layout.height or 450
+      margin_t = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+      plot_top = 1.0 - margin_t / height
+      for ann in fig.layout.annotations:
+          if ann.yref == "paper" and ann.y is not None and ann.y > plot_top:
+              required_t = int((1.0 - ann.y + 0.06) * height) + 30
+              fig.update_layout(margin=dict(t=required_t))
+              # ... title も同様にチェック
+  ```
+- **ルール**: 全チャートで `assert_no_title_overlap(fig)` を `fig.show()` 直前に呼び出す。関数は出力なしのサイレント動作にする
+
+### 2026-03-16 MM: fig-width が異なるチャートは Quarto 上で横並びになる
+
+- **問題**: `fig-width: 7` の2チャートが Quarto のレイアウト処理で横並びにレンダリングされ、それぞれのタイトルが視覚的に衝突する
+- **修正**: 全チャートを `fig-width: 10` に統一して縦積み（full-width）を強制する
+- **ルール**: 同一ページ内の複数チャートは `fig-width` を揃える。横並びにしたい場合は意図的に `layout: [[1,2]]` 等を使う
+
+### 2026-03-16 MM: Source/Note 注釈は動的に1〜2行に折り返す
+
+- **問題**: Note の内容が将来長くなると Source と © が重なって読みにくくなる
+- **修正**: Note が閾値（50文字）以下なら1行、超えたら `<br>` で Source を2行目に分ける
+  ```python
+  def _build_source_note(note=NOTE_TEXT, source=SOURCE_TEXT):
+      if len(note) <= 50:
+          return f"{note}  |  {source}"
+      return f"{note}<br>{source}"
+  ```
+- **ルール**: Source/Note 注釈は最大2行に収める。`NOTE_TEXT` と `SOURCE_TEXT` を分離して管理し、表示ロジックは `_build_source_note()` に集約する
+
+---
+
 ## ggplot2 スタイル（TidyTuesday 用）
 
 （今後の教訓をここに追記）
