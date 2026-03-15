@@ -71,7 +71,7 @@ print(f"Global sales: {mario['Global_Sales'].sum():.1f}M units")
 #| include: false
 
 SOURCE_NOTE = (
-    "Note: Mario-branded Nintendo titles only\n"
+    "Note: Mario-branded Nintendo titles only  |  "
     "Source: VGChartz / vgsales dataset  |  © 2026 chokotto"
 )
 
