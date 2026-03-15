@@ -215,23 +215,24 @@ fig = make_subplots(
 )
 
 # B: 地域 100% stacked bar（横1本）
-cumx = 0.0
 for _, row in regions.iterrows():
     pct = row["Pct"]
+    # 幅が狭い（5%未満）セグメントはラベルなし
+    label_text = f"{row['Region']}<br>{pct:.0f}%" if pct >= 8 else ""
     fig.add_trace(
         go.Bar(
             x=[pct], y=["Region"],
             orientation="h",
             marker_color=row["Color"],
             name=row["Region"],
-            text=[f"{row['Region']}<br>{pct:.0f}%"],
+            text=[label_text],
             textposition="inside",
             insidetextanchor="middle",
+            textfont=dict(size=12, color="white"),
             hovertemplate=f"{row['Region']}: {pct:.1f}%<extra></extra>",
         ),
         row=1, col=1,
     )
-    cumx += pct
 
 # C: ジャンル別横棒
 fig.add_trace(
@@ -254,27 +255,27 @@ fig.update_layout(
     **THEME,
     barmode="stack",
     showlegend=False,
-    height=420,
-    margin=dict(t=110, b=140, l=80, r=100),
+    height=460,
+    margin=dict(t=130, b=140, l=80, r=100),
 )
 
-# サブタイトル（左）
+# サブタイトル: paper 座標で左右を明示的に分ける（x domain は重なりやすいため使わない）
+LEFT_RIGHT_SPLIT = 0.42  # column_widths[0]
 fig.add_annotation(
     text=f"North America drives ~<b>{na_pct:.0f}%</b> of global Mario revenue",
-    xref="x domain", yref="paper",
+    xref="paper", yref="paper",
     x=0, y=1.18,
     showarrow=False,
-    font=dict(size=14, color="#1e293b"),
+    font=dict(size=13, color="#1e293b"),
     align="left",
     xanchor="left",
 )
-# サブタイトル（右）
 fig.add_annotation(
-    text="Platform games lead, but racing and party titles diversify the portfolio",
-    xref="x2 domain", yref="paper",
-    x=0, y=1.18,
+    text="Platform games lead,<br>but racing & party titles diversify the portfolio",
+    xref="paper", yref="paper",
+    x=LEFT_RIGHT_SPLIT + 0.03, y=1.18,
     showarrow=False,
-    font=dict(size=14, color="#1e293b"),
+    font=dict(size=13, color="#1e293b"),
     align="left",
     xanchor="left",
 )
