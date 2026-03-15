@@ -71,8 +71,8 @@ print(f"Global sales: {mario['Global_Sales'].sum():.1f}M units")
 #| include: false
 
 SOURCE_NOTE = (
-    "Source: VGChartz / vgsales dataset  ·  "
-    "Note: Mario-branded Nintendo titles only  ·  "
+    "Note: Mario-branded Nintendo titles only<br>"
+    "Source: VGChartz / vgsales dataset<br>"
     "<i>© 2026 chokotto</i>"
 )
 
@@ -86,7 +86,7 @@ THEME = dict(
 def make_title(text):
     return dict(text=text, font=dict(size=15, color="#1e293b"), x=0, xanchor="left")
 
-def add_source(fig, y=-0.14):
+def add_source(fig, y=-0.20):
     fig.add_annotation(
         text=SOURCE_NOTE,
         xref="paper", yref="paper",
@@ -94,6 +94,7 @@ def add_source(fig, y=-0.14):
         showarrow=False,
         font=dict(size=10, color="#94a3b8"),
         align="left",
+        yanchor="top",
     )
 ```
 
