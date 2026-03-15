@@ -18,6 +18,8 @@ twitter-card:
 code-fold: true
 ---
 
+<!-- dataviz-lessons チェック: tasks/dataviz-lessons.md を確認し過去の教訓を適用すること -->
+
 ## Overview
 
 {{overview}}
