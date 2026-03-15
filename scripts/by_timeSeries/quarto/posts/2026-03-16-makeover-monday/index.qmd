@@ -73,7 +73,7 @@ print(f"Global sales: {mario['Global_Sales'].sum():.1f}M units")
 SOURCE_NOTE = (
     "Source: VGChartz / vgsales dataset  ·  "
     "Note: Mario-branded Nintendo titles only  ·  "
-    "© 2026 chokotto"
+    "<i>© 2026 chokotto</i>"
 )
 
 THEME = dict(
@@ -161,7 +161,7 @@ fig.update_layout(
     yaxis=dict(title=""),
     showlegend=False,
     height=500,
-    margin=dict(t=100, b=80, l=220, r=100),
+    margin=dict(t=100, b=120, l=220, r=100),
 )
 fig.add_annotation(
     text="Top 10 titles by global sales (M units) · 1983–2016  ·  <span style='color:#e63946'>■</span> Top 3",
@@ -171,7 +171,7 @@ fig.add_annotation(
     font=dict(size=11, color="#64748b"),
     align="left",
 )
-add_source(fig, y=-0.16)
+add_source(fig, y=-0.20)
 fig.show()
 fig.write_image("chart-1.png", width=1200, height=600, scale=2)
 ```
@@ -254,7 +254,7 @@ fig.update_layout(
     barmode="stack",
     showlegend=False,
     height=420,
-    margin=dict(t=110, b=80, l=80, r=100),
+    margin=dict(t=110, b=120, l=80, r=100),
 )
 
 # サブタイトル（左）
@@ -285,7 +285,7 @@ fig.update_xaxes(
     row=1, col=2,
 )
 fig.update_yaxes(title_text="", row=1, col=2)
-add_source(fig, y=-0.18)
+add_source(fig, y=-0.26)
 fig.show()
 ```
 
@@ -353,7 +353,7 @@ fig.update_layout(
     yaxis=dict(title="Sales (M units)", showgrid=True, gridcolor="#e2e8f0", zeroline=False),
     showlegend=False,
     height=420,
-    margin=dict(t=100, b=80, l=80, r=100),
+    margin=dict(t=100, b=120, l=80, r=100),
 )
 fig.add_annotation(
     text="Annual sales per platform · top 5 platforms by total sales  ·  <span style='color:#e63946'>■</span> NES",
@@ -363,7 +363,7 @@ fig.add_annotation(
     font=dict(size=11, color="#64748b"),
     align="left",
 )
-add_source(fig, y=-0.18)
+add_source(fig, y=-0.26)
 fig.show()
 ```
 
