@@ -70,10 +70,17 @@ print(f"Global sales: {mario['Global_Sales'].sum():.1f}M units")
 #| label: shared-style
 #| include: false
 
-SOURCE_NOTE = (
-    "Note: Mario-branded Nintendo titles only  |  "
-    "Source: VGChartz / vgsales dataset  |  © 2026 chokotto"
-)
+NOTE_TEXT   = "Note: Mario-branded Nintendo titles only"
+SOURCE_TEXT = "Source: VGChartz / vgsales dataset  |  © 2026 chokotto"
+# Note が 50 文字以下なら 1 行、超えたら Source 以降を 2 行目に分ける
+_NOTE_THRESHOLD = 50
+
+def _build_source_note(note=NOTE_TEXT, source=SOURCE_TEXT):
+    if len(note) <= _NOTE_THRESHOLD:
+        return f"{note}  |  {source}"
+    return f"{note}<br>{source}"
+
+SOURCE_NOTE = _build_source_note()
 
 THEME = dict(
     template="plotly_white",
