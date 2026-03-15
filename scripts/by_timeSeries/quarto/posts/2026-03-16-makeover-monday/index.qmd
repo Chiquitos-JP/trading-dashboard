@@ -119,9 +119,9 @@ fig.update_layout(
     title="Top 15 Mario Titles by Global Sales (M units)",
     xaxis_title="Sales (M)",
     yaxis_title="",
-    legend=dict(orientation="h", yanchor="bottom", y=1.02),
+    legend=dict(orientation="h", yanchor="top", y=-0.12, xanchor="center", x=0.5),
     height=500,
-    margin=dict(l=200),
+    margin=dict(l=200, b=80),
 )
 fig.show()
 ```
@@ -155,7 +155,11 @@ fig = px.area(
     title="Mario Sales by Platform Over Time",
     labels={"Global_Sales": "Sales (M)", "Year": ""},
 )
-fig.update_layout(height=400, legend=dict(orientation="h", yanchor="bottom", y=1.02))
+fig.update_layout(
+    height=400,
+    margin=dict(b=80),
+    legend=dict(orientation="h", yanchor="top", y=-0.12, xanchor="center", x=0.5),
+)
 fig.show()
 ```
 
