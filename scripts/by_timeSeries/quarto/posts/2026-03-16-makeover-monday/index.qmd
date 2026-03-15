@@ -205,12 +205,15 @@ genre_colors = [
     for g in genre_sales["Genre"]
 ]
 
-# --- 2列サブプロット ---
+# --- 2列サブプロット（subplot_titles でタイトルを各列に割り当て）---
 fig = make_subplots(
     rows=1, cols=2,
-    column_widths=[0.42, 0.58],
-    subplot_titles=["", ""],
-    horizontal_spacing=0.1,
+    column_widths=[0.35, 0.65],
+    subplot_titles=[
+        f"North America drives ~{na_pct:.0f}% of global Mario revenue",
+        "Platform games lead, but racing & party titles diversify the portfolio",
+    ],
+    horizontal_spacing=0.18,
 )
 
 # B: 地域 100% stacked bar（横1本）
@@ -254,28 +257,8 @@ fig.update_layout(
     **THEME,
     barmode="stack",
     showlegend=False,
-    height=480,
-    margin=dict(t=150, b=140, l=80, r=100),
-)
-
-# サブタイトルを縦2行に分けて重なりを完全回避
-fig.add_annotation(
-    text=f"① North America drives ~<b>{na_pct:.0f}%</b> of global Mario revenue",
-    xref="paper", yref="paper",
-    x=0, y=1.22,
-    showarrow=False,
-    font=dict(size=13, color="#1e293b"),
-    align="left",
-    xanchor="left",
-)
-fig.add_annotation(
-    text="② Platform games lead, but racing &amp; party titles diversify the portfolio",
-    xref="paper", yref="paper",
-    x=0, y=1.12,
-    showarrow=False,
-    font=dict(size=13, color="#1e293b"),
-    align="left",
-    xanchor="left",
+    height=460,
+    margin=dict(t=100, b=140, l=80, r=100),
 )
 fig.update_xaxes(showticklabels=False, showgrid=False, row=1, col=1)
 fig.update_yaxes(showticklabels=False, row=1, col=1)
@@ -285,6 +268,8 @@ fig.update_xaxes(
     row=1, col=2,
 )
 fig.update_yaxes(title_text="", row=1, col=2)
+# subplot_titles のフォントを統一
+fig.update_annotations(font=dict(size=13, color="#1e293b"))
 add_source(fig, y=-0.30)
 fig.show()
 ```
