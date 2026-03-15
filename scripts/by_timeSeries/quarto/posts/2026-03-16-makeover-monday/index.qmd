@@ -254,25 +254,24 @@ fig.update_layout(
     **THEME,
     barmode="stack",
     showlegend=False,
-    height=460,
-    margin=dict(t=130, b=140, l=80, r=100),
+    height=480,
+    margin=dict(t=150, b=140, l=80, r=100),
 )
 
-# サブタイトル: paper 座標で左右を明示的に分ける（x domain は重なりやすいため使わない）
-LEFT_RIGHT_SPLIT = 0.42  # column_widths[0]
+# サブタイトルを縦2行に分けて重なりを完全回避
 fig.add_annotation(
-    text=f"North America drives ~<b>{na_pct:.0f}%</b> of global Mario revenue",
+    text=f"① North America drives ~<b>{na_pct:.0f}%</b> of global Mario revenue",
     xref="paper", yref="paper",
-    x=0, y=1.18,
+    x=0, y=1.22,
     showarrow=False,
     font=dict(size=13, color="#1e293b"),
     align="left",
     xanchor="left",
 )
 fig.add_annotation(
-    text="Platform games lead,<br>but racing & party titles diversify the portfolio",
+    text="② Platform games lead, but racing &amp; party titles diversify the portfolio",
     xref="paper", yref="paper",
-    x=LEFT_RIGHT_SPLIT + 0.03, y=1.18,
+    x=0, y=1.12,
     showarrow=False,
     font=dict(size=13, color="#1e293b"),
     align="left",
