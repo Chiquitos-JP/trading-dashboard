@@ -137,4 +137,42 @@ MakeoverMonday / TidyTuesday 投稿のビジュアルデザイン教訓を蓄積
 
 ## ggplot2 スタイル（TidyTuesday 用）
 
-（今後の教訓をここに追記）
+### 2026-03-17 TT: FigmaMake スタイル導入（ダーク → ライト）
+
+- **投稿**: [2026-03-17-tidytuesday](https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-03-17-tidytuesday/)
+- **問題**: ダーク背景 `#0f172a` は Quarto の白背景ページ上で浮いて見え、MakeoverMonday（ライト基調）との統一感がない
+- **修正**: MakeoverMonday の配色設計を ggplot2 に移植した「FigmaMake スタイル（`theme_fm`）」を導入
+- **ルール**: TidyTuesday のデフォルトテーマは `theme_fm`（ライト）。ダークテーマはテンプレートにコメントアウトで保持し、`STYLE_MODE` 変数で将来切替可能にする
+
+#### FigmaMake カラーパレット
+
+| 用途 | ライト (FigmaMake) | ダーク (旧) |
+|---|---|---|
+| 背景 (paper) | `white` | `#0f172a` |
+| 背景 (plot area) | `#f8fafc` | `#0f172a` |
+| グリッド | `#e2e8f0` | `#1e293b` |
+| タイトル | `#1e293b` (bold) | `#f8fafc` (bold) |
+| サブタイトル | `#64748b` | `#94a3b8` |
+| 本文テキスト | `#334155` | `#e2e8f0` |
+| 軸テキスト | `#475569` | `#94a3b8` |
+| キャプション | `#94a3b8` (italic) | `#64748b` (italic) |
+| Strip テキスト | `#1e293b` (bold) | `#e2e8f0` (bold) |
+| 凡例背景 | `white` | `#0f172a` |
+| 凡例テキスト | `#475569` | `#cbd5e1` |
+
+#### FigmaMake アクセント色（共通）
+
+| 用途 | Hex |
+|---|---|
+| Primary (主要データ) | `#3b82f6` (blue) |
+| Secondary (補助) | `#f59e0b` (amber) |
+| Alert (異常値) | `#ef4444` (red) |
+| Positive | `#10b981` (green) |
+| Base (非強調) | `#94a3b8` (gray) |
+
+#### ライト背景移行時の色反転ルール
+
+- 白 dot/text → ダーク `#1e293b` に反転
+- ダーク range line → ライト `#cbd5e1` に反転
+- グラデーション（緑→黄→赤）はそのまま使用可
+- 50% 基準線: `#94a3b8`

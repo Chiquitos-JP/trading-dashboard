@@ -69,24 +69,24 @@ cat(glue(
 #| label: setup-theme
 #| message: false
 
-theme_cap <- theme_minimal(base_size = 12) +
+theme_fm <- theme_minimal(base_size = 12) +
   theme(
-    plot.background = element_rect(fill = "#0f172a", color = NA),
-    panel.background = element_rect(fill = "#0f172a", color = NA),
-    panel.grid.major = element_line(color = "#1e293b", linewidth = 0.3),
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "#f8fafc", color = NA),
+    panel.grid.major = element_line(color = "#e2e8f0", linewidth = 0.3),
     panel.grid.minor = element_blank(),
-    text = element_text(color = "#e2e8f0"),
-    axis.text = element_text(color = "#94a3b8"),
-    plot.title = element_text(color = "#f8fafc", face = "bold", size = 14),
-    plot.subtitle = element_text(color = "#94a3b8", size = 10),
+    text = element_text(color = "#334155"),
+    axis.text = element_text(color = "#475569"),
+    plot.title = element_text(color = "#1e293b", face = "bold", size = 14),
+    plot.subtitle = element_text(color = "#64748b", size = 10),
     plot.caption = element_text(
-      face = "italic", color = "#64748b", size = 9,
+      face = "italic", color = "#94a3b8", size = 9,
       hjust = 0, margin = margin(t = 12)
     ),
     plot.caption.position = "plot",
-    strip.text = element_text(color = "#e2e8f0", face = "bold"),
-    legend.background = element_rect(fill = "#0f172a", color = NA),
-    legend.text = element_text(color = "#cbd5e1"),
+    strip.text = element_text(color = "#1e293b", face = "bold"),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.text = element_text(color = "#475569"),
     plot.margin = margin(15, 15, 15, 15)
   )
 ```
@@ -123,11 +123,11 @@ phrase_stats$term <- factor(phrase_stats$term, levels = phrase_stats$term)
 
 p1 <- ggplot(phrase_stats, aes(y = term)) +
   geom_segment(aes(x = q10, xend = q90, yend = term),
-               color = "#334155", linewidth = 1.5) +
+               color = "#cbd5e1", linewidth = 1.5) +
   geom_segment(aes(x = q25, xend = q75, yend = term),
                color = "#3b82f6", linewidth = 3, alpha = 0.8) +
-  geom_point(aes(x = median_prob), color = "#f8fafc", size = 3) +
-  geom_vline(xintercept = 50, linetype = "dashed", color = "#64748b", linewidth = 0.5) +
+  geom_point(aes(x = median_prob), color = "#1e293b", size = 3) +
+  geom_vline(xintercept = 50, linetype = "dashed", color = "#94a3b8", linewidth = 0.5) +
   scale_x_continuous(
     breaks = seq(0, 100, 25),
     labels = \(x) paste0(x, "%"),
@@ -139,7 +139,7 @@ p1 <- ggplot(phrase_stats, aes(y = term)) +
     x = "Probability (%)",
     y = NULL
   ) +
-  theme_cap
+  theme_fm
 
 p1
 ```
@@ -171,7 +171,7 @@ p2 <- ggplot(phrase_ordered, aes(x = term, y = sd_prob, fill = sd_prob)) +
     x = NULL,
     y = "Std Dev"
   ) +
-  theme_cap +
+  theme_fm +
   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 9))
 
 p2
@@ -203,7 +203,7 @@ round_colors <- c("Multiple of 10" = "#3b82f6", "Multiple of 5" = "#f59e0b", "Ot
 p3 <- ggplot(rounding, aes(x = round_type, y = pct, fill = round_type)) +
   geom_col(width = 0.6) +
   geom_text(aes(label = percent(pct, accuracy = 0.1)),
-            vjust = -0.5, color = "#e2e8f0", size = 4) +
+            vjust = -0.5, color = "#1e293b", size = 4) +
   scale_y_continuous(labels = percent, limits = c(0, max(rounding$pct) * 1.15)) +
   scale_fill_manual(values = round_colors, guide = "none") +
   labs(
@@ -212,7 +212,7 @@ p3 <- ggplot(rounding, aes(x = round_type, y = pct, fill = round_type)) +
     x = NULL,
     y = "Share of Responses"
   ) +
-  theme_cap
+  theme_fm
 
 p3
 ```
@@ -232,11 +232,11 @@ combined <- p1 / (p2 | p3) +
     subtitle = "98,000+ judgements from 5,000+ participants reveal that probability words are unreliable interfaces",
     caption = "Note: 98,000+ probability judgements from 5,174 respondents  |  Source: CAPphrase (Kucharski, 2024)  |  \u00A9 2026 chokotto",
     theme = theme(
-      plot.background = element_rect(fill = "#0f172a", color = NA),
-      plot.title = element_text(color = "#f8fafc", face = "bold", size = 18),
-      plot.subtitle = element_text(color = "#94a3b8", size = 12),
+      plot.background = element_rect(fill = "white", color = NA),
+      plot.title = element_text(color = "#1e293b", face = "bold", size = 18),
+      plot.subtitle = element_text(color = "#64748b", size = 12),
       plot.caption = element_text(
-        face = "italic", color = "#64748b", size = 9,
+        face = "italic", color = "#94a3b8", size = 9,
         hjust = 0, margin = margin(t = 12)
       ),
       plot.caption.position = "plot"

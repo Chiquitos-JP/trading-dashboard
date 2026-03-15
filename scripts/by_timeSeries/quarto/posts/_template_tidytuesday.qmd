@@ -53,19 +53,54 @@ library(patchwork)
 # Source/Note caption (Note | Source | copyright)
 SOURCE_CAPTION <- "Note: {{note}}  |  Source: {{source}}  |  \u00A9 2026 chokotto"
 
-# Base theme (customize per post as needed)
-theme_tt <- theme_minimal(base_size = 12) +
+# --- Style mode: "figmamake" (light) or "dark" ---
+STYLE_MODE <- "figmamake"
+
+# FigmaMake style (light, clean, MM-aligned)
+theme_fm <- theme_minimal(base_size = 12) +
   theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "#f8fafc", color = NA),
+    panel.grid.major = element_line(color = "#e2e8f0", linewidth = 0.3),
     panel.grid.minor = element_blank(),
-    plot.title = element_text(face = "bold", size = 14),
-    plot.subtitle = element_text(color = "gray50", size = 10),
+    text = element_text(color = "#334155"),
+    axis.text = element_text(color = "#475569"),
+    plot.title = element_text(color = "#1e293b", face = "bold", size = 14),
+    plot.subtitle = element_text(color = "#64748b", size = 10),
     plot.caption = element_text(
-      face = "italic", color = "#64748b", size = 9,
+      face = "italic", color = "#94a3b8", size = 9,
       hjust = 0, margin = margin(t = 12)
     ),
     plot.caption.position = "plot",
+    strip.text = element_text(color = "#1e293b", face = "bold"),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.text = element_text(color = "#475569"),
     plot.margin = margin(15, 15, 15, 15)
   )
+
+# Dark style (kept for future mode switching)
+# theme_dark_cap <- theme_minimal(base_size = 12) +
+#   theme(
+#     plot.background = element_rect(fill = "#0f172a", color = NA),
+#     panel.background = element_rect(fill = "#0f172a", color = NA),
+#     panel.grid.major = element_line(color = "#1e293b", linewidth = 0.3),
+#     panel.grid.minor = element_blank(),
+#     text = element_text(color = "#e2e8f0"),
+#     axis.text = element_text(color = "#94a3b8"),
+#     plot.title = element_text(color = "#f8fafc", face = "bold", size = 14),
+#     plot.subtitle = element_text(color = "#94a3b8", size = 10),
+#     plot.caption = element_text(
+#       face = "italic", color = "#64748b", size = 9,
+#       hjust = 0, margin = margin(t = 12)
+#     ),
+#     plot.caption.position = "plot",
+#     strip.text = element_text(color = "#e2e8f0", face = "bold"),
+#     legend.background = element_rect(fill = "#0f172a", color = NA),
+#     legend.text = element_text(color = "#cbd5e1"),
+#     plot.margin = margin(15, 15, 15, 15)
+#   )
+
+theme_active <- theme_fm  # switch: if (STYLE_MODE == "dark") theme_dark_cap else theme_fm
 ```
 
 ## Exploratory Analysis
@@ -89,7 +124,7 @@ theme_tt <- theme_minimal(base_size = 12) +
 #     title = "{{combined_title}}",
 #     subtitle = "{{combined_subtitle}}",
 #     caption = SOURCE_CAPTION,
-#     theme = theme_tt
+#     theme = theme_active
 #   )
 # combined
 ```
