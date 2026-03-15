@@ -79,6 +79,11 @@ theme_cap <- theme_minimal(base_size = 12) +
     axis.text = element_text(color = "#94a3b8"),
     plot.title = element_text(color = "#f8fafc", face = "bold", size = 14),
     plot.subtitle = element_text(color = "#94a3b8", size = 10),
+    plot.caption = element_text(
+      face = "italic", color = "#64748b", size = 9,
+      hjust = 0, margin = margin(t = 12)
+    ),
+    plot.caption.position = "plot",
     strip.text = element_text(color = "#e2e8f0", face = "bold"),
     legend.background = element_rect(fill = "#0f172a", color = NA),
     legend.text = element_text(color = "#cbd5e1"),
@@ -225,12 +230,16 @@ combined <- p1 / (p2 | p3) +
   plot_annotation(
     title = "How Likely is 'Likely'?",
     subtitle = "98,000+ judgements from 5,000+ participants reveal that probability words are unreliable interfaces",
-    caption = "Data: CAPphrase (Kucharski, 2024) | TidyTuesday 2026-03-10 | chokotto",
+    caption = "Note: 98,000+ probability judgements from 5,174 respondents  |  Source: CAPphrase (Kucharski, 2024)  |  \u00A9 2026 chokotto",
     theme = theme(
       plot.background = element_rect(fill = "#0f172a", color = NA),
       plot.title = element_text(color = "#f8fafc", face = "bold", size = 18),
       plot.subtitle = element_text(color = "#94a3b8", size = 12),
-      plot.caption = element_text(color = "#64748b", size = 9)
+      plot.caption = element_text(
+        face = "italic", color = "#64748b", size = 9,
+        hjust = 0, margin = margin(t = 12)
+      ),
+      plot.caption.position = "plot"
     )
   )
 

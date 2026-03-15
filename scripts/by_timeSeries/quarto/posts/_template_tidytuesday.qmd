@@ -35,6 +35,7 @@ library(tidyverse)
 library(ggplot2)
 library(scales)
 library(glue)
+library(patchwork)
 ```
 
 ```{r}
@@ -43,6 +44,28 @@ library(glue)
 
 # Load this week's data
 # tuesdata <- tidytuesdayR::tt_load('{{date}}')
+```
+
+```{r}
+#| label: setup-theme
+#| message: false
+
+# Source/Note caption (Note | Source | copyright)
+SOURCE_CAPTION <- "Note: {{note}}  |  Source: {{source}}  |  \u00A9 2026 chokotto"
+
+# Base theme (customize per post as needed)
+theme_tt <- theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold", size = 14),
+    plot.subtitle = element_text(color = "gray50", size = 10),
+    plot.caption = element_text(
+      face = "italic", color = "#64748b", size = 9,
+      hjust = 0, margin = margin(t = 12)
+    ),
+    plot.caption.position = "plot",
+    plot.margin = margin(15, 15, 15, 15)
+  )
 ```
 
 ## Exploratory Analysis
@@ -58,6 +81,17 @@ library(glue)
 #| warning: false
 
 # Main visualization code here
+# Individual charts: p1, p2, ... (caption is on combined panel only)
+
+# Combined panel with Source/Note caption
+# combined <- p1 / p2 +
+#   plot_annotation(
+#     title = "{{combined_title}}",
+#     subtitle = "{{combined_subtitle}}",
+#     caption = SOURCE_CAPTION,
+#     theme = theme_tt
+#   )
+# combined
 ```
 
 ## Key Findings
