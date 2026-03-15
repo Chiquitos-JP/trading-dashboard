@@ -71,8 +71,8 @@ print(f"Global sales: {mario['Global_Sales'].sum():.1f}M units")
 #| include: false
 
 SOURCE_NOTE = (
-    "<i>Note: Mario-branded Nintendo titles only</i><br>"
-    "<i>Source: VGChartz / vgsales dataset  |  © 2026 chokotto</i>"
+    "Note: Mario-branded Nintendo titles only\n"
+    "Source: VGChartz / vgsales dataset  |  © 2026 chokotto"
 )
 
 THEME = dict(
@@ -91,10 +91,48 @@ def add_source(fig, y=-0.20):
         xref="paper", yref="paper",
         x=0, y=y,
         showarrow=False,
-        font=dict(size=10, color="#94a3b8"),
+        font=dict(size=10, color="#94a3b8", style="italic"),
         align="left",
         yanchor="top",
     )
+
+def assert_no_title_overlap(fig):
+    """タイトル・annotation が プロット領域上端と重なっていないかを数値検証する。
+    重なりが検出された場合は必要な margin_t を表示し、自動補正する。"""
+    layout = fig.layout
+    height = layout.height or 450
+    margin_t = layout.margin.t if layout.margin.t is not None else 80
+    plot_top = 1.0 - margin_t / height  # paper 座標でのプロット上端
+
+    fixed = False
+    for ann in fig.layout.annotations:
+        if ann.yref == "paper" and ann.y is not None and ann.y > plot_top:
+            required_t = int((1.0 - ann.y + 0.06) * height) + 30
+            print(
+                f"[OVERLAP WARNING] annotation y={ann.y:.2f} > plot_top={plot_top:.2f}. "
+                f"Auto-fixing margin_t: {margin_t} -> {required_t}"
+            )
+            fig.update_layout(margin=dict(t=required_t))
+            margin_t = required_t
+            plot_top = 1.0 - margin_t / height
+            fixed = True
+
+    title_y = None
+    if fig.layout.title and fig.layout.title.y is not None:
+        title_y = fig.layout.title.y
+    elif fig.layout.title and fig.layout.title.text:
+        title_y = 0.98  # Plotly default
+    if title_y is not None and title_y > plot_top:
+        required_t = int((1.0 - title_y + 0.06) * height) + 30
+        print(
+            f"[OVERLAP WARNING] title y={title_y:.2f} > plot_top={plot_top:.2f}. "
+            f"Auto-fixing margin_t: {margin_t} -> {required_t}"
+        )
+        fig.update_layout(margin=dict(t=required_t))
+        fixed = True
+
+    if not fixed:
+        print("[OK] No overlap detected.")
 ```
 
 ## My Makeover
@@ -172,6 +210,7 @@ fig.add_annotation(
     align="left",
 )
 add_source(fig, y=-0.22)
+assert_no_title_overlap(fig)
 fig.show()
 fig.write_image("chart-1.png", width=1200, height=600, scale=2)
 ```
@@ -180,7 +219,7 @@ fig.write_image("chart-1.png", width=1200, height=600, scale=2)
 
 ```{python}
 #| label: regional-mix
-#| fig-width: 7
+#| fig-width: 10
 #| fig-height: 2.5
 
 # --- データ準備 ---
@@ -224,6 +263,7 @@ fig_b.update_layout(
     yaxis=dict(showticklabels=False),
 )
 add_source(fig_b, y=-0.35)
+assert_no_title_overlap(fig_b)
 fig_b.show()
 ```
 
@@ -231,7 +271,7 @@ fig_b.show()
 
 ```{python}
 #| label: genre-breakdown
-#| fig-width: 7
+#| fig-width: 10
 #| fig-height: 5
 
 genre_sales = (
@@ -277,6 +317,7 @@ fig_c.update_layout(
     yaxis=dict(title=""),
 )
 add_source(fig_c, y=-0.22)
+assert_no_title_overlap(fig_c)
 fig_c.show()
 ```
 
@@ -355,6 +396,7 @@ fig.add_annotation(
     align="left",
 )
 add_source(fig, y=-0.30)
+assert_no_title_overlap(fig)
 fig.show()
 ```
 
