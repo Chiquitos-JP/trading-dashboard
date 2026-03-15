@@ -99,6 +99,7 @@ def add_source(fig, y=-0.20):
 def assert_no_title_overlap(fig):
     """タイトル・annotation が プロット領域上端と重なっていないかを数値検証する。
     重なりが検出された場合は必要な margin_t を表示し、自動補正する。"""
+    import warnings
     layout = fig.layout
     height = layout.height or 450
     margin_t = layout.margin.t if layout.margin.t is not None else 80
@@ -108,9 +109,10 @@ def assert_no_title_overlap(fig):
     for ann in fig.layout.annotations:
         if ann.yref == "paper" and ann.y is not None and ann.y > plot_top:
             required_t = int((1.0 - ann.y + 0.06) * height) + 30
-            print(
+            warnings.warn(
                 f"[OVERLAP WARNING] annotation y={ann.y:.2f} > plot_top={plot_top:.2f}. "
-                f"Auto-fixing margin_t: {margin_t} -> {required_t}"
+                f"Auto-fixing margin_t: {margin_t} -> {required_t}",
+                stacklevel=2,
             )
             fig.update_layout(margin=dict(t=required_t))
             margin_t = required_t
@@ -124,15 +126,13 @@ def assert_no_title_overlap(fig):
         title_y = 0.98  # Plotly default
     if title_y is not None and title_y > plot_top:
         required_t = int((1.0 - title_y + 0.06) * height) + 30
-        print(
+        warnings.warn(
             f"[OVERLAP WARNING] title y={title_y:.2f} > plot_top={plot_top:.2f}. "
-            f"Auto-fixing margin_t: {margin_t} -> {required_t}"
+            f"Auto-fixing margin_t: {margin_t} -> {required_t}",
+            stacklevel=2,
         )
         fig.update_layout(margin=dict(t=required_t))
         fixed = True
-
-    if not fixed:
-        print("[OK] No overlap detected.")
 ```
 
 ## My Makeover
