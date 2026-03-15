@@ -162,7 +162,7 @@ fig.update_layout(
     yaxis=dict(title=""),
     showlegend=False,
     height=500,
-    margin=dict(t=100, b=120, l=220, r=100),
+    margin=dict(t=100, b=140, l=220, r=100),
 )
 fig.add_annotation(
     text="Top 10 titles by global sales (M units) · 1983–2016  ·  <span style='color:#e63946'>■</span> Top 3",
@@ -172,7 +172,7 @@ fig.add_annotation(
     font=dict(size=11, color="#64748b"),
     align="left",
 )
-add_source(fig, y=-0.20)
+add_source(fig, y=-0.22)
 fig.show()
 fig.write_image("chart-1.png", width=1200, height=600, scale=2)
 ```
@@ -255,7 +255,7 @@ fig.update_layout(
     barmode="stack",
     showlegend=False,
     height=420,
-    margin=dict(t=110, b=120, l=80, r=100),
+    margin=dict(t=110, b=140, l=80, r=100),
 )
 
 # サブタイトル（左）
@@ -286,7 +286,7 @@ fig.update_xaxes(
     row=1, col=2,
 )
 fig.update_yaxes(title_text="", row=1, col=2)
-add_source(fig, y=-0.26)
+add_source(fig, y=-0.30)
 fig.show()
 ```
 
@@ -354,7 +354,7 @@ fig.update_layout(
     yaxis=dict(title="Sales (M units)", showgrid=True, gridcolor="#e2e8f0", zeroline=False),
     showlegend=False,
     height=420,
-    margin=dict(t=100, b=120, l=80, r=100),
+    margin=dict(t=100, b=140, l=80, r=100),
 )
 fig.add_annotation(
     text="Annual sales per platform · top 5 platforms by total sales  ·  <span style='color:#e63946'>■</span> NES",
@@ -364,7 +364,7 @@ fig.add_annotation(
     font=dict(size=11, color="#64748b"),
     align="left",
 )
-add_source(fig, y=-0.26)
+add_source(fig, y=-0.30)
 fig.show()
 ```
 
