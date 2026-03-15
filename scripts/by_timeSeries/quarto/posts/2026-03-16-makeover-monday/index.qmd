@@ -71,8 +71,8 @@ print(f"Global sales: {mario['Global_Sales'].sum():.1f}M units")
 #| include: false
 
 SOURCE_NOTE = (
-    "Note: Mario-branded Nintendo titles only<br>"
-    "Source: VGChartz / vgsales dataset  |  <i>© 2026 chokotto</i>"
+    "<i>Note: Mario-branded Nintendo titles only</i><br>"
+    "<i>Source: VGChartz / vgsales dataset  |  © 2026 chokotto</i>"
 )
 
 THEME = dict(
@@ -176,12 +176,12 @@ fig.show()
 fig.write_image("chart-1.png", width=1200, height=600, scale=2)
 ```
 
-### Regional Mix and Genre Diversity
+### Regional Mix: North America Leads
 
 ```{python}
-#| label: regional-and-genre
-#| fig-width: 11
-#| fig-height: 5
+#| label: regional-mix
+#| fig-width: 7
+#| fig-height: 2.5
 
 # --- データ準備 ---
 total = mario[["NA_Sales","EU_Sales","JP_Sales","Other_Sales"]].sum()
@@ -192,6 +192,47 @@ regions = pd.DataFrame({
 })
 regions["Pct"] = regions["Sales"] / regions["Sales"].sum() * 100
 na_pct = regions.loc[regions["Region"] == "North America", "Pct"].values[0]
+
+fig_b = go.Figure()
+for _, row in regions.iterrows():
+    pct = row["Pct"]
+    label_text = f"{row['Region']}<br>{pct:.0f}%" if pct >= 8 else ""
+    fig_b.add_trace(
+        go.Bar(
+            x=[pct], y=[""],
+            orientation="h",
+            marker_color=row["Color"],
+            name=row["Region"],
+            text=[label_text],
+            textposition="inside",
+            insidetextanchor="middle",
+            textfont=dict(size=12, color="white"),
+            hovertemplate=f"{row['Region']}: {pct:.1f}%<extra></extra>",
+        )
+    )
+
+fig_b.update_layout(
+    **THEME,
+    title=make_title(
+        f"North America drives ~<b>{na_pct:.0f}%</b> of global Mario revenue"
+    ),
+    barmode="stack",
+    showlegend=False,
+    height=220,
+    margin=dict(t=60, b=80, l=40, r=40),
+    xaxis=dict(showticklabels=False, showgrid=False, zeroline=False),
+    yaxis=dict(showticklabels=False),
+)
+add_source(fig_b, y=-0.35)
+fig_b.show()
+```
+
+### Genre Breakdown: Platform Dominates
+
+```{python}
+#| label: genre-breakdown
+#| fig-width: 7
+#| fig-height: 5
 
 genre_sales = (
     mario.groupby("Genre", as_index=False)["Global_Sales"]
@@ -205,39 +246,8 @@ genre_colors = [
     for g in genre_sales["Genre"]
 ]
 
-# --- 2列サブプロット（subplot_titles でタイトルを各列に割り当て）---
-fig = make_subplots(
-    rows=1, cols=2,
-    column_widths=[0.35, 0.65],
-    subplot_titles=[
-        f"North America drives ~{na_pct:.0f}% of global Mario revenue",
-        "Platform games lead, but racing & party titles diversify the portfolio",
-    ],
-    horizontal_spacing=0.18,
-)
-
-# B: 地域 100% stacked bar（横1本）
-for _, row in regions.iterrows():
-    pct = row["Pct"]
-    # 幅が狭い（5%未満）セグメントはラベルなし
-    label_text = f"{row['Region']}<br>{pct:.0f}%" if pct >= 8 else ""
-    fig.add_trace(
-        go.Bar(
-            x=[pct], y=["Region"],
-            orientation="h",
-            marker_color=row["Color"],
-            name=row["Region"],
-            text=[label_text],
-            textposition="inside",
-            insidetextanchor="middle",
-            textfont=dict(size=12, color="white"),
-            hovertemplate=f"{row['Region']}: {pct:.1f}%<extra></extra>",
-        ),
-        row=1, col=1,
-    )
-
-# C: ジャンル別横棒
-fig.add_trace(
+fig_c = go.Figure()
+fig_c.add_trace(
     go.Bar(
         x=genre_sales["Global_Sales"],
         y=genre_sales["Genre"],
@@ -249,29 +259,25 @@ fig.add_trace(
         cliponaxis=False,
         hovertemplate="%{y}: %{x:.1f}M<extra></extra>",
         showlegend=False,
-    ),
-    row=1, col=2,
+    )
 )
 
-fig.update_layout(
+fig_c.update_layout(
     **THEME,
-    barmode="stack",
+    title=make_title(
+        "Platform games lead, but racing & party titles diversify the portfolio"
+    ),
     showlegend=False,
-    height=460,
-    margin=dict(t=100, b=140, l=80, r=100),
+    height=420,
+    margin=dict(t=60, b=100, l=100, r=100),
+    xaxis=dict(
+        title="Sales (M units)",
+        showgrid=True, gridcolor="#e2e8f0", zeroline=False,
+    ),
+    yaxis=dict(title=""),
 )
-fig.update_xaxes(showticklabels=False, showgrid=False, row=1, col=1)
-fig.update_yaxes(showticklabels=False, row=1, col=1)
-fig.update_xaxes(
-    title_text="Sales (M units)",
-    showgrid=True, gridcolor="#e2e8f0", zeroline=False,
-    row=1, col=2,
-)
-fig.update_yaxes(title_text="", row=1, col=2)
-# subplot_titles のフォントを統一
-fig.update_annotations(font=dict(size=13, color="#1e293b"))
-add_source(fig, y=-0.30)
-fig.show()
+add_source(fig_c, y=-0.22)
+fig_c.show()
 ```
 
 ### Annual Sales by Platform Era
