@@ -72,7 +72,7 @@ print(f"Global sales: {mario['Global_Sales'].sum():.1f}M units")
 
 SOURCE_NOTE = (
     "Note: Mario-branded Nintendo titles only<br>"
-    "Source: VGChartz / vgsales dataset  ·  <i>© 2026 chokotto</i>"
+    "Source: VGChartz / vgsales dataset  |  <i>© 2026 chokotto</i>"
 )
 
 THEME = dict(
