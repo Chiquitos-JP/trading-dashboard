@@ -2,7 +2,7 @@
 title: "TidyTuesday: Attention Analysis - SOFI vs IONQ"
 description: "Static panel visualization of Reddit attention metrics (z-score, Share of Attention) with price overlay and bottom candidate detection"
 date: "2026-02-24"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - TidyTuesday
