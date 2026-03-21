@@ -74,6 +74,10 @@ cat(glue(
 #| label: setup-theme
 #| message: false
 
+NOTE_TEXT   <- "Full event schedule including training and competition"
+SOURCE_TEXT <- "TidyTuesday 2026-02-10 / Daniel Chen"
+CAPTION     <- glue("Note: {NOTE_TEXT}  |  Source: {SOURCE_TEXT}  |  \u00A9 2026 chokotto")
+
 theme_fm <- theme_minimal(base_size = 12) +
   theme(
     plot.background = element_rect(fill = "white", color = NA),
@@ -135,6 +139,7 @@ p1 <- ggplot(heatmap_data, aes(x = date, y = discipline_name, fill = n_events)) 
   labs(
     title = "Olympic Event Density: Some Disciplines Run Every Day, Others Concentrate",
     subtitle = "Total events per day per discipline \u2014 darker = more events scheduled",
+    caption = CAPTION,
     x = NULL,
     y = NULL
   ) +
@@ -184,6 +189,7 @@ p2 <- ggplot(medal_context, aes(x = date, y = count, fill = type)) +
   labs(
     title = "Medal events peak mid-Games \u2014 the opening and closing days are lighter",
     subtitle = "Daily competition events split by medal / non-medal status",
+    caption = CAPTION,
     x = NULL,
     y = "Events"
   ) +
@@ -220,6 +226,7 @@ p3 <- ggplot(daily_type, aes(x = date, y = n, fill = session_type)) +
   labs(
     title = "Training sessions dominate early days, then competition takes over",
     subtitle = "Daily event volume by session type (stacked area)",
+    caption = CAPTION,
     x = NULL,
     y = "Events"
   ) +
@@ -255,6 +262,7 @@ p4 <- ggplot(venue_summary, aes(x = n, y = venue_name)) +
   labs(
     title = "Venue load is highly uneven \u2014 one venue hosts far more events than others",
     subtitle = "Total scheduled events by venue",
+    caption = CAPTION,
     x = "Events",
     y = NULL
   ) +
@@ -276,7 +284,7 @@ combined <- p1 / p2 / p3 / p4 +
   plot_annotation(
     title = "Milan-Cortina 2026: The Structure Behind the Schedule",
     subtitle = "1,866 events across 16 disciplines, 20 days, and multiple venues \u2014 when complexity peaks",
-    caption = "Note: Full event schedule including training and competition  |  Source: TidyTuesday 2026-02-10 / Daniel Chen  |  \u00A9 2026 chokotto",
+    caption = CAPTION,
     theme = theme(
       plot.background = element_rect(fill = "white", color = NA),
       plot.title = element_text(color = "#1e293b", face = "bold", size = 18),
