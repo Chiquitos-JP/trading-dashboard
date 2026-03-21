@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "language": "japanese",
+  "permissions": {
+    "allow": [
+      "Bash(py *)",
+      "Bash(python3 *)",
+      "Bash(gh *)",
+      "Bash(quarto *)",
+      "Bash(git *)",
+      "Bash(source *)",
+      "Bash(brew *)",
+      "Read(./tasks/*)",
+      "Read(./scripts/**)",
+      "Read(./config/**)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(python *)"
+    ]
+  },
+  "env": {
+    "PROJECT_ROOT": "."
+  }
+}
