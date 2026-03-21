@@ -326,6 +326,42 @@ gh workflow run "post-to-x.yml" -f post_type=tidytuesday --repo Chiquitos-JP/tra
 
 ---
 
+## AI 開発環境
+
+<details>
+<summary><strong>Cursor IDE + Claude Code（CLI）デュアル環境</strong></summary>
+
+本プロジェクトは **Cursor IDE** と **Claude Code（CLI）** の両方で AI エージェント駆動が可能です。
+
+| ツール | 設定ファイル | 用途 |
+|---|---|---|
+| Cursor IDE | `.cursor/rules/*.mdc` | IDE 内での AI アシスタント（ルールベース） |
+| Claude Code | `CLAUDE.md` + `.claude/` | CLI での自律エージェント駆動 |
+
+### Claude Code エージェント
+
+| エージェント | ファイル | 役割 |
+|---|---|---|
+| weekly-report | `.claude/agents/weekly-report.md` | 週次レビューの自律生成 |
+| makeover-monday | `.claude/agents/makeover-monday.md` | MakeoverMonday 投稿作成 |
+| tidytuesday | `.claude/agents/tidytuesday.md` | TidyTuesday 投稿作成 |
+| ci-monitor | `.claude/agents/ci-monitor.md` | GitHub Actions 監視・修復 |
+
+### Claude Code コマンド
+
+| コマンド | 説明 |
+|---|---|
+| `/run-pipeline` | フルパイプライン実行 |
+| `/weekly-review` | レビュー生成 + レンダリング |
+| `/new-mm` | MakeoverMonday 投稿スキャフォールド |
+| `/new-tt` | TidyTuesday 投稿スキャフォールド |
+| `/render` | Quarto レンダリング |
+| `/ci-status` | CI 実行状況確認 |
+
+</details>
+
+---
+
 ## リファレンス
 
 <details>
@@ -353,6 +389,9 @@ gh workflow run "post-to-x.yml" -f post_type=tidytuesday --repo Chiquitos-JP/tra
 | `docs/` | GitHub Pages 公開用（Quarto 出力先） |
 | `config/` | 設定ファイル（非公開） |
 | `.github/` | GitHub Actions ワークフロー・テンプレート |
+| `CLAUDE.md` | Claude Code プロジェクトメモリ（セッション自動ロード） |
+| `.claude/` | Claude Code 設定・エージェント・コマンド |
+| `.cursor/` | Cursor IDE ルール（非公開） |
 | `.venv/` | Python 仮想環境 |
 | `requirements.txt` | Python パッケージ一覧（バージョン固定） |
 | `.env` | 環境変数（API キー等、.gitignore 対象） |

@@ -1,0 +1,440 @@
+---
+title: "MakeoverMonday: Fastest Cars in the World — Speed, Power, and the Price of Extremes"
+description: "Mapping the relationship between top speed, horsepower, price, and exclusivity across the world's 8 fastest production cars"
+date: "2026-03-23"
+x-posted: false
+author: "chokotto"
+categories:
+  - MakeoverMonday
+  - Python
+  - Automotive
+  - Data Viz
+image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "MakeoverMonday: Fastest Cars in the World"
+  description: "Speed, power, and the price of extremes across the world's 8 fastest production cars"
+---
+
+## Overview
+
+This week's MakeoverMonday features the **8 fastest street-legal production cars in the world** as of 2026. Rather than a simple speed ranking, we explore the **trade-offs between speed, power, price, and exclusivity** — treating each hypercar as a data point in a multi-dimensional performance space.
+
+- **Data Source**: [RankRed — 8 Fastest Cars In The World (2026)](https://www.rankred.com/fastest-cars-in-the-world/) via [data.world](https://data.world/makeovermonday/8-fastest-cars-in-the-world-as-of-2026)
+- **Scope**: 8 street-legal production cars with manufacturer-claimed or verified top speeds
+- **Angle**: speed-price efficiency, power-to-speed ratio, ICE vs. electric, exclusivity paradox
+
+## Data
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+df = pd.DataFrame({
+    "Car": [
+        "Hennessey Venom F5",
+        "Bugatti Chiron SS 300+",
+        "SSC Tuatara",
+        "Koenigsegg Jesko",
+        "Koenigsegg Agera RS",
+        "Hennessey Venom GT",
+        "Bugatti Veyron SS",
+        "Rimac C Two",
+    ],
+    "Top_Speed_mph": [310.7, 304.77, 300, 300, 277.87, 270.49, 267.85, 258],
+    "HP": [1817, 1578, 1750, 1600, 1160, 1244, 1184, 1914],
+    "Price_M": [1.8, 3.9, 1.7, 2.8, 2.1, 1.25, 2.0, 2.1],
+    "Units": [24, 30, 100, 125, 25, 13, 30, 150],
+    "Engine": [
+        "V8 Twin-Turbo", "W16 Quad-Turbo", "V8 Twin-Turbo", "V8 Twin-Turbo",
+        "V8 Twin-Turbo", "V8 Twin-Turbo", "W16 Quad-Turbo", "Electric",
+    ],
+    "Manufacturer": [
+        "Hennessey", "Bugatti", "SSC", "Koenigsegg",
+        "Koenigsegg", "Hennessey", "Bugatti", "Rimac",
+    ],
+})
+
+df["Top_Speed_kmh"] = (df["Top_Speed_mph"] * 1.60934).round(1)
+df["MPH_per_M"] = (df["Top_Speed_mph"] / df["Price_M"]).round(1)
+df["HP_per_mph"] = (df["HP"] / df["Top_Speed_mph"]).round(2)
+df["Powertrain"] = df["Engine"].apply(lambda x: "Electric" if x == "Electric" else "ICE")
+
+print(f"Cars: {len(df)}")
+print(f"Speed range: {df['Top_Speed_mph'].min()} - {df['Top_Speed_mph'].max()} mph")
+print(f"Price range: ${df['Price_M'].min()}M - ${df['Price_M'].max()}M")
+```
+
+```{python}
+#| label: shared-style
+#| include: false
+
+NOTE_TEXT   = "Note: Street-legal production cars only"
+SOURCE_TEXT = "Source: RankRed / data.world  |  &#169; 2026 chokotto"
+_NOTE_THRESHOLD = 50
+
+def _build_source_note(note=NOTE_TEXT, source=SOURCE_TEXT):
+    if len(note) <= _NOTE_THRESHOLD:
+        return f"{note}  |  {source}"
+    return f"{note}<br>{source}"
+
+SOURCE_NOTE = _build_source_note()
+
+THEME = dict(
+    template="plotly_white",
+    font=dict(family="sans-serif", size=13, color="#1e293b"),
+    paper_bgcolor="white",
+    plot_bgcolor="#f8fafc",
+)
+
+ACCENT     = "#e63946"
+SECONDARY  = "#3b82f6"
+ELECTRIC   = "#10b981"
+MUTED      = "#94a3b8"
+
+def make_title(text):
+    return dict(text=text, font=dict(size=15, color="#1e293b"), x=0, xanchor="left")
+
+def add_source(fig, y=-0.20):
+    fig.add_annotation(
+        text=SOURCE_NOTE,
+        xref="paper", yref="paper",
+        x=0, y=y,
+        showarrow=False,
+        font=dict(size=10, color="#94a3b8", style="italic"),
+        align="left",
+        yanchor="top",
+    )
+
+def assert_no_title_overlap(fig):
+    layout = fig.layout
+    height = layout.height or 450
+    margin_t = layout.margin.t if layout.margin.t is not None else 80
+    plot_top = 1.0 - margin_t / height
+
+    for ann in fig.layout.annotations:
+        if ann.yref == "paper" and ann.y is not None and ann.y > plot_top:
+            required_t = int((1.0 - ann.y + 0.06) * height) + 30
+            fig.update_layout(margin=dict(t=required_t))
+            margin_t = required_t
+            plot_top = 1.0 - margin_t / height
+
+    title_y = None
+    if fig.layout.title and fig.layout.title.y is not None:
+        title_y = fig.layout.title.y
+    elif fig.layout.title and fig.layout.title.text:
+        title_y = 0.98
+    if title_y is not None and title_y > plot_top:
+        required_t = int((1.0 - title_y + 0.06) * height) + 30
+        fig.update_layout(margin=dict(t=required_t))
+```
+
+## My Makeover
+
+### What I Changed
+
+The original article presents a simple numbered list. This makeover restructures the data into a **multi-dimensional comparison**:
+
+1. **Hero — Speed vs. Price**: reveals the efficiency frontier (which cars give you the most speed per dollar?)
+2. **Power Efficiency**: how much horsepower each car needs to achieve its top speed
+3. **Exclusivity Map**: the inverse relationship between production volume and performance tier
+
+Key design decisions: bubble charts for multi-variable storytelling, colour-coded by powertrain (ICE vs. Electric), insight-driven titles.
+
+### Speed vs. Price: The Efficiency Frontier
+
+```{python}
+#| label: hero-speed-price
+#| fig-width: 10
+#| fig-height: 6
+
+colors = [ELECTRIC if p == "Electric" else ACCENT for p in df["Powertrain"]]
+
+fig = go.Figure()
+
+fig.add_trace(
+    go.Scatter(
+        x=df["Price_M"],
+        y=df["Top_Speed_mph"],
+        mode="markers+text",
+        marker=dict(
+            size=df["HP"] / 40,
+            color=colors,
+            opacity=0.85,
+            line=dict(width=1.5, color="white"),
+        ),
+        text=df["Car"].str.split(" ").str[-1],
+        textposition="top center",
+        textfont=dict(size=10, color="#475569"),
+        hovertemplate=(
+            "<b>%{customdata[0]}</b><br>"
+            "Speed: %{y:.1f} mph<br>"
+            "Price: $%{x:.1f}M<br>"
+            "HP: %{customdata[1]}<br>"
+            "Engine: %{customdata[2]}"
+            "<extra></extra>"
+        ),
+        customdata=df[["Car", "HP", "Engine"]].values,
+    )
+)
+
+fig.update_layout(
+    **THEME,
+    title=make_title(
+        "The most expensive car isn't the fastest — "
+        "<b>Venom F5</b> leads at less than half the Chiron's price"
+    ),
+    xaxis=dict(
+        title="Price ($M)",
+        showgrid=True, gridcolor="#e2e8f0", zeroline=False,
+        range=[0.8, 4.5],
+    ),
+    yaxis=dict(
+        title="Top Speed (mph)",
+        showgrid=True, gridcolor="#e2e8f0", zeroline=False,
+        range=[250, 320],
+    ),
+    showlegend=False,
+    height=520,
+    margin=dict(t=100, b=140, l=80, r=60),
+)
+
+fig.add_annotation(
+    text=(
+        "Bubble size = horsepower  &#183;  "
+        "<span style='color:#e63946'>&#9679;</span> ICE  "
+        "<span style='color:#10b981'>&#9679;</span> Electric"
+    ),
+    xref="paper", yref="paper",
+    x=0, y=1.06,
+    showarrow=False,
+    font=dict(size=11, color="#64748b"),
+    align="left",
+)
+
+add_source(fig, y=-0.22)
+assert_no_title_overlap(fig)
+fig.show()
+fig.write_image("chart-1.png", width=1200, height=600, scale=2)
+```
+
+### Power Efficiency: Horsepower per mph
+
+```{python}
+#| label: power-efficiency
+#| fig-width: 10
+#| fig-height: 5
+
+df_sorted = df.sort_values("HP_per_mph").reset_index(drop=True)
+
+bar_colors = [
+    ELECTRIC if p == "Electric" else (ACCENT if i == len(df_sorted) - 1 else MUTED)
+    for i, p in enumerate(df_sorted["Powertrain"])
+]
+
+fig2 = go.Figure()
+fig2.add_trace(
+    go.Bar(
+        y=df_sorted["Car"],
+        x=df_sorted["HP_per_mph"],
+        orientation="h",
+        marker_color=bar_colors,
+        text=df_sorted["HP_per_mph"].apply(lambda v: f"{v:.1f}"),
+        textposition="outside",
+        cliponaxis=False,
+        hovertemplate="%{y}<br>%{x:.2f} HP/mph<extra></extra>",
+    )
+)
+
+fig2.update_layout(
+    **THEME,
+    title=make_title(
+        "Rimac's electric powertrain delivers the most HP per mph — "
+        "but not the most speed"
+    ),
+    xaxis=dict(
+        title="HP per mph (lower = more efficient at converting power to speed)",
+        showgrid=True, gridcolor="#e2e8f0", zeroline=False,
+    ),
+    yaxis=dict(title=""),
+    showlegend=False,
+    height=420,
+    margin=dict(t=80, b=120, l=200, r=80),
+)
+
+add_source(fig2, y=-0.25)
+assert_no_title_overlap(fig2)
+fig2.show()
+```
+
+### The Exclusivity Paradox: Rarity vs. Speed
+
+```{python}
+#| label: exclusivity
+#| fig-width: 10
+#| fig-height: 5
+
+df_excl = df.sort_values("Units").reset_index(drop=True)
+
+fig3 = go.Figure()
+fig3.add_trace(
+    go.Scatter(
+        x=df_excl["Units"],
+        y=df_excl["Top_Speed_mph"],
+        mode="markers+text",
+        marker=dict(
+            size=df_excl["Price_M"] * 12,
+            color=[ELECTRIC if p == "Electric" else SECONDARY for p in df_excl["Powertrain"]],
+            opacity=0.8,
+            line=dict(width=1.5, color="white"),
+        ),
+        text=df_excl["Car"].str.replace(" ", "<br>", n=1),
+        textposition="top center",
+        textfont=dict(size=9, color="#475569"),
+        hovertemplate=(
+            "<b>%{customdata[0]}</b><br>"
+            "Units: %{x}<br>"
+            "Speed: %{y:.1f} mph<br>"
+            "Price: $%{customdata[1]:.1f}M"
+            "<extra></extra>"
+        ),
+        customdata=df_excl[["Car", "Price_M"]].values,
+    )
+)
+
+fig3.update_layout(
+    **THEME,
+    title=make_title(
+        "More exclusive &#8800; faster: the Venom GT (13 units) "
+        "sits mid-pack while Rimac (150 units) trails in speed"
+    ),
+    xaxis=dict(
+        title="Production Units",
+        showgrid=True, gridcolor="#e2e8f0", zeroline=False,
+        type="log",
+    ),
+    yaxis=dict(
+        title="Top Speed (mph)",
+        showgrid=True, gridcolor="#e2e8f0", zeroline=False,
+        range=[250, 320],
+    ),
+    showlegend=False,
+    height=480,
+    margin=dict(t=100, b=120, l=80, r=60),
+)
+
+fig3.add_annotation(
+    text="Bubble size = price ($M)  &#183;  Log scale on x-axis",
+    xref="paper", yref="paper",
+    x=0, y=1.06,
+    showarrow=False,
+    font=dict(size=11, color="#64748b"),
+    align="left",
+)
+
+add_source(fig3, y=-0.22)
+assert_no_title_overlap(fig3)
+fig3.show()
+```
+
+### Speed Leaderboard: Ranked with Context
+
+```{python}
+#| label: leaderboard
+#| fig-width: 10
+#| fig-height: 5
+
+df_rank = df.sort_values("Top_Speed_mph", ascending=True).reset_index(drop=True)
+
+rank_colors = []
+for i, row in df_rank.iterrows():
+    if row["Powertrain"] == "Electric":
+        rank_colors.append(ELECTRIC)
+    elif i >= len(df_rank) - 3:
+        rank_colors.append(ACCENT)
+    else:
+        rank_colors.append(MUTED)
+
+fig4 = go.Figure()
+fig4.add_trace(
+    go.Bar(
+        y=df_rank["Car"],
+        x=df_rank["Top_Speed_mph"],
+        orientation="h",
+        marker_color=rank_colors,
+        text=[f"{s:.1f} mph  |  ${p:.1f}M  |  {h} HP"
+              for s, p, h in zip(df_rank["Top_Speed_mph"], df_rank["Price_M"], df_rank["HP"])],
+        textposition="outside",
+        textfont=dict(size=10),
+        cliponaxis=False,
+        hovertemplate="%{y}<br>%{x:.1f} mph<extra></extra>",
+    )
+)
+
+fig4.update_layout(
+    **THEME,
+    title=make_title(
+        "Top speed leaderboard: ICE still dominates, but electric is closing in"
+    ),
+    xaxis=dict(
+        title="Top Speed (mph)",
+        showgrid=True, gridcolor="#e2e8f0", zeroline=False,
+        range=[200, 380],
+    ),
+    yaxis=dict(title=""),
+    showlegend=False,
+    height=440,
+    margin=dict(t=80, b=120, l=200, r=160),
+)
+
+fig4.add_annotation(
+    text=(
+        "<span style='color:#e63946'>&#9632;</span> Top 3  "
+        "<span style='color:#10b981'>&#9632;</span> Electric  "
+        "<span style='color:#94a3b8'>&#9632;</span> Others"
+    ),
+    xref="paper", yref="paper",
+    x=0, y=1.04,
+    showarrow=False,
+    font=dict(size=11, color="#64748b"),
+    align="left",
+)
+
+add_source(fig4, y=-0.22)
+assert_no_title_overlap(fig4)
+fig4.show()
+```
+
+## Key Takeaways
+
+1. **Price doesn't buy speed linearly**: The Bugatti Chiron SS 300+ costs $3.9M but is beaten by the Hennessey Venom F5 at $1.8M — the "efficiency frontier" of speed-per-dollar favours American engineering
+2. **Electric power is raw but not yet fastest**: Rimac's C Two has the highest HP (1,914) but ranks last in top speed — converting electric torque into sustained top speed remains an engineering frontier
+3. **Exclusivity is independent of performance**: The rarest car (Venom GT, 13 units) sits mid-pack in speed, while the most produced (Rimac, 150 units) trails in top speed
+4. **The 300 mph barrier has fallen**: Three cars now exceed 300 mph, all within the last few years — the next frontier appears to be 350 mph
+
+***
+
+_This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Speed figures are manufacturer-claimed or independently verified under controlled conditions. Prices and production numbers may vary by market and edition.
+:::
+:::

@@ -1,0 +1,312 @@
+---
+title: "TidyTuesday: Olympic Schedule 2026 — When Complexity Peaks"
+description: "Mapping the density, rhythm, and structural imbalance of 1,866 events across the Milan-Cortina 2026 Winter Olympics"
+date: "2026-03-24"
+x-posted: false
+author: "chokotto"
+categories:
+  - TidyTuesday
+  - R
+  - Sports
+  - System
+image: "thumbnail.svg"
+engine: knitr
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "TidyTuesday: Olympic Schedule 2026"
+  description: "1,866 events, 16 disciplines, 20 days — visualizing when the Olympics peaks"
+---
+
+## Overview
+
+An Olympic schedule is not just a timetable — it's a **resource allocation problem** made visible. This week's TidyTuesday uses the complete event schedule for the **2026 Milan-Cortina Winter Olympics** (1,866 events across 16 disciplines) to reveal the hidden structure: which days carry the heaviest load, where medal events cluster, and how training and competition rhythms overlap.
+
+- **Data Source**: [TidyTuesday 2026-02-10](https://github.com/rfordatascience/tidytuesday/blob/main/data/2026/2026-02-10/readme.md) / [Daniel Chen, Posit PBC](https://github.com/chendaniely)
+- **Events**: 1,866 total (competition + training)
+- **Disciplines**: 16 winter sports
+- **Period**: February 4 – February 23, 2026
+- **Visualization**: ggplot2 + patchwork (static panels)
+
+## Data
+
+```{r}
+#| label: load-packages
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(scales)
+library(glue)
+library(patchwork)
+```
+
+```{r}
+#| label: load-data
+#| message: false
+
+data_dir <- file.path(getwd(), "data")
+
+schedule <- read_csv(file.path(data_dir, "schedule.csv"),
+                     show_col_types = FALSE)
+
+schedule <- schedule |>
+  mutate(
+    date = as.Date(date),
+    is_medal_event = as.logical(is_medal_event),
+    is_training = as.logical(is_training)
+  )
+
+cat(glue(
+  "Total events: {nrow(schedule)}\n",
+  "Disciplines: {n_distinct(schedule$discipline_name)}\n",
+  "Venues: {n_distinct(schedule$venue_name)}\n",
+  "Date range: {min(schedule$date)} to {max(schedule$date)}\n",
+  "Medal events: {sum(schedule$is_medal_event)}\n",
+  "Training sessions: {sum(schedule$is_training)}"
+))
+```
+
+```{r}
+#| label: setup-theme
+#| message: false
+
+theme_fm <- theme_minimal(base_size = 12) +
+  theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "#f8fafc", color = NA),
+    panel.grid.major = element_line(color = "#e2e8f0", linewidth = 0.3),
+    panel.grid.minor = element_blank(),
+    text = element_text(color = "#334155"),
+    axis.text = element_text(color = "#475569"),
+    plot.title = element_text(color = "#1e293b", face = "bold", size = 14),
+    plot.subtitle = element_text(color = "#64748b", size = 10),
+    plot.caption = element_text(
+      face = "italic", color = "#94a3b8", size = 9,
+      hjust = 0, margin = margin(t = 12)
+    ),
+    plot.caption.position = "plot",
+    strip.text = element_text(color = "#1e293b", face = "bold"),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.text = element_text(color = "#475569"),
+    plot.margin = margin(15, 15, 15, 15)
+  )
+```
+
+## Visualizations
+
+### 1. Event Density Heatmap: Date × Discipline
+
+Where does the schedule concentrate? This heatmap shows total events per day per discipline — revealing the rhythm of the Games.
+
+```{r}
+#| label: heatmap
+#| fig-width: 14
+#| fig-height: 8
+#| warning: false
+
+heatmap_data <- schedule |>
+  count(date, discipline_name, name = "n_events") |>
+  complete(date, discipline_name, fill = list(n_events = 0))
+
+discipline_order <- schedule |>
+  count(discipline_name) |>
+  arrange(desc(n)) |>
+  pull(discipline_name)
+
+heatmap_data <- heatmap_data |>
+  mutate(discipline_name = factor(discipline_name, levels = rev(discipline_order)))
+
+p1 <- ggplot(heatmap_data, aes(x = date, y = discipline_name, fill = n_events)) +
+  geom_tile(color = "white", linewidth = 0.4) +
+  scale_fill_gradient(
+    low = "#f1f5f9", high = "#e63946",
+    name = "Events",
+    breaks = c(0, 10, 20, 30, 40)
+  ) +
+  scale_x_date(
+    date_labels = "%b %d",
+    date_breaks = "2 days",
+    expand = c(0, 0)
+  ) +
+  labs(
+    title = "Olympic Event Density: Some Disciplines Run Every Day, Others Concentrate",
+    subtitle = "Total events per day per discipline \u2014 darker = more events scheduled",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_fm +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 9),
+    legend.position = "right",
+    legend.key.height = unit(1.2, "cm")
+  )
+
+p1
+```
+
+### 2. Medal Event Concentration: When Are Medals Decided?
+
+```{r}
+#| label: medal-density
+#| fig-width: 12
+#| fig-height: 5
+#| warning: false
+
+medal_by_date <- schedule |>
+  filter(is_medal_event) |>
+  count(date, name = "medal_events")
+
+daily_total <- schedule |>
+  filter(!is_training) |>
+  count(date, name = "total_comp")
+
+medal_context <- daily_total |>
+  left_join(medal_by_date, by = "date") |>
+  mutate(medal_events = replace_na(medal_events, 0),
+         non_medal = total_comp - medal_events) |>
+  pivot_longer(cols = c(medal_events, non_medal),
+               names_to = "type", values_to = "count") |>
+  mutate(type = factor(type, levels = c("non_medal", "medal_events"),
+                       labels = c("Non-medal competition", "Medal events")))
+
+p2 <- ggplot(medal_context, aes(x = date, y = count, fill = type)) +
+  geom_col(width = 0.8) +
+  scale_fill_manual(
+    values = c("Non-medal competition" = "#94a3b8", "Medal events" = "#e63946"),
+    name = NULL
+  ) +
+  scale_x_date(date_labels = "%b %d", date_breaks = "2 days") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+  labs(
+    title = "Medal events peak mid-Games \u2014 the opening and closing days are lighter",
+    subtitle = "Daily competition events split by medal / non-medal status",
+    x = NULL,
+    y = "Events"
+  ) +
+  theme_fm +
+  theme(
+    legend.position = "top",
+    legend.justification = "left"
+  )
+
+p2
+```
+
+### 3. Training vs. Competition Balance
+
+```{r}
+#| label: training-competition
+#| fig-width: 12
+#| fig-height: 5
+#| warning: false
+
+daily_type <- schedule |>
+  mutate(session_type = if_else(is_training, "Training", "Competition")) |>
+  count(date, session_type) |>
+  mutate(session_type = factor(session_type, levels = c("Training", "Competition")))
+
+p3 <- ggplot(daily_type, aes(x = date, y = n, fill = session_type)) +
+  geom_area(alpha = 0.8, position = "stack") +
+  scale_fill_manual(
+    values = c("Training" = "#f59e0b", "Competition" = "#3b82f6"),
+    name = NULL
+  ) +
+  scale_x_date(date_labels = "%b %d", date_breaks = "2 days") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+  labs(
+    title = "Training sessions dominate early days, then competition takes over",
+    subtitle = "Daily event volume by session type (stacked area)",
+    x = NULL,
+    y = "Events"
+  ) +
+  theme_fm +
+  theme(
+    legend.position = "top",
+    legend.justification = "left"
+  )
+
+p3
+```
+
+### 4. Venue Load Distribution
+
+```{r}
+#| label: venue-load
+#| fig-width: 12
+#| fig-height: 5
+#| warning: false
+
+venue_summary <- schedule |>
+  count(venue_name, sort = TRUE) |>
+  mutate(venue_name = fct_reorder(venue_name, n))
+
+venue_colors <- if_else(
+  venue_summary$n == max(venue_summary$n), "#e63946", "#94a3b8"
+)
+
+p4 <- ggplot(venue_summary, aes(x = n, y = venue_name)) +
+  geom_col(fill = venue_colors, width = 0.7) +
+  geom_text(aes(label = n), hjust = -0.2, color = "#475569", size = 3.5) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(
+    title = "Venue load is highly uneven \u2014 one venue hosts far more events than others",
+    subtitle = "Total scheduled events by venue",
+    x = "Events",
+    y = NULL
+  ) +
+  theme_fm
+
+p4
+```
+
+### 5. Combined Panel
+
+```{r}
+#| label: combined-panel
+#| fig-width: 14
+#| fig-height: 20
+#| warning: false
+
+combined <- p1 / p2 / p3 / p4 +
+  plot_layout(heights = c(2, 1, 1, 1)) +
+  plot_annotation(
+    title = "Milan-Cortina 2026: The Structure Behind the Schedule",
+    subtitle = "1,866 events across 16 disciplines, 20 days, and multiple venues \u2014 when complexity peaks",
+    caption = "Note: Full event schedule including training and competition  |  Source: TidyTuesday 2026-02-10 / Daniel Chen  |  \u00A9 2026 chokotto",
+    theme = theme(
+      plot.background = element_rect(fill = "white", color = NA),
+      plot.title = element_text(color = "#1e293b", face = "bold", size = 18),
+      plot.subtitle = element_text(color = "#64748b", size = 12),
+      plot.caption = element_text(
+        face = "italic", color = "#94a3b8", size = 9,
+        hjust = 0, margin = margin(t = 12)
+      ),
+      plot.caption.position = "plot"
+    )
+  )
+
+combined
+```
+
+## Key Findings
+
+1. **Event density is not uniform**: Certain disciplines (e.g., Curling, Alpine Skiing) span nearly the entire Games, while others cluster into a few intense days
+2. **Medal events peak mid-Games**: The opening and closing days carry fewer medal decisions — the real "pressure peak" comes in the second week
+3. **Training fades as competition rises**: The schedule shifts from training-heavy early days to competition-dominant mid-to-late Games, reflecting the operational rhythm of Olympic preparation
+4. **Venue load is highly concentrated**: A small number of venues shoulder a disproportionate share of events, creating logistical bottleneck risk
+
+***
+
+_This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Schedule data reflects the planned event timetable and may not account for weather delays, cancellations, or last-minute changes.
+:::
+:::
