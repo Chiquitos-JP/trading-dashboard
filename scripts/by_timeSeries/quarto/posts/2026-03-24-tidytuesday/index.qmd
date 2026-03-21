@@ -279,7 +279,10 @@ p4
 #| fig-height: 20
 #| warning: false
 
-combined <- p1 / p2 / p3 / p4 +
+combined <- (p1 + labs(caption = NULL)) /
+  (p2 + labs(caption = NULL)) /
+  (p3 + labs(caption = NULL)) /
+  (p4 + labs(caption = NULL)) +
   plot_layout(heights = c(2, 1, 1, 1)) +
   plot_annotation(
     title = "Milan-Cortina 2026: The Structure Behind the Schedule",
