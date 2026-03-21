@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,6 +12,9 @@
 
 <title>TidyTuesday: SP500 Sector Performance – ちょこっと</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -70,15 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-cd88a17298d2298fb2a246b0a2d4fe11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-43aca1f66faec7631b87e56b29ea86a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -277,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Data loaded successfully!
-Records: 12Data date: 2026-03-13</code></pre>
+Records: 12Data date: 2026-03-20</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -313,7 +315,7 @@ Columns: 4
 $ sector     &lt;fct&gt; Energy, Energy, Health Care, Health Care, Utilities, Utilit…
 $ sort_order &lt;int&gt; 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,…
 $ metric     &lt;fct&gt; Daily, Year-to-date, Daily, Year-to-date, Daily, Year-to-da…
-$ value      &lt;dbl&gt; 0.3303816, 26.3964925, -0.2464107, -3.6782210, 0.9892453, 8…</code></pre>
+$ value      &lt;dbl&gt; -0.08423052, 29.92332835, -0.87306376, -6.54619834, -4.0610…</code></pre>
 </div>
 </div>
 </section>
@@ -416,63 +418,63 @@ $ value      &lt;dbl&gt; 0.3303816, 26.3964925, -0.2464107, -3.6782210, 0.989245
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Energy</td>
-<td style="text-align: right;">+0.33%</td>
-<td style="text-align: right;">+26.40%</td>
+<td style="text-align: right;">-0.08%</td>
+<td style="text-align: right;">+29.92%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Health Care</td>
-<td style="text-align: right;">-0.25%</td>
-<td style="text-align: right;">-3.68%</td>
+<td style="text-align: right;">-0.87%</td>
+<td style="text-align: right;">-6.55%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Utilities</td>
-<td style="text-align: right;">+0.99%</td>
-<td style="text-align: right;">+8.75%</td>
+<td style="text-align: right;">-4.06%</td>
+<td style="text-align: right;">+3.40%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Materials</td>
-<td style="text-align: right;">-0.99%</td>
-<td style="text-align: right;">+6.66%</td>
+<td style="text-align: right;">-1.59%</td>
+<td style="text-align: right;">+1.86%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Real Estate</td>
-<td style="text-align: right;">+0.26%</td>
-<td style="text-align: right;">+4.63%</td>
+<td style="text-align: right;">-3.17%</td>
+<td style="text-align: right;">+0.52%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Financials</td>
-<td style="text-align: right;">+0.12%</td>
-<td style="text-align: right;">-11.00%</td>
+<td style="text-align: right;">+0.18%</td>
+<td style="text-align: right;">-10.65%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Cons. Staples</td>
-<td style="text-align: right;">+0.58%</td>
-<td style="text-align: right;">+9.07%</td>
+<td style="text-align: right;">-0.83%</td>
+<td style="text-align: right;">+4.63%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Industrials</td>
-<td style="text-align: right;">-0.36%</td>
-<td style="text-align: right;">+4.22%</td>
+<td style="text-align: right;">-1.46%</td>
+<td style="text-align: right;">+2.34%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">S&amp;P 500</td>
-<td style="text-align: right;">-0.57%</td>
-<td style="text-align: right;">-3.06%</td>
+<td style="text-align: right;">-1.43%</td>
+<td style="text-align: right;">-4.81%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Comm. Serv.</td>
-<td style="text-align: right;">-0.71%</td>
-<td style="text-align: right;">-2.10%</td>
+<td style="text-align: right;">-0.80%</td>
+<td style="text-align: right;">-3.99%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Info. Tech.</td>
-<td style="text-align: right;">-0.75%</td>
-<td style="text-align: right;">-5.20%</td>
+<td style="text-align: right;">-2.27%</td>
+<td style="text-align: right;">-6.24%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Cons. Discr.</td>
-<td style="text-align: right;">-0.59%</td>
-<td style="text-align: right;">-6.33%</td>
+<td style="text-align: right;">-1.79%</td>
+<td style="text-align: right;">-8.96%</td>
 </tr>
 </tbody>
 </table>
