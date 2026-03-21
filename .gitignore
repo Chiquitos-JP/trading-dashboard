@@ -28,6 +28,7 @@ scripts/by_timeSeries/runners/*
 scripts/by_timeSeries/quarto/*
 !scripts/by_timeSeries/quarto/_quarto.yml
 !scripts/by_timeSeries/quarto/styles.scss
+!scripts/by_timeSeries/quarto/analysis.qmd
 !scripts/by_timeSeries/quarto/posts/
 # posts内は基本除外（weekly-reviewなど）
 scripts/by_timeSeries/quarto/posts/*

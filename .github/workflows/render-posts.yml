@@ -124,6 +124,94 @@ jobs:
             fi
           done
 
+      - name: Regenerate listing page (analysis.html)
+        run: |
+          cd ${{ env.QUARTO_PROJECT_DIR }}
+          DOCS_POSTS="../../../docs/quarto/latest/posts"
+          SEARCH_JSON="../../../docs/quarto/latest/search.json"
+          STUB_LIST=""
+
+          # Generate stub QMD files for posts without source (e.g. weekly reviews)
+          if [ -d "$DOCS_POSTS" ] && [ -f "$SEARCH_JSON" ]; then
+            python3 - "$SEARCH_JSON" "$DOCS_POSTS" "posts" <<'PYSCRIPT'
+import json, sys, os
+from pathlib import Path
+
+search_json = Path(sys.argv[1])
+docs_posts  = Path(sys.argv[2])
+src_posts   = Path(sys.argv[3])
+
+with open(search_json) as f:
+    entries = json.load(f)
+
+# Build metadata lookup: href -> entry
+meta = {}
+for e in entries:
+    href = e.get("href", "")
+    if href.startswith("posts/") and href.endswith("/index.html"):
+        post_dir = href.split("/")[1]
+        if post_dir not in meta:
+            meta[post_dir] = e
+
+created = []
+for post_dir in sorted(os.listdir(docs_posts)):
+    src_qmd = src_posts / post_dir / "index.qmd"
+    if src_qmd.exists():
+        continue
+    if not (docs_posts / post_dir / "index.html").exists():
+        continue
+
+    # Create minimal stub for the listing
+    src_qmd.parent.mkdir(parents=True, exist_ok=True)
+    entry = meta.get(post_dir, {})
+    title = entry.get("title", post_dir)
+    date = post_dir[:10] if len(post_dir) >= 10 else ""
+    desc = entry.get("description", "")
+    cats = entry.get("categories", "")
+
+    lines = ["---"]
+    lines.append(f'title: "{title}"')
+    if date:
+        lines.append(f'date: "{date}"')
+    if desc:
+        lines.append(f'description: "{desc}"')
+    lines.append('author: "chokotto"')
+    lines.append('image: "thumbnail.svg"')
+    if cats:
+        lines.append(f"categories: {json.dumps(cats)}")
+    lines.append("---")
+    lines.append("")
+
+    src_qmd.write_text("\n".join(lines), encoding="utf-8")
+    created.append(str(post_dir))
+    print(f"📋 Stub created: {src_qmd}")
+
+# Write list of stubs to clean up later
+if created:
+    (src_posts / ".generated_stubs").write_text("\n".join(created), encoding="utf-8")
+    print(f"✅ Created {len(created)} listing stubs")
+else:
+    print("ℹ️ No stubs needed")
+PYSCRIPT
+          fi
+
+          # Render the listing page
+          if [ -f "analysis.qmd" ]; then
+            echo "📝 Rendering: analysis.qmd (listing page)"
+            quarto render analysis.qmd || echo "⚠️ Failed to render analysis.qmd"
+          else
+            echo "⚠️ analysis.qmd not found, skipping listing regeneration"
+          fi
+
+          # Clean up generated stubs
+          if [ -f "posts/.generated_stubs" ]; then
+            while IFS= read -r stub_dir; do
+              rm -rf "posts/$stub_dir"
+              echo "🧹 Removed stub: posts/$stub_dir"
+            done < "posts/.generated_stubs"
+            rm "posts/.generated_stubs"
+          fi
+
       - name: Check for changes
         id: check-changes
         run: |

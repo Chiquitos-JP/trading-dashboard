@@ -1,0 +1,162 @@
+---
+title: "Trading Analysis Blog"
+page-layout: full
+toc: false
+listing:
+  - id: posts
+    contents: posts
+    sort: "date desc"
+    categories: true
+    sort-ui: false
+    filter-ui: false
+    fields: [image, date, title, description, categories, author]
+    feed: true
+    page-size: 9
+    image-height: 200px
+---
+
+```{=html}
+<style>
+  :root {
+    --card-hover-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* --- 1. カスタムヘッダーデザイン（Quarto公式ブログスタイル） --- */
+  .quarto-title-block.default {
+    display: none; /* デフォルトのタイトルを隠す */
+  }
+
+  .hero-section {
+    background: #f8f9fb;
+    color: #111;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    color: #525453;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: #636466;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+
+  /* --- 2. お知らせバー --- */
+  .system-alert {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    padding: 0.875rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 auto 2rem;
+    max-width: 800px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+  }
+
+  .alert-icon {
+    background: #64748b;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  /* --- 3. 記事カード（Listing）の調整 --- */
+  .quarto-grid-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background: white;
+    overflow: hidden;
+  }
+
+  .quarto-grid-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: #cbd5e1;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  /* カテゴリバッジのデザイン */
+  .listing-categories .listing-category {
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: none;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+  
+  .listing-categories .listing-category:hover {
+    background: #334155;
+    color: white;
+  }
+
+  /* 日付のスタイル */
+  .listing-date {
+    color: #64748b;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .listing-title {
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    color: #111;
+  }
+</style>
+
+<div class="hero-section">
+  <h1 class="hero-title">Trading Analysis Blog</h1>
+  <div class="hero-subtitle">Market Insights, Performance Review & Strategy Notes</div>
+</div>
+
+<div class="system-alert">
+  <div class="alert-icon"><i class="bi bi-cone-striped"></i></div>
+  <div>
+    <strong>System Notice:</strong> 
+    現在バックエンド改修・テスト中のため、同一タイトルの投稿が複数表示される場合があります。最新の日付を参照してください。
+  </div>
+</div>
+```
+
+::: {#posts}
+:::
