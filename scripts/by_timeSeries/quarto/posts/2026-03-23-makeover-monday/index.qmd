@@ -110,6 +110,19 @@ MUTED      = "#94a3b8"
 def make_title(text):
     return dict(text=text, font=dict(size=15, color="#1e293b"), x=0, xanchor="left")
 
+def add_legend_note(fig, text, y=-0.13):
+    """Place a legend/subtitle annotation BELOW the chart (never above).
+    Avoids overlap with bars/titles that occurs at y>1."""
+    fig.add_annotation(
+        text=text,
+        xref="paper", yref="paper",
+        x=0, y=y,
+        showarrow=False,
+        font=dict(size=11, color="#64748b"),
+        align="left",
+        yanchor="top",
+    )
+
 def add_source(fig, y=-0.20):
     fig.add_annotation(
         text=SOURCE_NOTE,
@@ -214,20 +227,14 @@ fig.update_layout(
     margin=dict(t=100, b=140, l=80, r=60),
 )
 
-fig.add_annotation(
-    text=(
-        "Bubble size = horsepower  &#183;  "
-        "<span style='color:#e63946'>&#9679;</span> ICE  "
-        "<span style='color:#10b981'>&#9679;</span> Electric"
-    ),
-    xref="paper", yref="paper",
-    x=0, y=1.06,
-    showarrow=False,
-    font=dict(size=11, color="#64748b"),
-    align="left",
+add_legend_note(
+    fig,
+    "Bubble size = horsepower  &#183;  "
+    "<span style='color:#e63946'>&#9679;</span> ICE  "
+    "<span style='color:#10b981'>&#9679;</span> Electric",
+    y=-0.15,
 )
-
-add_source(fig, y=-0.22)
+add_source(fig, y=-0.24)
 assert_no_title_overlap(fig)
 fig.show()
 fig.write_image("chart-1.png", width=1200, height=600, scale=2)
@@ -338,16 +345,8 @@ fig3.update_layout(
     margin=dict(t=100, b=120, l=80, r=60),
 )
 
-fig3.add_annotation(
-    text="Bubble size = price ($M)  &#183;  Log scale on x-axis",
-    xref="paper", yref="paper",
-    x=0, y=1.06,
-    showarrow=False,
-    font=dict(size=11, color="#64748b"),
-    align="left",
-)
-
-add_source(fig3, y=-0.22)
+add_legend_note(fig3, "Bubble size = price ($M)  &#183;  Log scale on x-axis", y=-0.15)
+add_source(fig3, y=-0.24)
 assert_no_title_overlap(fig3)
 fig3.show()
 ```
@@ -402,20 +401,14 @@ fig4.update_layout(
     margin=dict(t=80, b=120, l=200, r=160),
 )
 
-fig4.add_annotation(
-    text=(
-        "<span style='color:#e63946'>&#9632;</span> Top 3  "
-        "<span style='color:#10b981'>&#9632;</span> Electric  "
-        "<span style='color:#94a3b8'>&#9632;</span> Others"
-    ),
-    xref="paper", yref="paper",
-    x=0, y=1.04,
-    showarrow=False,
-    font=dict(size=11, color="#64748b"),
-    align="left",
+add_legend_note(
+    fig4,
+    "<span style='color:#e63946'>&#9632;</span> Top 3  "
+    "<span style='color:#10b981'>&#9632;</span> Electric  "
+    "<span style='color:#94a3b8'>&#9632;</span> Others",
+    y=-0.15,
 )
-
-add_source(fig4, y=-0.22)
+add_source(fig4, y=-0.24)
 assert_no_title_overlap(fig4)
 fig4.show()
 ```
