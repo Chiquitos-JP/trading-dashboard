@@ -58,7 +58,12 @@ def main():
         if desc:
             lines.append(f'description: "{desc}"')
         lines.append('author: "chokotto"')
-        lines.append('image: "thumbnail.svg"')
+        img_name = "thumbnail.svg"
+        for ext in ("svg", "jpg", "jpeg", "png"):
+            if (docs_posts / post_dir / f"thumbnail.{ext}").exists():
+                img_name = f"thumbnail.{ext}"
+                break
+        lines.append(f'image: "{img_name}"')
         if cats:
             lines.append(f"categories: {json.dumps(cats)}")
         lines.append("---")
