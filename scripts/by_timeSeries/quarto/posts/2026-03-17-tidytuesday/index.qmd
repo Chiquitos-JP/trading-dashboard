@@ -2,7 +2,7 @@
 title: "TidyTuesday: How Likely is 'Likely'? - The Risk Hidden in Probability Words"
 description: "Visualizing how 5,000+ people interpret common probability phrases and why verbal uncertainty creates decision risk"
 date: "2026-03-17"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - TidyTuesday
