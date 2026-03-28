@@ -1,0 +1,458 @@
+---
+title: "MakeoverMonday: London Unemployment - Young Londoners Hit Hardest"
+description: "London leads UK regions in unemployment at 7.7%, with youth rates reaching 24.6% - a 35% surge in one year"
+date: "2026-03-30"
+x-posted: false
+author: "chokotto"
+categories:
+  - MakeoverMonday
+  - Python
+  - Economics
+  - Data Viz
+image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "MakeoverMonday: London Unemployment"
+  description: "London leads UK regions at 7.7%, youth unemployment at 24.6%"
+---
+
+## Overview
+
+This week's MakeoverMonday examines **London's estimated unemployment rates** from the ONS Regional Labour Market Statistics (X02). Rather than a single headline number, we unpack the **structural inequality** hidden in the data: which age groups are bearing the burden, how London compares to the rest of the UK, and how rapidly the situation has deteriorated.
+
+- **Data Source**: [ONS X02 Regional Unemployment by Age](https://www.ons.gov.uk/employmentandlabourmarket/peoplenotinwork/unemployment/datasets/regionalunemploymentbyagex02) via [data.world](https://data.world/makeovermonday/2026w12-uk-unemployment-estimates)
+- **Article**: [London Datastore - Unemployment in Key Charts](https://data.london.gov.uk/blog/unemployment-in-key-charts-young-londoners-hit-hardest-by-labour-market-slowdown/)
+- **Period**: Nov 2025 - Jan 2026 (latest available)
+- **Angle**: age disparity, regional comparison, trend acceleration
+
+## Data
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+import plotly.express as px
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+regional = pd.DataFrame({
+    "Region": [
+        "London", "North East", "West Midlands", "Yorkshire & Humber",
+        "East Midlands", "North West", "East of England",
+        "South East", "South West", "Scotland", "Wales", "Northern Ireland",
+    ],
+    "Rate_All": [7.7, 7.0, 6.0, 5.8, 5.5, 4.6, 4.1, 4.0, 3.9, 3.8, 3.5, 2.2],
+    "Rate_Youth": [24.6, 23.5, 19.0, 16.4, 18.4, 13.4, 14.9, 13.4, 11.4, 10.4, 8.9, 5.9],
+})
+
+london_ts = pd.DataFrame({
+    "Period": [
+        "Jan-Mar 2019", "Jan-Mar 2020", "Jan-Mar 2021",
+        "Jan-Mar 2022", "Jan-Mar 2023", "Jan-Mar 2024", "Jan-Mar 2025",
+        "Nov-Jan 2026",
+    ],
+    "All_16plus": [4.4, 4.7, 6.9, 4.8, 4.9, 4.5, 6.2, 7.7],
+    "Age_16_24":  [14.0, 13.2, 16.9, 14.9, 17.3, 11.9, 18.6, 24.6],
+    "Age_25_34":  [3.6, 3.5, 5.1, 3.4, 4.2, 4.2, 4.8, 7.1],
+    "Age_35_49":  [3.0, 3.8, 5.2, 3.2, 2.9, 3.1, 4.2, 5.4],
+    "Age_50_64":  [3.3, 5.0, 7.7, 3.1, 4.3, 4.3, 5.8, 5.2],
+})
+
+london_age = pd.DataFrame({
+    "Age_Group": ["16-24", "25-34", "35-49", "50-64", "65+"],
+    "Rate": [24.6, 7.1, 5.4, 5.2, 3.0],
+    "YoY_Change_pct": [35.2, 42.3, 39.2, 3.3, -37.6],
+    "Level_thousands": [135.2, 105.9, 98.7, 60.9, 6.2],
+})
+
+borough = pd.DataFrame({
+    "Borough": [
+        "Newham", "Barking & Dagenham", "Brent", "Haringey", "Hackney",
+        "Tower Hamlets", "Waltham Forest", "Greenwich", "Lambeth", "Lewisham",
+        "Southwark", "Enfield", "Ealing", "Croydon", "Camden",
+        "Islington", "Redbridge", "Hounslow", "Hammersmith & Fulham",
+        "Barnet", "Hillingdon", "Harrow", "Merton", "Sutton",
+        "Havering", "Bromley", "Richmond upon Thames",
+        "Kingston upon Thames", "Wandsworth", "Bexley",
+    ],
+    "Rate_2025Q2": [
+        8.7, 8.2, 8.2, 7.5, 7.3,
+        7.1, 7.0, 6.8, 6.7, 6.5,
+        6.3, 6.2, 6.0, 5.8, 5.7,
+        5.5, 5.4, 5.3, 5.1,
+        5.0, 4.9, 4.8, 4.5, 4.3,
+        4.2, 4.0, 3.9,
+        3.8, 3.7, 3.7,
+    ],
+    "YoY_Change_pp": [
+        2.4, 1.0, 2.1, 0.8, 0.5,
+        0.3, 2.0, 2.2, 2.0, 0.7,
+        0.4, 0.9, 0.6, 0.3, 0.2,
+        -0.3, 0.4, 0.1, -0.2,
+        0.3, 0.1, -0.1, -0.3, -0.2,
+        0.1, -0.5, -0.3,
+        -0.4, -0.8, -0.2,
+    ],
+})
+
+print(f"Regions: {len(regional)} | London time series: {len(london_ts)} periods")
+print(f"Borough data: {len(borough)} boroughs")
+print(f"London overall rate: {regional.loc[regional['Region']=='London','Rate_All'].values[0]}%")
+print(f"London youth rate: {regional.loc[regional['Region']=='London','Rate_Youth'].values[0]}%")
+```
+
+```{python}
+#| label: shared-style
+#| include: false
+
+NOTE_TEXT   = "Note: ONS Labour Force Survey, not seasonally adjusted"
+SOURCE_TEXT = "Source: ONS X02 / Trust for London  |  &#169; 2026 chokotto"
+_NOTE_THRESHOLD = 50
+
+def _build_source_note(note=NOTE_TEXT, source=SOURCE_TEXT):
+    if len(note) <= _NOTE_THRESHOLD:
+        return f"{note}  |  {source}"
+    return f"{note}<br>{source}"
+
+SOURCE_NOTE = _build_source_note()
+
+THEME = dict(
+    template="plotly_white",
+    font=dict(family="sans-serif", size=13, color="#1e293b"),
+    paper_bgcolor="white",
+    plot_bgcolor="#f8fafc",
+)
+
+ACCENT    = "#e63946"
+SECONDARY = "#3b82f6"
+POSITIVE  = "#10b981"
+WARNING   = "#f59e0b"
+MUTED     = "#94a3b8"
+
+def make_title(text):
+    return dict(text=text, font=dict(size=15, color="#1e293b"), x=0, xanchor="left")
+
+def add_legend_note(fig, text, y=-0.13):
+    fig.add_annotation(
+        text=text,
+        xref="paper", yref="paper",
+        x=0, y=y,
+        showarrow=False,
+        font=dict(size=11, color="#64748b"),
+        align="left",
+        yanchor="top",
+    )
+
+def add_source(fig, y=-0.20):
+    fig.add_annotation(
+        text=SOURCE_NOTE,
+        xref="paper", yref="paper",
+        x=0, y=y,
+        showarrow=False,
+        font=dict(size=10, color="#94a3b8", style="italic"),
+        align="left",
+        yanchor="top",
+    )
+
+def assert_no_title_overlap(fig):
+    layout = fig.layout
+    height = layout.height or 450
+    margin_t = layout.margin.t if layout.margin.t is not None else 80
+    plot_top = 1.0 - margin_t / height
+    for ann in fig.layout.annotations:
+        if ann.yref == "paper" and ann.y is not None and ann.y > plot_top:
+            required_t = int((1.0 - ann.y + 0.06) * height) + 30
+            fig.update_layout(margin=dict(t=required_t))
+            margin_t = required_t
+            plot_top = 1.0 - margin_t / height
+    title_y = None
+    if fig.layout.title and fig.layout.title.y is not None:
+        title_y = fig.layout.title.y
+    elif fig.layout.title and fig.layout.title.text:
+        title_y = 0.98
+    if title_y is not None and title_y > plot_top:
+        required_t = int((1.0 - title_y + 0.06) * height) + 30
+        fig.update_layout(margin=dict(t=required_t))
+```
+
+## My Makeover
+
+### What I Changed
+
+The original article presents unemployment through separate static charts. This makeover restructures the data into a **multi-layered inequality narrative**:
+
+1. **Hero - Regional comparison**: London leads all UK regions, with youth rates nearly double the next worst region
+2. **Age disparity**: the 16-24 cohort at 24.6% dwarfs every other age group
+3. **Trend acceleration**: how London's unemployment trajectory has changed since 2019
+4. **Borough map**: spatial inequality within London itself
+
+### London Leads UK Regions - And the Youth Gap Is Even Wider
+
+```{python}
+#| label: hero-regional
+#| fig-width: 10
+#| fig-height: 6
+
+df = regional.sort_values("Rate_All", ascending=True).reset_index(drop=True)
+
+fig = go.Figure()
+
+fig.add_trace(go.Bar(
+    y=df["Region"], x=df["Rate_All"],
+    orientation="h", name="All 16+",
+    marker_color=[ACCENT if r == "London" else MUTED for r in df["Region"]],
+    text=[f"{v:.1f}%" for v in df["Rate_All"]],
+    textposition="outside", cliponaxis=False,
+    hovertemplate="%{y}<br>All 16+: %{x:.1f}%<extra></extra>",
+))
+
+fig.add_trace(go.Scatter(
+    y=df["Region"], x=df["Rate_Youth"],
+    mode="markers+text", name="Youth 16-24",
+    marker=dict(size=10, color=WARNING, symbol="diamond"),
+    text=[f"{v:.0f}%" for v in df["Rate_Youth"]],
+    textposition="middle right",
+    textfont=dict(size=10, color=WARNING),
+    hovertemplate="%{y}<br>Youth 16-24: %{x:.1f}%<extra></extra>",
+))
+
+fig.update_layout(
+    **THEME,
+    title=make_title(
+        "London's unemployment rate is the highest in the UK at 7.7% "
+        "- but youth rates tell an even starker story at 24.6%"
+    ),
+    xaxis=dict(
+        title="Unemployment Rate (%)", showgrid=True,
+        gridcolor="#e2e8f0", zeroline=False, range=[0, 28],
+    ),
+    yaxis=dict(title=""),
+    showlegend=False,
+    height=500,
+    margin=dict(t=100, b=140, l=160, r=80),
+    barmode="overlay",
+)
+
+add_legend_note(
+    fig,
+    "<span style='color:#e63946'>&#9632;</span> All ages (16+)  "
+    "<span style='color:#f59e0b'>&#9670;</span> Youth (16-24)",
+    y=-0.15,
+)
+add_source(fig, y=-0.24)
+assert_no_title_overlap(fig)
+fig.show()
+fig.write_image("chart-1.png", width=1200, height=600, scale=2)
+```
+
+### The Age Divide: Youth Unemployment 3x the London Average
+
+```{python}
+#| label: age-disparity
+#| fig-width: 10
+#| fig-height: 5
+
+df_age = london_age.sort_values("Rate", ascending=True).reset_index(drop=True)
+
+age_colors = []
+for _, row in df_age.iterrows():
+    if row["Age_Group"] == "16-24":
+        age_colors.append(ACCENT)
+    elif row["YoY_Change_pct"] > 30:
+        age_colors.append(WARNING)
+    else:
+        age_colors.append(MUTED)
+
+fig2 = go.Figure()
+fig2.add_trace(go.Bar(
+    y=df_age["Age_Group"], x=df_age["Rate"],
+    orientation="h",
+    marker_color=age_colors,
+    text=[f'{r:.1f}%  (YoY: {"+" if c > 0 else ""}{c:.0f}%)'
+          for r, c in zip(df_age["Rate"], df_age["YoY_Change_pct"])],
+    textposition="outside", cliponaxis=False,
+    hovertemplate=(
+        "<b>Age %{y}</b><br>"
+        "Rate: %{x:.1f}%<br>"
+        "Unemployed: %{customdata[0]:.0f}k"
+        "<extra></extra>"
+    ),
+    customdata=df_age[["Level_thousands"]].values,
+))
+
+fig2.update_layout(
+    **THEME,
+    title=make_title(
+        "One in four young Londoners (16-24) is unemployed "
+        "- and the 25-34 cohort surged 42% year-on-year"
+    ),
+    xaxis=dict(
+        title="Unemployment Rate (%)", showgrid=True,
+        gridcolor="#e2e8f0", zeroline=False, range=[0, 32],
+    ),
+    yaxis=dict(title=""),
+    showlegend=False,
+    height=380,
+    margin=dict(t=100, b=120, l=80, r=180),
+)
+
+add_legend_note(
+    fig2,
+    "<span style='color:#e63946'>&#9632;</span> Highest rate  "
+    "<span style='color:#f59e0b'>&#9632;</span> Fastest YoY growth (>30%)  "
+    "<span style='color:#94a3b8'>&#9632;</span> Others",
+    y=-0.20,
+)
+add_source(fig2, y=-0.28)
+assert_no_title_overlap(fig2)
+fig2.show()
+```
+
+### Trend Since 2019: Youth Unemployment Accelerating Away
+
+```{python}
+#| label: trend-lines
+#| fig-width: 10
+#| fig-height: 5
+
+groups = {
+    "Age 16-24": {"col": "Age_16_24", "color": ACCENT, "width": 3},
+    "All 16+":   {"col": "All_16plus", "color": SECONDARY, "width": 2.5},
+    "Age 25-34": {"col": "Age_25_34", "color": WARNING, "width": 1.5},
+    "Age 50-64": {"col": "Age_50_64", "color": MUTED, "width": 1.5},
+}
+
+fig3 = go.Figure()
+for label, cfg in groups.items():
+    fig3.add_trace(go.Scatter(
+        x=london_ts["Period"], y=london_ts[cfg["col"]],
+        mode="lines+markers", name=label,
+        line=dict(color=cfg["color"], width=cfg["width"]),
+        marker=dict(size=6),
+        hovertemplate=f"{label}: %{{y:.1f}}%<extra></extra>",
+    ))
+
+    last_val = london_ts[cfg["col"]].iloc[-1]
+    fig3.add_annotation(
+        x=london_ts["Period"].iloc[-1], y=last_val,
+        text=f" {label}: {last_val:.1f}%",
+        showarrow=False, xanchor="left",
+        font=dict(size=10, color=cfg["color"]),
+    )
+
+fig3.update_layout(
+    **THEME,
+    title=make_title(
+        "Youth unemployment has surpassed its COVID peak "
+        "- and the gap with other age groups keeps widening"
+    ),
+    xaxis=dict(title="", showgrid=True, gridcolor="#e2e8f0"),
+    yaxis=dict(
+        title="Unemployment Rate (%)", showgrid=True,
+        gridcolor="#e2e8f0", zeroline=False,
+    ),
+    showlegend=False,
+    height=460,
+    margin=dict(t=100, b=120, l=60, r=160),
+)
+
+add_source(fig3, y=-0.18)
+assert_no_title_overlap(fig3)
+fig3.show()
+```
+
+### Borough Inequality: A 5-Percentage-Point Gap Within the Same City
+
+```{python}
+#| label: borough-ranking
+#| fig-width: 10
+#| fig-height: 10
+
+df_b = borough.sort_values("Rate_2025Q2", ascending=True).reset_index(drop=True)
+
+london_avg = 5.4
+boro_colors = []
+for _, row in df_b.iterrows():
+    if row["Rate_2025Q2"] >= 7.0:
+        boro_colors.append(ACCENT)
+    elif row["Rate_2025Q2"] >= london_avg:
+        boro_colors.append(WARNING)
+    else:
+        boro_colors.append(MUTED)
+
+fig4 = go.Figure()
+fig4.add_trace(go.Bar(
+    y=df_b["Borough"], x=df_b["Rate_2025Q2"],
+    orientation="h",
+    marker_color=boro_colors,
+    text=[f'{r:.1f}%  ({"+" if c > 0 else ""}{c:.1f}pp)'
+          for r, c in zip(df_b["Rate_2025Q2"], df_b["YoY_Change_pp"])],
+    textposition="outside", cliponaxis=False,
+    hovertemplate="%{y}<br>Rate: %{x:.1f}%<extra></extra>",
+))
+
+fig4.add_vline(
+    x=london_avg, line_dash="dash", line_color=SECONDARY,
+    annotation_text=f"London avg: {london_avg}%",
+    annotation_position="top right",
+    annotation_font_color=SECONDARY,
+    annotation_font_size=10,
+)
+
+fig4.update_layout(
+    **THEME,
+    title=make_title(
+        "Newham (8.7%) vs Bexley (3.7%): "
+        "living in the same city, facing different labour markets"
+    ),
+    xaxis=dict(
+        title="Unemployment Rate (%)", showgrid=True,
+        gridcolor="#e2e8f0", zeroline=False, range=[0, 11],
+    ),
+    yaxis=dict(title="", tickfont=dict(size=11)),
+    showlegend=False,
+    height=750,
+    margin=dict(t=100, b=120, l=200, r=120),
+)
+
+add_legend_note(
+    fig4,
+    "<span style='color:#e63946'>&#9632;</span> 7%+  "
+    "<span style='color:#f59e0b'>&#9632;</span> Above avg  "
+    "<span style='color:#94a3b8'>&#9632;</span> Below avg  "
+    "&#183;  Labels show YoY change in pp",
+    y=-0.08,
+)
+add_source(fig4, y=-0.12)
+assert_no_title_overlap(fig4)
+fig4.show()
+```
+
+## Key Takeaways
+
+1. **London leads the UK in unemployment**: at 7.7%, London's rate is nearly double the South West (3.9%) and three times Northern Ireland (2.2%)
+2. **Youth unemployment is the crisis within the crisis**: one in four 16-24 year-olds in London is unemployed (24.6%), exceeding the COVID-era peak and growing 35% year-on-year
+3. **The 25-34 cohort is the fastest-deteriorating group**: while youth gets the headlines, the 42% year-on-year surge in 25-34 unemployment signals a broadening problem
+4. **Spatial inequality is stark**: within the same city, Newham (8.7%) faces more than double the unemployment of Bexley or Wandsworth (3.7%) - and the boroughs getting worse are concentrated in East London
+
+***
+
+_This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. ONS Labour Force Survey estimates are not seasonally adjusted and subject to sampling variability. Borough-level figures are modelled estimates from the Annual Population Survey and should be interpreted with caution.
+:::
+:::
