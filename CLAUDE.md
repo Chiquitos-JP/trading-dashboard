@@ -163,7 +163,7 @@ gold/    → 集計・KPI テーブル（月次損益、KPI指標）
 | `--data-only` | データ処理のみ |
 
 部分実行スクリプト:
-- `run_weekly_review.py` — Weekly Review + Quarto + Dashboard
+- `run_weekly_review.py` — 外部マーケット・マクロ・カレンダー更新後に Weekly Review + Quarto + Dashboard（`market_data_visualization` は `--force-update`）
 - `run_weekly_posts.py` — TidyTuesday / MakeoverMonday
 - `run_visualization.py` — 可視化のみ
 - `run_quarto_rebuild.py` — 既存 .qmd の Quarto 再ビルド
@@ -174,7 +174,8 @@ gold/    → 集計・KPI テーブル（月次損益、KPI指標）
 
 ### Weekly Review（投資レビュー）
 
-- ローカルで `run_all.py` + AI 分析により生成
+- ローカルで `run_all.py` + AI 分析により生成（フルパイプライン）
+- `run_weekly_review.py` は先にカレンダー・マクロ・マーケット・セクターローテーションを更新（インターネット必須）。鮮度の目安: `outputs/interim/market/sector_performance_chart.html`
 - 投稿は手動（自動投稿なし）
 - テンプレート: `scripts/by_timeSeries/quarto/posts/_template_weekly_review.qmd`
 
