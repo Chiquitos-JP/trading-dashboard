@@ -168,9 +168,8 @@ convergence <- map_dfr(sample_points, function(n) {
     count(digit) |>
     complete(digit = 0:9, fill = list(n = 0)) |>
     mutate(
-      total = n_sum <- sum(n),
-      proportion = n / total,
-      sample_size = n_sum
+      sample_size = sum(n),
+      proportion = n / sample_size
     ) |>
     select(digit, proportion, sample_size)
 })
