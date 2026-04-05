@@ -136,7 +136,10 @@ def add_legend_note(fig, text):
         align="left",
     )
 
-def add_source(fig, y=-0.10):
+def add_source(fig, y=-0.22):
+    margin_b = fig.layout.margin.b if fig.layout.margin.b is not None else 80
+    if margin_b < 120:
+        fig.update_layout(margin=dict(b=120))
     fig.add_annotation(
         text=SOURCE_NOTE,
         xref="paper", yref="paper",
