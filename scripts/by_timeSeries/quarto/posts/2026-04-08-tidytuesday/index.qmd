@@ -46,7 +46,6 @@ library(tidyverse)
 library(scales)
 library(glue)
 library(patchwork)
-library(viridis)
 ```
 
 ```{r}
@@ -175,7 +174,7 @@ seasonal <- ocean_temp |>
   )
 
 depth_colors <- setNames(
-  viridis(7, option = "viridis"),
+  viridisLite::viridis(7, option = "viridis"),
   c("2", "5", "10", "15", "20", "30", "40")
 )
 
