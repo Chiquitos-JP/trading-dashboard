@@ -2,7 +2,7 @@
 title: "MakeoverMonday: Attention Dashboard - SOFI vs IONQ"
 description: "Reddit attention metrics (Raw Count, Share, z-score) overlaid with price data to identify bottom candidates"
 date: "2026-02-23"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - MakeoverMonday
