@@ -1,0 +1,334 @@
+---
+title: "MakeoverMonday: AI Workslop - The Hidden Cost of AI-Generated Noise"
+description: "Workers spend 4.5 hours/week cleaning up AI mistakes - Finance teams hit hardest with 85% reporting negative consequences"
+date: "2026-04-07"
+x-posted: false
+author: "chokotto"
+categories:
+  - MakeoverMonday
+  - Python
+  - AI
+  - Productivity
+source-topic: "Why People Create AI Workslop"
+source-url: "https://data.world/makeovermonday/2026w13-ai-workslop"
+image: "thumbnail.svg"
+code-fold: true
+code-tools: true
+code-summary: "Show code"
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+  title: "MakeoverMonday: AI Workslop"
+  description: "Workers spend 4.5 hours/week cleaning up AI - Finance teams hit hardest"
+---
+
+## Overview
+
+AI tools promised to save us time. And they do -- 92% of workers say AI boosts their productivity. But there is a hidden cost: **workslop**, the low-effort AI-generated output that looks polished but lacks substance, dumping cognitive work onto whoever has to deal with it.
+
+A Zapier survey of 1,100+ U.S. enterprise AI users found workers spend an average of **4.5 hours per week** revising, correcting, and redoing AI outputs. That is more than half a working day -- every week -- cleaning up after a tool sold as time-saving.
+
+- **Data Source**: [Zapier AI Workslop Survey (Jan 2026)](https://zapier.com/blog/ai-workslop/) / [HBR: Why People Create AI Workslop (Jan 2026)](https://hbr.org/2026/01/why-people-create-ai-workslop-and-how-to-stop-it)
+- **Sample**: 1,100+ full-time U.S. enterprise AI users
+- **Angle**: Where workslop hits hardest, what tasks generate it, and the training paradox
+
+## Data
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+dept = pd.DataFrame({
+    "Department": [
+        "Engineering / IT / Data", "Finance & Accounting",
+        "Business Development", "Operations & Supply Chain",
+        "Human Resources", "Product Development",
+        "Legal", "Marketing",
+        "Sales & Customer Support", "Project Management",
+    ],
+    "Avg_Hours": [5.0, 4.6, 3.9, 3.9, 3.8, 3.8, 3.6, 3.3, 3.0, 2.8],
+    "Pct_5plus": [44, 47, 29, 25, 26, 21, 20, 22, 13, 16],
+    "Pct_Negative": [78, 85, 65, 59, 73, 76, 70, 78, 62, 69],
+})
+
+consequences = pd.DataFrame({
+    "Consequence": [
+        "Work rejected by stakeholder",
+        "Privacy / security incident",
+        "Customer complaint / escalation",
+        "Missed deadline / delayed deliverable",
+        "Compliance / legal / accuracy issue",
+    ],
+    "Pct": [28, 27, 25, 24, 24],
+})
+
+task_types = pd.DataFrame({
+    "Task": [
+        "Data analysis & visualizations",
+        "Research & fact-finding",
+        "Long-form reporting",
+        "Email / customer communications",
+        "Marketing / creative content",
+    ],
+    "Pct": [55, 52, 52, 46, 44],
+})
+
+training = pd.DataFrame({
+    "Group": ["Untrained", "Trained"],
+    "Pct_Productive": [69, 94],
+    "Avg_Hours_Fixing": [2.0, 5.0],
+    "Pct_5plus": [8, 44],
+    "Pct_Negative": [50, 78],
+})
+```
+
+```{python}
+#| label: shared-style
+#| include: false
+
+NOTE_TEXT = "Note: Zapier survey of 1,100+ U.S. enterprise AI users, Jan 2026"
+SOURCE_TEXT = "Source: Zapier / HBR  |  &#169; 2026 chokotto"
+_NOTE_THRESHOLD = 50
+
+def _build_source_note(note=NOTE_TEXT, source=SOURCE_TEXT):
+    if len(note) <= _NOTE_THRESHOLD:
+        return f"{note}  |  {source}"
+    return f"{note}<br>{source}"
+
+SOURCE_NOTE = _build_source_note()
+
+THEME = dict(
+    template="plotly_white",
+    font=dict(family="sans-serif", size=13, color="#1e293b"),
+    paper_bgcolor="white",
+    plot_bgcolor="#f8fafc",
+)
+
+ACCENT    = "#e63946"
+SECONDARY = "#3b82f6"
+POSITIVE  = "#10b981"
+WARNING   = "#f59e0b"
+MUTED     = "#94a3b8"
+
+def make_title(text):
+    return dict(text=text, font=dict(size=15, color="#1e293b"), x=0, xanchor="left")
+
+def add_legend_note(fig, text):
+    margin_t = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+    if margin_t < 100:
+        fig.update_layout(margin=dict(t=100))
+    fig.add_annotation(
+        text=text,
+        xref="paper", yref="paper",
+        x=0, y=1.0,
+        xanchor="left", yanchor="bottom",
+        showarrow=False,
+        font=dict(size=11, color="#64748b"),
+        align="left",
+    )
+
+def add_source(fig, y=-0.10):
+    fig.add_annotation(
+        text=SOURCE_NOTE,
+        xref="paper", yref="paper",
+        x=0, y=y,
+        showarrow=False,
+        font=dict(size=10, color="#94a3b8", style="italic"),
+        align="left",
+        xanchor="left", yanchor="top",
+    )
+```
+
+## My Makeover
+
+### Finance teams pay the steepest price for AI workslop
+
+```{python}
+#| label: hero-dept
+#| fig-width: 10
+
+dept_sorted = dept.sort_values("Avg_Hours", ascending=True)
+colors = [ACCENT if v == dept_sorted["Pct_Negative"].max() else MUTED
+          for v in dept_sorted["Pct_Negative"]]
+
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    y=dept_sorted["Department"],
+    x=dept_sorted["Avg_Hours"],
+    orientation="h",
+    marker_color=colors,
+    text=[f"{v:.1f} hrs  |  {n}% negative" for v, n in
+          zip(dept_sorted["Avg_Hours"], dept_sorted["Pct_Negative"])],
+    textposition="outside",
+    textfont=dict(size=11),
+    hovertemplate="%{y}<br>%{x:.1f} hours/week<extra></extra>",
+))
+
+fig.update_layout(
+    **THEME,
+    title=make_title("Finance & Accounting: 85% negative consequences -- the highest of any function"),
+    height=450,
+    margin=dict(t=100, b=80, l=10, r=10),
+    xaxis=dict(title="Average hours/week fixing AI outputs", range=[0, 7]),
+    yaxis=dict(title=""),
+    showlegend=False,
+)
+
+add_legend_note(fig, "Bar color: red = highest negative consequence rate among departments")
+add_source(fig)
+fig.show()
+fig.write_image("chart-1.png", width=1200, height=600, scale=2)
+```
+
+### Data analysis, not writing, is the biggest workslop generator
+
+```{python}
+#| label: task-types
+#| fig-width: 10
+
+tt_sorted = task_types.sort_values("Pct", ascending=True)
+tt_colors = [ACCENT if v == tt_sorted["Pct"].max() else SECONDARY
+             for v in tt_sorted["Pct"]]
+
+fig2 = go.Figure()
+fig2.add_trace(go.Bar(
+    y=tt_sorted["Task"],
+    x=tt_sorted["Pct"],
+    orientation="h",
+    marker_color=tt_colors,
+    text=[f"{v}%" for v in tt_sorted["Pct"]],
+    textposition="outside",
+    textfont=dict(size=12),
+    hovertemplate="%{y}<br>%{x}% report most cleanup needed<extra></extra>",
+))
+
+fig2.update_layout(
+    **THEME,
+    title=make_title("55% say data analysis needs the most cleanup -- more than writing or marketing"),
+    height=350,
+    margin=dict(t=100, b=80, l=10, r=10),
+    xaxis=dict(title="% reporting most cleanup needed", range=[0, 65]),
+    yaxis=dict(title=""),
+    showlegend=False,
+)
+
+add_legend_note(fig2, "Workers could select multiple task types")
+add_source(fig2)
+fig2.show()
+```
+
+### 74% have faced real consequences from AI outputs
+
+```{python}
+#| label: consequences
+#| fig-width: 10
+
+cons_sorted = consequences.sort_values("Pct", ascending=True)
+cons_colors = [ACCENT if v == cons_sorted["Pct"].max() else WARNING
+               for v in cons_sorted["Pct"]]
+
+fig3 = go.Figure()
+fig3.add_trace(go.Bar(
+    y=cons_sorted["Consequence"],
+    x=cons_sorted["Pct"],
+    orientation="h",
+    marker_color=cons_colors,
+    text=[f"{v}%" for v in cons_sorted["Pct"]],
+    textposition="outside",
+    textfont=dict(size=12),
+    hovertemplate="%{y}<br>%{x}% of respondents<extra></extra>",
+))
+
+fig3.update_layout(
+    **THEME,
+    title=make_title("28% had work rejected, 27% triggered a security incident"),
+    height=350,
+    margin=dict(t=100, b=80, l=10, r=10),
+    xaxis=dict(title="% of respondents experiencing this consequence", range=[0, 35]),
+    yaxis=dict(title=""),
+    showlegend=False,
+)
+
+add_legend_note(fig3, "74% experienced at least one negative consequence from AI outputs")
+add_source(fig3)
+fig3.show()
+```
+
+### The training paradox: trained workers fix more but gain more
+
+```{python}
+#| label: training
+#| fig-width: 10
+
+metrics = ["Say AI boosts\nproductivity", "Avg hours/week\nfixing AI", "Spend 5+ hours/week\non cleanup", "Experienced negative\nconsequence"]
+untrained = [69, 2.0*10, 8, 50]
+trained = [94, 5.0*10, 44, 78]
+
+fig4 = go.Figure()
+fig4.add_trace(go.Bar(
+    name="Untrained",
+    x=metrics,
+    y=[69, 20, 8, 50],
+    marker_color=MUTED,
+    text=["69%", "2.0 hrs", "8%", "50%"],
+    textposition="outside",
+    textfont=dict(size=11),
+    hovertemplate="%{x}<br>Untrained: %{text}<extra></extra>",
+))
+
+fig4.add_trace(go.Bar(
+    name="Trained",
+    x=metrics,
+    y=[94, 50, 44, 78],
+    marker_color=SECONDARY,
+    text=["94%", "5.0 hrs", "44%", "78%"],
+    textposition="outside",
+    textfont=dict(size=11),
+    hovertemplate="%{x}<br>Trained: %{text}<extra></extra>",
+))
+
+fig4.update_layout(
+    **THEME,
+    title=make_title("Trained workers spend 2.5x more time fixing AI -- yet 94% still say it's worth it"),
+    height=400,
+    margin=dict(t=100, b=80, l=10, r=10),
+    barmode="group",
+    yaxis=dict(title="", showticklabels=False),
+    showlegend=True,
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+)
+
+add_source(fig4)
+fig4.show()
+```
+
+## Key Takeaways
+
+1. **Workslop is a finance and engineering problem, not a writing problem.** Data analysis (55%) and research (52%) create more rework than emails (46%) or marketing copy (44%).
+
+2. **The cost is not evenly distributed.** Finance teams have the highest negative consequence rate (85%), while sales teams report the lowest (62%). The functions where errors matter most are the ones getting hit hardest.
+
+3. **Training is paradoxically expensive and essential.** Trained workers spend 2.5x more time cleaning up AI outputs -- but they also use AI in higher-stakes, higher-value contexts. The 6x productivity gap between trained and untrained workers makes the investment clear.
+
+4. **92% say AI is worth it despite the cleanup.** The math suggests that even with 4.5 hours/week of rework, AI saves more time than it costs. But organizations without formal QA processes or context infrastructure capture significantly less of that value.
+
+***
+
+_This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information.
+:::
+:::

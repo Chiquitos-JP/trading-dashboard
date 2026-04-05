@@ -8,6 +8,8 @@ categories:
   - MakeoverMonday
   - Python
   - Finance
+source-topic: "{{source_topic}}"
+source-url: "{{source_url}}"
 # Web 一覧には SVG を使用（ブラウザで表示可能）
 image: "thumbnail.svg"
 code-fold: true

@@ -240,7 +240,18 @@ gh run view <run_id> --log --repo Chiquitos-JP/trading-dashboard
 
 フォルダ命名: `posts/YYYY-MM-DD-{makeover-monday|tidytuesday|weekly-review}/`
 
-新規投稿の必須 frontmatter: `x-posted: false`, `image: "thumbnail.svg"`, `twitter-card`
+新規投稿の必須 frontmatter: `x-posted: false`, `image: "thumbnail.svg"`, `twitter-card`, `source-topic`, `source-url`
+
+### トピック重複防止
+
+MM / TT のテーマが過去投稿と重複しないよう、レジストリで管理する。
+
+- **レジストリ生成**: `py scripts/generate_post_registry.py`（Mac: `python3`）
+- **Agent 用**: `config/post_registry.json` — 投稿作成前に読み込んで重複チェック
+- **ChatGPT 用**: `config/past_topics.md` — ユーザーが必要に応じてプロンプトにペースト
+- ユーザーが ChatGPT のトピック推薦結果を貼り付けたら、Agent はまずレジストリを最新化して重複チェックを行う
+- 全候補が重複の場合は Web で最新トピックを確認し、未実装のテーマを自ら提案する
+- 投稿作成後にレジストリを再生成して commit に含める
 
 詳細なドメイン固有ルールは `.claude/rules/` に分離（パス指定付き高優先度で自動ロード）:
 
