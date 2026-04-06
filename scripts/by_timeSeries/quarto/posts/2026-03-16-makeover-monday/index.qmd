@@ -2,7 +2,7 @@
 title: "MakeoverMonday: Mario Game Sales - Nintendo's Compounding Franchise Engine"
 description: "Franchise lifecycle, platform transitions, and hit concentration across 40 years of Mario titles"
 date: "2026-03-16"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - MakeoverMonday
