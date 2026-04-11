@@ -1,0 +1,424 @@
+---
+title: "MakeoverMonday: Global Oil Production - Who Still Moves the Map"
+description: "US overtakes Russia and Saudi Arabia while OPEC share shrinks - how 50 years of oil production reshaped the global energy map"
+date: "2026-04-14"
+x-posted: false
+author: "chokotto"
+categories:
+  - MakeoverMonday
+  - Python
+  - Data Viz
+source-topic: "Global Oil Production"
+source-url: "https://data.world/makeovermonday/2026w14"
+image: "thumbnail.svg"
+code-fold: true
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+---
+
+## Overview
+
+Oil production has been one of the most consequential variables in geopolitics and economics for over half a century. The US shale revolution upended a decades-old order where OPEC nations set the pace, and today three countries alone account for roughly 40% of the world's output. This makeover explores how the production landscape shifted from 1970 to the present.
+
+- **Data Source**: [Our World in Data - Energy Dataset](https://github.com/owid/energy-data)
+- **Angle**: Who gained, who lost, and how the balance of power moved over 50 years
+
+## Dataset
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+url = "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv"
+df = pd.read_csv(url)
+df.columns = df.columns.str.replace(" ", "_")
+
+aggregates = [
+    "World", "OPEC", "Non-OPEC", "Africa", "Asia Pacific", "CIS",
+    "Central America", "Europe", "European Union (27)", "High-income countries",
+    "Low-income countries", "Lower-middle-income countries",
+    "Upper-middle-income countries", "Middle East", "North America",
+    "Oceania", "South America", "South & Central America",
+    "Asia", "USSR",
+]
+df = df[~df["country"].isin(aggregates)].copy()
+
+oil = df[["country", "year", "oil_production"]].dropna(subset=["oil_production"])
+oil = oil[(oil["year"] >= 1970) & (oil["year"] <= 2024)].copy()
+```
+
+## My Makeover
+
+```{python}
+#| label: shared-style
+#| include: false
+
+THEME = dict(
+    template="plotly_white",
+    paper_bgcolor="white",
+    plot_bgcolor="#f8fafc",
+    font=dict(family="Inter, system-ui, sans-serif", color="#1e293b"),
+)
+
+NOTE_TEXT = "Oil production in TWh. Aggregates (OPEC, regions) excluded"
+SOURCE_TEXT = "Our World in Data / Energy Dataset"
+SOURCE_NOTE = f"<i>Note: {NOTE_TEXT}  |  Source: {SOURCE_TEXT}  |  &copy; 2026 chokotto</i>"
+
+ACCENT = "#e63946"
+SECONDARY = "#3b82f6"
+MUTED = "#94a3b8"
+
+def make_title(text):
+    return dict(text=text, font=dict(size=15, color="#1e293b"), x=0, xanchor="left")
+
+def add_legend_note(fig, text):
+    margin_t = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+    if margin_t < 100:
+        fig.update_layout(margin=dict(t=100))
+    fig.add_annotation(
+        text=text, xref="paper", yref="paper",
+        x=0, y=1.0,
+        xanchor="left", yanchor="bottom",
+        showarrow=False,
+        font=dict(size=11, color="#64748b"),
+        align="left",
+    )
+
+def add_source(fig, position="bottom"):
+    if position == "top":
+        h = fig.layout.height or 450
+        mt = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+        mb = fig.layout.margin.b if fig.layout.margin.b is not None else 80
+        plot_h = h - mt - mb
+        ABOVE_PX = 15
+        y = 1.0 + (ABOVE_PX / plot_h) if plot_h > 0 else 1.05
+        fig.add_annotation(
+            text=SOURCE_NOTE, xref="paper", yref="paper",
+            x=0, y=y, showarrow=False,
+            font=dict(size=10, color="#94a3b8", style="italic"),
+            align="left", xanchor="left", yanchor="bottom",
+        )
+        return
+    TARGET_PX = 65
+    ANNOT_HEIGHT_PX = 35
+    h = fig.layout.height or 450
+    mt = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+    mb = fig.layout.margin.b if fig.layout.margin.b is not None else 80
+    min_mb = TARGET_PX + ANNOT_HEIGHT_PX
+    if mb < min_mb:
+        mb = min_mb
+        fig.update_layout(margin=dict(b=mb))
+    plot_h = h - mt - mb
+    y = -(TARGET_PX / plot_h) if plot_h > 0 else -0.30
+    fig.add_annotation(
+        text=SOURCE_NOTE, xref="paper", yref="paper",
+        x=0, y=y, showarrow=False,
+        font=dict(size=10, color="#94a3b8", style="italic"),
+        align="left", xanchor="left", yanchor="top",
+    )
+
+def assert_no_title_overlap(fig):
+    height = fig.layout.height or 450
+    margin_t = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+    plot_top_paper = 1.0
+    for ann in (fig.layout.annotations or []):
+        if getattr(ann, "yref", None) == "paper" and ann.y is not None:
+            if ann.y > plot_top_paper:
+                required_t = int((ann.y - 1.0 + 0.06) * height) + margin_t
+                if required_t > margin_t:
+                    fig.update_layout(margin=dict(t=required_t))
+```
+
+### The US shale revolution rewrote the leaderboard after 2010
+
+```{python}
+#| label: chart-1
+#| fig-width: 10
+
+top5 = ["United States", "Saudi Arabia", "Russia", "Canada", "China"]
+top5_df = oil[oil["country"].isin(top5)].copy()
+
+latest_year = top5_df["year"].max()
+latest_vals = top5_df[top5_df["year"] == latest_year].set_index("country")["oil_production"]
+
+fig = go.Figure()
+for country in top5:
+    cdf = top5_df[top5_df["country"] == country].sort_values("year")
+    is_us = country == "United States"
+    color = ACCENT if is_us else MUTED
+    width = 3 if is_us else 1.5
+
+    fig.add_trace(go.Scatter(
+        x=cdf["year"], y=cdf["oil_production"],
+        mode="lines",
+        name=country,
+        line=dict(color=color, width=width),
+        hovertemplate=f"{country}<br>%{{x}}: %{{y:,.0f}} TWh<extra></extra>",
+    ))
+
+    label_val = latest_vals.get(country, None)
+    if label_val is not None:
+        label = f"<b>{country}</b>" if is_us else country
+        fig.add_annotation(
+            x=latest_year + 0.5, y=label_val,
+            text=label, showarrow=False,
+            xanchor="left",
+            font=dict(size=11, color=color),
+        )
+
+us_latest = latest_vals.get("United States", 0)
+sa_latest = latest_vals.get("Saudi Arabia", 0)
+ru_latest = latest_vals.get("Russia", 0)
+world_latest = oil[oil["year"] == latest_year]["oil_production"].sum()
+top3_share = (us_latest + sa_latest + ru_latest) / world_latest * 100 if world_latest > 0 else 0
+
+fig.update_layout(
+    **THEME,
+    title=make_title(
+        f"US overtakes Russia and Saudi Arabia: 3 producers now control {top3_share:.0f}% of global oil"
+    ),
+    height=450,
+    margin=dict(l=60, r=140, t=100, b=100),
+    xaxis=dict(title=""),
+    yaxis=dict(title="Oil production (TWh)"),
+    showlegend=False,
+)
+
+add_source(fig)
+assert_no_title_overlap(fig)
+fig.show()
+try:
+    fig.write_image("chart-1.png", width=1200, height=600, scale=2)
+except Exception:
+    pass
+```
+
+### OPEC's grip loosened as shale and new entrants grew
+
+```{python}
+#| label: chart-2
+#| fig-width: 10
+
+opec_members = [
+    "Saudi Arabia", "Iraq", "Iran", "United Arab Emirates", "Kuwait",
+    "Venezuela", "Nigeria", "Libya", "Algeria", "Angola", "Congo",
+    "Equatorial Guinea", "Gabon",
+]
+
+yearly = oil.groupby("year")["oil_production"].sum().reset_index()
+yearly.columns = ["year", "world_total"]
+
+opec_yearly = (
+    oil[oil["country"].isin(opec_members)]
+    .groupby("year")["oil_production"].sum()
+    .reset_index()
+)
+opec_yearly.columns = ["year", "opec_total"]
+
+share = yearly.merge(opec_yearly, on="year", how="left").fillna(0)
+share["non_opec_total"] = share["world_total"] - share["opec_total"]
+share["opec_pct"] = share["opec_total"] / share["world_total"] * 100
+share["non_opec_pct"] = 100 - share["opec_pct"]
+
+fig2 = go.Figure()
+
+fig2.add_trace(go.Scatter(
+    x=share["year"], y=share["opec_pct"],
+    fill="tozeroy",
+    name="OPEC",
+    mode="lines",
+    line=dict(color=ACCENT, width=2),
+    fillcolor="rgba(230, 57, 70, 0.25)",
+    hovertemplate="OPEC: %{y:.1f}%<extra></extra>",
+))
+
+fig2.add_trace(go.Scatter(
+    x=share["year"], y=[100] * len(share),
+    fill="tonexty",
+    name="Non-OPEC",
+    mode="lines",
+    line=dict(color=SECONDARY, width=0),
+    fillcolor="rgba(59, 130, 246, 0.15)",
+    hovertemplate="Non-OPEC: %{customdata:.1f}%<extra></extra>",
+    customdata=share["non_opec_pct"],
+))
+
+peak_row = share.loc[share["opec_pct"].idxmax()]
+latest_row = share.iloc[-1]
+
+fig2.add_annotation(
+    x=peak_row["year"], y=peak_row["opec_pct"],
+    text=f"Peak: {peak_row['opec_pct']:.0f}% ({int(peak_row['year'])})",
+    showarrow=True, arrowhead=2, arrowcolor=ACCENT,
+    font=dict(size=11, color=ACCENT),
+    ax=40, ay=-30,
+)
+
+fig2.update_layout(
+    **THEME,
+    title=make_title(
+        f"OPEC's share fell from {peak_row['opec_pct']:.0f}% to {latest_row['opec_pct']:.0f}% "
+        f"as non-OPEC producers filled the gap"
+    ),
+    height=450,
+    margin=dict(l=60, r=30, t=100, b=100),
+    xaxis=dict(title=""),
+    yaxis=dict(title="Share of global oil production (%)", range=[0, 105]),
+    showlegend=True,
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+)
+
+add_source(fig2)
+assert_no_title_overlap(fig2)
+fig2.show()
+```
+
+### The top 3 produce more than the next 12 combined
+
+```{python}
+#| label: chart-3
+#| fig-width: 10
+
+latest = oil[oil["year"] == oil["year"].max()].copy()
+top15 = latest.nlargest(15, "oil_production").sort_values("oil_production", ascending=True)
+
+colors = [
+    ACCENT if i >= len(top15) - 3 else MUTED
+    for i in range(len(top15))
+]
+
+fig3 = go.Figure()
+fig3.add_trace(go.Bar(
+    y=top15["country"],
+    x=top15["oil_production"],
+    orientation="h",
+    marker_color=colors,
+    text=[f"{v:,.0f}" for v in top15["oil_production"]],
+    textposition="outside",
+    textfont=dict(size=11),
+    hovertemplate="%{y}<br>%{x:,.0f} TWh<extra></extra>",
+))
+
+top3_total = top15.nlargest(3, "oil_production")["oil_production"].sum()
+rest_total = top15.nsmallest(12, "oil_production")["oil_production"].sum()
+
+fig3.update_layout(
+    **THEME,
+    title=make_title(
+        f"Top 3 producers ({top3_total:,.0f} TWh) outproduce the next 12 ({rest_total:,.0f} TWh)"
+    ),
+    height=500,
+    margin=dict(l=10, r=30, t=100, b=100),
+    xaxis=dict(title=f"Oil production (TWh) - {int(oil['year'].max())}"),
+    yaxis=dict(title=""),
+    showlegend=False,
+)
+
+add_legend_note(fig3, "Red = top 3 producers")
+add_source(fig3)
+assert_no_title_overlap(fig3)
+fig3.show()
+```
+
+### Shale nations surged while traditional producers stalled
+
+```{python}
+#| label: chart-4
+#| fig-width: 10
+
+top10_countries = (
+    oil[oil["year"] == oil["year"].max()]
+    .nlargest(10, "oil_production")["country"]
+    .tolist()
+)
+
+decade_start = oil["year"].max() - 10
+decade_end = oil["year"].max()
+
+start_vals = (
+    oil[(oil["country"].isin(top10_countries)) & (oil["year"] == decade_start)]
+    .set_index("country")["oil_production"]
+)
+end_vals = (
+    oil[(oil["country"].isin(top10_countries)) & (oil["year"] == decade_end)]
+    .set_index("country")["oil_production"]
+)
+
+growth = pd.DataFrame({
+    "country": top10_countries,
+    "start": [start_vals.get(c, np.nan) for c in top10_countries],
+    "end": [end_vals.get(c, np.nan) for c in top10_countries],
+})
+growth = growth.dropna()
+growth["change_pct"] = (growth["end"] - growth["start"]) / growth["start"] * 100
+growth = growth.sort_values("change_pct", ascending=True)
+
+bar_colors = [
+    ACCENT if v > 0 else SECONDARY for v in growth["change_pct"]
+]
+
+fig4 = go.Figure()
+fig4.add_trace(go.Bar(
+    y=growth["country"],
+    x=growth["change_pct"],
+    orientation="h",
+    marker_color=bar_colors,
+    text=[f"{v:+.1f}%" for v in growth["change_pct"]],
+    textposition="outside",
+    textfont=dict(size=11),
+    hovertemplate="%{y}<br>Change: %{x:+.1f}%<extra></extra>",
+))
+
+fig4.add_vline(x=0, line_width=1, line_color="#475569")
+
+fig4.update_layout(
+    **THEME,
+    title=make_title(
+        f"Production change {decade_start}-{decade_end}: US and Canada led growth, "
+        "traditional producers stalled"
+    ),
+    height=450,
+    margin=dict(l=10, r=30, t=100, b=100),
+    xaxis=dict(title=f"% change in oil production ({decade_start}-{decade_end})"),
+    yaxis=dict(title=""),
+    showlegend=False,
+)
+
+add_legend_note(fig4, "Red = growth, Blue = decline")
+add_source(fig4)
+assert_no_title_overlap(fig4)
+fig4.show()
+```
+
+## Key Takeaways
+
+1. **The US is now the world's largest oil producer.** The shale revolution pushed US output past both Russia and Saudi Arabia, a position unthinkable before 2010.
+
+2. **OPEC's market share has structurally declined.** From a peak above 50% in the 1970s, OPEC members now account for a much smaller share as non-OPEC supply -- led by the US and Canada -- expanded relentlessly.
+
+3. **Concentration at the top is extreme.** The top 3 producers generate more oil than the next 12 combined, making global supply highly sensitive to decisions in Washington, Riyadh, and Moscow.
+
+4. **Growth is unevenly distributed.** Over the past decade, shale nations (US, Canada) saw double-digit production growth while several traditional producers either stalled or declined due to sanctions, conflict, or underinvestment.
+
+***
+
+_This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) weekly data visualization project._
+
+:::{.callout-caution collapse="false" appearance="minimal" icon="false"}
+## Disclaimer
+
+::: {style="font-size: 0.85em; color: #64748b; line-height: 1.6;"}
+This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information.
+:::
+:::
