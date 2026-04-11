@@ -2,7 +2,7 @@
 title: "TidyTuesday: One Million Digits of Pi - Patterns in Randomness"
 description: "Exploring whether the digits of pi are truly uniform - frequency, convergence, streaks, and visual structure in 1M digits"
 date: "2026-03-31"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - TidyTuesday
