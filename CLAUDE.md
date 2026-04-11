@@ -230,9 +230,13 @@ gh run view <run_id> --log --repo Chiquitos-JP/trading-dashboard
 - 出力先: `docs/quarto/latest/`（`_quarto.yml` の `output-dir`）
 - サイト URL: `https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/`
 - GitHub Pages ソース: `docs/` フォルダ（`.nojekyll` あり）
+- **CDN キャッシュ**: GitHub Pages は `Cache-Control: max-age=600`（10分）。push 後最大10分は旧版が配信される
+  - 急ぎの確認: ブラウザで Ctrl+Shift+R（ハードリフレッシュ）
+  - 伝搬検証: `py scripts/verify_deploy.py`（ポーリングで CDN 更新を監視）
 - `docs/index.html` → `docs/quarto/latest/index.html` へリダイレクト
 - **リスティングページ**: `analysis.qmd` → `analysis.html`（ブログ一覧）
   - CI が個別ポストレンダリング後に自動で再生成する
+  - `run_quarto()` はインクリメンタルレンダリング後にリスティング整合性を自動検証（`_verify_listing_consistency`）
   - Weekly Review のソースは gitignore のため、CI は `search.json` からスタブ QMD を生成
   - `analysis.qmd` は git 追跡対象（`.gitignore` で例外指定済み）
 
