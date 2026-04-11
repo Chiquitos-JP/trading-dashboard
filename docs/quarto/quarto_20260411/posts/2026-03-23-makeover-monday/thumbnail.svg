@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 418" font-family="system-ui,-apple-system,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="418" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="42" text-anchor="middle" fill="#f8fafc" font-size="22" font-weight="700">Fastest Cars in the World</text>
+  <text x="400" y="66" text-anchor="middle" fill="#94a3b8" font-size="13">Speed, Power, and the Price of Extremes</text>
+
+  <!-- Speed bars (horizontal, sorted by speed) -->
+  <g transform="translate(220, 90)">
+    <!-- Labels on left -->
+    <text x="-10" y="17" text-anchor="end" fill="#cbd5e1" font-size="10">Venom F5</text>
+    <text x="-10" y="52" text-anchor="end" fill="#cbd5e1" font-size="10">Chiron SS 300+</text>
+    <text x="-10" y="87" text-anchor="end" fill="#cbd5e1" font-size="10">SSC Tuatara</text>
+    <text x="-10" y="122" text-anchor="end" fill="#cbd5e1" font-size="10">Jesko</text>
+    <text x="-10" y="157" text-anchor="end" fill="#cbd5e1" font-size="10">Agera RS</text>
+    <text x="-10" y="192" text-anchor="end" fill="#cbd5e1" font-size="10">Venom GT</text>
+    <text x="-10" y="227" text-anchor="end" fill="#cbd5e1" font-size="10">Veyron SS</text>
+    <text x="-10" y="262" text-anchor="end" fill="#cbd5e1" font-size="10">Rimac C Two</text>
+
+    <!-- Speed bars (scaled: 258-311 mph mapped to 0-480px) -->
+    <rect x="0" y="5"   width="480" height="22" fill="#e63946" rx="3" opacity="0.9"/>
+    <rect x="0" y="40"  width="426" height="22" fill="#e63946" rx="3" opacity="0.8"/>
+    <rect x="0" y="75"  width="383" height="22" fill="#e63946" rx="3" opacity="0.7"/>
+    <rect x="0" y="110" width="383" height="22" fill="#f59e0b" rx="3" opacity="0.8"/>
+    <rect x="0" y="145" width="181" height="22" fill="#94a3b8" rx="3" opacity="0.7"/>
+    <rect x="0" y="180" width="114" height="22" fill="#94a3b8" rx="3" opacity="0.7"/>
+    <rect x="0" y="215" width="90"  height="22" fill="#94a3b8" rx="3" opacity="0.7"/>
+    <rect x="0" y="250" width="0"   height="22" fill="#10b981" rx="3" opacity="0.8"/>
+    <!-- Rimac bar at minimum width for visibility -->
+    <rect x="0" y="250" width="12"  height="22" fill="#10b981" rx="3" opacity="0.8"/>
+
+    <!-- Speed labels on right -->
+    <text x="490" y="20" fill="#f8fafc" font-size="11" font-weight="600">310.7 mph</text>
+    <text x="436" y="55" fill="#f8fafc" font-size="11">304.8 mph</text>
+    <text x="393" y="90" fill="#f8fafc" font-size="11">300 mph</text>
+    <text x="393" y="125" fill="#f8fafc" font-size="11">300 mph</text>
+    <text x="191" y="160" fill="#cbd5e1" font-size="11">277.9 mph</text>
+    <text x="124" y="195" fill="#cbd5e1" font-size="11">270.5 mph</text>
+    <text x="100" y="230" fill="#cbd5e1" font-size="11">267.9 mph</text>
+    <text x="22"  y="265" fill="#10b981" font-size="11">258 mph &#x26A1;</text>
+
+    <!-- 300 mph threshold line -->
+    <line x1="383" y1="-5" x2="383" y2="280" stroke="#64748b" stroke-width="1" stroke-dasharray="4,4"/>
+    <text x="383" y="295" text-anchor="middle" fill="#64748b" font-size="9">300 mph</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(50, 370)">
+    <rect x="0" y="0" width="12" height="12" fill="#e63946" rx="2"/>
+    <text x="18" y="11" fill="#cbd5e1" font-size="10">Top 3</text>
+    <rect x="80" y="0" width="12" height="12" fill="#f59e0b" rx="2"/>
+    <text x="98" y="11" fill="#cbd5e1" font-size="10">300 mph Club</text>
+    <rect x="200" y="0" width="12" height="12" fill="#10b981" rx="2"/>
+    <text x="218" y="11" fill="#cbd5e1" font-size="10">Electric</text>
+    <rect x="290" y="0" width="12" height="12" fill="#94a3b8" rx="2"/>
+    <text x="308" y="11" fill="#cbd5e1" font-size="10">ICE</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="400" y="406" text-anchor="middle" fill="#64748b" font-size="10">MakeoverMonday W11 &#xB7; RankRed &#xB7; chokotto</text>
+</svg>
