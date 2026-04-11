@@ -2,7 +2,7 @@
 title: "TidyTuesday: Olympic Schedule 2026 — When Complexity Peaks"
 description: "Mapping the density, rhythm, and structural imbalance of 1,866 events across the Milan-Cortina 2026 Winter Olympics"
 date: "2026-03-24"
-x-posted: true
+x-posted: false
 author: "chokotto"
 categories:
   - TidyTuesday
