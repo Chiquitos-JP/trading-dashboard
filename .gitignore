@@ -81,6 +81,9 @@ CLAUDE.md
 Thumbs.db
 desktop.ini
 
+# ----- Playwright CLI -----
+.playwright-cli/
+
 # ----- 一時ファイル -----
 *.tmp
 *.bak
