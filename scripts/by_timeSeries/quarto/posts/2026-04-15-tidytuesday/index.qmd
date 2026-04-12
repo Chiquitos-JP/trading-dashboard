@@ -122,7 +122,7 @@ success_by_cat <- repairs |>
   group_by(category) |>
   summarise(
     total = n(),
-    n_yes = sum(repaired == "Yes", na.rm = TRUE),
+    n_yes = sum(repaired == "yes", na.rm = TRUE),
     pct_yes = n_yes / total,
     .groups = "drop"
   ) |>
@@ -139,7 +139,7 @@ success_by_cat <- repairs |>
 
 avg_rate <- repairs |>
   filter(!is.na(repaired)) |>
-  summarise(pct = mean(repaired == "Yes")) |>
+  summarise(pct = mean(repaired == "yes")) |>
   pull(pct)
 
 ggplot(success_by_cat, aes(x = pct_yes, y = category)) +
@@ -305,7 +305,7 @@ info_sources <- repairs |>
   inner_join(repairs_text, by = "repair_id") |>
   filter(
     !is.na(used_repair_info),
-    used_repair_info == "Yes",
+    used_repair_info == "yes",
     !is.na(repair_info_source),
     repair_info_source != ""
   )
@@ -313,7 +313,10 @@ info_sources <- repairs |>
 source_counts <- info_sources |>
   mutate(repair_info_source = str_split(repair_info_source, ",\\s*")) |>
   unnest(repair_info_source) |>
-  mutate(repair_info_source = str_trim(repair_info_source)) |>
+  mutate(
+    repair_info_source = str_trim(repair_info_source),
+    repair_info_source = str_to_title(repair_info_source)
+  ) |>
   filter(repair_info_source != "") |>
   count(repair_info_source, sort = TRUE) |>
   slice_head(n = 10) |>
