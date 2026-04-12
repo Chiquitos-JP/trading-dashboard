@@ -40,21 +40,27 @@ JST = ZoneInfo("Asia/Tokyo")
 TARGETS = [
     {
         "name": "サンデーダウ",
+        "short_name": "ダウ",
         "url": "https://nikkei225jp.com/_ssi/if/?c=731",
         "filename": "sunday_dow.png",
         "emoji": "🇺🇸",
+        "is_fx": False,
     },
     {
         "name": "サンデーNAS100",
+        "short_name": "NAS100",
         "url": "https://nikkei225jp.com/_ssi/if/?c=737",
         "filename": "sunday_nas100.png",
         "emoji": "📈",
+        "is_fx": False,
     },
     {
         "name": "サンデードル円",
+        "short_name": "ドル円",
         "url": "https://nikkei225jp.com/_ssi/if/?c=734",
         "filename": "sunday_usdjpy.png",
         "emoji": "💵",
+        "is_fx": True,
     },
 ]
 
@@ -95,6 +101,133 @@ FIND_CHART_BOUNDS_JS = """
         }
     }
     return { x: 0, y: 305, found: false };
+}
+"""
+
+SCRAPE_MARKET_DATA_JS = """
+() => {
+    const result = { value: null, change: null, change_pct: null, debug_texts: [] };
+    const segments = [];
+    const seen = new Set();
+
+    function walk(node) {
+        const tag = node.nodeName.toUpperCase();
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT' || tag === 'SVG') return;
+        if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent.trim();
+            if (text.length >= 1 && text.length <= 50) {
+                const parent = node.parentElement;
+                if (!parent) return;
+                const rect = parent.getBoundingClientRect();
+                if (rect.height === 0) return;
+                const style = getComputedStyle(parent);
+                if (style.display === 'none' || style.visibility === 'hidden') return;
+                const key = text + '|' + Math.round(rect.x) + '|' + Math.round(rect.y);
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    segments.push({
+                        text: text, x: rect.x, y: rect.y,
+                        fontSize: parseFloat(style.fontSize),
+                        color: style.color,
+                    });
+                }
+            }
+        }
+        for (const child of node.childNodes) walk(child);
+    }
+    walk(document.body);
+    segments.sort((a, b) => a.y - b.y || a.x - b.x);
+
+    const chartSegs = segments.filter(s => s.y > 400);
+    result.debug_texts = chartSegs.slice(0, 30).map(
+        s => '[y=' + Math.round(s.y) + ' x=' + Math.round(s.x)
+             + ' fs=' + s.fontSize + ' c=' + s.color.slice(0,20)
+             + '] "' + s.text + '"'
+    );
+
+    // Price: largest-font pure number in chart area
+    let maxFs = 0;
+    let priceX = 0, priceY = 0;
+    for (const s of chartSegs) {
+        const c = s.text.replace(/[,\\s]/g, '');
+        if (/^\\d+\\.?\\d*$/.test(c) && s.fontSize > maxFs) {
+            const v = parseFloat(c);
+            if (v > 1) { result.value = v; maxFs = s.fontSize; priceX = s.x; priceY = s.y; }
+        }
+    }
+
+    // Combine decimal part for price (e.g. "47,405" + ".20" → 47405.20)
+    if (result.value !== null && result.value === Math.floor(result.value)) {
+        for (const s of chartSegs) {
+            if (/^\\.\\d+$/.test(s.text.trim())
+                && Math.abs(s.y - priceY) < 40
+                && s.x > priceX && s.x < priceX + 300
+                && s.fontSize > maxFs * 0.4) {
+                result.value = parseFloat(result.value.toString() + s.text.trim());
+                break;
+            }
+        }
+    }
+
+    // Change: red/green colored number or signed number in chart area (fs >= 20)
+    function parseColor(c) {
+        const m = c.match(/rgb\\((\\d+),\\s*(\\d+),\\s*(\\d+)\\)/);
+        if (!m) return null;
+        return { r: parseInt(m[1]), g: parseInt(m[2]), b: parseInt(m[3]) };
+    }
+    let changeSeg = null;
+    for (const s of chartSegs) {
+        if (s.fontSize < 20) continue;
+        const c = s.text.replace(/[,\\s]/g, '');
+        const m = c.match(/^([+-]?\\d+\\.?\\d*)$/);
+        if (!m) continue;
+        const v = parseFloat(m[1]);
+        if (v === result.value || v === 0) continue;
+        const rgb = parseColor(s.color);
+        if (!rgb) continue;
+        const isRed = rgb.r > 150 && rgb.g < 100;
+        const isGreen = rgb.g > 100 && rgb.r < 80;
+        if (c.startsWith('+') || c.startsWith('-')) {
+            result.change = v; changeSeg = s; break;
+        }
+        if (isRed) {
+            result.change = -Math.abs(v); changeSeg = s; break;
+        }
+        if (isGreen) {
+            result.change = Math.abs(v); changeSeg = s; break;
+        }
+    }
+
+    // Combine decimal part for change
+    if (changeSeg && result.change === Math.floor(result.change)) {
+        for (const s of chartSegs) {
+            if (/^\\.\\d+$/.test(s.text.trim())
+                && Math.abs(s.y - changeSeg.y) < 30
+                && s.x > changeSeg.x && s.x < changeSeg.x + 200
+                && s.fontSize < changeSeg.fontSize) {
+                const sign = result.change < 0 ? -1 : 1;
+                result.change = sign * parseFloat(Math.abs(result.change).toString() + s.text.trim());
+                break;
+            }
+        }
+    }
+
+    // Percentage: medium-font number < 100, not the price or change
+    for (const s of chartSegs) {
+        if (s.fontSize < 20 || s.fontSize >= maxFs) continue;
+        const c = s.text.replace(/[,\\s%]/g, '');
+        if (/^\\d+\\.\\d+$/.test(c)) {
+            const v = parseFloat(c);
+            if (v < 100 && v > 0
+                && v !== Math.abs(result.value || 0)
+                && v !== Math.abs(result.change || 0)) {
+                result.change_pct = (result.change !== null && result.change < 0) ? -v : v;
+                break;
+            }
+        }
+    }
+
+    return result;
 }
 """
 
@@ -153,10 +286,43 @@ def _try_select_1day(page) -> bool:
     return False
 
 
-def capture_charts(output_dir: Path, chart_timeout_ms: int = 8000) -> list[Path]:
-    """各サンデー指数のチャートをキャプチャする"""
+def scrape_market_data(page, target_name: str) -> dict | None:
+    """ページから現在値・変動額・変動率をスクレイピングする"""
+    try:
+        raw = page.evaluate(SCRAPE_MARKET_DATA_JS)
+        debug = raw.get("debug_texts", [])
+        value = raw.get("value")
+        change = raw.get("change")
+        change_pct = raw.get("change_pct")
+
+        if debug and value is None:
+            print(f"    Scrape debug ({len(debug)} chart segments):")
+            for line in debug[:20]:
+                print(f"      {line}")
+
+        if value is not None:
+            data = {"value": value}
+            if change is not None:
+                data["change"] = change
+            if change_pct is not None:
+                data["change_pct"] = change_pct
+            print(f"    Scraped: value={value}, change={change}, pct={change_pct}")
+            return data
+
+        print(f"    Scrape: no price found for {target_name}")
+        return None
+    except Exception as e:
+        print(f"    Scrape error: {e}")
+        return None
+
+
+def capture_charts(
+    output_dir: Path, chart_timeout_ms: int = 8000
+) -> tuple[list[Path], dict]:
+    """各サンデー指数のチャートをキャプチャし、数値データもスクレイピングする"""
     output_dir.mkdir(parents=True, exist_ok=True)
     screenshots: list[Path] = []
+    market_data: dict = {}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -178,6 +344,10 @@ def capture_charts(output_dir: Path, chart_timeout_ms: int = 8000) -> list[Path]
                 _try_close_popups(page)
                 _try_select_ig_chart(page)
                 _try_select_1day(page)
+
+                data = scrape_market_data(page, target["name"])
+                if data:
+                    market_data[target["name"]] = data
 
                 page.add_style_tag(content=CLEANUP_CSS)
                 page.wait_for_timeout(500)
@@ -211,14 +381,87 @@ def capture_charts(output_dir: Path, chart_timeout_ms: int = 8000) -> list[Path]
 
         browser.close()
 
-    return screenshots
+    return screenshots, market_data
 
 
-def generate_tweet_text() -> str:
-    """ツイート本文を生成する（280文字以内）"""
-    now = datetime.now(JST)
-    date_str = f"{now.month}/{now.day}"
+def _generate_summary(market_data: dict) -> str:
+    """変動方向の組み合わせからサマリー1行を生成する"""
+    dow = market_data.get("サンデーダウ", {})
+    nas = market_data.get("サンデーNAS100", {})
+    fx = market_data.get("サンデードル円", {})
 
+    dow_pct = dow.get("change_pct")
+    nas_pct = nas.get("change_pct")
+    fx_pct = fx.get("change_pct")
+
+    THRESHOLD = 0.05
+
+    parts: list[str] = []
+
+    if dow_pct is not None and nas_pct is not None:
+        dow_up, dow_dn = dow_pct > THRESHOLD, dow_pct < -THRESHOLD
+        nas_up, nas_dn = nas_pct > THRESHOLD, nas_pct < -THRESHOLD
+        if dow_up and nas_up:
+            parts.append("米株堅調")
+        elif dow_dn and nas_dn:
+            parts.append("米株軟調")
+        elif dow_up and nas_dn:
+            parts.append("ダウ高・NAS安")
+        elif dow_dn and nas_up:
+            parts.append("ダウ安・NAS高")
+        else:
+            parts.append("米株小動き")
+    elif dow_pct is not None:
+        parts.append("ダウ堅調" if dow_pct > THRESHOLD else "ダウ軟調" if dow_pct < -THRESHOLD else "ダウ小動き")
+    elif nas_pct is not None:
+        parts.append("NAS堅調" if nas_pct > THRESHOLD else "NAS軟調" if nas_pct < -THRESHOLD else "NAS小動き")
+
+    if fx_pct is not None:
+        if abs(fx_pct) <= THRESHOLD:
+            parts.append("ドル円は横ばい")
+        elif fx_pct > 0:
+            parts.append("円安方向")
+        else:
+            parts.append("円高方向")
+
+    return "、".join(parts)
+
+
+def _format_data_line(target: dict, data: dict | None) -> str:
+    """1つの指数のデータ行をフォーマットする"""
+    short = target["short_name"]
+
+    if not data or data.get("value") is None:
+        return f"{target['emoji']} サンデー{short}"
+
+    value = data["value"]
+    change = data.get("change")
+    change_pct = data.get("change_pct")
+
+    if target["is_fx"]:
+        val_str = f"{value:.2f}"
+    else:
+        val_str = f"{value:,.0f}"
+
+    direction = 0
+    if change is not None:
+        direction = 1 if change > 0 else (-1 if change < 0 else 0)
+    elif change_pct is not None:
+        direction = 1 if change_pct > 0 else (-1 if change_pct < 0 else 0)
+    indicator = "🟢" if direction > 0 else "🔴" if direction < 0 else "⚪"
+
+    if change is not None and change_pct is not None:
+        chg_str = f"{change:+.2f}" if target["is_fx"] else f"{change:+,.0f}"
+        pct_str = f"{change_pct:+.1f}%"
+        return f"{indicator} {short} {val_str} ({chg_str} / {pct_str})"
+    if change is not None:
+        chg_str = f"{change:+.2f}" if target["is_fx"] else f"{change:+,.0f}"
+        return f"{indicator} {short} {val_str} ({chg_str})"
+    return f"⚪ {short} {val_str}"
+
+
+def _static_tweet_text(date_str: str) -> str:
+    """フォールバック: データなしの静的テキスト"""
     tweet = (
         f"📊 サンデー指数 速報（{date_str}）\n"
         f"\n"
@@ -231,7 +474,6 @@ def generate_tweet_text() -> str:
         f"\n"
         f"#サンデーダウ #投資 #株式投資 #マーケット"
     )
-
     if len(tweet) > 280:
         tweet = (
             f"📊 サンデー指数（{date_str}）\n\n"
@@ -240,6 +482,44 @@ def generate_tweet_text() -> str:
             f"💵 サンデードル円\n\n"
             f"#サンデーダウ #投資 #マーケット"
         )
+    return tweet
+
+
+def generate_tweet_text(market_data: dict | None = None) -> str:
+    """ツイート本文を生成する（280文字以内）
+
+    market_data がある場合はハイブリッド形式（サマリー＋数値行）、
+    なければ従来の静的テキストにフォールバックする。
+    """
+    now = datetime.now(JST)
+    date_str = f"{now.month}/{now.day}"
+
+    has_data = market_data and any(
+        market_data.get(t["name"]) for t in TARGETS
+    )
+    if not has_data:
+        return _static_tweet_text(date_str)
+
+    summary = _generate_summary(market_data)
+
+    lines = [f"📊 サンデー指数 速報（{date_str}）", ""]
+    if summary:
+        lines.append(summary)
+        lines.append("")
+    for target in TARGETS:
+        lines.append(_format_data_line(target, market_data.get(target["name"])))
+    lines.extend(["", "#サンデーダウ #投資 #株式投資 #マーケット"])
+    tweet = "\n".join(lines)
+
+    if len(tweet) > 280:
+        lines_short = [f"📊 サンデー指数 速報（{date_str}）", ""]
+        for target in TARGETS:
+            lines_short.append(_format_data_line(target, market_data.get(target["name"])))
+        lines_short.extend(["", "#サンデーダウ #投資 #マーケット"])
+        tweet = "\n".join(lines_short)
+
+    if len(tweet) > 280:
+        return _static_tweet_text(date_str)
 
     return tweet
 
@@ -356,8 +636,15 @@ def main():
     print(f"Chart wait:  {args.chart_timeout}ms")
     print(f"Mode:        {'dry-run' if args.dry_run else 'capture-only' if args.capture_only else 'live'}")
 
-    screenshots = capture_charts(output_dir, chart_timeout_ms=args.chart_timeout)
+    screenshots, market_data = capture_charts(output_dir, chart_timeout_ms=args.chart_timeout)
     print(f"\nCaptured {len(screenshots)}/{len(TARGETS)} charts")
+
+    if market_data:
+        print(f"\nMarket data ({len(market_data)}/{len(TARGETS)}):")
+        for name, d in market_data.items():
+            print(f"  {name}: value={d.get('value')}, change={d.get('change')}, pct={d.get('change_pct')}")
+    else:
+        print("\nNo market data scraped (will use static text)")
 
     if not screenshots:
         print("ERROR: No charts were captured")
@@ -367,7 +654,7 @@ def main():
         print("\nCapture-only mode — skipping post")
         sys.exit(0)
 
-    tweet = generate_tweet_text()
+    tweet = generate_tweet_text(market_data)
     print(f"\nTweet ({len(tweet)} chars):\n{tweet}\n")
 
     success = post_to_x(tweet, screenshots, dry_run=args.dry_run)
