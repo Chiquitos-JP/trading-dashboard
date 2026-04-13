@@ -2,7 +2,7 @@
 title: "MakeoverMonday: Fastest Cars in the World — Speed, Power, and the Price of Extremes"
 description: "Mapping the relationship between top speed, horsepower, price, and exclusivity across the world's 8 fastest production cars"
 date: "2026-03-23"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - MakeoverMonday
