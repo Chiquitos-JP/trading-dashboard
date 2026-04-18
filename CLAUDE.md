@@ -150,6 +150,7 @@ gold/    → 集計・KPI テーブル（月次損益、KPI指標）
 
 - パス管理: `config/py/data_paths.py`（`DataPaths` クラス）
 - 生データ: `data/trading_account/realized_pl/raw/{rakuten,sbi}/`
+- **raw CSV 命名規則**: `data/trading_account/README.md` に成文化（bronze パーサの glob と `run_weekly_review.py` の週次判定が依存。命名を変える際は同 README と `scripts/broker_download/fetch.py` の `DOWNLOAD_TARGETS`、bronze パーサの glob を同時更新）
 - 口座残高: `data/trading_account/account_balance/daily_balance.parquet`
 - マクロデータ: FRED API 等からランタイム取得（インターネット接続必須）
 
