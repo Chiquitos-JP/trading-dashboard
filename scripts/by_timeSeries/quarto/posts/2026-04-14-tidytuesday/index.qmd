@@ -233,24 +233,38 @@ ggplot(wind_df, aes(x = factor(wind_speed_class), y = mean_count)) +
 
 set.seed(42)
 map_df <- birds_ship |>
-  filter(!is.na(latitude), !is.na(longitude)) |>
-  slice_sample(n = min(8000, n()))
+  filter(!is.na(latitude), !is.na(longitude))
 
-ggplot(map_df, aes(x = longitude, y = latitude)) +
-  geom_point(aes(color = log1p(count)), alpha = 0.25, size = 0.6) +
-  scale_color_gradientn(
-    colors = c("#e0f2fe", "#0369a1", "#0f172a"),
-    name = "log1p(count)"
-  ) +
-  labs(
-    title = "Geographic footprint of sampled 10-minute counts",
-    subtitle = "Random subsample of up to 8,000 records for readability",
-    x = "Longitude",
-    y = "Latitude",
-    caption = CAPTION
-  ) +
-  theme_active +
-  theme(legend.position = "right")
+# slice_sample(n = min(8000, n())) fails: inside slice_sample(), n() is not nrow(.)
+if (nrow(map_df) > 0L) {
+  n_map <- min(8000L, nrow(map_df))
+  map_df <- slice_sample(map_df, n = n_map)
+}
+
+if (nrow(map_df) == 0L) {
+  ggplot() +
+    annotate(
+      "text", x = 0.5, y = 0.5, size = 4, color = "#64748b",
+      label = "No latitude/longitude available for mapping."
+    ) +
+    theme_void()
+} else {
+  ggplot(map_df, aes(x = longitude, y = latitude)) +
+    geom_point(aes(color = log1p(count)), alpha = 0.25, size = 0.6) +
+    scale_color_gradientn(
+      colors = c("#e0f2fe", "#0369a1", "#0f172a"),
+      name = "log1p(count)"
+    ) +
+    labs(
+      title = "Geographic footprint of sampled 10-minute counts",
+      subtitle = "Random subsample of up to 8,000 records for readability",
+      x = "Longitude",
+      y = "Latitude",
+      caption = CAPTION
+    ) +
+    theme_active +
+    theme(legend.position = "right")
+}
 ```
 
 ## Key Findings
