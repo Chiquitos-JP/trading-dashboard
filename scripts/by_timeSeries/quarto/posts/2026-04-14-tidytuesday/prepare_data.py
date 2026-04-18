@@ -7,7 +7,7 @@ DATA_DIR.mkdir(exist_ok=True)
 
 BASE = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-04-14"
 
-for name in ["birds.csv", "ships.csv", "beaufort_scale.csv", "sea_states.csv"]:
+for name in ["birds.csv", "ships.csv", "beaufort_scale.csv"]:
     url = f"{BASE}/{name}"
     dest = DATA_DIR / name
     if not dest.exists():

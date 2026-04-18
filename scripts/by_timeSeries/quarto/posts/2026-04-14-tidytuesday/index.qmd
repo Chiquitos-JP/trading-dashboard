@@ -35,7 +35,6 @@ This week we explore seabird observations recorded under the Australasian Seabir
 library(tidyverse)
 library(scales)
 library(glue)
-library(patchwork)
 library(ggtext)
 library(ggrepel)
 library(showtext)
@@ -85,6 +84,7 @@ NOTE_TEXT   <- "Seabird logbook entries; counts may be censored at 99999 for ver
 SOURCE_TEXT <- "TidyTuesday 2026-04-14 / Te Papa Tongarewa"
 CAPTION     <- glue("Note: {NOTE_TEXT}  |  Source: {SOURCE_TEXT}  |  \u00A9 2026 chokotto")
 
+# STYLE_MODE: テーマ切替フラグ（将来 "dark" モード追加時のため保持）
 STYLE_MODE <- "figmamake"
 
 theme_fm <- theme_minimal(base_size = 12) +
@@ -108,7 +108,8 @@ theme_fm <- theme_minimal(base_size = 12) +
     plot.margin = margin(15, 15, 15, 15)
   )
 
-theme_active <- theme_fm
+# theme_active: STYLE_MODE に基づきアクティブテーマを選択
+theme_active <- if (STYLE_MODE == "figmamake") theme_fm else theme_fm
 
 COL_PRIMARY   <- "#0ea5e9"
 COL_SECONDARY <- "#f59e0b"
@@ -160,9 +161,12 @@ ggplot(species_tot, aes(x = total_count, y = species_label)) +
 #| fig-height: 5
 #| warning: false
 
+SEASON_LEVELS <- c("spring", "summer", "autumn", "winter")
+
 season_n <- birds_ship |>
   filter(!is.na(season)) |>
-  count(season, name = "n_records")
+  count(season, name = "n_records") |>
+  mutate(season = factor(season, levels = SEASON_LEVELS))
 
 ggplot(season_n, aes(x = season, y = n_records, fill = season)) +
   geom_col(width = 0.65, show.legend = FALSE) +

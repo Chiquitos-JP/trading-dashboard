@@ -184,23 +184,14 @@ fig.update_layout(
 add_legend_note(fig, "Line width emphasizes China vs other regions")
 add_source(fig)
 assert_no_title_overlap(fig)
-
-# X post: chart-1.png in post folder (works whether cwd is project root or post dir)
-from pathlib import Path
-import os
-
-_post = "2026-04-21-makeover-monday"
-qproj = os.environ.get("QUARTO_PROJECT_DIR")
-cwd = Path.cwd()
-if qproj:
-    chart_path = Path(qproj) / "posts" / _post / "chart-1.png"
-elif cwd.name == _post:
-    chart_path = cwd / "chart-1.png"
-else:
-    chart_path = cwd / "posts" / _post / "chart-1.png"
-chart_path.parent.mkdir(parents=True, exist_ok=True)
-fig.write_image(str(chart_path), width=1200, height=600, scale=2)
 fig.show()
+
+# X 投稿用画像を保存（Quarto render 時の cwd = post フォルダ）
+# kaleido が ARM64 で失敗しても HTML レンダリングを続行できるよう try/except で保護
+try:
+    fig.write_image("chart-1.png", width=1200, height=600, scale=2)
+except Exception:
+    pass
 ```
 
 ### Share of the four-region total tilts toward China
@@ -248,6 +239,7 @@ fig2.update_layout(
     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
 )
 
+add_legend_note(fig2, "100% stacked: each band's height = that region's share of the four-region total")
 add_source(fig2)
 assert_no_title_overlap(fig2)
 fig2.show()

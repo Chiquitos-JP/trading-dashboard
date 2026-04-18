@@ -92,8 +92,12 @@ jobs:
         if: contains(github.event.inputs.post_type, 'tidytuesday') || github.event.inputs.post_type == 'all'
         run: |
           cd ${{ env.QUARTO_PROJECT_DIR }}
+          POST_DATE="${{ github.event.inputs.post_date }}"
 
           for post_dir in posts/*-tidytuesday/; do
+            if [ -n "$POST_DATE" ] && [ "$(basename "$post_dir")" != "${POST_DATE}-tidytuesday" ]; then
+              continue
+            fi
             if [ -d "$post_dir" ] && [ -f "${post_dir}prepare_data.py" ]; then
               echo "📊 Preparing data for: $post_dir"
               python "${post_dir}prepare_data.py" || echo "⚠️ Data prep failed: $post_dir"
@@ -104,8 +108,12 @@ jobs:
         if: contains(github.event.inputs.post_type, 'tidytuesday') || github.event.inputs.post_type == 'all'
         run: |
           cd ${{ env.QUARTO_PROJECT_DIR }}
+          POST_DATE="${{ github.event.inputs.post_date }}"
 
           for post_dir in posts/*-tidytuesday/; do
+            if [ -n "$POST_DATE" ] && [ "$(basename "$post_dir")" != "${POST_DATE}-tidytuesday" ]; then
+              continue
+            fi
             if [ -d "$post_dir" ] && [ -f "${post_dir}index.qmd" ]; then
               echo "📝 Rendering: ${post_dir}index.qmd"
               quarto render "${post_dir}index.qmd" || echo "⚠️ Failed: $post_dir"
@@ -116,8 +124,12 @@ jobs:
         if: contains(github.event.inputs.post_type, 'makeover-monday') || github.event.inputs.post_type == 'all'
         run: |
           cd ${{ env.QUARTO_PROJECT_DIR }}
+          POST_DATE="${{ github.event.inputs.post_date }}"
 
           for post_dir in posts/*-makeover-monday/; do
+            if [ -n "$POST_DATE" ] && [ "$(basename "$post_dir")" != "${POST_DATE}-makeover-monday" ]; then
+              continue
+            fi
             if [ -d "$post_dir" ] && [ -f "${post_dir}index.qmd" ]; then
               echo "📝 Rendering: ${post_dir}index.qmd"
               quarto render "${post_dir}index.qmd" || echo "⚠️ Failed: $post_dir"
