@@ -2,7 +2,7 @@
 title: "TidyTuesday: Coastal Ocean Temperature - How Warming Reaches the Depths"
 description: "7 years of daily ocean temperatures at 7 depths reveal how warming penetrates coastal waters differently by season and depth"
 date: "2026-04-08"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - TidyTuesday
