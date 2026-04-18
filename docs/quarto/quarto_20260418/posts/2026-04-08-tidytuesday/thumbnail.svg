@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#f8fafc"/>
+  <rect x="40" y="30" width="520" height="340" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="60" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Coastal Ocean Temperature</text>
+  <text x="60" y="95" font-family="sans-serif" font-size="13" fill="#64748b">How Warming Reaches the Depths</text>
+  <text x="60" y="130" font-family="sans-serif" font-size="11" fill="#475569">Birchy Head, Nova Scotia &#x7C; 7 depths &#x7C; 2018&#x2013;2025</text>
+  <defs>
+    <linearGradient id="temp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fde725"/>
+      <stop offset="25%" stop-color="#5ec962"/>
+      <stop offset="50%" stop-color="#21918c"/>
+      <stop offset="75%" stop-color="#3b528b"/>
+      <stop offset="100%" stop-color="#440154"/>
+    </linearGradient>
+  </defs>
+  <!-- Simplified heatmap representation -->
+  <g transform="translate(60,150)">
+    <!-- Depth labels -->
+    <text x="-5" y="12" font-family="sans-serif" font-size="10" fill="#475569" text-anchor="end">2m</text>
+    <text x="-5" y="37" font-family="sans-serif" font-size="10" fill="#475569" text-anchor="end">10m</text>
+    <text x="-5" y="62" font-family="sans-serif" font-size="10" fill="#475569" text-anchor="end">20m</text>
+    <text x="-5" y="87" font-family="sans-serif" font-size="10" fill="#475569" text-anchor="end">30m</text>
+    <text x="-5" y="112" font-family="sans-serif" font-size="10" fill="#475569" text-anchor="end">40m</text>
+    <!-- Row 1: 2m (warmest, most variable) -->
+    <rect x="0"   y="0" width="60" height="20" fill="#440154"/>
+    <rect x="60"  y="0" width="60" height="20" fill="#3b528b"/>
+    <rect x="120" y="0" width="60" height="20" fill="#5ec962"/>
+    <rect x="180" y="0" width="60" height="20" fill="#fde725"/>
+    <rect x="240" y="0" width="60" height="20" fill="#fde725"/>
+    <rect x="300" y="0" width="60" height="20" fill="#5ec962"/>
+    <rect x="360" y="0" width="60" height="20" fill="#3b528b"/>
+    <rect x="420" y="0" width="60" height="20" fill="#440154"/>
+    <!-- Row 2: 10m -->
+    <rect x="0"   y="25" width="60" height="20" fill="#440154"/>
+    <rect x="60"  y="25" width="60" height="20" fill="#3b528b"/>
+    <rect x="120" y="25" width="60" height="20" fill="#21918c"/>
+    <rect x="180" y="25" width="60" height="20" fill="#5ec962"/>
+    <rect x="240" y="25" width="60" height="20" fill="#5ec962"/>
+    <rect x="300" y="25" width="60" height="20" fill="#21918c"/>
+    <rect x="360" y="25" width="60" height="20" fill="#3b528b"/>
+    <rect x="420" y="25" width="60" height="20" fill="#440154"/>
+    <!-- Row 3: 20m -->
+    <rect x="0"   y="50" width="60" height="20" fill="#440154"/>
+    <rect x="60"  y="50" width="60" height="20" fill="#440154"/>
+    <rect x="120" y="50" width="60" height="20" fill="#3b528b"/>
+    <rect x="180" y="50" width="60" height="20" fill="#21918c"/>
+    <rect x="240" y="50" width="60" height="20" fill="#21918c"/>
+    <rect x="300" y="50" width="60" height="20" fill="#3b528b"/>
+    <rect x="360" y="50" width="60" height="20" fill="#440154"/>
+    <rect x="420" y="50" width="60" height="20" fill="#440154"/>
+    <!-- Row 4: 30m -->
+    <rect x="0"   y="75" width="60" height="20" fill="#440154"/>
+    <rect x="60"  y="75" width="60" height="20" fill="#440154"/>
+    <rect x="120" y="75" width="60" height="20" fill="#440154"/>
+    <rect x="180" y="75" width="60" height="20" fill="#3b528b"/>
+    <rect x="240" y="75" width="60" height="20" fill="#3b528b"/>
+    <rect x="300" y="75" width="60" height="20" fill="#440154"/>
+    <rect x="360" y="75" width="60" height="20" fill="#440154"/>
+    <rect x="420" y="75" width="60" height="20" fill="#440154"/>
+    <!-- Row 5: 40m -->
+    <rect x="0"   y="100" width="60" height="20" fill="#440154"/>
+    <rect x="60"  y="100" width="60" height="20" fill="#440154"/>
+    <rect x="120" y="100" width="60" height="20" fill="#440154"/>
+    <rect x="180" y="100" width="60" height="20" fill="#440154"/>
+    <rect x="240" y="100" width="60" height="20" fill="#440154"/>
+    <rect x="300" y="100" width="60" height="20" fill="#440154"/>
+    <rect x="360" y="100" width="60" height="20" fill="#440154"/>
+    <rect x="420" y="100" width="60" height="20" fill="#440154"/>
+    <!-- Month labels -->
+    <text x="30"  y="135" font-family="sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Feb</text>
+    <text x="90"  y="135" font-family="sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Apr</text>
+    <text x="150" y="135" font-family="sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Jun</text>
+    <text x="210" y="135" font-family="sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Jul</text>
+    <text x="270" y="135" font-family="sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Aug</text>
+    <text x="330" y="135" font-family="sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Oct</text>
+    <text x="390" y="135" font-family="sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Nov</text>
+    <text x="450" y="135" font-family="sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Dec</text>
+  </g>
+  <!-- Legend -->
+  <rect x="410" y="310" width="100" height="10" rx="2" fill="url(#temp)"/>
+  <text x="410" y="335" font-family="sans-serif" font-size="9" fill="#94a3b8">Cold</text>
+  <text x="510" y="335" font-family="sans-serif" font-size="9" fill="#94a3b8" text-anchor="end">Warm</text>
+  <text x="60" y="358" font-family="sans-serif" font-size="10" fill="#94a3b8" font-style="italic">Source: TidyTuesday 2026-03-31 / CMAR &#x7C; &#xA9; 2026 chokotto</text>
+</svg>
