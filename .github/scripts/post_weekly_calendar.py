@@ -557,13 +557,13 @@ def generate_tweet(
     return tweet
 
 
-def post_to_x(tweet: str, dry_run: bool = False) -> bool:
-    """Xに投稿する"""
+def post_to_x(tweet: str, dry_run: bool = False) -> tuple[bool, int]:
+    """Xに投稿する。(success, http_status) を返す。"""
     if dry_run:
         print("=== DRY RUN MODE ===")
         print(f"Would post:\n{tweet}")
         print(f"\nCharacter count: {len(tweet)}")
-        return True
+        return True, 200
     
     # 環境変数から認証情報を取得
     api_key = os.environ.get("X_API_KEY")
@@ -574,7 +574,7 @@ def post_to_x(tweet: str, dry_run: bool = False) -> bool:
     if not all([api_key, api_secret, access_token, access_token_secret]):
         print("ERROR: Missing X API credentials in environment variables")
         print("Required: X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET")
-        return False
+        return False, 0
     
     try:
         # Twitter API v2 クライアントを作成
@@ -588,11 +588,15 @@ def post_to_x(tweet: str, dry_run: bool = False) -> bool:
         # ツイートを投稿
         response = client.create_tweet(text=tweet)
         print(f"Successfully posted tweet: {response.data['id']}")
-        return True
-        
+        return True, 200
+    
+    except tweepy.Forbidden:
+        print("WARNING: 403 Forbidden — likely a duplicate tweet. Treating as already posted.")
+        return False, 403
+    
     except tweepy.TweepyException as e:
         print(f"ERROR: Failed to post tweet: {e}")
-        return False
+        return False, 0
 
 
 def main():
@@ -679,8 +683,13 @@ def main():
     print("--- End of Tweet ---\n")
     
     # 投稿
-    if post_to_x(tweet, dry_run=args.dry_run):
-        print("Tweet posted successfully!")
+    success, status = post_to_x(tweet, dry_run=args.dry_run)
+    
+    if success or status == 403:
+        if status == 403:
+            print("Tweet was already posted (duplicate). Treating as success.")
+        else:
+            print("Tweet posted successfully!")
         
         # GitHub Actions用の出力
         github_output = os.environ.get("GITHUB_OUTPUT")
@@ -690,6 +699,7 @@ def main():
                 f.write(f"week_start={week_start.strftime('%Y-%m-%d')}\n")
                 f.write(f"week_end={week_end.strftime('%Y-%m-%d')}\n")
                 f.write(f"event_count={len(week_events)}\n")
+                f.write(f"was_duplicate={'true' if status == 403 else 'false'}\n")
     else:
         print("Failed to post tweet")
         sys.exit(1)
