@@ -2,7 +2,7 @@
 title: "MakeoverMonday: London Unemployment - Young Londoners Hit Hardest"
 description: "London leads UK regions in unemployment at 7.7%, with youth rates reaching 24.6% - a 35% surge in one year"
 date: "2026-03-30"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - MakeoverMonday
