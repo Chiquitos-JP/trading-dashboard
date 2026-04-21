@@ -2,7 +2,7 @@
 title: "TidyTuesday: Bird Sightings at Sea - New Zealand Logbooks"
 description: "Seabird counts from 10-minute ship surveys near New Zealand (1969-1990): species, season, wind, and geography"
 date: "2026-04-14"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - TidyTuesday
