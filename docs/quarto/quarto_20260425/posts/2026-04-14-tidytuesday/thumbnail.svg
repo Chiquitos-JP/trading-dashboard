@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#f8fafc"/>
+  <rect x="40" y="30" width="520" height="340" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="60" y="68" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Bird Sightings at Sea</text>
+  <text x="60" y="92" font-family="sans-serif" font-size="13" fill="#64748b">New Zealand logbooks 1969-1990</text>
+
+  <!-- Stylized ocean -->
+  <path d="M60 280 Q150 260 240 275 T420 270 T520 265 L520 310 L60 310 Z" fill="rgba(14,165,233,0.12)" stroke="none"/>
+  <path d="M60 295 Q180 285 300 292 T520 288" fill="none" stroke="#bae6fd" stroke-width="2"/>
+
+  <!-- Bird silhouettes -->
+  <path d="M120 210 Q135 200 150 208 Q165 200 180 208 L175 215 L140 215 Z" fill="#0369a1" opacity="0.85"/>
+  <path d="M280 185 Q295 175 310 183 Q325 175 340 183 L335 190 L285 190 Z" fill="#0ea5e9" opacity="0.75"/>
+  <path d="M400 220 Q415 210 430 218 Q445 210 460 218 L455 225 L405 225 Z" fill="#0369a1" opacity="0.7"/>
+
+  <text x="60" y="150" font-family="sans-serif" font-size="28" font-weight="bold" fill="#0369a1">49k+</text>
+  <text x="165" y="150" font-family="sans-serif" font-size="13" fill="#64748b">bird records linked to ship weather</text>
+
+  <text x="60" y="338" font-family="sans-serif" font-size="10" fill="#94a3b8">TidyTuesday 2026-04-14</text>
+</svg>
