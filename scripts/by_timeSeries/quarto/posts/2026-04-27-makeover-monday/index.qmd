@@ -1,0 +1,251 @@
+---
+title: "MakeoverMonday: Global Oil Production - Who Still Moves the Map"
+description: "Country-level oil output in terawatt-hours from Our World in Data: top producers, trajectories since 1990, and shifting shares of the world total"
+date: "2026-04-27"
+x-posted: false
+author: "chokotto"
+categories:
+  - MakeoverMonday
+  - Python
+  - Data Viz
+source-topic: "Global Oil Production"
+source-url: "https://ourworldindata.org/grapher/oil-production-by-country"
+image: "thumbnail.svg"
+code-fold: true
+twitter-card:
+  card-type: summary_large_image
+  image: "thumbnail.png"
+---
+
+## Overview
+
+Oil output remains a core lens on geopolitics and the energy transition. This makeover uses Our World in Data's country-level series (Energy Institute and Shift Data Portal, harmonised by OWID) in **terawatt-hours** (energy-equivalent) to compare how the largest producers evolved since 1990.
+
+- **Data Source**: [Our World in Data - Oil production](https://ourworldindata.org/grapher/oil-production-by-country)
+- **Angle**: Absolute trajectories for the current top producers, then each country's share of annual world production
+
+## Dataset
+
+```{python}
+#| label: load-packages
+#| message: false
+
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+```
+
+```{python}
+#| label: load-data
+#| message: false
+
+url = (
+    "https://ourworldindata.org/grapher/oil-production-by-country.csv"
+    "?v=1&csvType=full&useColumnShortNames=false"
+)
+raw = pd.read_csv(url, storage_options={"User-Agent": "chokotto-makeover/1.0"})
+raw.columns = raw.columns.str.replace(" ", "_")
+
+oil = raw.rename(columns={"Oil": "oil_twh"}).copy()
+oil = oil[oil["Year"] >= 1990]
+oil = oil[oil["Entity"].notna()]
+# Drop aggregates that would double-count
+exclude = {"World", "Africa", "Asia", "Europe", "North America", "South America", "Oceania"}
+oil = oil[~oil["Entity"].isin(exclude)]
+
+latest_y = int(oil["Year"].max())
+top_entities = (
+    oil[oil["Year"] == latest_y]
+    .nlargest(8, "oil_twh")["Entity"]
+    .tolist()
+)
+
+by_year_total = oil.groupby("Year", as_index=False)["oil_twh"].sum()
+by_year_total = by_year_total.rename(columns={"oil_twh": "world_total"})
+
+top8 = oil[oil["Entity"].isin(top_entities)].merge(by_year_total, on="Year")
+top8["share_pct"] = np.where(
+    top8["world_total"] > 0, top8["oil_twh"] / top8["world_total"] * 100, 0
+)
+```
+
+## My Makeover
+
+```{python}
+#| label: shared-style
+#| include: false
+
+THEME = dict(
+    template="plotly_white",
+    paper_bgcolor="white",
+    plot_bgcolor="#f8fafc",
+    font=dict(family="Inter, system-ui, sans-serif", color="#1e293b"),
+)
+
+NOTE_TEXT = "Oil production incl. crude, oil sands, NGLs; energy unit TWh (OWID methodology)"
+SOURCE_TEXT = "Our World in Data (Energy Institute; Shift Data Portal)"
+SOURCE_NOTE = f"<i>Note: {NOTE_TEXT}  |  Source: {SOURCE_TEXT}  |  (c) 2026 chokotto</i>"
+
+PAL = ["#b45309", "#0f766e", "#1d4ed8", "#7c3aed", "#be123c", "#64748b", "#ca8a04", "#0369a1"]
+
+def make_title(text):
+    return dict(text=text, font=dict(size=15, color="#1e293b"), x=0, xanchor="left")
+
+def add_legend_note(fig, text):
+    margin_t = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+    if margin_t < 100:
+        fig.update_layout(margin=dict(t=100))
+    fig.add_annotation(
+        text=text, xref="paper", yref="paper",
+        x=0, y=1.0,
+        xanchor="left", yanchor="bottom",
+        showarrow=False,
+        font=dict(size=11, color="#64748b"),
+        align="left",
+    )
+
+def add_source(fig, position="bottom"):
+    if position == "top":
+        h = fig.layout.height or 450
+        mt = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+        mb = fig.layout.margin.b if fig.layout.margin.b is not None else 80
+        plot_h = h - mt - mb
+        ABOVE_PX = 15
+        y = 1.0 + (ABOVE_PX / plot_h) if plot_h > 0 else 1.05
+        fig.add_annotation(
+            text=SOURCE_NOTE, xref="paper", yref="paper",
+            x=0, y=y, showarrow=False,
+            font=dict(size=10, color="#94a3b8", style="italic"),
+            align="left", xanchor="left", yanchor="bottom",
+        )
+        return
+    TARGET_PX = 65
+    ANNOT_HEIGHT_PX = 35
+    h = fig.layout.height or 450
+    mt = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+    mb = fig.layout.margin.b if fig.layout.margin.b is not None else 80
+    min_mb = TARGET_PX + ANNOT_HEIGHT_PX
+    if mb < min_mb:
+        mb = min_mb
+        fig.update_layout(margin=dict(b=mb))
+    plot_h = h - mt - mb
+    y = -(TARGET_PX / plot_h) if plot_h > 0 else -0.30
+    fig.add_annotation(
+        text=SOURCE_NOTE, xref="paper", yref="paper",
+        x=0, y=y, showarrow=False,
+        font=dict(size=10, color="#94a3b8", style="italic"),
+        align="left", xanchor="left", yanchor="top",
+    )
+
+def assert_no_title_overlap(fig):
+    height = fig.layout.height or 450
+    margin_t = fig.layout.margin.t if fig.layout.margin.t is not None else 80
+    plot_top_paper = 1.0
+    for ann in (fig.layout.annotations or []):
+        if getattr(ann, "yref", None) == "paper" and ann.y is not None:
+            if ann.y > plot_top_paper:
+                required_t = int((ann.y - 1.0 + 0.06) * height) + margin_t
+                if required_t > margin_t:
+                    fig.update_layout(margin=dict(t=required_t))
+```
+
+### The same eight producers still dominate volume, but ranks drift
+
+```{python}
+#| label: chart-1
+#| fig-width: 10
+
+color_map = {e: PAL[i % len(PAL)] for i, e in enumerate(top_entities)}
+
+fig = go.Figure()
+for entity in top_entities:
+    sub = oil[oil["Entity"] == entity].sort_values("Year")
+    fig.add_trace(go.Scatter(
+        x=sub["Year"],
+        y=sub["oil_twh"],
+        mode="lines",
+        name=entity,
+        line=dict(color=color_map[entity], width=3 if entity == top_entities[0] else 2),
+        hovertemplate=f"{entity}<br>%{{x}}: %{{y:,.0f}} TWh<extra></extra>",
+    ))
+
+lead = top_entities[0]
+lead_last = oil[(oil["Entity"] == lead) & (oil["Year"] == latest_y)]["oil_twh"].sum()
+
+fig.update_layout(
+    **THEME,
+    title=make_title(
+        f"Oil output (TWh): {lead} led with {lead_last:,.0f} TWh in {latest_y} among top 8"
+    ),
+    height=450,
+    margin=dict(l=60, r=30, t=100, b=100),
+    xaxis=dict(title=""),
+    yaxis=dict(title="Oil production (terawatt-hours)"),
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+)
+
+add_legend_note(fig, "Top 8 countries by output in the latest year; lines from 1990")
+add_source(fig)
+assert_no_title_overlap(fig)
+fig.show()
+
+try:
+    fig.write_image("chart-1.png", width=1200, height=600, scale=2)
+except Exception:
+    pass
+```
+
+### Share of world production: concentration vs diversification
+
+```{python}
+#| label: chart-2
+#| fig-width: 10
+
+years = sorted(top8["Year"].unique())
+wide = top8.pivot(index="Year", columns="Entity", values="share_pct").reindex(years)
+wide = wide.fillna(0)
+
+fills = [
+    "rgba(180,83,9,0.35)", "rgba(15,118,110,0.32)", "rgba(29,78,216,0.28)",
+    "rgba(124,58,237,0.26)", "rgba(190,18,60,0.24)", "rgba(100,116,139,0.22)",
+    "rgba(202,138,4,0.2)", "rgba(3,105,161,0.2)",
+]
+fig2 = go.Figure()
+for i, entity in enumerate(top_entities):
+    if entity not in wide.columns:
+        continue
+    fig2.add_trace(go.Scatter(
+        x=wide.index,
+        y=wide[entity],
+        name=entity,
+        stackgroup="one",
+        mode="lines",
+        line=dict(width=0.5),
+        fillcolor=fills[i % len(fills)],
+        hovertemplate=f"{entity}: %{{y:.1f}}%<extra></extra>",
+    ))
+
+fig2.update_layout(
+    **THEME,
+    title=make_title(
+        "Share of estimated world oil output: eight largest producers (100% stacked)"
+    ),
+    height=450,
+    margin=dict(l=60, r=30, t=100, b=100),
+    xaxis=dict(title=""),
+    yaxis=dict(title="Percent of summed country totals", range=[0, 100]),
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+)
+
+add_legend_note(
+    fig2,
+    "World total = sum of country-level series in dataset (excludes regional aggregates)"
+)
+add_source(fig2)
+assert_no_title_overlap(fig2)
+fig2.show()
+```
+
+***
+
+_This post is part of [Makeover Monday](https://makeovermonday.co.uk/)._
