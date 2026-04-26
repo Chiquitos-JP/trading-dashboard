@@ -37,10 +37,26 @@ twitter-card:
 #| label: load-packages
 #| message: false
 
+import sys
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+
+# posts/_mm_layout.py を import（実行 cwd は投稿サブフォルダまたは quarto プロジェクトルートのいずれか）
+_p = Path.cwd()
+if (_p / "_mm_layout.py").exists():
+    _posts = _p
+elif (_p.parent / "_mm_layout.py").exists():
+    _posts = _p.parent
+elif (_p / "posts" / "_mm_layout.py").exists():
+    _posts = _p / "posts"
+else:
+    _posts = _p
+sys.path.insert(0, str(_posts))
+from _mm_layout import apply_mm_layout
 ```
 
 ```{python}
@@ -63,6 +79,22 @@ import plotly.graph_objects as go
 #| label: main-viz
 
 # Main visualization code here
+#
+# === MM 共通: タイトル/サブタイトル/凡例の重なり防止 ===
+# Plotly はタイトルと凡例の自動回避をしないため、apply_mm_layout() を使う:
+#   1. legend.orientation='h' + 明示 y（上 1.02 / 下 -0.18）
+#   2. margin.t / margin.b で物理スペースを確保
+#   3. サブタイトルは title 内に <br><sup> で渡す（subtitle 引数）
+#
+# 例:
+# fig.update_layout(**THEME, xaxis=..., yaxis=...)
+# apply_mm_layout(
+#     fig,
+#     "{メインタイトル}",
+#     subtitle="{サブタイトル・注記}",
+#     legend_position="top",  # "top" | "bottom" | "right"
+#     n_legend_items=8,
+# )
 ```
 
 ## Key Takeaways
@@ -80,3 +112,11 @@ _This post is part of the [MakeoverMonday](https://www.makeovermonday.co.uk/) we
 This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information.
 :::
 :::
+
+<!--
+レンダリング前の自己チェック:
+- [ ] タイトル/サブタイトル/注記とプロット領域が重ならない
+- [ ] 凡例がタイトル下や軸ラベルにかぶっていない（特に系列数 >= 6）
+- [ ] 凡例が thumbnail.png でも切れていない
+- [ ] apply_mm_layout() を使用している（手書きの title+legend+margin だけの update_layout に依存していない）
+-->

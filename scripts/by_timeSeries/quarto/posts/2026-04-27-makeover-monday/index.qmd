@@ -30,9 +30,24 @@ Oil output remains a core lens on geopolitics and the energy transition. This ma
 #| label: load-packages
 #| message: false
 
+import sys
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
+
+_p = Path.cwd()
+if (_p / "_mm_layout.py").exists():
+    _posts = _p
+elif (_p.parent / "_mm_layout.py").exists():
+    _posts = _p.parent
+elif (_p / "posts" / "_mm_layout.py").exists():
+    _posts = _p / "posts"
+else:
+    _posts = _p
+sys.path.insert(0, str(_posts))
+from _mm_layout import apply_mm_layout
 ```
 
 ```{python}
@@ -87,22 +102,6 @@ SOURCE_TEXT = "Our World in Data (Energy Institute; Shift Data Portal)"
 SOURCE_NOTE = f"<i>Note: {NOTE_TEXT}  |  Source: {SOURCE_TEXT}  |  (c) 2026 chokotto</i>"
 
 PAL = ["#b45309", "#0f766e", "#1d4ed8", "#7c3aed", "#be123c", "#64748b", "#ca8a04", "#0369a1"]
-
-def make_title(text):
-    return dict(text=text, font=dict(size=15, color="#1e293b"), x=0, xanchor="left")
-
-def add_legend_note(fig, text):
-    margin_t = fig.layout.margin.t if fig.layout.margin.t is not None else 80
-    if margin_t < 100:
-        fig.update_layout(margin=dict(t=100))
-    fig.add_annotation(
-        text=text, xref="paper", yref="paper",
-        x=0, y=1.0,
-        xanchor="left", yanchor="bottom",
-        showarrow=False,
-        font=dict(size=11, color="#64748b"),
-        align="left",
-    )
 
 def add_source(fig, position="bottom"):
     if position == "top":
@@ -174,23 +173,22 @@ lead_last = oil[(oil["Entity"] == lead) & (oil["Year"] == latest_y)]["oil_twh"].
 
 fig.update_layout(
     **THEME,
-    title=make_title(
-        f"Oil output (TWh): {lead} led with {lead_last:,.0f} TWh in {latest_y} among top 8"
-    ),
-    height=450,
-    margin=dict(l=60, r=30, t=100, b=100),
     xaxis=dict(title=""),
     yaxis=dict(title="Oil production (terawatt-hours)"),
-    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
 )
-
-add_legend_note(fig, "Top 8 countries by output in the latest year; lines from 1990")
+apply_mm_layout(
+    fig,
+    f"Oil output (TWh): {lead} led with {lead_last:,.0f} TWh in {latest_y} among top 8",
+    subtitle="Top 8 countries by output in the latest year; lines from 1990",
+    legend_position="top",
+    n_legend_items=len(top_entities),
+)
 add_source(fig)
 assert_no_title_overlap(fig)
 fig.show()
 
 try:
-    fig.write_image("chart-1.png", width=1200, height=600, scale=2)
+    fig.write_image("chart-1.png", width=1200, height=520, scale=2)
 except Exception:
     pass
 ```
@@ -227,19 +225,18 @@ for i, entity in enumerate(top_entities):
 
 fig2.update_layout(
     **THEME,
-    title=make_title(
-        "Share of estimated world oil output: eight largest producers (100% stacked)"
-    ),
-    height=450,
-    margin=dict(l=60, r=30, t=100, b=100),
     xaxis=dict(title=""),
     yaxis=dict(title="Percent of summed country totals", range=[0, 100]),
-    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
 )
-
-add_legend_note(
+apply_mm_layout(
     fig2,
-    "World total = sum of country-level series in dataset (excludes regional aggregates)"
+    "Share of estimated world oil output: eight largest producers (100% stacked)",
+    subtitle=(
+        "World total = sum of country-level series in dataset "
+        "(excludes regional aggregates)"
+    ),
+    legend_position="top",
+    n_legend_items=len(top_entities),
 )
 add_source(fig2)
 assert_no_title_overlap(fig2)
