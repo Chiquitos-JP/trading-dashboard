@@ -119,6 +119,16 @@ theme_active <- theme_fm  # switch: if (STYLE_MODE == "dark") theme_dark_cap els
 
 # Main visualization code here
 # Individual charts: p1, p2, ... (caption is on combined panel only)
+#
+# 連続スケールの X/Y が「生の大きな数値」（金額・人口など）のときは、軸ラベルを必ず短縮単位で整形する。
+# X 軸ラベルが画面幅を超えると重なる。大きな金額・人口は必ず短縮単位 (K/M/B/T) で整形すること。
+# scales::label_number(scale_cut = scales::cut_short_scale()) が定番。
+# 例:
+# scale_x_continuous(
+#   labels = scales::label_number(scale_cut = scales::cut_short_scale(), prefix = "$"),
+#   breaks = scales::breaks_extended(n = 5),
+#   expand = expansion(mult = c(0, 0.08))
+# )
 
 # Combined panel with Source/Note caption
 # combined <- p1 / p2 +
@@ -146,3 +156,10 @@ _This post is part of the [TidyTuesday](https://github.com/rfordatascience/tidyt
 This analysis is for educational and practice purposes only. Data visualizations and interpretations are based on the provided dataset and may not represent complete or current information.
 :::
 :::
+
+<!--
+レンダリング前の自己チェック:
+- [ ] 数値軸ラベルが raw 値（カンマ区切りのみ）になっていないか
+- [ ] 軸ラベル幅が画面幅を超えていないか（特に X 軸の T/B/M 単位）
+- [ ] 凡例の長文（国名フルネーム等）が枠外に押し出されていないか
+-->

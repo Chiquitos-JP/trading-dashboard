@@ -113,11 +113,18 @@ che_23 <- che |>
 
 top15 <- che_23 |>
   slice_max(order_by = value, n = 15) |>
-  mutate(country_name = fct_reorder(country_name, value))
+  mutate(
+    country_name = fct_reorder(country_name, value),
+    dollar_billions = value / 1e9
+  )
 
-ggplot(top15, aes(x = value, y = country_name)) +
+format_usd_trillions <- function(x) {
+  paste0("$", scales::comma(x / 1000, accuracy = 0.1), "T")
+}
+
+ggplot(top15, aes(x = dollar_billions, y = country_name)) +
   geom_segment(
-    aes(x = 0, xend = value, yend = country_name),
+    aes(x = 0, xend = dollar_billions, yend = country_name),
     color = "#e2e8f0", linewidth = 0.9
   ) +
   geom_point(color = COL_GOV, size = 4.5) +
@@ -126,13 +133,14 @@ ggplot(top15, aes(x = value, y = country_name)) +
     hjust = -0.15, size = 3.2, color = "#475569"
   ) +
   scale_x_continuous(
-    labels = label_dollar(scale = 1e9, suffix = "B"),
-    expand = expansion(mult = c(0, 0.12))
+    labels = format_usd_trillions,
+    breaks = scales::breaks_extended(n = 5),
+    expand = expansion(mult = c(0, 0.08))
   ) +
   labs(
     title = "Fifteen largest national health budgets (CHE, constant 2023 US$)",
     subtitle = "Current health expenditure aggregates all financing sources | Year 2023",
-    x = "Current health expenditure (billions USD)",
+    x = "Current health expenditure (USD, trillions)",
     y = NULL,
     caption = CAPTION
   ) +
