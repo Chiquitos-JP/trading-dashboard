@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#f8fafc"/>
+  <rect x="40" y="30" width="520" height="340" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="60" y="68" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Global EV Sales</text>
+  <text x="60" y="92" font-family="sans-serif" font-size="13" fill="#64748b">By region (Our World in Data)</text>
+
+  <!-- Stacked area hint -->
+  <polygon points="60,300 140,295 220,280 300,250 380,220 460,200 520,190 520,300" fill="rgba(220,38,38,0.15)" stroke="none"/>
+  <polygon points="60,300 140,298 220,290 300,275 380,255 460,240 520,230 520,300" fill="rgba(37,99,235,0.12)" stroke="none"/>
+  <polyline points="60,295 140,288 220,275 300,255 380,230 460,210 520,198" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+  <polyline points="60,298 220,292 380,268 520,248" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+
+  <text x="60" y="150" font-family="sans-serif" font-size="26" font-weight="bold" fill="#059669">IEA</text>
+  <text x="130" y="150" font-family="sans-serif" font-size="13" fill="#64748b">Regional adoption curves</text>
+
+  <text x="60" y="338" font-family="sans-serif" font-size="10" fill="#94a3b8">Makeover Monday Week 15</text>
+</svg>

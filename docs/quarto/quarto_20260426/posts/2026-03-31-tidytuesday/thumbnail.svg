@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 418" width="800" height="418">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="418" fill="url(#bg)"/>
+  <text x="40" y="48" font-family="sans-serif" font-size="13" fill="#94a3b8" font-weight="600" letter-spacing="2">TIDYTUESDAY</text>
+  <text x="40" y="85" font-family="sans-serif" font-size="26" fill="#1e293b" font-weight="700">One Million Digits of Pi</text>
+  <text x="40" y="115" font-family="sans-serif" font-size="15" fill="#64748b">Patterns in Randomness</text>
+  <!-- Pi symbol large -->
+  <text x="640" y="110" font-family="serif" font-size="120" fill="#e2e8f0" font-weight="700" text-anchor="middle">&#x3C0;</text>
+  <!-- Digit frequency bars -->
+  <g transform="translate(40, 145)">
+    <rect x="0" y="0" width="52" height="180" rx="2" fill="#f1f5f9"/>
+    <rect x="60" y="2" width="52" height="178" rx="2" fill="#e63946" opacity="0.8"/>
+    <rect x="120" y="1" width="52" height="179" rx="2" fill="#3b82f6" opacity="0.7"/>
+    <rect x="180" y="0" width="52" height="180" rx="2" fill="#10b981" opacity="0.7"/>
+    <rect x="240" y="0" width="52" height="180" rx="2" fill="#f59e0b" opacity="0.7"/>
+    <rect x="300" y="0" width="52" height="181" rx="2" fill="#8b5cf6" opacity="0.7"/>
+    <rect x="360" y="3" width="52" height="177" rx="2" fill="#ec4899" opacity="0.7"/>
+    <rect x="420" y="2" width="52" height="178" rx="2" fill="#14b8a6" opacity="0.7"/>
+    <rect x="480" y="0" width="52" height="180" rx="2" fill="#f97316" opacity="0.7"/>
+    <rect x="540" y="0" width="52" height="180" rx="2" fill="#6366f1" opacity="0.7"/>
+    <!-- Digit labels -->
+    <text x="26" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">0</text>
+    <text x="86" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">1</text>
+    <text x="146" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">2</text>
+    <text x="206" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">3</text>
+    <text x="266" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">4</text>
+    <text x="326" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">5</text>
+    <text x="386" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">6</text>
+    <text x="446" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">7</text>
+    <text x="506" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">8</text>
+    <text x="566" y="200" font-family="sans-serif" font-size="14" fill="#475569" text-anchor="middle">9</text>
+    <!-- 10% line -->
+    <line x1="0" y1="0" x2="592" y2="0" stroke="#e63946" stroke-width="1" stroke-dasharray="4,4"/>
+    <text x="600" y="5" font-family="sans-serif" font-size="10" fill="#e63946">10%</text>
+  </g>
+  <!-- Bottom line -->
+  <line x1="40" y1="370" x2="760" y2="370" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="40" y="395" font-family="sans-serif" font-size="11" fill="#94a3b8">3.14159265358979323846... &#xB7; 1,000,001 digits</text>
+  <text x="760" y="395" font-family="sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">&#xA9; 2026 chokotto</text>
+</svg>

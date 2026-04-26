@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="chokotto">
+<meta name="dcterms.date" content="2026-04-27">
+<meta name="description" content="Country-level oil output in terawatt-hours from Our World in Data: top producers, trajectories since 1990, and shifting shares of the world total">
+
+<title>MakeoverMonday: Global Oil Production - Who Still Moves the Map – ちょこっと</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b5e6bbbec0d7de228d33a52be59e379b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+</script>
+<script type="module">import "https://cdn.plot.ly/plotly-3.1.1.min"</script>
+
+
+
+<meta name="twitter:title" content="MakeoverMonday: Global Oil Production - Who Still Moves the Map – ちょこっと">
+<meta name="twitter:description" content="Country-level oil output in terawatt-hours from Our World in Data: top producers, trajectories since 1990, and shifting shares of the world total">
+<meta name="twitter:image" content="https://chiquitos-jp.github.io/trading-dashboard/quarto/latest/posts/2026-04-27-makeover-monday/thumbnail.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/chokotto_ver01.png" alt="" class="navbar-logo light-content">
+    <img src="../../assets/chokotto_ver01.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">ちょこっと</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Concept</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../analysis.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-performance" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Performance</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-performance">    
+        <li class="dropdown-header">FINANCIALS</li>
+        <li>
+    <a class="dropdown-item" href="../../dashboard_2025.html">
+ <span class="dropdown-text">2025 Annual Report</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../dashboard_2026.html">
+ <span class="dropdown-text">2026 Annual Report</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../financials_notes.html">
+ <span class="dropdown-text">Design Notes</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/Chiquitos-JP/trading-dashboard" title="" class="quarto-navigation-tool px-1" aria-label="GitHub repository"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#my-makeover" id="toc-my-makeover" class="nav-link" data-scroll-target="#my-makeover">My Makeover</a>
+  <ul class="collapse">
+  <li><a href="#the-same-eight-producers-still-dominate-volume-but-ranks-drift" id="toc-the-same-eight-producers-still-dominate-volume-but-ranks-drift" class="nav-link" data-scroll-target="#the-same-eight-producers-still-dominate-volume-but-ranks-drift">The same eight producers still dominate volume, but ranks drift</a></li>
+  <li><a href="#share-of-world-production-concentration-vs-diversification" id="toc-share-of-world-production-concentration-vs-diversification" class="nav-link" data-scroll-target="#share-of-world-production-concentration-vs-diversification">Share of world production: concentration vs diversification</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Chiquitos-JP/trading-dashboard/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MakeoverMonday: Global Oil Production - Who Still Moves the Map</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">MakeoverMonday</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Data Viz</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Country-level oil output in terawatt-hours from Our World in Data: top producers, trajectories since 1990, and shifting shares of the world total
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>chokotto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 27, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Oil output remains a core lens on geopolitics and the energy transition. This makeover uses Our World in Data’s country-level series (Energy Institute and Shift Data Portal, harmonised by OWID) in <strong>terawatt-hours</strong> (energy-equivalent) to compare how the largest producers evolved since 1990.</p>
+<ul>
+<li><strong>Data Source</strong>: <a href="https://ourworldindata.org/grapher/oil-production-by-country">Our World in Data - Oil production</a></li>
+<li><strong>Angle</strong>: Absolute trajectories for the current top producers, then each country’s share of annual world production</li>
+</ul>
+</section>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<div id="load-packages" class="cell" data-message="false" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="load-data" class="cell" data-message="false" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://ourworldindata.org/grapher/oil-production-by-country.csv"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"?v=1&amp;csvType=full&amp;useColumnShortNames=false"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> pd.read_csv(url, storage_options<span class="op">=</span>{<span class="st">"User-Agent"</span>: <span class="st">"chokotto-makeover/1.0"</span>})</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>raw.columns <span class="op">=</span> raw.columns.<span class="bu">str</span>.replace(<span class="st">" "</span>, <span class="st">"_"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>oil <span class="op">=</span> raw.rename(columns<span class="op">=</span>{<span class="st">"Oil"</span>: <span class="st">"oil_twh"</span>}).copy()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>oil <span class="op">=</span> oil[oil[<span class="st">"Year"</span>] <span class="op">&gt;=</span> <span class="dv">1990</span>]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>oil <span class="op">=</span> oil[oil[<span class="st">"Entity"</span>].notna()]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop aggregates that would double-count</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>exclude <span class="op">=</span> {<span class="st">"World"</span>, <span class="st">"Africa"</span>, <span class="st">"Asia"</span>, <span class="st">"Europe"</span>, <span class="st">"North America"</span>, <span class="st">"South America"</span>, <span class="st">"Oceania"</span>}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>oil <span class="op">=</span> oil[<span class="op">~</span>oil[<span class="st">"Entity"</span>].isin(exclude)]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>latest_y <span class="op">=</span> <span class="bu">int</span>(oil[<span class="st">"Year"</span>].<span class="bu">max</span>())</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>top_entities <span class="op">=</span> (</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    oil[oil[<span class="st">"Year"</span>] <span class="op">==</span> latest_y]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    .nlargest(<span class="dv">8</span>, <span class="st">"oil_twh"</span>)[<span class="st">"Entity"</span>]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    .tolist()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>by_year_total <span class="op">=</span> oil.groupby(<span class="st">"Year"</span>, as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"oil_twh"</span>].<span class="bu">sum</span>()</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>by_year_total <span class="op">=</span> by_year_total.rename(columns<span class="op">=</span>{<span class="st">"oil_twh"</span>: <span class="st">"world_total"</span>})</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>top8 <span class="op">=</span> oil[oil[<span class="st">"Entity"</span>].isin(top_entities)].merge(by_year_total, on<span class="op">=</span><span class="st">"Year"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>top8[<span class="st">"share_pct"</span>] <span class="op">=</span> np.where(</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    top8[<span class="st">"world_total"</span>] <span class="op">&gt;</span> <span class="dv">0</span>, top8[<span class="st">"oil_twh"</span>] <span class="op">/</span> top8[<span class="st">"world_total"</span>] <span class="op">*</span> <span class="dv">100</span>, <span class="dv">0</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="my-makeover" class="level2">
+<h2 class="anchored" data-anchor-id="my-makeover">My Makeover</h2>
+<section id="the-same-eight-producers-still-dominate-volume-but-ranks-drift" class="level3">
+<h3 class="anchored" data-anchor-id="the-same-eight-producers-still-dominate-volume-but-ranks-drift">The same eight producers still dominate volume, but ranks drift</h3>
+<div id="cell-chart-1" class="cell" data-fig-width="10" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>color_map <span class="op">=</span> {e: PAL[i <span class="op">%</span> <span class="bu">len</span>(PAL)] <span class="cf">for</span> i, e <span class="kw">in</span> <span class="bu">enumerate</span>(top_entities)}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> entity <span class="kw">in</span> top_entities:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> oil[oil[<span class="st">"Entity"</span>] <span class="op">==</span> entity].sort_values(<span class="st">"Year"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    fig.add_trace(go.Scatter(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>sub[<span class="st">"Year"</span>],</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>sub[<span class="st">"oil_twh"</span>],</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        mode<span class="op">=</span><span class="st">"lines"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span>entity,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span>color_map[entity], width<span class="op">=</span><span class="dv">3</span> <span class="cf">if</span> entity <span class="op">==</span> top_entities[<span class="dv">0</span>] <span class="cf">else</span> <span class="dv">2</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        hovertemplate<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>entity<span class="sc">}</span><span class="ss">&lt;br&gt;%</span><span class="ch">{{</span><span class="ss">x</span><span class="ch">}}</span><span class="ss">: %</span><span class="ch">{{</span><span class="ss">y:,.0f</span><span class="ch">}}</span><span class="ss"> TWh&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>lead <span class="op">=</span> top_entities[<span class="dv">0</span>]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>lead_last <span class="op">=</span> oil[(oil[<span class="st">"Entity"</span>] <span class="op">==</span> lead) <span class="op">&amp;</span> (oil[<span class="st">"Year"</span>] <span class="op">==</span> latest_y)][<span class="st">"oil_twh"</span>].<span class="bu">sum</span>()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>THEME,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span>make_title(</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Oil output (TWh): </span><span class="sc">{</span>lead<span class="sc">}</span><span class="ss"> led with </span><span class="sc">{</span>lead_last<span class="sc">:,.0f}</span><span class="ss"> TWh in </span><span class="sc">{</span>latest_y<span class="sc">}</span><span class="ss"> among top 8"</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">450</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">60</span>, r<span class="op">=</span><span class="dv">30</span>, t<span class="op">=</span><span class="dv">100</span>, b<span class="op">=</span><span class="dv">100</span>),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">""</span>),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Oil production (terawatt-hours)"</span>),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="bu">dict</span>(orientation<span class="op">=</span><span class="st">"h"</span>, yanchor<span class="op">=</span><span class="st">"bottom"</span>, y<span class="op">=</span><span class="fl">1.02</span>, xanchor<span class="op">=</span><span class="st">"right"</span>, x<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>add_legend_note(fig, <span class="st">"Top 8 countries by output in the latest year; lines from 1990"</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>add_source(fig)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>assert_no_title_overlap(fig)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>fig.show()</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    fig.write_image(<span class="st">"chart-1.png"</span>, width<span class="op">=</span><span class="dv">1200</span>, height<span class="op">=</span><span class="dv">600</span>, scale<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="chart-1" class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.1.1.min.js" integrity="sha256-HUEFyfiTnZJxCxur99FjbKYTvKSzwDaD3/x5TqHpFu4=" crossorigin="anonymous"></script>                <div id="767a4056-e10f-4255-adbc-2a930957586e" class="plotly-graph-div" style="height:450px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("767a4056-e10f-4255-adbc-2a930957586e")) {                    Plotly.newPlot(                        "767a4056-e10f-4255-adbc-2a930957586e",                        [{"hovertemplate":"Non-OECD (EI)\u003cbr\u003e%{x}: %{y:,.0f} TWh\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#b45309","width":3},"mode":"lines","name":"Non-OECD (EI)","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"UrgehStz2UDjpZvEyBLZQE5iEFiRedlAexSuR5Fq2UAIrBxaNHbZQGDl0CKrzdlAPQrXo2Bn2kDD9Shc1xfbQH0\u002fNV6yG9xAyXa+n+pr20AMAiuHPgfdQC\u002fdJAbxK91ARrbz\u002fTSm3EC6SQwCk5TeQEa28\u002f38c+BADi2ynfPn4EAzMzMz8zbhQB+F61FAP+FA16NwPSKl4UAxCKwcShLhQAAAAACgd+FAFK5H4TKd4UD6fmq8SPfhQIts5\u002fuZseFAAAAAAJzA4UBSuB6Fi0ziQLpJDAIzluJAi2zn+xlx4kCF61G4VmviQHWTGAQG7uFAaJHtfEeA4ED6fmq80LjgQMP1KFyzh+FAppvEIGCc4UC4HoXrQaThQA=="},"type":"scatter"},{"hovertemplate":"Non-OPEC (EI)\u003cbr\u003e%{x}: %{y:,.0f} TWh\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#0f766e","width":2},"mode":"lines","name":"Non-OPEC (EI)","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"9P3UeHlW10BGtvP9FCvXQM\u002f3U+N1s9ZArBxaZENH1kBxPQrXk4vWQK5H4Xo85NZA9P3UeHGL10CPwvUo3PfXQK5H4XpsA9hA46WbxCDs10BGtvP9ZJ3YQM3MzMwM8thAg8DKoc2d2UAj2\u002fl+ShbaQJqZmZlxr9pAaJHtfJ+s2kBOYhBY6d7aQM\u002f3U+OFHdtApHA9Cucg20Ce76fG60jbQLpJDAIj5ttAPzVeuoHV20DjpZvEaFbcQHsUrkfhBd1AaJHtfN8m3kA\u002fNV66SebeQAAAAADwc95AaJHtfH+p3kCF61G4vt7fQGDl0CIfduBAg8DKoZWg30Cyne+nVsDfQLgehevxUeBASOF6FHbj4EBmZmZmJgjhQA=="},"type":"scatter"},{"hovertemplate":"High-income countries\u003cbr\u003e%{x}: %{y:,.0f} TWh\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#1d4ed8","width":2},"mode":"lines","name":"High-income countries","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"YhBYOZRz1EB9PzVeYrvUQBSuR+HS+9RAPQrXo9jJ1EC6SQwCK\u002fLUQOkmMQhMC9VA1XjpJhld1UB1kxgEpn\u002fVQB1aZDvnltVAmpmZmeHa1EBMN4lBmM\u002fVQClcj8JlzNVACKwcWkyB1UBU46Wb9PjWQGDl0CLLu9dAMQisHCrV10ApXI\u002fC3dbXQArXo3BtlNdA46WbxJjJ10C0yHa+LwXXQOkmMQicb9dAmpmZmTmr2EBvEoPAetjZQAisHFo8btpAbxKDwMqR20CsHFpki6XcQIlBYOVw69xAaJHtfGfo3EAv3SQGYY\u002feQE5iEFgZWd9AaJHtfFen3UBvEoPAGuLdQIPAyqHlt99AhetRuO7X30Av3SQGccnfQA=="},"type":"scatter"},{"hovertemplate":"OPEC (EI)\u003cbr\u003e%{x}: %{y:,.0f} TWh\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#7c3aed","width":2},"mode":"lines","name":"OPEC (EI)","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"PQrXo3AOyUCYbhKDsDPJQMuhRbYTLMtAGQRWDg3qy0AEVg4tcmLMQFyPwvVIs8xABoGVQ7tgzUDjpZvE4DvOQJhuEoNAD9BAsp3vpxZ8zkDsUbgerTPQQFg5tMgm289Az\u002fdT4wWHzUBxPQrXwxXQQFpkO9\u002fXmdFAHVpkOyf90UC4HoXrISbSQPT91Hipz9FArBxaZItH0kCyne+n1v3QQB1aZDsHQdFAFK5H4RKy0UDJdr6fsm7SQIPAyqGV0dFAPQrXo9DJ0UDjpZvEiKXSQNejcD2CStNAbxKDwIom00Boke18hyLTQJ7vp8b7AtJAAiuHFqniz0AMAiuHxl\u002fQQOkmMQjcotFAwcqhRY5+0UAMAiuHdofRQA=="},"type":"scatter"},{"hovertemplate":"Upper-middle-income countries\u003cbr\u003e%{x}: %{y:,.0f} TWh\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#be123c","width":2},"mode":"lines","name":"Upper-middle-income countries","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"eekmMcgryECcxCCwkh3HQD0K16PgdcdAmG4Sg1Cqx0CBlUOLjCTIQM\u002f3U+PFt8hATDeJQWD0yUCe76fGi1PLQGIQWDm0Cc1AaJHtfE\u002fDzEAK16NwXcLNQHsUrkfh6c1A+n5qvPRpzUAUrkfhyrLNQOXQItuZ2M9APzVeurkZ0ED6fmq8hGrQQMHKoUVGhtBAmpmZmdG20EDD9Shc52XQQLgeheuxqdBA+FPjpUMS0EBoke18X1jQQDeJQWAF3M9Ake18P1XSz0CDwMqhRXnQQPT91Hixr9BA7FG4HqXJ0EBU46WbhF\u002fQQEJg5dBiC89AL90kBiFEzECR7Xw\u002fRYLNQGq8dJOofc5Ad76fGm8b0EDD9Shc12XQQA=="},"type":"scatter"},{"hovertemplate":"OECD (EI)\u003cbr\u003e%{x}: %{y:,.0f} TWh\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#64748b","width":2},"mode":"lines","name":"OECD (EI)","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"2\u002fl+agzVxEACK4cWSWTFQM3MzMzcn8VA1XjpJnGjxUAv3SQGMY3GQESLbOdr4MZAZDvfT92ox0DXo3A96vvHQOxRuB717cdAQmDl0IJ8x0BKDAIrp5PHQO58PzVeZ8dA\u002ftR46TZ2x0BKDAIr9y7HQNEi2\u002fmewsZAw\u002fUoXL+zxUD0\u002fdR4SS7FQL6fGi9d3cRA6SYxCFw8xEDb+X5qXETEQAisHFrUb8RAsHJokV2axEDLoUW2E63FQJHtfD+F6MZAppvEIPDeyECkcD0Kd+XJQC2yne8XJMlAgZVDi6zbyUDHSzeJMVXMQJ7vp8ZbJs5A\u002ftR46bYizUDwp8ZL91zNQG3n+6mxbs5A16NwPboM0EDD9ShcP0\u002fQQA=="},"type":"scatter"},{"hovertemplate":"Middle East (EI)\u003cbr\u003e%{x}: %{y:,.0f} TWh\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#ca8a04","width":2},"mode":"lines","name":"Middle East (EI)","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"vp8aL30Fw0BeukkMgrbCQN9PjZdOvcRA5\u002fup8WKIxUAfhetR+APGQD81Xrq5J8ZA7FG4HpWXxkD4U+Ol+0rHQNnO91Nj9shAfT81XtoLyECHFtnOl6TJQPYoXI\u002fiI8lAx0s3ifEjx0CR7Xw\u002fhTPJQMUgsHIICctA5\u002fup8cLEy0Bg5dAiyxrMQKwcWmTrq8tAqMZLN9nizEACK4cWmdPKQBBYObRYd8tAsp3vp6b3zUD6fmq8xHzOQMP1KFyPDM5A8KfGSxdSzkAK16NwrfLPQE5iEFih+tBAPzVeuhG60ECmm8QgGOfQQG8Sg8ACB9BAgZVDixyKzUBmZmZm5tjNQAAAAADAYdBAbxKDwJII0EDNzMzMzPfPQA=="},"type":"scatter"},{"hovertemplate":"North America (EI)\u003cbr\u003e%{x}: %{y:,.0f} TWh\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#0369a1","width":2},"mode":"lines","name":"North America (EI)","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"7lpCPli8vUD129eBo2O+QPT91HhJIb5AAwmKH1OlvUDJdr6fenS9QPRsVn0uVb1AZDvfT036vUCU9gZfSHO+QLTIdr6fSb5ASL99HegIvUCkcD0K9zW9QPhT46VbX71Ac2iR7TynvUCgibDh6Qu+QMl2vp9KAr5AEFg5tMj9vEAvbqMBfPy8QOxRuB5lwLxAyXa+n7rRu0A1XrpJjEa8QAyTqYLxC71A2ht8YUIIvkA3iUFgtWbAQHNoke2c2cFAoBov3eTIw0Dwp8ZLJ63EQGQ7308ND8RAzczMzOznxEDFILByqGXHQEJg5dCCM8lA001iECgXyECF61G47o3IQGDl0CLL18lAc2iR7ex6y0AdWmQ7H0PMQA=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"font":{"family":"Inter, system-ui, sans-serif","color":"#1e293b"},"title":{"font":{"size":15,"color":"#1e293b"},"text":"Oil output (TWh): Non-OECD (EI) led with 36,130 TWh in 2024 among top 8","x":0,"xanchor":"left"},"margin":{"l":60,"r":30,"t":100,"b":100},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"right","x":1},"paper_bgcolor":"white","plot_bgcolor":"#f8fafc","height":450,"xaxis":{"title":{"text":""}},"yaxis":{"title":{"text":"Oil production (terawatt-hours)"}},"annotations":[{"align":"left","font":{"color":"#64748b","size":11},"showarrow":false,"text":"Top 8 countries by output in the latest year; lines from 1990","x":0,"xanchor":"left","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"align":"left","font":{"color":"#94a3b8","size":10,"style":"italic"},"showarrow":false,"text":"\u003ci\u003eNote: Oil production incl. crude, oil sands, NGLs; energy unit TWh (OWID methodology)  |  Source: Our World in Data (Energy Institute; Shift Data Portal)  |  (c) 2026 chokotto\u003c\u002fi\u003e","x":0,"xanchor":"left","xref":"paper","y":-0.26,"yanchor":"top","yref":"paper"}]},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('767a4056-e10f-4255-adbc-2a930957586e');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+</section>
+<section id="share-of-world-production-concentration-vs-diversification" class="level3">
+<h3 class="anchored" data-anchor-id="share-of-world-production-concentration-vs-diversification">Share of world production: concentration vs diversification</h3>
+<div id="cell-chart-2" class="cell" data-fig-width="10" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> <span class="bu">sorted</span>(top8[<span class="st">"Year"</span>].unique())</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>wide <span class="op">=</span> top8.pivot(index<span class="op">=</span><span class="st">"Year"</span>, columns<span class="op">=</span><span class="st">"Entity"</span>, values<span class="op">=</span><span class="st">"share_pct"</span>).reindex(years)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>wide <span class="op">=</span> wide.fillna(<span class="dv">0</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fills <span class="op">=</span> [</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rgba(180,83,9,0.35)"</span>, <span class="st">"rgba(15,118,110,0.32)"</span>, <span class="st">"rgba(29,78,216,0.28)"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rgba(124,58,237,0.26)"</span>, <span class="st">"rgba(190,18,60,0.24)"</span>, <span class="st">"rgba(100,116,139,0.22)"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rgba(202,138,4,0.2)"</span>, <span class="st">"rgba(3,105,161,0.2)"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>fig2 <span class="op">=</span> go.Figure()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, entity <span class="kw">in</span> <span class="bu">enumerate</span>(top_entities):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> entity <span class="kw">not</span> <span class="kw">in</span> wide.columns:</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    fig2.add_trace(go.Scatter(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>wide.index,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>wide[entity],</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span>entity,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        stackgroup<span class="op">=</span><span class="st">"one"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        mode<span class="op">=</span><span class="st">"lines"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        line<span class="op">=</span><span class="bu">dict</span>(width<span class="op">=</span><span class="fl">0.5</span>),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        fillcolor<span class="op">=</span>fills[i <span class="op">%</span> <span class="bu">len</span>(fills)],</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        hovertemplate<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>entity<span class="sc">}</span><span class="ss">: %</span><span class="ch">{{</span><span class="ss">y:.1f</span><span class="ch">}}</span><span class="ss">%&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>fig2.update_layout(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>THEME,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span>make_title(</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Share of estimated world oil output: eight largest producers (100</span><span class="sc">% s</span><span class="st">tacked)"</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">450</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">60</span>, r<span class="op">=</span><span class="dv">30</span>, t<span class="op">=</span><span class="dv">100</span>, b<span class="op">=</span><span class="dv">100</span>),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">""</span>),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">"Percent of summed country totals"</span>, <span class="bu">range</span><span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>]),</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="bu">dict</span>(orientation<span class="op">=</span><span class="st">"h"</span>, yanchor<span class="op">=</span><span class="st">"bottom"</span>, y<span class="op">=</span><span class="fl">1.02</span>, xanchor<span class="op">=</span><span class="st">"right"</span>, x<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>add_legend_note(</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    fig2,</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"World total = sum of country-level series in dataset (excludes regional aggregates)"</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>add_source(fig2)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>assert_no_title_overlap(fig2)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>fig2.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="chart-2" class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.1.1.min.js" integrity="sha256-HUEFyfiTnZJxCxur99FjbKYTvKSzwDaD3/x5TqHpFu4=" crossorigin="anonymous"></script>                <div id="7cef8b86-1669-4d5f-9cc9-88d7205ea3df" class="plotly-graph-div" style="height:450px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("7cef8b86-1669-4d5f-9cc9-88d7205ea3df")) {                    Plotly.newPlot(                        "7cef8b86-1669-4d5f-9cc9-88d7205ea3df",                        [{"fillcolor":"rgba(180,83,9,0.35)","hovertemplate":"Non-OECD (EI): %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"width":0.5},"mode":"lines","name":"Non-OECD (EI)","stackgroup":"one","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"6G\u002fe1AN2I0DGtwNf7UUjQHwe8JDetSNAIjzm3DubI0CDEnkMF0kjQPvNZ9FWPSNAJ\u002fpe2qgxI0CxbN\u002fwqDkjQB\u002fcrHksciNAAp1nXdpnI0DNUKOS4rUjQE1sbOc83CNAGZy6fh\u002fRI0DDAORe3U4kQNIeElkvyiRAeAkNAGcjJUDbv5uRj3YlQAoJmIg1lSVAjlYoj8PGJUDV1jJZSKQlQNq6Nuz\u002fryVAwZzdMvufJUBGfROuFIElQIigbzpGKiVA4tjVZpy0JEBfuZ9p8qMkQISaJ3+4zCRALjtoW6SrLUAZkiDAYfAsQElF4PJ0NixA51ANbDjNK0DWSvQpxtgrQPnQFIma8CtA3HuluvGFK0CGWvYv1WcrQA=="},"type":"scatter"},{"fillcolor":"rgba(15,118,110,0.32)","hovertemplate":"Non-OPEC (EI): %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"width":0.5},"mode":"lines","name":"Non-OPEC (EI)","stackgroup":"one","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"sUr+bY7YIUBb1cKMC88hQFcxg+txkCFAISlyfI4vIUDH+TBVkhMhQCbMzhGHESFAUzJ+aZYdIUBuBs+m\u002fgEhQOnZKGDznCBAVSFq7OvtIEC1PVzWtLYgQJriu0+t+yBA\u002frg6PBS4IUBPulad+VIhQGHM99wJ3CBA+WFKGwutIEBrzZhaS8AgQJzR1ktI9yBAmlG0a3u9IEDLj0AGckshQAeh087cUSFA+7octQUWIUC1XZSbjvUgQAVcN1TIWyFATuiCbHWVIUAQR9+BN20hQP0KY70RCiFAIu447mmqKED0DIMzMwkpQBoEUIL45ilAC9W6B7akKkCUV7so\u002f28qQIX9QmXoAipADaNhJvNkKkDYnmdkU3UqQA=="},"type":"scatter"},{"fillcolor":"rgba(29,78,216,0.28)","hovertemplate":"High-income countries: %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"width":0.5},"mode":"lines","name":"High-income countries","stackgroup":"one","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"msdWohNHH0DK8egxQd8fQM7msQNKPCBAGwYK2lMJIEDMbKTA8bofQJJ3oU7JYR9AroIXqmgPH0Cm\u002fA\u002fdwYIeQKLUAfpQ3x1AYy91yG+EHUDFDySOoJ4dQL9\u002fsCddrh1AmR5plBvAHUApdECe8oIeQHg90ZpA\u002fR1AdJSVjITMHUCDBOcQBbkdQF++GI3vgR1Amos5PWZbHUCfm6\u002fh4S4dQB25VtEnGR1AyGgAP0FJHkANBslwjO8eQA6stgy4nR9AnMmvru4TIEAoNixw8icgQILrAo90LiBAZ3QAmyVBJ0AfN+rMvwEoQFCbTWrLqShA3g\u002fm1hX7KEBw\u002fKuIzOEoQDyJ1pjXRilA7OTujibiKEAnH+UBmrAoQA=="},"type":"scatter"},{"fillcolor":"rgba(124,58,237,0.26)","hovertemplate":"OPEC (EI): %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"width":0.5},"mode":"lines","name":"OPEC (EI)","stackgroup":"one","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"uoIMJP0oE0CCIm5zOF8TQD6aANsOBhVArvNvvomIFUBmOerR1H8VQBY0yDdOZhVA\u002feE\u002fNR5bFUBVrs\u002fwM3QVQB7U69OLOBZAKYxLsMuSFUDdkkJqnwAWQD5jQ6cYsBVAsB\u002faPaFsFEDNNMiJHl0VQDxAQYt+PRZAPM1dgf99FkCUMduwxaAWQDzoK23sSRZAWoi1ejOPFkBBrvNHW4oVQPwcA0Y2bBVAtJGMEpy5FUAfA6cXAxAWQOzAxDqIUBVAAqZfElm\u002fFEAh61yXUggVQOsP0ot\u002flhVAZk2da47PHkB9WEhjMhAeQDqkRQlwVxxAysWL61\u002fcGkCm\u002f4NUf0QbQEVRc97jGxxAC5lrG1dXG0Cl8j4DGjsbQA=="},"type":"scatter"},{"fillcolor":"rgba(190,18,60,0.24)","hovertemplate":"Upper-middle-income countries: %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"width":0.5},"mode":"lines","name":"Upper-middle-income countries","stackgroup":"one","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"2MJvDat7EkDBFFBBqcQRQCJevI\u002feJhJAOahaYnJBEkCSTS7cVkkSQDC9SkIibhJALuxjeA\u002feEkAwONq7BmQTQHusVl3VFhRA4B7RsN1aFEB5+UMa8TQUQFKiuLWMXRRAzf\u002faJIZYFEBQ8A\u002f77LgTQNzylYu7HhRA0UXZy4whFECkzNU\u002frXcUQCK3NBG7rRRACqobg6agFEBHYhkfv8kUQPzeu8xQsBRAXZ786B27E0BcTjCxdJATQJbLd6wVDhNA9P+oMb6OEkADK1qJ4pQSQP10HE1KrBJAVEq+8VoCG0AIqlH9ZLkZQHWBxkanbBhAeTZQ+9jPF0CLnuznAJIYQCbQb\u002fprTBhA07bB\u002fVUsGUBcshVyL3kZQA=="},"type":"scatter"},{"fillcolor":"rgba(100,116,139,0.22)","hovertemplate":"OECD (EI): %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"width":0.5},"mode":"lines","name":"OECD (EI)","stackgroup":"one","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"c0B7eiTcD0AKcBzodHEQQPO\u002fJpA1uxBAdb5A5C6xEEBHPYhKyxQRQFOrc+muDhFAb1v0mvkyEUBxV25F3wQRQJhZOIoZjhBADCIgt+6eEECubLTxQwIQQIiNJsPy3Q9AIG6Fi4o6EEBFhnG7rsoOQLg2GSZnwgxAp8Wa6o8iC0AA3PQzemgKQPcTUJUjHApA4K4LkEb5CEBaQB5EXbEJQIR4yu3fXwlAktjaBWJLCUCH2Bi+7fEJQAd\u002frBgYZwtAaHk7FRYCDUDPAa60uTUNQAlj5H1jIgxATLM+kRnNFEA1Tg1K1UEWQK6OlfR2uBdASKxRkVuLGEDgY8k28XIYQIDCPhR\u002fQBhA5P9+DFoVGUDTGTo5FlYZQA=="},"type":"scatter"},{"fillcolor":"rgba(202,138,4,0.2)","hovertemplate":"Middle East (EI): %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"width":0.5},"mode":"lines","name":"Middle East (EI)","stackgroup":"one","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"a1YwojEXDUCyUzHco8QMQI4Q\u002fCvrCxBA8pVW8U+cEEDG9O2426wQQF4mfzr4hBBAerdgxFBsEEAB5VRQUocQQKeC7i8KRRFAjkBmal8EEUCgdqCwa2kRQCzpFOeaHRFAIoTkPaIBEEDs7m8hYbwQQFPpgN+jFBFAVgngYi1cEUDqTEbdNoURQKghlhphUBFAKy8JNSHTEUC+c\u002fxOFAERQCp15mQVDRFAifwkdkZlEkC5x8hu7j4SQJclIfPj+BFAvI4xkamuEUDtPnMLlQQSQADsDD8mABNA+cj7vkvpGkBC3I\u002fOZo4aQHUyTu4iOBlAG+cEEnbiGEC6aTmJItoYQFm\u002fPyIZHBpAt0Y4+NsOGUDVhSMTnNQYQA=="},"type":"scatter"},{"fillcolor":"rgba(3,105,161,0.2)","hovertemplate":"North America (EI): %{y:.1f}%\u003cextra\u003e\u003c\u002fextra\u003e","line":{"width":0.5},"mode":"lines","name":"North America (EI)","stackgroup":"one","x":{"dtype":"i2","bdata":"xgfHB8gHyQfKB8sHzAfNB84HzwfQB9EH0gfTB9QH1QfWB9cH2AfZB9oH2wfcB90H3gffB+AH4QfiB+MH5AflB+YH5wfoBw=="},"y":{"dtype":"f8","bdata":"RWk2awC9BkAyxdas+VsHQMhzn0HtTwdA2Ne253veBkAdryF1ZE8GQN2gfPYE3wVAgdwQJsHKBUCaEU+ZhJsFQA88jp8p9ARAHFlWKB6MBEC0IJrfm9UDQLyhSiE+\u002fwNAMmcXx+mCBEC0KiUoHPQDQIqroYCY9QJA+fhMh94fAkCDjBzO6BECQIBs9G9e\u002fQFAy1WFoZgqAUADBOJ0NewBQAITYTlCCAJAEXSRZnhvAkDapblWnaEDQKp0PsIiWgVAPtqPEXITB0CaNajCbVIHQJ2tKD1xcgZAn+QiGkfREEDMvMBoP2ESQPMy18vD0xNAWVrcWFNLFECZEcST7nEUQC6hzko0mBRA3wV1LUp5FUCcTasCvvMVQA=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"font":{"family":"Inter, system-ui, sans-serif","color":"#1e293b"},"title":{"font":{"size":15,"color":"#1e293b"},"text":"Share of estimated world oil output: eight largest producers (100% stacked)","x":0,"xanchor":"left"},"margin":{"l":60,"r":30,"t":100,"b":100},"yaxis":{"title":{"text":"Percent of summed country totals"},"range":[0,100]},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"right","x":1},"paper_bgcolor":"white","plot_bgcolor":"#f8fafc","height":450,"xaxis":{"title":{"text":""}},"annotations":[{"align":"left","font":{"color":"#64748b","size":11},"showarrow":false,"text":"World total = sum of country-level series in dataset (excludes regional aggregates)","x":0,"xanchor":"left","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"align":"left","font":{"color":"#94a3b8","size":10,"style":"italic"},"showarrow":false,"text":"\u003ci\u003eNote: Oil production incl. crude, oil sands, NGLs; energy unit TWh (OWID methodology)  |  Source: Our World in Data (Energy Institute; Shift Data Portal)  |  (c) 2026 chokotto\u003c\u002fi\u003e","x":0,"xanchor":"left","xref":"paper","y":-0.26,"yanchor":"top","yref":"paper"}]},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('7cef8b86-1669-4d5f-9cc9-88d7205ea3df');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<hr>
+<p><em>This post is part of <a href="https://makeovermonday.co.uk/">Makeover Monday</a>.</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/chiquitos-jp\.github\.io\/trading-dashboard\/quarto\/latest\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 chokotto All Rights Reserved.</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Chiquitos-JP/trading-dashboard/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Chiquitos-JP/trading-dashboard">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
