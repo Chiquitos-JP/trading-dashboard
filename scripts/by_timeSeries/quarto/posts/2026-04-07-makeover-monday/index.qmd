@@ -2,7 +2,7 @@
 title: "MakeoverMonday: AI Workslop - The Hidden Cost of AI-Generated Noise"
 description: "Workers spend 4.5 hours/week cleaning up AI mistakes - Finance teams hit hardest with 85% reporting negative consequences"
 date: "2026-04-07"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - MakeoverMonday
