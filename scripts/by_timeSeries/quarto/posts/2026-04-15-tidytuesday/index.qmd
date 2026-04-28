@@ -2,7 +2,7 @@
 title: "TidyTuesday: Repair Cafes - What Can (and Can't) Be Fixed"
 description: "Analyzing 200K+ repair attempts across 40 countries to find what breaks, what gets fixed, and where the repair movement is growing fastest"
 date: "2026-04-15"
-x-posted: false
+x-posted: true
 author: "chokotto"
 categories:
   - TidyTuesday
